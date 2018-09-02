@@ -5,6 +5,8 @@ import java.util.Hashtable;
 
 import wci.frontend.TokenType;
 
+// TODO: Modify reserved words/symbols for Java - this was copied/pasted from PascalTokenType
+
 public enum JavaTokenType implements TokenType {
 	 // Reserved words.
     AND, ARRAY, BEGIN, CASE, CONST, DIV, DO, DOWNTO, ELSE, END,
