@@ -6,7 +6,7 @@ import wci.intermediate.*;
 import wci.backend.*;
 import wci.message.*;
 
-import static wci.frontend.pascal.PascalTokenType.STRING;
+import static wci.frontend.java.JavaTokenType.STRING;
 import static wci.message.MessageType.*;
 
 /**
@@ -23,7 +23,7 @@ public class Java
     private Backend backend;  // backend
 
     /**
-     * Compile or interpret a Pascal source program.
+     * Compile or interpret a Java source program.
      * @param operation either "compile" or "execute".
      * @param filePath the source file path.
      * @param flags the command line flags.

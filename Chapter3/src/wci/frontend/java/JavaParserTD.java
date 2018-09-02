@@ -3,7 +3,7 @@ package wci.frontend.java;
 import wci.frontend.*;
 import wci.message.Message;
 
-import static wci.frontend.pascal.PascalTokenType.*;
+import static wci.frontend.java.JavaTokenType.*;
 import static wci.message.MessageType.*;
 
 /**
