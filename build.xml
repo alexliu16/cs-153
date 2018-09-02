@@ -1,10 +1,16 @@
-<project name="subant" default="subant1">
-        <property name="build.dir" value="subant.build"/>
-        <target name="subant1">
-            <subant target="">
-                <property name="build.dir" value="subant1.build"/>
-                <property name="not.overloaded" value="not.overloaded"/>
-                <fileset dir="." includes="*/build.xml"/>
+<project>
+    <macrodef name="iterate">
+        <attribute name="target"/>
+        <sequential>
+            <subant target="@{target}">
+                <fileset dir="modules" includes="*/build.xml"/>
             </subant>
-        </target>
+        </sequential>
+    </macrodef>
+
+    <target name="compile">
+        <iterate target="compile"/>
+    </target>
+
+    <!-- more targets -->
 </project>
