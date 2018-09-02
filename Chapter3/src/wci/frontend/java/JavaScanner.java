@@ -24,7 +24,7 @@ public class JavaScanner extends Scanner {
 	@Override
 	protected Token extractToken() throws Exception {
 		skipWhiteSpace();
-		Token token;
+		Token token = null;
 		char currentChar = currentChar();
 		// Construct next token. The current char determines token type.
 		if (currentChar == EOF) {
