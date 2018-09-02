@@ -1,5 +1,6 @@
 package wci.frontend.java;
 
+// TODO: Need to modify for Java, this was copied/pasted from PascalErrorCode
 public enum JavaErrorCode {
 	 ALREADY_FORWARDED("Already specified in FORWARD"),
 	    CASE_CONSTANT_REUSED("CASE constant reused"),
