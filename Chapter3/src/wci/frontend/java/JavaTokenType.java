@@ -10,17 +10,17 @@ import wci.frontend.TokenType;
 public enum JavaTokenType implements TokenType {
 	 // Reserved words.
     AND, ARRAY, BEGIN, CASE, CONST, DIV, DO, DOWNTO, ELSE, END,
-    FILE, FOR, FUNCTION, GOTO, IF, IN, LABEL, MOD, NIL, NOT,
+    FILE, FOR, FUNCTION, GOTO, IF, IN, LABEL, MOD,
     OF, OR, PACKED, PROCEDURE, PROGRAM, RECORD, REPEAT, SET,
     THEN, TO, TYPE, UNTIL, VAR, WHILE, WITH,
 
     // Special symbols.
-    PLUS("+"), MINUS("-"), STAR("*"), SLASH("/"), COLON_EQUALS(":="),
-    DOT("."), COMMA(","), SEMICOLON(";"), COLON(":"), QUOTE("'"),
-    EQUALS("="), NOT_EQUALS("<>"), LESS_THAN("<"), LESS_EQUALS("<="),
+    PLUS("+"), MINUS("-"), STAR("*"), SLASH("/"), DOT("."),
+    COMMA(","), SEMICOLON(";"), COLON(":"), QUOTE("'"),
+    EQUALS("="), EQUALS_CHECK("=="), NOT("!"), NOT_EQUALS("!="), LESS_THAN("<"), LESS_EQUALS("<="),
     GREATER_EQUALS(">="), GREATER_THAN(">"), LEFT_PAREN("("), RIGHT_PAREN(")"),
     LEFT_BRACKET("["), RIGHT_BRACKET("]"), LEFT_BRACE("{"), RIGHT_BRACE("}"),
-    UP_ARROW("^"), DOT_DOT(".."),
+    UP_ARROW("^"), AND_BIT("&"), PERCENT("%"),
 
     IDENTIFIER, INTEGER, REAL, STRING,
     ERROR, END_OF_FILE;
@@ -29,7 +29,7 @@ public enum JavaTokenType implements TokenType {
     private static final int LAST_RESERVED_INDEX  = WITH.ordinal();
 
     private static final int FIRST_SPECIAL_INDEX = PLUS.ordinal();
-    private static final int LAST_SPECIAL_INDEX  = DOT_DOT.ordinal();
+    private static final int LAST_SPECIAL_INDEX  = PERCENT.ordinal();
 
     private String text;  // token text
 
@@ -59,7 +59,7 @@ public enum JavaTokenType implements TokenType {
         return text;
     }
 
-    // Set of lower-cased Pascal reserved word text strings.
+    // Set of lower-cased Java reserved word text strings.
     public static HashSet<String> RESERVED_WORDS = new HashSet<String>();
     static {
         JavaTokenType values[] = JavaTokenType.values();
@@ -68,8 +68,8 @@ public enum JavaTokenType implements TokenType {
         }
     }
 
-    // Hash table of Pascal special symbols.  Each special symbol's text
-    // is the key to its Pascal token type.
+    // Hash table of Java special symbols.  Each special symbol's text
+    // is the key to its Java token type.
     public static Hashtable<String, JavaTokenType> SPECIAL_SYMBOLS =
         new Hashtable<String, JavaTokenType>();
     static {
