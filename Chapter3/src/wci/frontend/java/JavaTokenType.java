@@ -5,31 +5,34 @@ import java.util.Hashtable;
 
 import wci.frontend.TokenType;
 
-// TODO: Modify reserved words/symbols for Java - this was copied/pasted from PascalTokenType
-
 public enum JavaTokenType implements TokenType {
 	 // Reserved words.
-    AND, ARRAY, BEGIN, CASE, CONST, DIV, DO, DOWNTO, ELSE, END,
-    FILE, FOR, FUNCTION, GOTO, IF, IN, LABEL, MOD, NIL, NOT,
-    OF, OR, PACKED, PROCEDURE, PROGRAM, RECORD, REPEAT, SET,
-    THEN, TO, TYPE, UNTIL, VAR, WHILE, WITH,
+	ABSTRACT, DOUBLE, INT, LONG, BREAK, ELSE, SWITCH, CASE,
+	ENUM, NATIVE, SUPER, CHAR, EXTENDS, RETURN, THIS, CLASS, FLOAT, SHORT,
+	THROW, CONST, FOR, PACKAGE, VOID, CONTINUE, GOTO, PROTECTED, VOLATILE,
+	DO, IF, STATIC, WHILE,
+
 
     // Special symbols.
-    PLUS("+"), MINUS("-"), STAR("*"), SLASH("/"), COLON_EQUALS(":="),
-    DOT("."), COMMA(","), SEMICOLON(";"), COLON(":"), QUOTE("'"),
-    EQUALS("="), NOT_EQUALS("<>"), LESS_THAN("<"), LESS_EQUALS("<="),
-    GREATER_EQUALS(">="), GREATER_THAN(">"), LEFT_PAREN("("), RIGHT_PAREN(")"),
-    LEFT_BRACKET("["), RIGHT_BRACKET("]"), LEFT_BRACE("{"), RIGHT_BRACE("}"),
-    UP_ARROW("^"), DOT_DOT(".."),
+	BIT_COMPLEMENT("~"), NOT("!"), PERCENT("%"), BIT_XOR("^"), BIT_AND("&"), STAR("*"), BIT_OR("|"),
+	MINUS("-"), PLUS("+"), EQUALS("="), SLASH("/"), COLON(":"), SEMICOLON(";"),
+	QUESTION("?"), LESS_THAN("<"), GREATER_THAN(">"), DOT("."), COMMA(","), QUOTE("'"),
+	EQUALS_CHECK("=="), NOT_EQUALS("!="), LESS_EQUALS("<="), GREATER_EQUALS(">="),LEFT_PAREN("("), 
+	RIGHT_PAREN(")"), LEFT_BRACKET("["), RIGHT_BRACKET("]"), LEFT_BRACE("{"), RIGHT_BRACE("}"),
+	INCREMENT("++"), DECREMENT("--"), BIT_LEFT_SHIFT("<<"), BIT_RIGHT_SHIFT(">>"), COMPOUND_ADD("+="),
+	COMPOUND_MINUS("-="), COMPOUND_MULTIPLY("*="), COMPOUND_DIVIDE("/="), LOGIC_AND("&&"), LOGIC_OR("||"),
+	QUOTATION("\""), COMMENT_ONE_LINE("//"), COMMENT_MULTI_LINE_START("/*"), COMMENT_MULTI_LINE_END("*/"), 
+	COMPOUND_BIT_OR("|="), COMPOUND_PERCENT("%="), COMPOUND_BIT_AND("&="), COMPOUND_BIT_XOR("^="),
+	COMPOUND_BIT_LEFT_SHIFT("<<="), COMPOUND_BIT_RIGHT_SHIFT(">>="), COMMERCIAL("@"),
 
     IDENTIFIER, INTEGER, REAL, STRING,
     ERROR, END_OF_FILE;
 
-    private static final int FIRST_RESERVED_INDEX = AND.ordinal();
-    private static final int LAST_RESERVED_INDEX  = WITH.ordinal();
+    private static final int FIRST_RESERVED_INDEX = ABSTRACT.ordinal();
+    private static final int LAST_RESERVED_INDEX  = WHILE.ordinal();
 
-    private static final int FIRST_SPECIAL_INDEX = PLUS.ordinal();
-    private static final int LAST_SPECIAL_INDEX  = DOT_DOT.ordinal();
+    private static final int FIRST_SPECIAL_INDEX = BIT_COMPLEMENT.ordinal();
+    private static final int LAST_SPECIAL_INDEX  = COMMERCIAL.ordinal();
 
     private String text;  // token text
 
@@ -59,7 +62,7 @@ public enum JavaTokenType implements TokenType {
         return text;
     }
 
-    // Set of lower-cased Pascal reserved word text strings.
+    // Set of lower-cased Java reserved word text strings.
     public static HashSet<String> RESERVED_WORDS = new HashSet<String>();
     static {
         JavaTokenType values[] = JavaTokenType.values();
@@ -68,8 +71,8 @@ public enum JavaTokenType implements TokenType {
         }
     }
 
-    // Hash table of Pascal special symbols.  Each special symbol's text
-    // is the key to its Pascal token type.
+    // Hash table of Java special symbols.  Each special symbol's text
+    // is the key to its Java token type.
     public static Hashtable<String, JavaTokenType> SPECIAL_SYMBOLS =
         new Hashtable<String, JavaTokenType>();
     static {
