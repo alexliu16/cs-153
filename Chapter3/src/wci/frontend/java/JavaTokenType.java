@@ -10,17 +10,18 @@ import wci.frontend.TokenType;
 public enum JavaTokenType implements TokenType {
 	 // Reserved words.
     AND, ARRAY, BEGIN, CASE, CONST, DIV, DO, DOWNTO, ELSE, END,
-    FILE, FOR, FUNCTION, GOTO, IF, IN, LABEL, MOD,
+    FILE, FOR, FUNCTION, GOTO, IF, IN, LABEL,
     OF, OR, PACKED, PROCEDURE, PROGRAM, RECORD, REPEAT, SET,
     THEN, TO, TYPE, UNTIL, VAR, WHILE, WITH,
 
     // Special symbols.
-    PLUS("+"), MINUS("-"), STAR("*"), SLASH("/"), DOT("."),
-    COMMA(","), SEMICOLON(";"), COLON(":"), QUOTE("'"),
-    EQUALS("="), EQUALS_CHECK("=="), NOT("!"), NOT_EQUALS("!="), LESS_THAN("<"), LESS_EQUALS("<="),
-    GREATER_EQUALS(">="), GREATER_THAN(">"), LEFT_PAREN("("), RIGHT_PAREN(")"),
-    LEFT_BRACKET("["), RIGHT_BRACKET("]"), LEFT_BRACE("{"), RIGHT_BRACE("}"),
-    UP_ARROW("^"), AND_BIT("&"), PERCENT("%"),
+    PLUS("+"), PLUS_EQ("+="), PLUS_PLUS("++"), MINUS("-"), MINUS_EQ("-="), MINUS_MINUS("--"), STAR("*"),
+    TIMES_EQ("*="), DIVIDE("/"), DIVIDE_EQ("/="), DOT("."), COMMA(","), SEMICOLON(";"), COLON(":"),
+    EQUALS("="), EQUALS_CHECK("=="), TILDE("~"), TILDE_EQ("~="), NOT("!"), NOT_EQUALS("!="), LESS_THAN("<"),
+    SHIFT_LEFT("<<"), SHIFT_LEFT_EQ("<<="), LESS_EQUALS("<="), GREATER_EQUALS(">="), SHIFT_RIGHT(">>"),
+    SHIFT_RIGHT_EQ(">>="), GREATER_THAN(">"), LEFT_PAREN("("), RIGHT_PAREN(")"), LEFT_BRACKET("["),
+    RIGHT_BRACKET("]"), LEFT_BRACE("{"), RIGHT_BRACE("}"), XOR("^"), XOR_EQ("^="), AND_BIT("&"), AND_BIT_EQ("&="),
+    OR_BIT("|"), OR_BIT_EQ("|="), AND_BOOL("&&"), OR_BOOL("||"), MOD("%"), MOD_EQ("%="), QUESTION_MARK("?"),
 
     IDENTIFIER, INTEGER, REAL, STRING,
     ERROR, END_OF_FILE;
@@ -29,7 +30,7 @@ public enum JavaTokenType implements TokenType {
     private static final int LAST_RESERVED_INDEX  = WITH.ordinal();
 
     private static final int FIRST_SPECIAL_INDEX = PLUS.ordinal();
-    private static final int LAST_SPECIAL_INDEX  = PERCENT.ordinal();
+    private static final int LAST_SPECIAL_INDEX  = QUESTION_MARK.ordinal();
 
     private String text;  // token text
 
