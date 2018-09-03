@@ -69,14 +69,21 @@ public class JavaScanner extends Scanner {
 		while (Character.isWhitespace(currentChar) || currentChar == '/') {
 			// start of a comment?
 			if (currentChar == '/') {
-				char nextChar = nextChar();
-				if (nextChar == '/') {
+				if (source.peekChar() == '/') {
 					do {
 						currentChar = nextChar();
 					} while ((currentChar != EOL) && (currentChar != EOF));
 				}
-				else if (nextChar == '*') { //multi-line comment
-					//todo
+				else if (source.peekChar() == '*') { //multi-line comment
+					do {
+						currentChar = nextChar();
+					} while ((currentChar != '*') || (source.peekChar() != '/'));
+					nextChar(); //consume both */
+					currentChar = nextChar();
+				}
+				else {
+					//It is not a comment, don't consume char here. Let Special token handle
+					break;
 				}
 			} else {
 				// not a comment
