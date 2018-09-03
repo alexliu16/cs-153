@@ -39,71 +39,50 @@ public class JavaSpecialSymbolToken extends PascalToken
         switch (currentChar) {
 
             // Single-character special symbols.
-            case '+':  case '-':  case '*':  case '/':  case ',':
-            case ';':  case '\'': case '(':  case ')':  case '&': case '%':
-            case '[':  case ']':  case '{':  case '}':  case '^': case '.': {
+            case ',': case ';':  case '\'': case '(':  case ')': case '?': case ':':
+            case '[':  case ']':  case '{':  case '}':  case '.': {
                 nextChar();  // consume character
                 break;
             }
 
-            // = or ==
-            case '=': {
-                currentChar = nextChar();  // consume '=';
-
-                if (currentChar == '=') {
-                    text += currentChar;
-                    nextChar();  // consume '='
-                }
-
-                break;
-            }
-
-            case '!': {
-                currentChar = nextChar(); // consume '!'
+            // x or x=
+            case '*': case '/': case '=': case '!': case '%': case '~': case '^': {
+                currentChar = nextChar();
                 if(currentChar == '=') {
                     text += currentChar;
-                    nextChar(); //consume '='
+                    nextChar();
                 }
                 break;
             }
-
-            // < or <= or <<=
-            case '<': {
-                currentChar = nextChar();  // consume '<';
-
-                if (currentChar == '=') {
+            // x, xx, x=
+            case '+': case '-': case '&': case '|': {
+                char ch = currentChar;
+                currentChar = nextChar();
+                if(currentChar == '=' || currentChar == ch) {
                     text += currentChar;
-                    nextChar();  // consume '='
-                }
-                else if (currentChar == '<') {
-                    text += currentChar;
-                    nextChar();  // consume '<'
-                    if(currentChar == '=') {
-                        text += currentChar;
-                        nextChar(); // consume '='
-                    }
+                    nextChar();
                 }
 
                 break;
             }
 
-            // > or >= or >>=
-            case '>': {
-                currentChar = nextChar();  // consume '>';
+            // x, x=, xx=
+            case '<': case '>': {
+                char ch = currentChar;
+                currentChar = nextChar();  // consume ch
 
                 if (currentChar == '=') {
                     text += currentChar;
                     nextChar();  // consume '='
                 }
-                else if (currentChar == '>') {
+                else if (currentChar == ch) {
                     text += currentChar;
-                    nextChar();  // consume '>'
+                    currentChar = nextChar();  // consume ch
                     if(currentChar == '=') {
                         text += currentChar;
                         nextChar(); // consume '='
                     }
                 }
-
                 break;
             }
 
