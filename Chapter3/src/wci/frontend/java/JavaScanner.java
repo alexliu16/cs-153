@@ -76,7 +76,14 @@ public class JavaScanner extends Scanner {
 					} while ((currentChar != EOL) && (currentChar != EOF));
 				}
 				else if (nextChar == '*') { //multi-line comment
-					//todo
+					do {
+						currentChar = nextChar();
+					} while ((currentChar != '/') && (currentChar != EOF));
+					
+					// reach end of multiline comment
+					if (currentChar == '/') {
+						currentChar = nextChar(); // consume character
+					}
 				}
 			} else {
 				// not a comment
