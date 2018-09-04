@@ -5,14 +5,13 @@ import java.util.Hashtable;
 
 import wci.frontend.TokenType;
 
-// TODO: Modify reserved words/symbols for Java - this was copied/pasted from PascalTokenType
-
 public enum JavaTokenType implements TokenType {
 	 // Reserved words.
-    AND, ARRAY, BEGIN, CASE, CONST, DIV, DO, DOWNTO, ELSE, END,
-    FILE, FOR, FUNCTION, GOTO, IF, IN, LABEL,
-    OF, OR, PACKED, PROCEDURE, PROGRAM, RECORD, REPEAT, SET,
-    THEN, TO, TYPE, UNTIL, VAR, WHILE, WITH,
+	ABSTRACT, DOUBLE, INT, LONG, BREAK, ELSE, SWITCH,
+	CASE, ENUM, NATIVE, SUPER, CHAR, EXTENDS, RETURN, THIS,
+	CLASS, FLOAT, SHORT, THROW, CONST, FOR, PACKAGE, VOID,
+	CONTINUE, GOTO, PROTECTED, VOLATILE, DO, IF, STATIC, 
+	IMPORT, NULL, THROWS, TRY, PUBLIC, PRIVATE, INSTANCEOF, CATCH, WHILE,
 
     // Special symbols.
     PLUS("+"), PLUS_EQ("+="), PLUS_PLUS("++"), MINUS("-"), MINUS_EQ("-="), MINUS_MINUS("--"), STAR("*"),
@@ -26,8 +25,8 @@ public enum JavaTokenType implements TokenType {
     IDENTIFIER, INTEGER, REAL, STRING,
     ERROR, END_OF_FILE;
 
-    private static final int FIRST_RESERVED_INDEX = AND.ordinal();
-    private static final int LAST_RESERVED_INDEX  = WITH.ordinal();
+    private static final int FIRST_RESERVED_INDEX = ABSTRACT.ordinal();
+    private static final int LAST_RESERVED_INDEX  = WHILE.ordinal();
 
     private static final int FIRST_SPECIAL_INDEX = PLUS.ordinal();
     private static final int LAST_SPECIAL_INDEX  = QUESTION_MARK.ordinal();
