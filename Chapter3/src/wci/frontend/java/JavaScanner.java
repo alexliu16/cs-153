@@ -1,10 +1,13 @@
 package wci.frontend.java;
 
 import wci.frontend.*;
+
 import wci.frontend.java.tokens.*;
 
 import static wci.frontend.Source.EOF;
 import static wci.frontend.Source.EOL;
+
+import static wci.frontend.java.JavaErrorCode.*;
 
 /**
  * JavaScanner
@@ -38,11 +41,11 @@ public class JavaScanner extends Scanner {
 		{
 			token = new JavaSpecialSymbolToken(source);
 		}
-		//for debugging, should be removed once all tokens are implemented.
-		if(token == null) {
-			System.out.println(currentChar + " made token null");
+		else 
+		{
+			token = new JavaErrorToken(source, INVALID_CHARACTER, Character.toString(currentChar));
 		}
-		// TO-DO: need to add JavaWord/Character/String/SpecialSymbol/Error Token classes
+		// TO-DO: need to add JavaWord/Character/String/classes
 //		else if (Character.isLetter(currentChar)) {
 //			token = new JavaWordToken(source);
 //		}
@@ -51,10 +54,6 @@ public class JavaScanner extends Scanner {
 //		}
 //		else if (currentChar == '"') {
 //			// token = new JavaStringToken(source);
-//		}
-//		else 
-//		{
-//			token = new JavaErrorToken(source, INVALID_CHARACTER, Character.toString(currentChar));
 //		}
 		
 		return token;
