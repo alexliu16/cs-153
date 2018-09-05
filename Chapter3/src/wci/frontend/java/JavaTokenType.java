@@ -5,31 +5,31 @@ import java.util.Hashtable;
 
 import wci.frontend.TokenType;
 
-// TODO: Modify reserved words/symbols for Java - this was copied/pasted from PascalTokenType
-
 public enum JavaTokenType implements TokenType {
 	 // Reserved words.
-    AND, ARRAY, BEGIN, CASE, CONST, DIV, DO, DOWNTO, ELSE, END,
-    FILE, FOR, FUNCTION, GOTO, IF, IN, LABEL, MOD, NIL, NOT,
-    OF, OR, PACKED, PROCEDURE, PROGRAM, RECORD, REPEAT, SET,
-    THEN, TO, TYPE, UNTIL, VAR, WHILE, WITH,
+	ABSTRACT, DOUBLE, INT, LONG, BREAK, ELSE, SWITCH,
+	CASE, ENUM, NATIVE, SUPER, CHAR, EXTENDS, RETURN, THIS,
+	CLASS, FLOAT, SHORT, THROW, CONST, FOR, PACKAGE, VOID,
+	CONTINUE, GOTO, PROTECTED, VOLATILE, DO, IF, STATIC, 
+	IMPORT, NULL, THROWS, TRY, PUBLIC, PRIVATE, INSTANCEOF, CATCH, WHILE,
 
     // Special symbols.
-    PLUS("+"), MINUS("-"), STAR("*"), SLASH("/"), COLON_EQUALS(":="),
-    DOT("."), COMMA(","), SEMICOLON(";"), COLON(":"), QUOTE("'"),
-    EQUALS("="), NOT_EQUALS("<>"), LESS_THAN("<"), LESS_EQUALS("<="),
-    GREATER_EQUALS(">="), GREATER_THAN(">"), LEFT_PAREN("("), RIGHT_PAREN(")"),
-    LEFT_BRACKET("["), RIGHT_BRACKET("]"), LEFT_BRACE("{"), RIGHT_BRACE("}"),
-    UP_ARROW("^"), DOT_DOT(".."),
+    PLUS("+"), PLUS_EQ("+="), PLUS_PLUS("++"), MINUS("-"), MINUS_EQ("-="), MINUS_MINUS("--"), STAR("*"),
+    TIMES_EQ("*="), DIVIDE("/"), DIVIDE_EQ("/="), DOT("."), COMMA(","), SEMICOLON(";"), COLON(":"),
+    EQUALS("="), EQUALS_CHECK("=="), TILDE("~"), TILDE_EQ("~="), NOT("!"), NOT_EQUALS("!="), LESS_THAN("<"),
+    SHIFT_LEFT("<<"), SHIFT_LEFT_EQ("<<="), LESS_EQUALS("<="), GREATER_EQUALS(">="), SHIFT_RIGHT(">>"),
+    SHIFT_RIGHT_EQ(">>="), GREATER_THAN(">"), LEFT_PAREN("("), RIGHT_PAREN(")"), LEFT_BRACKET("["),
+    RIGHT_BRACKET("]"), LEFT_BRACE("{"), RIGHT_BRACE("}"), XOR("^"), XOR_EQ("^="), AND_BIT("&"), AND_BIT_EQ("&="),
+    OR_BIT("|"), OR_BIT_EQ("|="), AND_BOOL("&&"), OR_BOOL("||"), MOD("%"), MOD_EQ("%="), AD("@"), QUESTION_MARK("?"),
 
     IDENTIFIER, INTEGER, REAL, STRING,
     ERROR, END_OF_FILE;
 
-    private static final int FIRST_RESERVED_INDEX = AND.ordinal();
-    private static final int LAST_RESERVED_INDEX  = WITH.ordinal();
+    private static final int FIRST_RESERVED_INDEX = ABSTRACT.ordinal();
+    private static final int LAST_RESERVED_INDEX  = WHILE.ordinal();
 
     private static final int FIRST_SPECIAL_INDEX = PLUS.ordinal();
-    private static final int LAST_SPECIAL_INDEX  = DOT_DOT.ordinal();
+    private static final int LAST_SPECIAL_INDEX  = QUESTION_MARK.ordinal();
 
     private String text;  // token text
 
@@ -59,7 +59,7 @@ public enum JavaTokenType implements TokenType {
         return text;
     }
 
-    // Set of lower-cased Pascal reserved word text strings.
+    // Set of lower-cased Java reserved word text strings.
     public static HashSet<String> RESERVED_WORDS = new HashSet<String>();
     static {
         JavaTokenType values[] = JavaTokenType.values();
@@ -68,8 +68,8 @@ public enum JavaTokenType implements TokenType {
         }
     }
 
-    // Hash table of Pascal special symbols.  Each special symbol's text
-    // is the key to its Pascal token type.
+    // Hash table of Java special symbols.  Each special symbol's text
+    // is the key to its Java token type.
     public static Hashtable<String, JavaTokenType> SPECIAL_SYMBOLS =
         new Hashtable<String, JavaTokenType>();
     static {

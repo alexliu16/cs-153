@@ -1,9 +1,13 @@
 package wci.frontend.java;
 
 import wci.frontend.*;
+
 import wci.frontend.java.tokens.*;
 
 import static wci.frontend.Source.EOF;
+import static wci.frontend.Source.EOL;
+
+import static wci.frontend.java.JavaErrorCode.*;
 
 /**
  * JavaScanner
@@ -24,7 +28,7 @@ public class JavaScanner extends Scanner {
 	@Override
 	protected Token extractToken() throws Exception {
 		skipWhiteSpace();
-		Token token;
+		Token token = null;
 		char currentChar = currentChar();
 		// Construct next token. The current char determines token type.
 		if (currentChar == EOF) {
@@ -33,7 +37,15 @@ public class JavaScanner extends Scanner {
 		else if (Character.isDigit(currentChar)) {
 			token = new JavaNumberToken(source);
 		}
-		// TO-DO: need to add JavaWord/Character/String/SpecialSymbol/Error Token classes
+		else if (JavaTokenType.SPECIAL_SYMBOLS.containsKey(Character.toString(currentChar)))
+		{
+			token = new JavaSpecialSymbolToken(source);
+		}
+		else 
+		{
+			token = new JavaErrorToken(source, INVALID_CHARACTER, Character.toString(currentChar));
+		}
+		// TO-DO: need to add JavaWord/Character/String/classes
 //		else if (Character.isLetter(currentChar)) {
 //			token = new JavaWordToken(source);
 //		}
@@ -42,15 +54,6 @@ public class JavaScanner extends Scanner {
 //		}
 //		else if (currentChar == '"') {
 //			// token = new JavaStringToken(source);
-//		}
-//		else if (JavaTokenType.SPECIAL_SYMBOLS
-//				.containsKey(Character.toString(currentChar)))
-//		{
-//			token = new JavaSpecialSymbolToken(source);
-//		}
-//		else 
-//		{
-//			token = new JavaErrorToken(source, INVALID_CHARACTER, Character.toString(currentChar));
 //		}
 		
 		return token;
@@ -65,16 +68,21 @@ public class JavaScanner extends Scanner {
 		while (Character.isWhitespace(currentChar) || currentChar == '/') {
 			// start of a comment?
 			if (currentChar == '/') {
-				char nextChar = nextChar();
-				if (nextChar == '/' || nextChar == '*') {
+				if (source.peekChar() == '/') {
 					do {
 						currentChar = nextChar();
-					} while ((currentChar != '/') && (currentChar != EOF));
-					
-					// found closing? (two options, */ or end of line)
-					if (currentChar == '/' || currentChar == EOF) {
+					} while ((currentChar != EOL) && (currentChar != EOF));
+				}
+				else if (source.peekChar() == '*') { //multi-line comment
+					do {
 						currentChar = nextChar();
-					}
+					} while ((currentChar != '*') || (source.peekChar() != '/'));
+					nextChar(); //consume both */
+					currentChar = nextChar();
+				}
+				else {
+					//It is not a comment, don't consume char here. Let Special token handle
+					break;
 				}
 			} else {
 				// not a comment

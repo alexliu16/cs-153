@@ -1,6 +1,8 @@
 /.metadata/
 .recommenders/*
 .DS_Store
+.idea
+*.iml
 .git
 .gitignore
 RemoteSystemsTempFiles
