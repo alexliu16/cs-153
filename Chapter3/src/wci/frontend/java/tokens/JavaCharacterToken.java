@@ -1,10 +1,14 @@
 package wci.frontend.java.tokens;
 
+import static wci.frontend.java.JavaErrorCode.INVALID_ESCAPE_CHARACTER;
 import static wci.frontend.java.JavaErrorCode.UNEXPECTED_EOF;
 import static wci.frontend.java.JavaTokenType.ERROR;
 
 import wci.frontend.Source;
 import wci.frontend.java.JavaToken;
+
+import java.util.HashMap;
+
 import static wci.frontend.java.JavaErrorCode.INVALID_CHARACTER;
 import static wci.frontend.java.JavaTokenType.CHARACTER;
 
@@ -21,6 +25,20 @@ public class JavaCharacterToken extends JavaToken {
         super(source);
     }
 
+	//This helps convert the characters '\' and 'n' to the single char '\n' etc.
+	//Also used to check for any illegal character escapes
+	static HashMap<String, Character> escapeCharMap = new HashMap<>();
+	static {
+		escapeCharMap.put("\\n", '\n');
+		escapeCharMap.put("\\t", '\t');
+		escapeCharMap.put("\\'", '\'');
+		escapeCharMap.put("\\\\", '\\');
+		escapeCharMap.put("\\b", '\b');
+		escapeCharMap.put("\\r", '\r');
+		escapeCharMap.put("\\\"", '\"');
+		escapeCharMap.put("\\f", '\f');
+	}
+
 	/**
 	 * Extract a Java character token from the source.
 	 * 
@@ -35,12 +53,10 @@ public class JavaCharacterToken extends JavaToken {
 
 		char currentChar = nextChar(); // consume initial quote
 		textBuffer.append('\'');
-		valueBuffer.append('\'');
-		
+
 		if(currentChar != '\'') {
 			textBuffer.append(currentChar);
 			valueBuffer.append(currentChar);
-			
 			if(currentChar == '\\') {
 				currentChar = nextChar();
 				textBuffer.append(currentChar);
@@ -60,10 +76,21 @@ public class JavaCharacterToken extends JavaToken {
 		if (currentChar == '\'') {
 			nextChar(); // consume final quote
 			textBuffer.append('\'');
-			valueBuffer.append('\'');
-			
+
 			type = CHARACTER;
-			value = valueBuffer.toString();
+			if(escapeChar) {
+				if(escapeCharMap.containsKey(valueBuffer.toString())) {
+					value = escapeCharMap.get(valueBuffer.toString());
+				}
+				else {
+					//not a good escape char
+					type = ERROR;
+					value = INVALID_ESCAPE_CHARACTER;
+				}
+			}
+			else {
+				value = valueBuffer.toString();
+			}
 		}
 		else if(escapeChar) {
 			type = ERROR;
