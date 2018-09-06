@@ -5,3 +5,4 @@
 /* This is a multi-line comment.
 It spans more than one line
  */ 2-2*2.3e3 321^%
+'a' '8' '}'
