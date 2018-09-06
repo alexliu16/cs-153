@@ -95,6 +95,16 @@ public class JavaNumberToken extends JavaToken {
             exponentDigits = unsignedIntegerDigits(textBuffer);
         }
 
+        // Is there a letter or underscore? Then it is an invalid identifier
+        // Identifiers can't start with a digit... error
+        currentChar = currentChar();
+        if (Character.isLetter(currentChar) || currentChar == '_') {
+        	type = ERROR;
+        	while (currentChar != ' ') // consume rest of characters
+        		currentChar = nextChar();
+        	return;
+        }
+        
         // Compute the value of an integer number token.
         if (type == INTEGER) {
             int integerValue = computeIntegerValue(wholeDigits);
