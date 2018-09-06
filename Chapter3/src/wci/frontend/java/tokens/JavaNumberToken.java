@@ -94,7 +94,7 @@ public class JavaNumberToken extends JavaToken {
             // Extract the digits of the exponent.
             exponentDigits = unsignedIntegerDigits(textBuffer);
         }
-
+        
         // Compute the value of an integer number token.
         if (type == INTEGER) {
             int integerValue = computeIntegerValue(wholeDigits);
