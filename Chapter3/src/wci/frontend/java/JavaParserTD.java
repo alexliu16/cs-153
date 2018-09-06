@@ -13,8 +13,7 @@ import static wci.message.MessageType.*;
  */
 public class JavaParserTD extends Parser
 {
-    //TODO: add java error handler
-    //protected static JavaErrorHandler errorHandler = new JavaErrorHandler();
+    protected static JavaErrorHandler errorHandler = new JavaErrorHandler();
 
     /**
      * Constructor.
@@ -51,7 +50,7 @@ public class JavaParserTD extends Parser
                                     token.getValue()}));
                 }
                 else {
-                   // errorHandler.flag(token, (JavaErrorCode) token.getValue(), this);
+                   errorHandler.flag(token, (JavaErrorCode) token.getValue(), this);
                 }
 
             }
