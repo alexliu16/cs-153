@@ -24,7 +24,7 @@ public class JavaScanner extends Scanner {
 		super(source);
 	}
 
-	
+
 	@Override
 	protected Token extractToken() throws Exception {
 		skipWhiteSpace();
@@ -49,16 +49,16 @@ public class JavaScanner extends Scanner {
 //			// token = new JavaCharacterToken(source);
 //		}
 		else if (currentChar == '"') {
-			// token = new JavaStringToken(source);
+			 token = new JavaStringToken(source);
 		}
-		else 
+		else
 		{
 			token = new JavaErrorToken(source, INVALID_CHARACTER, Character.toString(currentChar));
 		}
-		
+
 		return token;
 	}
-	
+
 	/**
 	 * Skips whitespace characters by consuming them. Comments are also considered whitespace.
 	 * @throws Exception if exception occurs
