@@ -30,7 +30,6 @@ public enum JavaErrorCode {
 	    MISSING_CLASS("Missing class"),
 	    MISSING_FOR("Invalid for control variable"),
 	    MISSING_EQUALS("Missing ="),
-	    MISSING_FOR_CONTROL("Invalid FOR control variable"),
 	    MISSING_IDENTIFIER("Missing identifier"),
 	    MISSING_LEFT_BRACKET("Missing ["),
 	    MISSING_PERIOD("Missing ."),
