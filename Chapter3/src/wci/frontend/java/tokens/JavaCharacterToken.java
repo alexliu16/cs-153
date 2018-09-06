@@ -1,8 +1,7 @@
 package wci.frontend.java.tokens;
 
-import static wci.frontend.Source.EOF;
-import static wci.frontend.pascal.PascalErrorCode.UNEXPECTED_EOF;
-import static wci.frontend.pascal.PascalTokenType.ERROR;
+import static wci.frontend.java.JavaErrorCode.UNEXPECTED_EOF;
+import static wci.frontend.java.JavaTokenType.ERROR;
 
 import wci.frontend.Source;
 import wci.frontend.java.JavaToken;
