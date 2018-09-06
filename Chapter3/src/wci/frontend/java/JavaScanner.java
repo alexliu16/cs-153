@@ -47,6 +47,7 @@ public class JavaScanner extends Scanner {
 		else 
 		{
 			token = new JavaErrorToken(source, INVALID_CHARACTER, Character.toString(currentChar));
+			nextChar();  // consume character
 		}
 		// TO-DO: need to add JavaWord/Character/String/classes
 //		else if (Character.isLetter(currentChar)) {
