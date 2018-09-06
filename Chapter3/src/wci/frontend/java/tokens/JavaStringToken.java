@@ -8,18 +8,18 @@ import static wci.frontend.java.JavaTokenType.*;
 import static wci.frontend.java.JavaErrorCode.*;
 
 public class JavaStringToken extends JavaToken {
-	
+
 	/**
 	 * Constructor
 	 * @param source The Source from where to fetch the token's chars.
 	 * @throws Exception if error occurs...
 	 */
 	public JavaStringToken(Source source) throws Exception{
-		
+
 		super(source);
-		
+
 	}
-	
+
     /**
      * Extract a Java string token from source.
      * @throws Exception if an error occurred.
@@ -39,9 +39,9 @@ public class JavaStringToken extends JavaToken {
             if (Character.isWhitespace(currentChar)) {
                 currentChar = ' ';
             }
-            
+
             // Append escaped quote (\")
-        	// Properly handle double-quote, if right after
+        		// Properly handle double-quote, if right after
             if ((currentChar == '\\') && (peekChar() == '\"')) {
             	textBuffer.append("\\\"");
             	valueBuffer.append("\\\"");
@@ -54,7 +54,7 @@ public class JavaStringToken extends JavaToken {
                 valueBuffer.append(currentChar);
                 currentChar = nextChar();  // consume character
             }
-            
+
             // Quote?  Each pair of adjacent quotes represents a double-quote.
             if (currentChar == '\"') {
                 while ((currentChar == '\"') && (peekChar() == '\"')) {
@@ -64,7 +64,7 @@ public class JavaStringToken extends JavaToken {
                     currentChar = nextChar();
                 }
             }
-            
+
         } while ((currentChar != '\"') && (currentChar != EOF));
 
         if (currentChar == '\"') {
@@ -81,5 +81,5 @@ public class JavaStringToken extends JavaToken {
 
         text = textBuffer.toString();
     }
-	
+
 }
