@@ -45,7 +45,7 @@ public class JavaScanner extends Scanner {
 			token = new JavaWordToken(source);
 		}
 		else if (currentChar == '\'') {
-			// token = new JavaCharacterToken(source);
+			token = new JavaCharacterToken(source);
 		}
 		else if (currentChar == '"') {
 			 token = new JavaStringToken(source);
