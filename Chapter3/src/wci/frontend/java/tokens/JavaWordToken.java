@@ -18,7 +18,6 @@ public class JavaWordToken extends JavaToken {
 		super(source);
 		
 	}
-	
 	// Get word characters (letter or digit)
 	protected void extract() throws Exception {
 		
@@ -34,8 +33,9 @@ public class JavaWordToken extends JavaToken {
 		text = textBuffer.toString();
 		
 		// Is it a reserved word or an identifier?
-		type = (RESERVED_WORDS.contains(text.toLowerCase()))
-				? JavaTokenType.valueOf(text.toUpperCase())	// reserved word
+		// Should be case sensitive
+		type = (RESERVED_WORDS.contains(text))
+				? JavaTokenType.valueOf(text)	// reserved word
 				: IDENTIFIER; //identifier
 	}
 }
