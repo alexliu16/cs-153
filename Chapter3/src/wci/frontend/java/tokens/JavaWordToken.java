@@ -24,19 +24,16 @@ public class JavaWordToken extends JavaToken {
 		StringBuilder textBuffer = new StringBuilder();
 		char currentChar = currentChar();			
 		
+		// Consume characters
 		while(Character.isLetterOrDigit(currentChar) || currentChar == '_') {
-			
 			textBuffer.append(currentChar);
 			currentChar = nextChar();
 		}
 		
 		text = textBuffer.toString();
 		
-		// An identifier token consists of one or more letters, digits, and underscores ( _ ),
-		// but the first character must not be a digit. An identifier′s length is unlimited.
-		
 		// Is it a reserved word or an identifier?
-		// Should be case sensitive
+		// Reserved words are case sensitive
 		type = (RESERVED_WORDS.contains(text))
 				? JavaTokenType.valueOf(text.toUpperCase())	// reserved word
 				: IDENTIFIER; //identifier
