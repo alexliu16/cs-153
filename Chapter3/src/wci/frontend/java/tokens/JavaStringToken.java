@@ -39,14 +39,23 @@ public class JavaStringToken extends JavaToken {
             if (Character.isWhitespace(currentChar)) {
                 currentChar = ' ';
             }
-
-            if ((currentChar != '\"') && (currentChar != EOF)) {
+            
+            // Append escaped quote (\")
+        	// Properly handle double-quote, if right after
+            if ((currentChar == '\\') && (peekChar() == '\"')) {
+            	textBuffer.append("\\\"");
+            	valueBuffer.append("\\\"");
+            	currentChar = nextChar();  // consume character
+            	currentChar = nextChar();  // consume character
+            }
+            // Append non-quote characters
+            else if ((currentChar != '\"') && (currentChar != EOF)) {
                 textBuffer.append(currentChar);
                 valueBuffer.append(currentChar);
                 currentChar = nextChar();  // consume character
             }
-
-            // Quote?  Each pair of adjacent quotes represents a single-quote.
+            
+            // Quote?  Each pair of adjacent quotes represents a double-quote.
             if (currentChar == '\"') {
                 while ((currentChar == '\"') && (peekChar() == '\"')) {
                     textBuffer.append("\"\"");
@@ -55,6 +64,7 @@ public class JavaStringToken extends JavaToken {
                     currentChar = nextChar();
                 }
             }
+            
         } while ((currentChar != '\"') && (currentChar != EOF));
 
         if (currentChar == '\"') {
