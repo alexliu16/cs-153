@@ -41,6 +41,9 @@ public class JavaScanner extends Scanner {
 		{
 			token = new JavaSpecialSymbolToken(source);
 		}
+		else if (currentChar == '\'') {
+			token = new JavaCharacterToken(source);
+		}
 		else 
 		{
 			token = new JavaErrorToken(source, INVALID_CHARACTER, Character.toString(currentChar));
@@ -48,10 +51,7 @@ public class JavaScanner extends Scanner {
 		// TO-DO: need to add JavaWord/Character/String/classes
 //		else if (Character.isLetter(currentChar)) {
 //			token = new JavaWordToken(source);
-//		}
-//		else if (currentChar == '\'') {
-//			// token = new JavaCharacterToken(source);
-//		}
+//		}	
 //		else if (currentChar == '"') {
 //			// token = new JavaStringToken(source);
 //		}
