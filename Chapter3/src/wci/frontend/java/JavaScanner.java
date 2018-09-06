@@ -42,7 +42,7 @@ public class JavaScanner extends Scanner {
 			token = new JavaSpecialSymbolToken(source);
 		}
 		// TO-DO: need to add JavaCharacterToken
-		else if (Character.isLetter(currentChar)) {
+		else if (Character.isLetter(currentChar) || currentChar == '_') {
 			token = new JavaWordToken(source);
 		}
 //		else if (currentChar == '\'') {

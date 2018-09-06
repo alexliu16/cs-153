@@ -12,9 +12,12 @@ It spans more than one line
  static super switch super this throw void volatile while
  Hello world
  Abstract abstract ABSTRACT aBsTrAcT What?
+ ___Ident2312313ifier____ beepbeep
 
  // String tokens
  "Hello, world."
  "Hello,\tworld!"
  "Hello,\n\"world!\""
  "It's Friday!"
+"  "
+"__ye__"
