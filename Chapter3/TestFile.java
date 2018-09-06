@@ -21,3 +21,5 @@ It spans more than one line
  "It's Friday!"
 "  "
 "__ye__"
+
+ 'x' 'A' '\'' 'a' '\n' '\t' '\\'
