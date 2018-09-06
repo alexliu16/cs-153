@@ -41,20 +41,20 @@ public class JavaScanner extends Scanner {
 		{
 			token = new JavaSpecialSymbolToken(source);
 		}
+		// TO-DO: need to add JavaCharacterToken
+		else if (Character.isLetter(currentChar)) {
+			token = new JavaWordToken(source);
+		}
+//		else if (currentChar == '\'') {
+//			// token = new JavaCharacterToken(source);
+//		}
+		else if (currentChar == '"') {
+			// token = new JavaStringToken(source);
+		}
 		else 
 		{
 			token = new JavaErrorToken(source, INVALID_CHARACTER, Character.toString(currentChar));
 		}
-		// TO-DO: need to add JavaWord/Character/String/classes
-//		else if (Character.isLetter(currentChar)) {
-//			token = new JavaWordToken(source);
-//		}
-//		else if (currentChar == '\'') {
-//			// token = new JavaCharacterToken(source);
-//		}
-//		else if (currentChar == '"') {
-//			// token = new JavaStringToken(source);
-//		}
 		
 		return token;
 	}
