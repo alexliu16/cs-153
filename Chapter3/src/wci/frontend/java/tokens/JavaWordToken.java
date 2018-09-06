@@ -13,7 +13,7 @@ public class JavaWordToken extends JavaToken {
 	 * @param source The source from where to fetch the token's characters.
 	 * @throws Exception If error occurs.
 	 */
-	protected JavaWordToken(Source source) throws Exception {
+	public JavaWordToken(Source source) throws Exception {
 		
 		super(source);
 		
