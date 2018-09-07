@@ -80,7 +80,7 @@ public class JavaCharacterToken extends JavaToken {
 			type = CHARACTER;
 			if(escapeChar) {
 				if(escapeCharMap.containsKey(valueBuffer.toString())) {
-					value = escapeCharMap.get(valueBuffer.toString());
+					value = "'" + valueBuffer.toString() + "'";
 				}
 				else {
 					//not a good escape char
