@@ -9,6 +9,7 @@ public enum JavaErrorCode {
 	    INCOMPATIBLE_TYPES("Incompatible types"),
 	    INVALID_ASSIGNMENT("Invalid assignment statement"),
 	    INVALID_CHARACTER("Invalid character"),
+	    INVALID_ESCAPE_CHARACTER("Invalid escape character"),
 	    INVALID_CONSTANT("Invalid constant"),
 	    INVALID_EXPONENT("Invalid exponent"),
 	    INVALID_EXPRESSION("Invalid expression"),
