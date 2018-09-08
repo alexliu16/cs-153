@@ -22,7 +22,7 @@ public enum JavaTokenType implements TokenType {
     RIGHT_BRACKET("]"), LEFT_BRACE("{"), RIGHT_BRACE("}"), XOR("^"), XOR_EQ("^="), AND_BIT("&"), AND_BIT_EQ("&="),
     OR_BIT("|"), OR_BIT_EQ("|="), AND_BOOL("&&"), OR_BOOL("||"), MOD("%"), MOD_EQ("%="), AD("@"), QUESTION_MARK("?"),
 
-    IDENTIFIER, INTEGER, REAL, STRING,
+    IDENTIFIER, INTEGER, REAL, STRING, CHARACTER,
     ERROR, END_OF_FILE;
 
     private static final int FIRST_RESERVED_INDEX = ABSTRACT.ordinal();
