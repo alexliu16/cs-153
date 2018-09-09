@@ -40,11 +40,34 @@ public class JavaStringToken extends JavaToken {
                 currentChar = ' ';
             }
 
-            // Append escaped quote (\")
-        		// Properly handle double-quote, if right after
-            if ((currentChar == '\\') && (peekChar() == '\"')) {
-            	textBuffer.append("\\\"");
-            	valueBuffer.append("\\\"");
+            // Append escaped characters
+            if (currentChar == '\\') {
+            	
+            	char nextChar = peekChar();
+            	
+            	switch (nextChar) {
+            		case 'n': { // '\n'
+            			textBuffer.append("\\n");
+            			valueBuffer.append("\n");
+            			break;
+            		}
+            		case 't': { // '\t'
+            			textBuffer.append("\\t");
+            			valueBuffer.append("\t");
+            			break;
+            		}
+            		case '\"': { // '\"'
+            			textBuffer.append("\\\"");
+                    	valueBuffer.append("\"");
+                    	break;
+            		}
+            		case '\\': { // '\\'
+            			textBuffer.append("\\\\");
+                    	valueBuffer.append("\\");
+                    	break;
+            		}
+            	}
+ 
             	currentChar = nextChar();  // consume character
             	currentChar = nextChar();  // consume character
             }
@@ -54,17 +77,6 @@ public class JavaStringToken extends JavaToken {
                 valueBuffer.append(currentChar);
                 currentChar = nextChar();  // consume character
             }
-
-            // Quote?  Each pair of adjacent quotes represents a double-quote.
-            if (currentChar == '\"') {
-                while ((currentChar == '\"') && (peekChar() == '\"')) {
-                    textBuffer.append("\"\"");
-                    valueBuffer.append(currentChar); // append double-quote
-                    currentChar = nextChar();        // consume pair of quotes
-                    currentChar = nextChar();
-                }
-            }
-
         } while ((currentChar != '\"') && (currentChar != EOF));
 
         if (currentChar == '\"') {
