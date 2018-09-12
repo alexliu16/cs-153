@@ -69,7 +69,11 @@ public class StatementExecutor extends Executor
                 SelectExecutor selectExecutor = new SelectExecutor(this);
                 return selectExecutor.execute(node);
             }
-
+            
+            case WHEN: {
+            	WhenExecutor whenExecutor = new WhenExecutor(this);
+            	return whenExecutor.execute(node);
+            }
             case NO_OP: return null;
 
             default: {
