@@ -41,7 +41,7 @@ public class StatementExecutor extends Executor
 
         // Send a message about the current source line.
         sendSourceLineMessage(node);
-
+        
         switch (nodeType) {
 
             case COMPOUND: {
