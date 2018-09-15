@@ -9,6 +9,7 @@ import wci.intermediate.*;
 
 import static wci.frontend.pascal.PascalTokenType.*;
 import static wci.frontend.pascal.PascalErrorCode.*;
+import static wci.frontend.pascal.PascalTokenType.WHEN;
 import static wci.intermediate.icodeimpl.ICodeNodeTypeImpl.*;
 import static wci.intermediate.icodeimpl.ICodeKeyImpl.*;
 
@@ -34,7 +35,7 @@ public class StatementParser extends PascalParserTD
     // Synchronization set for starting a statement.
     protected static final EnumSet<PascalTokenType> STMT_START_SET =
         EnumSet.of(BEGIN, CASE, FOR, PascalTokenType.IF, REPEAT, WHILE,
-                   IDENTIFIER, SEMICOLON);
+                   IDENTIFIER, SEMICOLON, WHEN);
 
     // Synchronization set for following a statement.
     protected static final EnumSet<PascalTokenType> STMT_FOLLOW_SET =
@@ -51,7 +52,6 @@ public class StatementParser extends PascalParserTD
         throws Exception
     {
         ICodeNode statementNode = null;
-
         switch ((PascalTokenType) token.getType()) {
 
             case BEGIN: {

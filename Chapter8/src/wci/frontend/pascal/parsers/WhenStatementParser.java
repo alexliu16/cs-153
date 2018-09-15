@@ -26,7 +26,7 @@ public class WhenStatementParser extends StatementParser {
 			StatementParser.STMT_START_SET.clone();
 	static {
 		WHEN_SET.add(WHEN);
-		WHEN_SET.add(PascalTokenType.SPECIAL_SYMBOLS.get("ASSIGN"));
+		WHEN_SET.add(ASSIGN_WHEN);
 		WHEN_SET.addAll(StatementParser.STMT_FOLLOW_SET);
 		WHEN_SET.add(OTHERWISE);
 	}
@@ -35,36 +35,61 @@ public class WhenStatementParser extends StatementParser {
 		throws Exception
 	{
 		token = nextToken(); // consume the WHEN token
-		
-		// create a WHEN node
-		ICodeNode whenNode = ICodeFactory.createICodeNode(ICodeNodeTypeImpl.WHEN);
-		
-		// Parse the expression
-		// The WHEN node adopts the expression as a subtree as its first child.
-		ExpressionParser expressionParser = new ExpressionParser(this);
-		whenNode.addChild(expressionParser.parse(token));
-		
-		// Synchronize at the =>
-		token = synchronize(WHEN_SET);
-		if (token.getType() == PascalTokenType.SPECIAL_SYMBOLS.get("ASSIGN")) {
-			token = nextToken(); // consume the =>
-		} else {
-			errorHandler.flag(token, MISSING_ASSIGNMENT, this);
+		ICodeNode mainNode = ICodeFactory.createICodeNode(ICodeNodeTypeImpl.IF);
+		ICodeNode ifNode = mainNode;
+		boolean notDone = true;
+		while(notDone) {
+			// Parse the expression
+			// The If node adopts the expression as a subtree as its first child.
+			ExpressionParser expressionParser = new ExpressionParser(this);
+			ifNode.addChild(expressionParser.parse(token));
+
+			// Synchronize at the =>
+			token = synchronize(WHEN_SET);
+			if (token.getType() == ASSIGN_WHEN) {
+				token = nextToken(); // consume the =>
+			} else {
+				errorHandler.flag(token, MISSING_ASSIGNMENT, this);
+			}
+
+			// Parse the => token
+			// the WHEN node adopts the statement subtree as its second child
+			StatementParser statementParser = new StatementParser(this);
+			ifNode.addChild(statementParser.parse(token));
+			token = currentToken();
+			if(token.getType() != SEMICOLON) {
+				errorHandler.flag(token, MISSING_SEMICOLON, this);
+			} else {
+				token = nextToken(); // consume ;
+			}
+
+			// Look for OTHERWISE
+			if (token.getType() == OTHERWISE) {
+				token = nextToken(); // consume OTHERWISE
+				// Parse the statement after OTHERWISE token
+				// Synchronize at the =>
+				token = synchronize(WHEN_SET);
+				if (token.getType() == ASSIGN_WHEN) {
+					token = nextToken(); // consume the =>
+				} else {
+					errorHandler.flag(token, MISSING_ASSIGNMENT, this);
+				}
+				ifNode.addChild(statementParser.parse(token));
+				notDone = false;
+			} else {
+				ICodeNode elseNode = ICodeFactory.createICodeNode(ICodeNodeTypeImpl.IF);
+				ifNode.addChild(elseNode);
+				ifNode = elseNode;
+			}
 		}
-		
-		// Parse the => token
-		// the WHEN node adopts the statement subtree as its second child
-		StatementParser statementParser = new StatementParser(this);
-		whenNode.addChild(statementParser.parse(token));
-		token = currentToken();
-		
-		// Look for OTHERWISE
-		if (token.getType() == OTHERWISE) {
-			
-			// Parse the statement after OTHERWISE token
-			// the WHEN node adopts the statement subtree as its third child
-			whenNode.addChild(statementParser.parse(token));
+		//sync to end
+		token = synchronize(STMT_FOLLOW_SET);
+		if(token.getType() == END) {
+			nextToken(); // consume END
 		}
-		return whenNode;	
+		else {
+			errorHandler.flag(token, MISSING_END, this);
+		}
+		return mainNode;
 	}
 }
