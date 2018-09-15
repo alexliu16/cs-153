@@ -51,6 +51,7 @@ public enum PascalErrorCode
     MISSING_RIGHT_PAREN("Missing )"),
     MISSING_SEMICOLON("Missing ;"),
     MISSING_THEN("Missing THEN"),
+    MISSING_ASSIGNMENT("Missing =>"),
     MISSING_TO_DOWNTO("Missing TO or DOWNTO"),
     MISSING_UNTIL("Missing UNTIL"),
     MISSING_VARIABLE("Missing variable"),

@@ -2,6 +2,7 @@ package wci.frontend.pascal.parsers;
 
 import java.util.EnumSet;
 
+
 import wci.frontend.*;
 import wci.frontend.pascal.*;
 import wci.intermediate.*;
@@ -98,6 +99,12 @@ public class StatementParser extends PascalParserTD
                 CaseStatementParser caseParser = new CaseStatementParser(this);
                 statementNode = caseParser.parse(token);
                 break;
+            }
+            
+            case WHEN: {
+            	WhenStatementParser whenParser = new WhenStatementParser(this);
+            	statementNode = whenParser.parse(token);
+            	break;
             }
 
             default: {
