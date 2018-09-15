@@ -1,21 +1,29 @@
-package wci.frontend.java.tokens;
+package wci.frontend.pascal.tokens;
 
 import wci.frontend.*;
+import wci.frontend.pascal.*;
 
-import wci.frontend.java.*;
+import static wci.frontend.pascal.PascalTokenType.*;
+import static wci.frontend.pascal.PascalErrorCode.*;
 
-import static wci.frontend.java.JavaErrorCode.*;
-import static wci.frontend.java.JavaTokenType.*;
-
-public class JavaNumberToken extends JavaToken {
-	private static final int MAX_EXPONENT = 37;
+/**
+ * <h1>PascalNumberToken</h1>
+ *
+ * <p>Pascal number tokens (integer and real).</p>
+ *
+ * <p>Copyright (c) 2009 by Ronald Mak</p>
+ * <p>For instructional purposes only.  No warranties.</p>
+ */
+public class PascalNumberToken extends PascalToken
+{
+    private static final int MAX_EXPONENT = 37;
 
     /**
      * Constructor.
      * @param source the source from where to fetch the token's characters.
      * @throws Exception if an error occurred.
      */
-    public JavaNumberToken(Source source)
+    public PascalNumberToken(Source source)
         throws Exception
     {
         super(source);
@@ -94,7 +102,7 @@ public class JavaNumberToken extends JavaToken {
             // Extract the digits of the exponent.
             exponentDigits = unsignedIntegerDigits(textBuffer);
         }
-        
+
         // Compute the value of an integer number token.
         if (type == INTEGER) {
             int integerValue = computeIntegerValue(wholeDigits);
