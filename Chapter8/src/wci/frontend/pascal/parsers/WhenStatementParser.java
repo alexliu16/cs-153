@@ -77,6 +77,7 @@ public class WhenStatementParser extends StatementParser {
 				ifNode.addChild(statementParser.parse(token));
 				notDone = false;
 			} else if (token.getType() == END) { // if found END; set notDone to false and break out of loop
+				errorHandler.flag(token, MISSING_OTHERWISE, this);
 				notDone = false;
 			} else {
 				ICodeNode elseNode = ICodeFactory.createICodeNode(ICodeNodeTypeImpl.IF);
