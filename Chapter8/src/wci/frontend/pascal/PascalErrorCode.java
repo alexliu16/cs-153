@@ -54,6 +54,7 @@ public enum PascalErrorCode
     MISSING_ASSIGNMENT("Missing =>"),
     MISSING_TO_DOWNTO("Missing TO or DOWNTO"),
     MISSING_UNTIL("Missing UNTIL"),
+    MISSING_OTHERWISE("Missing OTHERWISE"),
     MISSING_VARIABLE("Missing variable"),
     NOT_CONSTANT_IDENTIFIER("Not a constant identifier"),
     NOT_RECORD_VARIABLE("Not a record variable"),
