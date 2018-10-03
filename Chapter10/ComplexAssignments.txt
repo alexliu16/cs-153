@@ -1,7 +1,7 @@
 VAR
     x, y, z : complex;
 
-BEGIN
+BEGIN 
     x.re := 15;
     x.im := 37;
     
