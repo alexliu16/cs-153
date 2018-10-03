@@ -2,6 +2,8 @@ package wci.intermediate.symtabimpl;
 
 import java.util.ArrayList;
 
+
+
 import wci.intermediate.*;
 import wci.intermediate.symtabimpl.*;
 
@@ -26,6 +28,7 @@ public class Predefined
     public static TypeSpec booleanType;
     public static TypeSpec charType;
     public static TypeSpec undefinedType;
+    public static TypeSpec complexType;
 
     // Predefined identifiers.
     public static SymTabEntry integerId;
@@ -34,6 +37,9 @@ public class Predefined
     public static SymTabEntry charId;
     public static SymTabEntry falseId;
     public static SymTabEntry trueId;
+    public static SymTabEntry complexId;
+    public static SymTabEntry reId;
+    public static SymTabEntry imId;
 
     /**
      * Initialize a symbol table stack with predefined identifiers.
@@ -78,7 +84,27 @@ public class Predefined
         charType.setIdentifier(charId);
         charId.setDefinition(DefinitionImpl.TYPE);
         charId.setTypeSpec(charType);
-
+        
+        // Type complex
+        complexId = symTabStack.enterLocal("complex");
+        complexType = TypeFactory.createType(RECORD);
+        complexType.setIdentifier(complexId);
+        complexId.setDefinition(DefinitionImpl.TYPE);
+        complexId.setTypeSpec(complexType);
+        
+        // set this as a record by creating a record symbol table?
+        complexType.setAttribute(RECORD_SYMTAB, symTabStack.push());
+        
+        // Re field
+        reId = symTabStack.enterLocal("re");
+        reId.setDefinition(DefinitionImpl.FIELD);
+        reId.setTypeSpec(realType);
+        
+        // Im field
+        imId = symTabStack.enterLocal("im");
+        imId.setDefinition(DefinitionImpl.FIELD);
+        imId.setTypeSpec(realType);
+        
         // Undefined type.
         undefinedType = TypeFactory.createType(SCALAR);
     }
