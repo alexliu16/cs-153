@@ -16,6 +16,18 @@ public class TitanBaseListener implements TitanListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterClassName(TitanParser.ClassNameContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitClassName(TitanParser.ClassNameContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterProg(TitanParser.ProgContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -52,37 +64,13 @@ public class TitanBaseListener implements TitanListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterSimpleExp(TitanParser.SimpleExpContext ctx) { }
+	@Override public void enterExpr(TitanParser.ExprContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitSimpleExp(TitanParser.SimpleExpContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterParentExpr(TitanParser.ParentExprContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitParentExpr(TitanParser.ParentExprContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterBooleanExpr(TitanParser.BooleanExprContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitBooleanExpr(TitanParser.BooleanExprContext ctx) { }
+	@Override public void exitExpr(TitanParser.ExprContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -95,6 +83,18 @@ public class TitanBaseListener implements TitanListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitMulDivOp(TitanParser.MulDivOpContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterPrint(TitanParser.PrintContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitPrint(TitanParser.PrintContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -136,18 +136,6 @@ public class TitanBaseListener implements TitanListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterParenSimpleExpr(TitanParser.ParenSimpleExprContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitParenSimpleExpr(TitanParser.ParenSimpleExprContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
 	@Override public void enterLiteral(TitanParser.LiteralContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -167,6 +155,18 @@ public class TitanBaseListener implements TitanListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitAddSubOp(TitanParser.AddSubOpContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterSimpleExprParen(TitanParser.SimpleExprParenContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitSimpleExprParen(TitanParser.SimpleExprParenContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -376,13 +376,37 @@ public class TitanBaseListener implements TitanListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterNumber(TitanParser.NumberContext ctx) { }
+	@Override public void enterInteger(TitanParser.IntegerContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitNumber(TitanParser.NumberContext ctx) { }
+	@Override public void exitInteger(TitanParser.IntegerContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterFloat(TitanParser.FloatContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitFloat(TitanParser.FloatContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterExponential(TitanParser.ExponentialContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitExponential(TitanParser.ExponentialContext ctx) { }
 
 	/**
 	 * {@inheritDoc}

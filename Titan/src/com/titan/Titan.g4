@@ -2,7 +2,8 @@ grammar Titan;
 /*
  * Parser Rules
  */
-prog : 'main' '{' block '}' ;
+className : 'program' ID NEWLINE*  prog ;
+prog : 'main' '{' block '}' NEWLINE* (functionDeclaration NEWLINE*)*;
 
 block : stat+ ;
 
@@ -12,26 +13,26 @@ stat  : expr NEWLINE
       | conditional
       | retStat
       | loop
-      | functionDeclaration
       | NEWLINE
       ;
 
-expr : simpleExpr              #SimpleExp
-     | '(' expr ')'            #ParentExpr
-     | comparison              #BooleanExpr
+expr : simpleExpression
+     | '(' expr ')'
+     | comparison
      ;
 
-simpleExpr : simpleExpr op=(ADD|SUB) simpleExpr  #AddSubOp
-           | simpleExpr op=(MUL|DIV) simpleExpr  #MulDivOp
-           | simpleExpr MOD simpleExpr           #ModOp
-           | functionCall                        #FuncCall
-           | number                              #Literal
-           | ID                                  #Identifier
-           | '(' simpleExpr ')'                  #ParenSimpleExpr
+simpleExpression : simpleExpression op=(MUL|DIV) simpleExpression  #MulDivOp
+           | simpleExpression op=(ADD|SUB) simpleExpression        #AddSubOp
+           | simpleExpression MOD simpleExpression                 #ModOp
+           | 'print' expr                                          #Print
+           | '(' simpleExpression ')'                              #SimpleExprParen
+           | functionCall                                          #FuncCall
+           | number                                                #Literal
+           | ID                                                    #Identifier
            ;
 
-comparison :     simpleExpr COMPARISON_OP simpleExpr
-           | '(' simpleExpr COMPARISON_OP simpleExpr ')'
+comparison :     simpleExpression COMPARISON_OP simpleExpression
+           | '(' simpleExpression COMPARISON_OP simpleExpression ')'
            ;
 
 conditional : 'if' expr NEWLINE? '{' block '}'     #IfBrackets
@@ -40,7 +41,7 @@ conditional : 'if' expr NEWLINE? '{' block '}'     #IfBrackets
             | 'else' NEWLINE? stat                 #ElseNoBrackets
             ;
 
-loop : 'for' ID 'from' simpleExpr 'to' simpleExpr NEWLINE? '{' block '}' ;
+loop : 'for' ID 'from' simpleExpression 'to' simpleExpression NEWLINE? '{' block '}' ;
 
 functionDeclaration : 'function' funcReturnTypes ID '(' args ')' NEWLINE? '{' block '}' ;
 
@@ -70,9 +71,9 @@ functionCall : ID '('exprList ')' ;
 exprList : expr
          | exprList ',' expr ;
 
-number : DIGITS
-       | FLOATINGNUMBER
-       | EXPNUM
+number : DIGITS          #Integer
+       | FLOATINGNUMBER  #Float
+       | EXPNUM          #Exponential
        ;
 
 /*

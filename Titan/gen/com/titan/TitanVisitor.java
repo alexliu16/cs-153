@@ -11,6 +11,12 @@ import org.antlr.v4.runtime.tree.ParseTreeVisitor;
  */
 public interface TitanVisitor<T> extends ParseTreeVisitor<T> {
 	/**
+	 * Visit a parse tree produced by {@link TitanParser#className}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitClassName(TitanParser.ClassNameContext ctx);
+	/**
 	 * Visit a parse tree produced by {@link TitanParser#prog}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
@@ -29,75 +35,67 @@ public interface TitanVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitStat(TitanParser.StatContext ctx);
 	/**
-	 * Visit a parse tree produced by the {@code SimpleExp}
-	 * labeled alternative in {@link TitanParser#expr}.
+	 * Visit a parse tree produced by {@link TitanParser#expr}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitSimpleExp(TitanParser.SimpleExpContext ctx);
-	/**
-	 * Visit a parse tree produced by the {@code ParentExpr}
-	 * labeled alternative in {@link TitanParser#expr}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitParentExpr(TitanParser.ParentExprContext ctx);
-	/**
-	 * Visit a parse tree produced by the {@code BooleanExpr}
-	 * labeled alternative in {@link TitanParser#expr}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitBooleanExpr(TitanParser.BooleanExprContext ctx);
+	T visitExpr(TitanParser.ExprContext ctx);
 	/**
 	 * Visit a parse tree produced by the {@code MulDivOp}
-	 * labeled alternative in {@link TitanParser#simpleExpr}.
+	 * labeled alternative in {@link TitanParser#simpleExpression}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
 	T visitMulDivOp(TitanParser.MulDivOpContext ctx);
 	/**
+	 * Visit a parse tree produced by the {@code Print}
+	 * labeled alternative in {@link TitanParser#simpleExpression}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitPrint(TitanParser.PrintContext ctx);
+	/**
 	 * Visit a parse tree produced by the {@code FuncCall}
-	 * labeled alternative in {@link TitanParser#simpleExpr}.
+	 * labeled alternative in {@link TitanParser#simpleExpression}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
 	T visitFuncCall(TitanParser.FuncCallContext ctx);
 	/**
 	 * Visit a parse tree produced by the {@code ModOp}
-	 * labeled alternative in {@link TitanParser#simpleExpr}.
+	 * labeled alternative in {@link TitanParser#simpleExpression}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
 	T visitModOp(TitanParser.ModOpContext ctx);
 	/**
 	 * Visit a parse tree produced by the {@code Identifier}
-	 * labeled alternative in {@link TitanParser#simpleExpr}.
+	 * labeled alternative in {@link TitanParser#simpleExpression}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
 	T visitIdentifier(TitanParser.IdentifierContext ctx);
 	/**
-	 * Visit a parse tree produced by the {@code ParenSimpleExpr}
-	 * labeled alternative in {@link TitanParser#simpleExpr}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitParenSimpleExpr(TitanParser.ParenSimpleExprContext ctx);
-	/**
 	 * Visit a parse tree produced by the {@code Literal}
-	 * labeled alternative in {@link TitanParser#simpleExpr}.
+	 * labeled alternative in {@link TitanParser#simpleExpression}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
 	T visitLiteral(TitanParser.LiteralContext ctx);
 	/**
 	 * Visit a parse tree produced by the {@code AddSubOp}
-	 * labeled alternative in {@link TitanParser#simpleExpr}.
+	 * labeled alternative in {@link TitanParser#simpleExpression}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
 	T visitAddSubOp(TitanParser.AddSubOpContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code SimpleExprParen}
+	 * labeled alternative in {@link TitanParser#simpleExpression}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitSimpleExprParen(TitanParser.SimpleExprParenContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link TitanParser#comparison}.
 	 * @param ctx the parse tree
@@ -205,9 +203,24 @@ public interface TitanVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitExprList(TitanParser.ExprListContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link TitanParser#number}.
+	 * Visit a parse tree produced by the {@code Integer}
+	 * labeled alternative in {@link TitanParser#number}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitNumber(TitanParser.NumberContext ctx);
+	T visitInteger(TitanParser.IntegerContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code Float}
+	 * labeled alternative in {@link TitanParser#number}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitFloat(TitanParser.FloatContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code Exponential}
+	 * labeled alternative in {@link TitanParser#number}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitExponential(TitanParser.ExponentialContext ctx);
 }

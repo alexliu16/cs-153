@@ -1,14 +1,10 @@
+program TestingArithmetic
 main {
-
-    function bool isEven(int a) {
-        return a % 2 == 0
-    }
-    int a = 3
-    int b = a-3
-    int sum = 0
-    for i from b to a {
-        if isEven(i) {
-            sum += i
-        }
-    }
+    print 1-2        // -1
+    print 2-1        // 1
+    print 2.0/4      // 0.5
+    print 1+2*3      // 7
+    print (1+2)*3    // 9
+    print 1-(2-3)*1  // 2
+    print 2.1e1      // 21
 }
