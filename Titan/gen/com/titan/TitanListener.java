@@ -8,6 +8,16 @@ import org.antlr.v4.runtime.tree.ParseTreeListener;
  */
 public interface TitanListener extends ParseTreeListener {
 	/**
+	 * Enter a parse tree produced by {@link TitanParser#className}.
+	 * @param ctx the parse tree
+	 */
+	void enterClassName(TitanParser.ClassNameContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link TitanParser#className}.
+	 * @param ctx the parse tree
+	 */
+	void exitClassName(TitanParser.ClassNameContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link TitanParser#prog}.
 	 * @param ctx the parse tree
 	 */
@@ -38,125 +48,111 @@ public interface TitanListener extends ParseTreeListener {
 	 */
 	void exitStat(TitanParser.StatContext ctx);
 	/**
-	 * Enter a parse tree produced by the {@code SimpleExp}
-	 * labeled alternative in {@link TitanParser#expr}.
+	 * Enter a parse tree produced by {@link TitanParser#expr}.
 	 * @param ctx the parse tree
 	 */
-	void enterSimpleExp(TitanParser.SimpleExpContext ctx);
+	void enterExpr(TitanParser.ExprContext ctx);
 	/**
-	 * Exit a parse tree produced by the {@code SimpleExp}
-	 * labeled alternative in {@link TitanParser#expr}.
+	 * Exit a parse tree produced by {@link TitanParser#expr}.
 	 * @param ctx the parse tree
 	 */
-	void exitSimpleExp(TitanParser.SimpleExpContext ctx);
-	/**
-	 * Enter a parse tree produced by the {@code ParentExpr}
-	 * labeled alternative in {@link TitanParser#expr}.
-	 * @param ctx the parse tree
-	 */
-	void enterParentExpr(TitanParser.ParentExprContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code ParentExpr}
-	 * labeled alternative in {@link TitanParser#expr}.
-	 * @param ctx the parse tree
-	 */
-	void exitParentExpr(TitanParser.ParentExprContext ctx);
-	/**
-	 * Enter a parse tree produced by the {@code BooleanExpr}
-	 * labeled alternative in {@link TitanParser#expr}.
-	 * @param ctx the parse tree
-	 */
-	void enterBooleanExpr(TitanParser.BooleanExprContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code BooleanExpr}
-	 * labeled alternative in {@link TitanParser#expr}.
-	 * @param ctx the parse tree
-	 */
-	void exitBooleanExpr(TitanParser.BooleanExprContext ctx);
+	void exitExpr(TitanParser.ExprContext ctx);
 	/**
 	 * Enter a parse tree produced by the {@code MulDivOp}
-	 * labeled alternative in {@link TitanParser#simpleExpr}.
+	 * labeled alternative in {@link TitanParser#simpleExpression}.
 	 * @param ctx the parse tree
 	 */
 	void enterMulDivOp(TitanParser.MulDivOpContext ctx);
 	/**
 	 * Exit a parse tree produced by the {@code MulDivOp}
-	 * labeled alternative in {@link TitanParser#simpleExpr}.
+	 * labeled alternative in {@link TitanParser#simpleExpression}.
 	 * @param ctx the parse tree
 	 */
 	void exitMulDivOp(TitanParser.MulDivOpContext ctx);
 	/**
+	 * Enter a parse tree produced by the {@code Print}
+	 * labeled alternative in {@link TitanParser#simpleExpression}.
+	 * @param ctx the parse tree
+	 */
+	void enterPrint(TitanParser.PrintContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code Print}
+	 * labeled alternative in {@link TitanParser#simpleExpression}.
+	 * @param ctx the parse tree
+	 */
+	void exitPrint(TitanParser.PrintContext ctx);
+	/**
 	 * Enter a parse tree produced by the {@code FuncCall}
-	 * labeled alternative in {@link TitanParser#simpleExpr}.
+	 * labeled alternative in {@link TitanParser#simpleExpression}.
 	 * @param ctx the parse tree
 	 */
 	void enterFuncCall(TitanParser.FuncCallContext ctx);
 	/**
 	 * Exit a parse tree produced by the {@code FuncCall}
-	 * labeled alternative in {@link TitanParser#simpleExpr}.
+	 * labeled alternative in {@link TitanParser#simpleExpression}.
 	 * @param ctx the parse tree
 	 */
 	void exitFuncCall(TitanParser.FuncCallContext ctx);
 	/**
 	 * Enter a parse tree produced by the {@code ModOp}
-	 * labeled alternative in {@link TitanParser#simpleExpr}.
+	 * labeled alternative in {@link TitanParser#simpleExpression}.
 	 * @param ctx the parse tree
 	 */
 	void enterModOp(TitanParser.ModOpContext ctx);
 	/**
 	 * Exit a parse tree produced by the {@code ModOp}
-	 * labeled alternative in {@link TitanParser#simpleExpr}.
+	 * labeled alternative in {@link TitanParser#simpleExpression}.
 	 * @param ctx the parse tree
 	 */
 	void exitModOp(TitanParser.ModOpContext ctx);
 	/**
 	 * Enter a parse tree produced by the {@code Identifier}
-	 * labeled alternative in {@link TitanParser#simpleExpr}.
+	 * labeled alternative in {@link TitanParser#simpleExpression}.
 	 * @param ctx the parse tree
 	 */
 	void enterIdentifier(TitanParser.IdentifierContext ctx);
 	/**
 	 * Exit a parse tree produced by the {@code Identifier}
-	 * labeled alternative in {@link TitanParser#simpleExpr}.
+	 * labeled alternative in {@link TitanParser#simpleExpression}.
 	 * @param ctx the parse tree
 	 */
 	void exitIdentifier(TitanParser.IdentifierContext ctx);
 	/**
-	 * Enter a parse tree produced by the {@code ParenSimpleExpr}
-	 * labeled alternative in {@link TitanParser#simpleExpr}.
-	 * @param ctx the parse tree
-	 */
-	void enterParenSimpleExpr(TitanParser.ParenSimpleExprContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code ParenSimpleExpr}
-	 * labeled alternative in {@link TitanParser#simpleExpr}.
-	 * @param ctx the parse tree
-	 */
-	void exitParenSimpleExpr(TitanParser.ParenSimpleExprContext ctx);
-	/**
 	 * Enter a parse tree produced by the {@code Literal}
-	 * labeled alternative in {@link TitanParser#simpleExpr}.
+	 * labeled alternative in {@link TitanParser#simpleExpression}.
 	 * @param ctx the parse tree
 	 */
 	void enterLiteral(TitanParser.LiteralContext ctx);
 	/**
 	 * Exit a parse tree produced by the {@code Literal}
-	 * labeled alternative in {@link TitanParser#simpleExpr}.
+	 * labeled alternative in {@link TitanParser#simpleExpression}.
 	 * @param ctx the parse tree
 	 */
 	void exitLiteral(TitanParser.LiteralContext ctx);
 	/**
 	 * Enter a parse tree produced by the {@code AddSubOp}
-	 * labeled alternative in {@link TitanParser#simpleExpr}.
+	 * labeled alternative in {@link TitanParser#simpleExpression}.
 	 * @param ctx the parse tree
 	 */
 	void enterAddSubOp(TitanParser.AddSubOpContext ctx);
 	/**
 	 * Exit a parse tree produced by the {@code AddSubOp}
-	 * labeled alternative in {@link TitanParser#simpleExpr}.
+	 * labeled alternative in {@link TitanParser#simpleExpression}.
 	 * @param ctx the parse tree
 	 */
 	void exitAddSubOp(TitanParser.AddSubOpContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code SimpleExprParen}
+	 * labeled alternative in {@link TitanParser#simpleExpression}.
+	 * @param ctx the parse tree
+	 */
+	void enterSimpleExprParen(TitanParser.SimpleExprParenContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code SimpleExprParen}
+	 * labeled alternative in {@link TitanParser#simpleExpression}.
+	 * @param ctx the parse tree
+	 */
+	void exitSimpleExprParen(TitanParser.SimpleExprParenContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link TitanParser#comparison}.
 	 * @param ctx the parse tree
@@ -336,13 +332,39 @@ public interface TitanListener extends ParseTreeListener {
 	 */
 	void exitExprList(TitanParser.ExprListContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link TitanParser#number}.
+	 * Enter a parse tree produced by the {@code Integer}
+	 * labeled alternative in {@link TitanParser#number}.
 	 * @param ctx the parse tree
 	 */
-	void enterNumber(TitanParser.NumberContext ctx);
+	void enterInteger(TitanParser.IntegerContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link TitanParser#number}.
+	 * Exit a parse tree produced by the {@code Integer}
+	 * labeled alternative in {@link TitanParser#number}.
 	 * @param ctx the parse tree
 	 */
-	void exitNumber(TitanParser.NumberContext ctx);
+	void exitInteger(TitanParser.IntegerContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code Float}
+	 * labeled alternative in {@link TitanParser#number}.
+	 * @param ctx the parse tree
+	 */
+	void enterFloat(TitanParser.FloatContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code Float}
+	 * labeled alternative in {@link TitanParser#number}.
+	 * @param ctx the parse tree
+	 */
+	void exitFloat(TitanParser.FloatContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code Exponential}
+	 * labeled alternative in {@link TitanParser#number}.
+	 * @param ctx the parse tree
+	 */
+	void enterExponential(TitanParser.ExponentialContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code Exponential}
+	 * labeled alternative in {@link TitanParser#number}.
+	 * @param ctx the parse tree
+	 */
+	void exitExponential(TitanParser.ExponentialContext ctx);
 }

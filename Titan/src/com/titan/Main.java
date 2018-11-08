@@ -18,10 +18,8 @@ public class Main {
         TitanLexer lexer = new TitanLexer(input);
         CommonTokenStream tokens = new CommonTokenStream(lexer);
         TitanParser parser = new TitanParser(tokens);
-        ParseTree tree = parser.prog();
-
-        tokens.getTokens().forEach(t -> System.out.println(t.getText()));
-        System.out.println(tree.toStringTree(parser));
-
+        ParseTree tree = parser.className();
+        TitanVisitorImpl visitor = new TitanVisitorImpl();
+        visitor.visit(tree);
     }
 }
