@@ -7,6 +7,7 @@ import org.antlr.v4.runtime.tree.ParseTree;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.PrintWriter;
 
 public class Main {
 
@@ -19,7 +20,12 @@ public class Main {
         CommonTokenStream tokens = new CommonTokenStream(lexer);
         TitanParser parser = new TitanParser(tokens);
         ParseTree tree = parser.className();
-        TitanVisitorImpl visitor = new TitanVisitorImpl();
-        visitor.visit(tree);
+
+        TitanVisitorPass1 pass1 = new TitanVisitorPass1();
+        pass1.visit(tree);
+
+        PrintWriter jFile = pass1.getAssemblyFile();
+        TitanVisitorPass2 pass2 = new TitanVisitorPass2(jFile);
+        pass2.visit(tree);
     }
 }
