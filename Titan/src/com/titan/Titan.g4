@@ -2,6 +2,12 @@ grammar Titan;
 /*
  * Parser Rules
  */
+
+@header {
+    import com.titan.intermediate.*;
+    import com.titan.intermediate.symtabimpl.*;
+}
+
 className : 'program' ID NEWLINE*  prog ;
 prog : 'main' '{' block '}' NEWLINE* (functionDeclaration NEWLINE*)*;
 
@@ -16,15 +22,17 @@ stat  : expr NEWLINE
       | NEWLINE
       ;
 
-expr : simpleExpression
-     | '(' expr ')'
-     | comparison
+expr locals [ TypeSpec type = null ]
+     : simpleExpression             #SimpleExpr
+     | '(' expr ')'                 #ParenExpr
+     | comparison                   #ComparisonExpr
      ;
 
-simpleExpression : simpleExpression op=(MUL|DIV) simpleExpression  #MulDivOp
+simpleExpression locals [ TypeSpec type = null ]
+           : simpleExpression op=(MUL|DIV) simpleExpression  #MulDivOp
            | simpleExpression op=(ADD|SUB) simpleExpression        #AddSubOp
            | simpleExpression MOD simpleExpression                 #ModOp
-           | 'print' expr                                          #Print
+           | stringExpr                                            #String
            | '(' simpleExpression ')'                              #SimpleExprParen
            | functionCall                                          #FuncCall
            | number                                                #Literal
@@ -66,12 +74,21 @@ funcReturnTypes : primitives | 'void' ;
 
 retStat: 'return' expr NEWLINE;
 
-functionCall : ID '('exprList ')' ;
+functionCall locals [ TypeSpec type = null ]
+             : 'printf(' printfexprList ')'      #Printf
+             | ID '('exprList ')'                #RegularFunction
+             ;
+
+stringExpr : STRINGLIT;
+
+printfexprList : expr
+               | printfexprList ',' expr ;
 
 exprList : expr
          | exprList ',' expr ;
 
-number : DIGITS          #Integer
+number locals [ TypeSpec type = null ]
+       : DIGITS          #Integer
        | FLOATINGNUMBER  #Float
        | EXPNUM          #Exponential
        ;
@@ -79,6 +96,7 @@ number : DIGITS          #Integer
 /*
  * Lexer Rules
  */
+
 
 MUL : '*' ;
 DIV : '/' ;
@@ -110,7 +128,10 @@ FLOATINGNUMBER : DIGITS? '.' DIGITS
                ;
 DIGITS : [0-9]+ ;
 
+
 NEWLINE : '\r'? '\n' ;
 WHITESPACE : (' '|'\t') -> skip ;
 LINECOMMENT :   '//' ~[\r\n]* -> skip ;
 BLOCKCOMMENT :   '/*' .*? '*/' -> skip ;
+
+STRINGLIT: '"' ( '\\' [btnfr"'\\] | ~[\r\n\\"] )* '"';

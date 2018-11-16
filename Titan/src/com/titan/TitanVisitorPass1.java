@@ -1,141 +1,180 @@
+
 package com.titan;
 
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
+import java.io.FileWriter;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 
-public class TitanVisitorPass1 extends TitanBaseVisitor<Object> {
+import com.titan.intermediate.*;
+import com.titan.intermediate.symtabimpl.*;
 
-    PrintWriter jfile;
+import static com.titan.intermediate.symtabimpl.SymTabKeyImpl.*;
 
+public class TitanVisitorPass1 extends TitanBaseVisitor<Integer>
+{
+    private SymTabStack symTabStack;
+    private SymTabEntry programId;
+    private ArrayList<SymTabEntry> variableIdList;
+    private PrintWriter jFile;
+
+    public TitanVisitorPass1()
     {
+        // Create and initialize the symbol table stack.
+        symTabStack = SymTabFactory.createSymTabStack();
+        Predefined.initialize(symTabStack);
+
+        // Print the cross-reference table.
+        //CrossReferencer crossReferencer = new CrossReferencer();
+        //crossReferencer.print(symTabStack);
+    }
+
+    public PrintWriter getAssemblyFile() { return jFile; }
+
+
+    @Override
+    public Integer visitClassName(TitanParser.ClassNameContext ctx)
+    {
+        String programName = ctx.ID().toString();
+
+        programId = symTabStack.enterLocal(programName);
+        programId.setDefinition(DefinitionImpl.PROGRAM);
+        programId.setAttribute(ROUTINE_SYMTAB, symTabStack.push());
+        symTabStack.setProgramId(programId);
+
+        // Create the assembly output file.
         try {
-            jfile = new PrintWriter(
-                        new FileOutputStream("out.j", false));
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
+            jFile = new PrintWriter(new FileWriter(programName + ".j"));
         }
-    }
-
-    @Override
-    public Object visitClassName(TitanParser.ClassNameContext ctx) {
-        String name = ctx.ID().toString();
-        jfile.println(".class public " + name);
-        jfile.println(".super java/lang/Object");
-        visit(ctx.prog());
-        return 0;
-    }
-
-    @Override
-    public Object visitProg(TitanParser.ProgContext ctx) {
-        return visit(ctx.block());
-    }
-
-    @Override
-    public Object visitPrint(TitanParser.PrintContext ctx) {
-        return null;
-    }
-
-    @Override
-    public Object visitAddSubOp(TitanParser.AddSubOpContext ctx) {
-        return arithmeticOp(
-                (ExpressionType)visit(ctx.simpleExpression(0)),
-                (ExpressionType)visit(ctx.simpleExpression(1)),
-                ctx.op.getType()
-        );
-    }
-    @Override
-    public Object visitMulDivOp(TitanParser.MulDivOpContext ctx) {
-        return arithmeticOp(
-                (ExpressionType)visit(ctx.simpleExpression(0)),
-                (ExpressionType)visit(ctx.simpleExpression(1)),
-                ctx.op.getType()
-        );
-    }
-
-    private void toFloat(ExpressionType o1, ExpressionType o2) {
-        jfile.println("i2f");
-        o1.setType("f");
-        o2.setType("f");
-    }
-
-    private void iOp(String text) {
-        jfile.println ("i" + text);
-    }
-    private void fOp(String text) {
-        jfile.println ("f" + text);
-    }
-
-    public ExpressionType arithmeticOp(ExpressionType o1, ExpressionType o2, int type) {
-
-    /*
-        if(o2.isInteger() && o1.isFloat()) {
-            toFloat(o1, o2);
+        catch (Exception ex) {
+            ex.printStackTrace();
+            return 0;
         }
 
-        if (o1.isInteger() && o2.isFloat()) {
-            toFloat(o1, o2);
-        }
+        // Emit the program header.
+        jFile.println(".class public " + programName);
+        jFile.println(".super java/lang/Object");
 
-        if(o1.isInteger() && o2.isInteger()) {
-            iOp(text);
-            return new ExpressionType("i");
-        }
-        else {
-            fOp(text);
-            return new ExpressionType("f");
-        }
-        */
-    return null;
+        // Emit the RunTimer and PascalTextIn fields.
+        jFile.println();
+        jFile.println(".field private static _runTimer LRunTimer;");
+        jFile.println(".field private static _standardIn LPascalTextIn;");
+
+
+        // Emit the class constructor.
+        jFile.println();
+        jFile.println(".method public <init>()V");
+        jFile.println();
+        jFile.println("\taload_0");
+        jFile.println("\tinvokenonvirtual    java/lang/Object/<init>()V");
+        jFile.println("\treturn");
+        jFile.println();
+        jFile.println(".limit locals 1");
+        jFile.println(".limit stack 1");
+        jFile.println(".end method");
+
+        return visitChildren(ctx);
+    }
+
+
+    @Override
+    public Integer visitDeclaration(TitanParser.DeclarationContext ctx) {
+        jFile.println("\n; " + ctx.getText() + "\n");
+        //jFile.println(".field private static " +
+        //                    id.getName() + " " + typeIndicator);
+        //add to sym table
+        return visitChildren(ctx);
     }
 
     @Override
-    public Object visitSimpleExprParen(TitanParser.SimpleExprParenContext ctx) {
-        return visit(ctx.simpleExpression());
-    }
+    public Integer visitAddSubOp(TitanParser.AddSubOpContext ctx) {
+        Integer value = visitChildren(ctx);
 
-    @Override
-    public Object visitLiteral(TitanParser.LiteralContext ctx) {
-        Object value = visit(ctx.number());
+        TypeSpec type1 = ctx.simpleExpression(0).type;
+        TypeSpec type2 = ctx.simpleExpression(1).type;
+
+        System.out.println("type1: " + type1);
+        System.out.println("type2: " + type2);
+        boolean integerMode =    (type1 == Predefined.integerType)
+                && (type2 == Predefined.integerType);
+        boolean realMode    =    (type1 == Predefined.realType || type1 == Predefined.integerType)
+                && (type2 == Predefined.realType || type2 == Predefined.integerType);
+
+        TypeSpec type = integerMode ? Predefined.integerType
+                : realMode    ? Predefined.realType
+                :               null;
+        ctx.type = type;
+
         return value;
     }
 
     @Override
-    public Object visitIdentifier(TitanParser.IdentifierContext ctx) {
-        String id = ctx.ID().toString();
-        // lookup id from symbol table and find its slot #
-        // determine its type
-
-        // temporary for testing: pretend id is local, has slot # 1 and is an int
-        IdentifierLoadStoreSlot ilss = new IdentifierLoadStoreSlot("i", "load", 1);
-        //jfile.println(ilss);
-        return ilss;
+    public Integer visitSimpleExpr(TitanParser.SimpleExprContext ctx) {
+        Integer value = visitChildren(ctx);
+        ctx.type = ctx.simpleExpression().type;
+        return value;
     }
 
     @Override
-    public Object visitInteger(TitanParser.IntegerContext ctx) {
-        LoadConstant ldc = new LoadConstant("i", Integer.valueOf(ctx.DIGITS().getText()));
-        //jfile.println(ldc);
-        return ldc;
+    public Integer visitMulDivOp(TitanParser.MulDivOpContext ctx)
+    {
+        Integer value = visitChildren(ctx);
+
+        TypeSpec type1 = ctx.simpleExpression(0).type;
+        TypeSpec type2 = ctx.simpleExpression(1).type;
+
+
+        boolean integerMode =    (type1 == Predefined.integerType)
+                && (type2 == Predefined.integerType);
+        boolean realMode    =    (type1 == Predefined.realType || type1 == Predefined.integerType)
+                && (type2 == Predefined.realType || type2 == Predefined.integerType);
+
+        TypeSpec type = integerMode ? Predefined.integerType
+                : realMode    ? Predefined.realType
+                :               null;
+        ctx.type = type;
+
+        return value;
     }
 
     @Override
-    public Object visitFloat(TitanParser.FloatContext ctx) {
-        LoadConstant ldc = new LoadConstant("f", Float.valueOf(ctx.FLOATINGNUMBER().getText()));
-        //jfile.println(ldc);
-        return ldc;
+    public Integer visitLiteral(TitanParser.LiteralContext ctx) {
+        Integer value = visitChildren(ctx);
+        ctx.type = ctx.number().type;
+        return value;
     }
 
     @Override
-    public Object visitExponential(TitanParser.ExponentialContext ctx) {
-        String str = ctx.EXPNUM().toString();
-        String[] parts = str.split("[eE]");
-        LoadConstant ldc = new LoadConstant("f", (float)(Float.valueOf(parts[0]) * Math.pow(10, Float.valueOf(parts[1]))));
-        //jfile.println(ldc);
-        return ldc;
+    public Integer visitIdentifier(TitanParser.IdentifierContext ctx) {
+        String variableName = ctx.ID().toString();
+        SymTabEntry variableId = symTabStack.lookup(variableName);
+
+        ctx.type = variableId.getTypeSpec();
+        return visitChildren(ctx);
     }
 
-    public PrintWriter getAssemblyFile() {
-        return jfile;
+    @Override
+    public Integer visitInteger(TitanParser.IntegerContext ctx) {
+        ctx.type = Predefined.integerType;
+        return visitChildren(ctx);
     }
+
+    @Override
+    public Integer visitFloat(TitanParser.FloatContext ctx) {
+        ctx.type = Predefined.realType;
+        return visitChildren(ctx);
+    }
+
+    @Override
+    public Integer visitExponential(TitanParser.ExponentialContext ctx) {
+        ctx.type = Predefined.realType;
+        return visitChildren(ctx);
+    }
+
+    @Override
+    public Integer visitSimpleExprParen(TitanParser.SimpleExprParenContext ctx) {
+        Integer value = visitChildren(ctx);
+        ctx.type = ctx.simpleExpression().type;
+        return value;
+    }
+
 }

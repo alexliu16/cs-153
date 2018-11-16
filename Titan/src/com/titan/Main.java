@@ -27,5 +27,6 @@ public class Main {
         PrintWriter jFile = pass1.getAssemblyFile();
         TitanVisitorPass2 pass2 = new TitanVisitorPass2(jFile);
         pass2.visit(tree);
+
     }
 }
