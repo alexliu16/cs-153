@@ -1,18 +1,31 @@
 package com.titan;
 
 import java.io.PrintWriter;
+import java.util.ArrayList;
 
 import com.titan.intermediate.*;
 import com.titan.intermediate.symtabimpl.*;
+
+import static com.titan.intermediate.symtabimpl.SymTabKeyImpl.DATA_VALUE;
+import static com.titan.intermediate.symtabimpl.SymTabKeyImpl.SLOT;
 
 public class TitanVisitorPass2 extends TitanBaseVisitor<Integer>
 {
     String programName;
     private PrintWriter jFile;
 
-    public TitanVisitorPass2(PrintWriter jFile)
+    private SymTabStack symTabStack;
+    private SymTabEntry programId;
+    private ArrayList<SymTabEntry> variableIdList;
+
+    private boolean localDeclarations = false;
+
+    public TitanVisitorPass2(PrintWriter jFile, TitanVisitorPass1 pass1)
     {
         this.jFile = jFile;
+        symTabStack = pass1.getSymTabStack();
+        programId = pass1.getProgramId();
+        variableIdList = pass1.getVariableIdList();
     }
 
     @Override
@@ -25,6 +38,7 @@ public class TitanVisitorPass2 extends TitanBaseVisitor<Integer>
 
     @Override
     public Integer visitProg(TitanParser.ProgContext ctx) {
+
         // Emit the main program header.
         jFile.println();
         jFile.println(".method public static main([Ljava/lang/String;)V");
@@ -38,7 +52,7 @@ public class TitanVisitorPass2 extends TitanBaseVisitor<Integer>
         jFile.println("\tinvokenonvirtual PascalTextIn/<init>()V");
         jFile.println("\tputstatic        " + programName + "/_standardIn LPascalTextIn;");
 
-        Integer value = visitChildren(ctx);
+        Integer value = visit(ctx.block());
 
         // Emit the main program epilogue.
         jFile.println();
@@ -51,9 +65,27 @@ public class TitanVisitorPass2 extends TitanBaseVisitor<Integer>
         jFile.println(".limit stack 16");
         jFile.println(".end method");
 
+        ctx.functionDeclaration().forEach(f->visit(f));
+
         return value;
     }
 
+    @Override
+    public Integer visitBlock(TitanParser.BlockContext ctx) {
+        localDeclarations = true;
+        Integer value = visitChildren(ctx);
+        localDeclarations = false;
+        return value;
+    }
+
+    @Override
+    public Integer visitRegularFunction(TitanParser.RegularFunctionContext ctx) {
+        localDeclarations = true;
+        Integer value = visitChildren(ctx);
+        //add code for functions here
+        localDeclarations = false;
+        return value;
+    }
 
     @Override
     public Integer visitAssignment(TitanParser.AssignmentContext ctx) {
@@ -62,13 +94,46 @@ public class TitanVisitorPass2 extends TitanBaseVisitor<Integer>
         String typeIndicator = (ctx.expr().type == Predefined.integerType) ? "I"
                 : (ctx.expr().type == Predefined.realType)    ? "F"
                 : "?";
-        // Emit a field put instruction.
-        jFile.println("\tputstatic\t" + programName
-                +  "/" + ctx.ID().toString()
-                + " " + typeIndicator);
+        SymTabEntry local = symTabStack.lookupLocal(ctx.ID().toString());
+
+        if(local != null) {
+            jFile.println(";load local value from stack");
+            jFile.println("iload " + local.getAttribute(SLOT));
+            jFile.println(";Save new value here");
+        }
+        else {
+            // Emit a field put instruction.
+            jFile.println("\tputstatic\t" + programName
+                    + "/" + ctx.ID().toString()
+                    + " " + typeIndicator);
+        }
 
         return value;
     }
+
+    @Override
+    public Integer visitDeclaration(TitanParser.DeclarationContext ctx) {
+        String name = ctx.ID().getText();
+        if(localDeclarations) {
+            SymTabEntry entry = symTabStack.lookupLocal(name);
+            if(entry != null) {
+                char type = entry.getTypeSpec() == Predefined.integerType ? 'i'
+                        : entry.getTypeSpec() == Predefined.realType ? 'f' : '?';
+                int slot_no = (int) entry.getAttribute(SLOT);
+                if (ctx.expr() != null) {
+                    visit(ctx.expr()); // expr is on stack now
+                    jFile.println(type + "store " + slot_no);
+                }
+            }
+            else {
+                jFile.println("Unknown declaration " + name);
+            }
+        }
+
+        return 0;
+    }
+
+
 
     @Override
     public Integer visitAddSubOp(TitanParser.AddSubOpContext ctx)
@@ -141,17 +206,33 @@ public class TitanVisitorPass2 extends TitanBaseVisitor<Integer>
     @Override
     public Integer visitIdentifier(TitanParser.IdentifierContext ctx) {
         String variableName = ctx.ID().toString();
+
+
+        SymTabEntry local = symTabStack.lookupLocal(ctx.ID().toString());
+        ctx.type = local.getTypeSpec();
         TypeSpec type = ctx.type;
 
         String typeIndicator = (type == Predefined.integerType) ? "I"
                 : (type == Predefined.realType)    ? "F"
                 :                                    "?";
+        if(local != null) {
+            jFile.println(";load local value from stack");
+            jFile.println(typeIndicator.toLowerCase() + "load " + local.getAttribute(SLOT));
+        }
+        else {
 
-        // Emit a field get instruction.
-        jFile.println("\tgetstatic\t" + programName +
-                "/" + variableName + " " + typeIndicator);
+            // Emit a field get instruction.
+            jFile.println("\tgetstatic\t" + programName +
+                    "/" + variableName + " " + typeIndicator);
+        }
+        return 0;
+    }
 
-        return visitChildren(ctx);
+    @Override
+    public Integer visitSimpleExpr(TitanParser.SimpleExprContext ctx) {
+        Integer value = visitChildren(ctx);
+        ctx.type = ctx.simpleExpression().type;
+        return value;
     }
 
     @Override
@@ -204,7 +285,7 @@ public class TitanVisitorPass2 extends TitanBaseVisitor<Integer>
             else if(ctx.expr().type == Predefined.realType)
                 jFile.println("invokestatic java/lang/Float.valueOf(F)Ljava/lang/Float;");
             else
-                jFile.println("Failure casting to object");
+                jFile.println("Failure casting " + ctx.expr().getText() + " to object. Type is " + ctx.expr().type);
             jFile.println("aastore");
             if(value != printfArgCount)
                 jFile.println("dup");

@@ -17,6 +17,23 @@ public class TitanVisitorPass1 extends TitanBaseVisitor<Integer>
     private ArrayList<SymTabEntry> variableIdList;
     private PrintWriter jFile;
 
+    private int slot_no;
+
+    private boolean localDeclarations = false;
+
+
+    public SymTabStack getSymTabStack() {
+        return symTabStack;
+    }
+
+    public SymTabEntry getProgramId() {
+        return programId;
+    }
+
+    public ArrayList<SymTabEntry> getVariableIdList() {
+        return variableIdList;
+    }
+
     public TitanVisitorPass1()
     {
         // Create and initialize the symbol table stack.
@@ -75,14 +92,58 @@ public class TitanVisitorPass1 extends TitanBaseVisitor<Integer>
         return visitChildren(ctx);
     }
 
+    @Override
+    public Integer visitProg(TitanParser.ProgContext ctx) {
+        localDeclarations = true;
+        visitChildren(ctx);
+        localDeclarations = false;
+        return 0;
+    }
+
+    @Override
+    public Integer visitBlock(TitanParser.BlockContext ctx) {
+        slot_no = 0;
+        return super.visitBlock(ctx);
+    }
+
+    @Override
+    public Integer visitRegularFunction(TitanParser.RegularFunctionContext ctx) {
+        slot_no = 0;
+        return super.visitRegularFunction(ctx);
+    }
 
     @Override
     public Integer visitDeclaration(TitanParser.DeclarationContext ctx) {
-        jFile.println("\n; " + ctx.getText() + "\n");
-        //jFile.println(".field private static " +
-        //                    id.getName() + " " + typeIndicator);
-        //add to sym table
+        if(!localDeclarations) {
+            jFile.println("; global " + ctx.getText() + "\n");
+            //jFile.println(".field private static " +
+            //                    id.getName() + " " + typeIndicator);
+            //add to sym table
+            symTabStack.enterLocal(ctx.ID().getText());
+            //set type
+        }
+        else {
+            SymTabEntry loc = symTabStack.enterLocal(ctx.ID().getText());
+            loc.setTypeSpec(getType(ctx.primitives()));
+            loc.setAttribute(SLOT, slot_no);//increment slot number here
+
+            slot_no++;//increment slot
+
+        }
         return visitChildren(ctx);
+    }
+
+    public TypeSpec getType(TitanParser.PrimitivesContext prim) {
+        switch(prim.getText()) {
+            case "int": return Predefined.integerType;
+            case "float": return Predefined.realType;
+            default: return Predefined.integerType;
+        }
+    }
+
+    @Override
+    public Integer visitAssignment(TitanParser.AssignmentContext ctx) {
+        return super.visitAssignment(ctx);
     }
 
     @Override
@@ -146,9 +207,11 @@ public class TitanVisitorPass1 extends TitanBaseVisitor<Integer>
     @Override
     public Integer visitIdentifier(TitanParser.IdentifierContext ctx) {
         String variableName = ctx.ID().toString();
-        SymTabEntry variableId = symTabStack.lookup(variableName);
+        SymTabEntry variableId = symTabStack.lookupLocal(variableName);
 
-        ctx.type = variableId.getTypeSpec();
+        if(variableId != null) {
+            ctx.type = variableId.getTypeSpec();
+        }
         return visitChildren(ctx);
     }
 

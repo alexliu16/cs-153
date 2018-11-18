@@ -68,7 +68,7 @@ assignment : ID '=' expr NEWLINE
 shorthandAssignment : ID SHORTHANDASSIGNOP ;
 
 
-primitives : INT|BOOL|CHAR|FLOAT ;
+primitives : (INT|BOOL|CHAR|FLOAT) ;
 
 funcReturnTypes : primitives | 'void' ;
 
@@ -76,7 +76,7 @@ retStat: 'return' expr NEWLINE;
 
 functionCall locals [ TypeSpec type = null ]
              : 'printf(' printfexprList ')'      #Printf
-             | ID '('exprList ')'                     #RegularFunction
+             | ID '('exprList ')'                #RegularFunction
              ;
 
 stringExpr : STRINGLIT;

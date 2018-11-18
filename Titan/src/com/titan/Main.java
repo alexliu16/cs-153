@@ -25,7 +25,7 @@ public class Main {
         pass1.visit(tree);
 
         PrintWriter jFile = pass1.getAssemblyFile();
-        TitanVisitorPass2 pass2 = new TitanVisitorPass2(jFile);
+        TitanVisitorPass2 pass2 = new TitanVisitorPass2(jFile, pass1);
         pass2.visit(tree);
 
     }

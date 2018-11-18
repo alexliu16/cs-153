@@ -1,5 +1,11 @@
 program TestingArithmetic
 main {
-    printf("%d-%d equals %d\n",1,2,1-2) //1-2 equals -1
-    printf("1=%d\n",1) // 1=1
+    int a = 2
+    int b = 4
+    float f = 3.0
+    printf("a has value of %d\n",a)
+    printf("b has value of %d\n",b)
+    printf("a+b has value of %d\n", a+b)
+    printf("f is a float with value %f\n", f)
+
 }

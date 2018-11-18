@@ -68,7 +68,7 @@ assignment : ID '=' expr NEWLINE
 shorthandAssignment : ID SHORTHANDASSIGNOP ;
 
 
-primitives : INT|BOOL|CHAR|FLOAT ;
+primitives : (INT|BOOL|CHAR|FLOAT) ;
 
 funcReturnTypes : primitives | 'void' ;
 
