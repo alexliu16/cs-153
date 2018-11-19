@@ -1,10 +1,11 @@
 program TestingArithmetic
 main {
-    print 1-2        // -1
-    print 2-1        // 1
-    print 2.0/4      // 0.5
-    print 1+2*3      // 7
-    print (1+2)*3    // 9
-    print 1-(2-3)*1  // 2
-    print 2.1e1      // 21
+    int a = 2
+    int b = 4
+    float f = 3.0
+    printf("a has value of %d\n",a)
+    printf("b has value of %d\n",b)
+    printf("a+b has value of %d\n", a+b)
+    printf("f is a float with value %f\n", f)
+
 }

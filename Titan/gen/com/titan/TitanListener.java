@@ -1,5 +1,9 @@
 // Generated from /Users/thomaspedersen/CS153/TeamProject/cs-153/Titan/src/com/titan/Titan.g4 by ANTLR 4.7
 package com.titan;
+
+    import com.titan.intermediate.*;
+    import com.titan.intermediate.symtabimpl.*;
+
 import org.antlr.v4.runtime.tree.ParseTreeListener;
 
 /**
@@ -48,15 +52,41 @@ public interface TitanListener extends ParseTreeListener {
 	 */
 	void exitStat(TitanParser.StatContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link TitanParser#expr}.
+	 * Enter a parse tree produced by the {@code SimpleExpr}
+	 * labeled alternative in {@link TitanParser#expr}.
 	 * @param ctx the parse tree
 	 */
-	void enterExpr(TitanParser.ExprContext ctx);
+	void enterSimpleExpr(TitanParser.SimpleExprContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link TitanParser#expr}.
+	 * Exit a parse tree produced by the {@code SimpleExpr}
+	 * labeled alternative in {@link TitanParser#expr}.
 	 * @param ctx the parse tree
 	 */
-	void exitExpr(TitanParser.ExprContext ctx);
+	void exitSimpleExpr(TitanParser.SimpleExprContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code ParenExpr}
+	 * labeled alternative in {@link TitanParser#expr}.
+	 * @param ctx the parse tree
+	 */
+	void enterParenExpr(TitanParser.ParenExprContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code ParenExpr}
+	 * labeled alternative in {@link TitanParser#expr}.
+	 * @param ctx the parse tree
+	 */
+	void exitParenExpr(TitanParser.ParenExprContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code ComparisonExpr}
+	 * labeled alternative in {@link TitanParser#expr}.
+	 * @param ctx the parse tree
+	 */
+	void enterComparisonExpr(TitanParser.ComparisonExprContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code ComparisonExpr}
+	 * labeled alternative in {@link TitanParser#expr}.
+	 * @param ctx the parse tree
+	 */
+	void exitComparisonExpr(TitanParser.ComparisonExprContext ctx);
 	/**
 	 * Enter a parse tree produced by the {@code MulDivOp}
 	 * labeled alternative in {@link TitanParser#simpleExpression}.
@@ -69,18 +99,6 @@ public interface TitanListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitMulDivOp(TitanParser.MulDivOpContext ctx);
-	/**
-	 * Enter a parse tree produced by the {@code Print}
-	 * labeled alternative in {@link TitanParser#simpleExpression}.
-	 * @param ctx the parse tree
-	 */
-	void enterPrint(TitanParser.PrintContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code Print}
-	 * labeled alternative in {@link TitanParser#simpleExpression}.
-	 * @param ctx the parse tree
-	 */
-	void exitPrint(TitanParser.PrintContext ctx);
 	/**
 	 * Enter a parse tree produced by the {@code FuncCall}
 	 * labeled alternative in {@link TitanParser#simpleExpression}.
@@ -141,6 +159,18 @@ public interface TitanListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitAddSubOp(TitanParser.AddSubOpContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code String}
+	 * labeled alternative in {@link TitanParser#simpleExpression}.
+	 * @param ctx the parse tree
+	 */
+	void enterString(TitanParser.StringContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code String}
+	 * labeled alternative in {@link TitanParser#simpleExpression}.
+	 * @param ctx the parse tree
+	 */
+	void exitString(TitanParser.StringContext ctx);
 	/**
 	 * Enter a parse tree produced by the {@code SimpleExprParen}
 	 * labeled alternative in {@link TitanParser#simpleExpression}.
@@ -312,15 +342,49 @@ public interface TitanListener extends ParseTreeListener {
 	 */
 	void exitRetStat(TitanParser.RetStatContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link TitanParser#functionCall}.
+	 * Enter a parse tree produced by the {@code Printf}
+	 * labeled alternative in {@link TitanParser#functionCall}.
 	 * @param ctx the parse tree
 	 */
-	void enterFunctionCall(TitanParser.FunctionCallContext ctx);
+	void enterPrintf(TitanParser.PrintfContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link TitanParser#functionCall}.
+	 * Exit a parse tree produced by the {@code Printf}
+	 * labeled alternative in {@link TitanParser#functionCall}.
 	 * @param ctx the parse tree
 	 */
-	void exitFunctionCall(TitanParser.FunctionCallContext ctx);
+	void exitPrintf(TitanParser.PrintfContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code RegularFunction}
+	 * labeled alternative in {@link TitanParser#functionCall}.
+	 * @param ctx the parse tree
+	 */
+	void enterRegularFunction(TitanParser.RegularFunctionContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code RegularFunction}
+	 * labeled alternative in {@link TitanParser#functionCall}.
+	 * @param ctx the parse tree
+	 */
+	void exitRegularFunction(TitanParser.RegularFunctionContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link TitanParser#stringExpr}.
+	 * @param ctx the parse tree
+	 */
+	void enterStringExpr(TitanParser.StringExprContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link TitanParser#stringExpr}.
+	 * @param ctx the parse tree
+	 */
+	void exitStringExpr(TitanParser.StringExprContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link TitanParser#printfexprList}.
+	 * @param ctx the parse tree
+	 */
+	void enterPrintfexprList(TitanParser.PrintfexprListContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link TitanParser#printfexprList}.
+	 * @param ctx the parse tree
+	 */
+	void exitPrintfexprList(TitanParser.PrintfexprListContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link TitanParser#exprList}.
 	 * @param ctx the parse tree
