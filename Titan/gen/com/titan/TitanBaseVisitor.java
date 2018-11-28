@@ -224,14 +224,21 @@ public class TitanBaseVisitor<T> extends AbstractParseTreeVisitor<T> implements 
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitAssignment(TitanParser.AssignmentContext ctx) { return visitChildren(ctx); }
+	@Override public T visitSimpleAssignment(TitanParser.SimpleAssignmentContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitShorthandAssignment(TitanParser.ShorthandAssignmentContext ctx) { return visitChildren(ctx); }
+	@Override public T visitShorthandIncDecAssignment(TitanParser.ShorthandIncDecAssignmentContext ctx) { return visitChildren(ctx); }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.</p>
+	 */
+	@Override public T visitSpecialAssignment(TitanParser.SpecialAssignmentContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *

@@ -28,9 +28,11 @@
 	ldc	2
 	iadd
 istore 0
+	ldc	2.0
+fstore 1
 ;Pushing boolean value to stack
 	iconst_0
-istore 1
+istore 2
 ;load local value from stack
 iload 0
 	ldc	2
@@ -40,11 +42,11 @@ goto 	L001
 L000:
 	iconst_1
 L001:
-istore 2
-;load boolean from stack
-iload 1
+istore 3
 ;load boolean from stack
 iload 2
+;load boolean from stack
+iload 3
 ;load local value from stack
 iload 0
 	ldc	10
@@ -76,7 +78,7 @@ aastore
 invokevirtual java/io/PrintStream.printf(Ljava/lang/String;[Ljava/lang/Object;)Ljava/io/PrintStream;
 pop
 ldc "Titan"
-astore 3
+astore 4
 getstatic java/lang/System/out Ljava/io/PrintStream; 
 ldc "The project name is %s\n"
 ldc 1
@@ -84,8 +86,40 @@ anewarray java/lang/Object
 dup
 ldc 0 ; load arrayIndex
 ;load local value from stack
-aload 3
+aload 4
 ; do we need this? invokestatic java/lang/Float.valueOf(F)Ljava/lang/Float;
+aastore
+invokevirtual java/io/PrintStream.printf(Ljava/lang/String;[Ljava/lang/Object;)Ljava/io/PrintStream;
+pop
+iload 0
+	ldc	3
+imul
+istore 0
+getstatic java/lang/System/out Ljava/io/PrintStream; 
+ldc "Num = %d\n"
+ldc 1
+anewarray java/lang/Object
+dup
+ldc 0 ; load arrayIndex
+;load local value from stack
+iload 0
+invokestatic java/lang/Integer.valueOf(I)Ljava/lang/Integer;
+aastore
+invokevirtual java/io/PrintStream.printf(Ljava/lang/String;[Ljava/lang/Object;)Ljava/io/PrintStream;
+pop
+fload 1
+	ldc	1.2
+fmul
+fstore 1
+getstatic java/lang/System/out Ljava/io/PrintStream; 
+ldc "f should be 2.4... -> %f"
+ldc 1
+anewarray java/lang/Object
+dup
+ldc 0 ; load arrayIndex
+;load local value from stack
+fload 1
+invokestatic java/lang/Float.valueOf(F)Ljava/lang/Float;
 aastore
 invokevirtual java/io/PrintStream.printf(Ljava/lang/String;[Ljava/lang/Object;)Ljava/io/PrintStream;
 pop

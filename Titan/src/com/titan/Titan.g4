@@ -67,12 +67,11 @@ argDecl : primitives ref='&'? ID ;
 
 declaration : CONST? primitives ID ('=' expr)? NEWLINE;
 
-assignment : ID '=' expr NEWLINE
-           | shorthandAssignment NEWLINE
-           | ID AssignmentOp expr NEWLINE
+assignment : ID '=' expr NEWLINE           #SimpleAssignment
+           | ID SHORTHANDASSIGNOP NEWLINE   #ShorthandIncDecAssignment
+           | ID AssignmentOp expr NEWLINE  #SpecialAssignment
            ;
 
-shorthandAssignment : ID SHORTHANDASSIGNOP ;
 primitives : (INT|BOOL|STRING|FLOAT) ;
 funcReturnTypes : primitives | 'void' ;
 
