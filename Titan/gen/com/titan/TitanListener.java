@@ -194,53 +194,29 @@ public interface TitanListener extends ParseTreeListener {
 	 */
 	void exitComparison(TitanParser.ComparisonContext ctx);
 	/**
-	 * Enter a parse tree produced by the {@code IfBrackets}
+	 * Enter a parse tree produced by the {@code IfElseBrackets}
 	 * labeled alternative in {@link TitanParser#conditional}.
 	 * @param ctx the parse tree
 	 */
-	void enterIfBrackets(TitanParser.IfBracketsContext ctx);
+	void enterIfElseBrackets(TitanParser.IfElseBracketsContext ctx);
 	/**
-	 * Exit a parse tree produced by the {@code IfBrackets}
+	 * Exit a parse tree produced by the {@code IfElseBrackets}
 	 * labeled alternative in {@link TitanParser#conditional}.
 	 * @param ctx the parse tree
 	 */
-	void exitIfBrackets(TitanParser.IfBracketsContext ctx);
+	void exitIfElseBrackets(TitanParser.IfElseBracketsContext ctx);
 	/**
-	 * Enter a parse tree produced by the {@code IfNoBrackets}
+	 * Enter a parse tree produced by the {@code IfElseNoBrackets}
 	 * labeled alternative in {@link TitanParser#conditional}.
 	 * @param ctx the parse tree
 	 */
-	void enterIfNoBrackets(TitanParser.IfNoBracketsContext ctx);
+	void enterIfElseNoBrackets(TitanParser.IfElseNoBracketsContext ctx);
 	/**
-	 * Exit a parse tree produced by the {@code IfNoBrackets}
+	 * Exit a parse tree produced by the {@code IfElseNoBrackets}
 	 * labeled alternative in {@link TitanParser#conditional}.
 	 * @param ctx the parse tree
 	 */
-	void exitIfNoBrackets(TitanParser.IfNoBracketsContext ctx);
-	/**
-	 * Enter a parse tree produced by the {@code ElseBrackets}
-	 * labeled alternative in {@link TitanParser#conditional}.
-	 * @param ctx the parse tree
-	 */
-	void enterElseBrackets(TitanParser.ElseBracketsContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code ElseBrackets}
-	 * labeled alternative in {@link TitanParser#conditional}.
-	 * @param ctx the parse tree
-	 */
-	void exitElseBrackets(TitanParser.ElseBracketsContext ctx);
-	/**
-	 * Enter a parse tree produced by the {@code ElseNoBrackets}
-	 * labeled alternative in {@link TitanParser#conditional}.
-	 * @param ctx the parse tree
-	 */
-	void enterElseNoBrackets(TitanParser.ElseNoBracketsContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code ElseNoBrackets}
-	 * labeled alternative in {@link TitanParser#conditional}.
-	 * @param ctx the parse tree
-	 */
-	void exitElseNoBrackets(TitanParser.ElseNoBracketsContext ctx);
+	void exitIfElseNoBrackets(TitanParser.IfElseNoBracketsContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link TitanParser#loop}.
 	 * @param ctx the parse tree

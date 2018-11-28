@@ -17,6 +17,9 @@ public class TitanVisitorPass2 extends TitanBaseVisitor<Integer>
     private SymTabStack symTabStack;
     private SymTabEntry programId;
     private ArrayList<SymTabEntry> variableIdList;
+    
+    // used to give unique labels (L000, L0001, L0002 ...)
+    private int labelIncrementer;
 
     private boolean localDeclarations = false;
 
@@ -26,6 +29,7 @@ public class TitanVisitorPass2 extends TitanBaseVisitor<Integer>
         symTabStack = pass1.getSymTabStack();
         programId = pass1.getProgramId();
         variableIdList = pass1.getVariableIdList();
+        labelIncrementer = 0;
     }
 
     @Override
@@ -311,5 +315,104 @@ public class TitanVisitorPass2 extends TitanBaseVisitor<Integer>
         jFile.println("\tldc\t" + ctx.getText());
 
         return visitChildren(ctx);
+    }
+    
+    @Override
+    public Integer visitIfElseBrackets(TitanParser.IfElseBracketsContext ctx) {
+    	// visit expr and emit the code for the expr (comparisonExpr)
+    	visit(ctx.expr());
+    	
+    	// emit labels by adding one for every new label created
+    	jFile.println("L00" + this.labelIncrementer + ":");
+    	jFile.println("\ticonst_1");
+    	jFile.println("L00" + (this.labelIncrementer + 1) + ":");
+    	jFile.println("\tifeq L00" + (this.labelIncrementer + 2));
+    	visit(ctx.block(0));
+    	
+    	// check to see if there is an else by seeing if the second block is null.
+    	if (ctx.block(1) != null) { // else statement
+    		jFile.println("\tgoto L00" + (this.labelIncrementer + 3));
+    		jFile.println("L00" + (this.labelIncrementer + 2) + ":");
+    		visit(ctx.block(1));
+    		jFile.println("L00" + (this.labelIncrementer + 3) + ":");
+    		this.labelIncrementer += 4; // increment for new labels
+    	} else { // no else statement
+    		jFile.println("L00" + (this.labelIncrementer + 2) + ":");
+    		this.labelIncrementer += 3; // increment for new labels
+    	}
+    	return 0;
+    }
+    
+    @Override
+    public Integer visitIfElseNoBrackets(TitanParser.IfElseNoBracketsContext ctx) {
+    	// visit expr and emit the code for the expr (comparisonExpr)
+    	visit(ctx.expr());
+    	jFile.println("L00" + this.labelIncrementer + ":");
+    	jFile.println("\ticonst_1");
+    	jFile.println("L00" + (this.labelIncrementer + 1) + ":");
+    	jFile.println("\tifeq L00" + (this.labelIncrementer + 2));
+        visit(ctx.stat(0));
+        if (ctx.stat(1) != null) { // else statement
+    		jFile.println("\tgoto L00" + (this.labelIncrementer + 3));
+    		jFile.println("L00" + (this.labelIncrementer + 2) + ":");
+    		visit(ctx.stat(1));
+    		jFile.println("L00" + (this.labelIncrementer + 3) + ":");
+    		this.labelIncrementer += 4; // increment for new labels
+    	} else { // no else statement
+    		jFile.println("L00" + (this.labelIncrementer + 2) + ":");
+    		this.labelIncrementer += 3; // increment for new labels
+    	}
+    	return 0;
+    	
+    }
+    
+    
+    @Override
+    public Integer visitComparisonExpr(TitanParser.ComparisonExprContext ctx) {
+        String comparison = ctx.comparison().COMPARISON_OP().getText();
+        TypeSpec type1 = ctx.comparison().simpleExpression(0).type;
+        TypeSpec type2 = ctx.comparison().simpleExpression(1).type;
+        visit(ctx.comparison().simpleExpression((0)));
+        visit(ctx.comparison().simpleExpression(1));
+        boolean integerMode =    (type1 == Predefined.integerType)
+                && (type2 == Predefined.integerType);
+        boolean realMode    =    (type1 == Predefined.realType)
+                && (type2 == Predefined.realType);
+        String compareCode;
+    	if (comparison.equals("<")) {
+    		compareCode = integerMode ? "if_icmplt" 
+    				: realMode ? "if_fcmplt"
+    				: "???";
+    	} else if(comparison.equals(">")) {
+    		compareCode = integerMode ? "if_icmpgt" 
+    				: realMode ? "if_fcmpgt"
+    				: "???";
+    	} else if(comparison.equals("<=")) {
+    		compareCode = integerMode ? "if_icmple" 
+    				: realMode ? "if_fcmple"
+    				: "???";
+    	} else if(comparison.equals(">=")) {
+    		compareCode = integerMode ? "if_icmpge" 
+    				: realMode ? "if_fcmpge"
+    				: "???";
+    	} else if(comparison.equals("==")) {
+    		compareCode = integerMode ? "if_icmpeq" 
+    				: realMode ? "if_fcmpeq"
+    				: "???";
+    	} else if(comparison.equals("!=")) {
+    		compareCode = integerMode ? "if_icmpne" 
+    				: realMode ? "if_fcmpne"
+    				: "???";
+    	} else {
+    		compareCode = "???";
+    	}
+    	// auto increment labels for unique labels
+    	String labelOne = "L00" + this.labelIncrementer;
+    	String labelTwo = "L00" + (this.labelIncrementer + 1);
+    	jFile.println(compareCode + "\t" + labelOne);
+    	jFile.println("iconst_0");
+    	jFile.println("goto \t" +  labelTwo);
+        //return  value;
+    	return 0;
     }
 }
