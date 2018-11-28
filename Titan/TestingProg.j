@@ -1,4 +1,4 @@
-.class public TestingArithmetic
+.class public TestingProg
 .super java/lang/Object
 
 .field private static _runTimer LRunTimer;
@@ -19,12 +19,14 @@
 	new RunTimer
 	dup
 	invokenonvirtual RunTimer/<init>()V
-	putstatic        TestingArithmetic/_runTimer LRunTimer;
+	putstatic        TestingProg/_runTimer LRunTimer;
 	new PascalTextIn
 	dup
 	invokenonvirtual PascalTextIn/<init>()V
-	putstatic        TestingArithmetic/_standardIn LPascalTextIn;
+	putstatic        TestingProg/_standardIn LPascalTextIn;
 	ldc	2
+	ldc	2
+	iadd
 istore 0
 ;Pushing boolean value to stack
 	iconst_0
@@ -32,80 +34,63 @@ istore 1
 ;load local value from stack
 iload 0
 	ldc	2
-if_icmple	L000
+if_icmpgt	L000
 iconst_0
 goto 	L001
 L000:
 	iconst_1
 L001:
 istore 2
+;load boolean from stack
+iload 1
+;load boolean from stack
+iload 2
 ;load local value from stack
 iload 0
-	ldc	2
-if_icmpeq	L002
+	ldc	10
+if_icmplt	L002
 iconst_0
 goto 	L003
 L002:
 	iconst_1
 L003:
+iand
+ior
 	ifeq L006
 getstatic java/lang/System/out Ljava/io/PrintStream; 
-ldc "c is %b\n"
-ldc 1
-anewarray java/lang/Object
-dup
-ldc 0 ; load arrayIndex
-;load local value from stack
-iload 2
-invokestatic java/lang/Boolean/valueOf(Z)Ljava/lang/Boolean;
-aastore
+ldc "num is between 3 and 9\n"
+aconst_null
 invokevirtual java/io/PrintStream.printf(Ljava/lang/String;[Ljava/lang/Object;)Ljava/io/PrintStream;
 pop
 L006:
 getstatic java/lang/System/out Ljava/io/PrintStream; 
-ldc "b is %b\n"
+ldc "Num = %d\n"
 ldc 1
 anewarray java/lang/Object
 dup
 ldc 0 ; load arrayIndex
 ;load local value from stack
-iload 1
-invokestatic java/lang/Boolean/valueOf(Z)Ljava/lang/Boolean;
+iload 0
+invokestatic java/lang/Integer.valueOf(I)Ljava/lang/Integer;
 aastore
 invokevirtual java/io/PrintStream.printf(Ljava/lang/String;[Ljava/lang/Object;)Ljava/io/PrintStream;
 pop
+ldc "Titan"
+astore 3
 getstatic java/lang/System/out Ljava/io/PrintStream; 
-ldc "b AND c = %b\n"
+ldc "The project name is %s\n"
 ldc 1
 anewarray java/lang/Object
 dup
 ldc 0 ; load arrayIndex
-;load boolean from stack
-iload 1
-;load boolean from stack
-iload 2
-iand
-invokestatic java/lang/Boolean/valueOf(Z)Ljava/lang/Boolean;
-aastore
-invokevirtual java/io/PrintStream.printf(Ljava/lang/String;[Ljava/lang/Object;)Ljava/io/PrintStream;
-pop
-getstatic java/lang/System/out Ljava/io/PrintStream; 
-ldc "b OR c = %b\n"
-ldc 1
-anewarray java/lang/Object
-dup
-ldc 0 ; load arrayIndex
-;load boolean from stack
-iload 1
-;load boolean from stack
-iload 2
-ior
-invokestatic java/lang/Boolean/valueOf(Z)Ljava/lang/Boolean;
+;load local value from stack
+aload 3
+; do we need this? invokestatic java/lang/Float.valueOf(F)Ljava/lang/Float;
 aastore
 invokevirtual java/io/PrintStream.printf(Ljava/lang/String;[Ljava/lang/Object;)Ljava/io/PrintStream;
 pop
 
-	getstatic     TestingArithmetic/_runTimer LRunTimer;
+	getstatic     TestingProg/_runTimer LRunTimer;
 	invokevirtual RunTimer.printElapsedTime()V
 
 	return

@@ -24,8 +24,8 @@ stat  : expr NEWLINE
 
 expr locals [ TypeSpec type = null ]
      : simpleExpression             #SimpleExpr
+     | boolExprs                    #BoolExpr
      | '(' expr ')'                 #ParenExpr
-     | comparison                   #ComparisonExpr
      ;
 
 simpleExpression locals [ TypeSpec type = null ]
@@ -43,8 +43,17 @@ comparison :     simpleExpression COMPARISON_OP simpleExpression
            | '(' simpleExpression COMPARISON_OP simpleExpression ')'
            ;
 
-conditional : 'if' expr NEWLINE? '{' block '}' (NEWLINE? 'else' NEWLINE? '{' block '}')?     #IfElseBrackets
-            | 'if' expr NEWLINE? stat (NEWLINE? 'else' NEWLINE? stat)?            #IfElseNoBrackets
+boolExprs locals [ TypeSpec type = null ]
+          : '(' boolExprs ')'              #BoolParen
+          | boolExprs op=BOOLAND boolExprs #BoolAnd
+          | boolExprs op=BOOLOR boolExprs  #BoolOr
+          | BOOLVALUES                     #BoolLiteral
+          | ID                             #BoolIdentifier
+          | comparison                     #ComparisonExpr
+          ;
+
+conditional : 'if' boolExprs NEWLINE? '{' block '}' (NEWLINE? 'else' NEWLINE? '{' block '}')?     #IfElseBrackets
+            | 'if' boolExprs NEWLINE? stat (NEWLINE? 'else' NEWLINE? stat)?                       #IfElseNoBrackets
             ;
 
 loop : 'for' ID 'from' simpleExpression 'to' simpleExpression NEWLINE? '{' block '}' ;
@@ -64,10 +73,7 @@ assignment : ID '=' expr NEWLINE
            ;
 
 shorthandAssignment : ID SHORTHANDASSIGNOP ;
-
-
-primitives : (INT|BOOL|CHAR|FLOAT) ;
-
+primitives : (INT|BOOL|STRING|FLOAT) ;
 funcReturnTypes : primitives | 'void' ;
 
 retStat: 'return' expr NEWLINE;
@@ -107,6 +113,10 @@ INT : 'int' ;
 BOOL : 'bool' ;
 CHAR : 'char' ;
 FLOAT : 'float' ;
+STRING: 'string' ;
+BOOLVALUES: 'true'|'false' ;
+BOOLAND: '&&' ;
+BOOLOR: '||' ;
 AssignmentOp : PLUS_EQ|MINUS_EQ|MUL_EQ|DIV_EQ ;
 
 PLUS_EQ : '+=' ;

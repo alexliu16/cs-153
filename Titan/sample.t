@@ -1,11 +1,12 @@
-program TestingArithmetic
+program TestingProg
 main {
-    int a = 2
-    int b = 4
-    float f = 3.0
-    printf("a has value of %d\n",a)
-    printf("b has value of %d\n",b)
-    printf("a+b has value of %d\n", a+b)
-    printf("f is a float with value %f\n", f)
+    int num = 2+2
+    bool b = false
+    bool c = num > 2
 
+    if b || c && num < 10 printf("num is between 3 and 9\n")
+    printf("Num = %d\n", num)
+
+    string name = "Titan"
+    printf("The project name is %s\n", name)
 }
