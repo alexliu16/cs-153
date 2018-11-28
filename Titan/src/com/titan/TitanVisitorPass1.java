@@ -144,11 +144,6 @@ public class TitanVisitorPass1 extends TitanBaseVisitor<Integer>
     }
 
     @Override
-    public Integer visitAssignment(TitanParser.AssignmentContext ctx) {
-        return super.visitAssignment(ctx);
-    }
-
-    @Override
     public Integer visitAddSubOp(TitanParser.AddSubOpContext ctx) {
         Integer value = visitChildren(ctx);
 

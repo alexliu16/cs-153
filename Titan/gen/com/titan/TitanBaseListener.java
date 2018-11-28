@@ -368,25 +368,37 @@ public class TitanBaseListener implements TitanListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterAssignment(TitanParser.AssignmentContext ctx) { }
+	@Override public void enterSimpleAssignment(TitanParser.SimpleAssignmentContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitAssignment(TitanParser.AssignmentContext ctx) { }
+	@Override public void exitSimpleAssignment(TitanParser.SimpleAssignmentContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterShorthandAssignment(TitanParser.ShorthandAssignmentContext ctx) { }
+	@Override public void enterShorthandIncDecAssignment(TitanParser.ShorthandIncDecAssignmentContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitShorthandAssignment(TitanParser.ShorthandAssignmentContext ctx) { }
+	@Override public void exitShorthandIncDecAssignment(TitanParser.ShorthandIncDecAssignmentContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterSpecialAssignment(TitanParser.SpecialAssignmentContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitSpecialAssignment(TitanParser.SpecialAssignmentContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *

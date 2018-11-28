@@ -92,21 +92,19 @@ public class TitanVisitorPass2 extends TitanBaseVisitor<Integer>
     }
 
     @Override
-    public Integer visitAssignment(TitanParser.AssignmentContext ctx) {
+    public Integer visitSimpleAssignment(TitanParser.SimpleAssignmentContext ctx) {
         Integer value = visit(ctx.expr());
 
         TypeSpec type = ctx.expr().type;
         String typeIndicator =
-                  (type == Predefined.integerType || type == Predefined.booleanType) ? "I"
-                : (type == Predefined.realType)    ? "F"
-                : (type == Predefined.stringType) ? "A"
-                : "?";
+                (type == Predefined.integerType || type == Predefined.booleanType) ? "I"
+                        : (type == Predefined.realType)    ? "F"
+                        : (type == Predefined.stringType) ? "A"
+                        : "?";
         SymTabEntry local = symTabStack.lookupLocal(ctx.ID().toString());
 
         if(local != null) {
-            jFile.println(";load local value from stack");
-            jFile.println(typeIndicator.toLowerCase() + "load " + local.getAttribute(SLOT));
-            jFile.println(";Save new value here");
+            jFile.println(typeIndicator.toLowerCase() + "store " + local.getAttribute(SLOT));
         }
         else {
             // Emit a field put instruction.
@@ -119,6 +117,61 @@ public class TitanVisitorPass2 extends TitanBaseVisitor<Integer>
         }
 
         return value;
+    }
+
+    @Override
+    public Integer visitShorthandIncDecAssignment(TitanParser.ShorthandIncDecAssignmentContext ctx) {
+        SymTabEntry local = symTabStack.lookupLocal(ctx.ID().toString());
+
+        char typeIndicator = local.getTypeSpec() == Predefined.integerType ? 'i'
+                            : '?';
+        String op = ctx.SHORTHANDASSIGNOP().getText().equals("++") ? "inc"
+                : ctx.SHORTHANDASSIGNOP().getText().equals("--") ? "dec"
+                : "???";
+        if(local != null) {
+            jFile.println(typeIndicator + op + " " + local.getAttribute(SLOT) + " 1");
+        }
+        else {
+            jFile.println("Not yet supported shorthand inc/dec for global variables");
+        }
+        return 0;
+    }
+
+    @Override
+    public Integer visitSpecialAssignment(TitanParser.SpecialAssignmentContext ctx) {
+        SymTabEntry local = symTabStack.lookupLocal(ctx.ID().toString());
+
+        TypeSpec type = local.getTypeSpec();
+        char typeIndicator = type == Predefined.integerType ? 'i'
+                : type == Predefined.realType ? 'f'
+                : '?';
+
+        String op = ctx.AssignmentOp().getText();
+        if(local != null) {
+            jFile.println(typeIndicator + "load " + local.getAttribute(SLOT));//load value onto stack
+            visit(ctx.expr()); // load expression onto stack
+            switch(op) {
+                case "+=":
+                    jFile.println(typeIndicator + "add");
+                 break;
+                case "-=":
+                    jFile.println(typeIndicator + "sub");
+                    break;
+                case "*=":
+                    jFile.println(typeIndicator + "mul");
+                    break;
+                case "/=":
+                    jFile.println(typeIndicator + "div");
+                    break;
+            }
+            jFile.println(typeIndicator + "store " + local.getAttribute(SLOT));
+
+            //jFile.println(typeIndicator + op + " " + local.getAttribute(SLOT) + " 1");
+        }
+        else {
+            jFile.println("Not yet supported shorthand assignments for global variables");
+        }
+        return 0;
     }
 
     @Override

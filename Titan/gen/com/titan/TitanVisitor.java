@@ -208,17 +208,26 @@ public interface TitanVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitDeclaration(TitanParser.DeclarationContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link TitanParser#assignment}.
+	 * Visit a parse tree produced by the {@code SimpleAssignment}
+	 * labeled alternative in {@link TitanParser#assignment}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitAssignment(TitanParser.AssignmentContext ctx);
+	T visitSimpleAssignment(TitanParser.SimpleAssignmentContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link TitanParser#shorthandAssignment}.
+	 * Visit a parse tree produced by the {@code ShorthandIncDecAssignment}
+	 * labeled alternative in {@link TitanParser#assignment}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitShorthandAssignment(TitanParser.ShorthandAssignmentContext ctx);
+	T visitShorthandIncDecAssignment(TitanParser.ShorthandIncDecAssignmentContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code SpecialAssignment}
+	 * labeled alternative in {@link TitanParser#assignment}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitSpecialAssignment(TitanParser.SpecialAssignmentContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link TitanParser#primitives}.
 	 * @param ctx the parse tree

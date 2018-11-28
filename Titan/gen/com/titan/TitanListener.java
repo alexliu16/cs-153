@@ -340,25 +340,41 @@ public interface TitanListener extends ParseTreeListener {
 	 */
 	void exitDeclaration(TitanParser.DeclarationContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link TitanParser#assignment}.
+	 * Enter a parse tree produced by the {@code SimpleAssignment}
+	 * labeled alternative in {@link TitanParser#assignment}.
 	 * @param ctx the parse tree
 	 */
-	void enterAssignment(TitanParser.AssignmentContext ctx);
+	void enterSimpleAssignment(TitanParser.SimpleAssignmentContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link TitanParser#assignment}.
+	 * Exit a parse tree produced by the {@code SimpleAssignment}
+	 * labeled alternative in {@link TitanParser#assignment}.
 	 * @param ctx the parse tree
 	 */
-	void exitAssignment(TitanParser.AssignmentContext ctx);
+	void exitSimpleAssignment(TitanParser.SimpleAssignmentContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link TitanParser#shorthandAssignment}.
+	 * Enter a parse tree produced by the {@code ShorthandIncDecAssignment}
+	 * labeled alternative in {@link TitanParser#assignment}.
 	 * @param ctx the parse tree
 	 */
-	void enterShorthandAssignment(TitanParser.ShorthandAssignmentContext ctx);
+	void enterShorthandIncDecAssignment(TitanParser.ShorthandIncDecAssignmentContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link TitanParser#shorthandAssignment}.
+	 * Exit a parse tree produced by the {@code ShorthandIncDecAssignment}
+	 * labeled alternative in {@link TitanParser#assignment}.
 	 * @param ctx the parse tree
 	 */
-	void exitShorthandAssignment(TitanParser.ShorthandAssignmentContext ctx);
+	void exitShorthandIncDecAssignment(TitanParser.ShorthandIncDecAssignmentContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code SpecialAssignment}
+	 * labeled alternative in {@link TitanParser#assignment}.
+	 * @param ctx the parse tree
+	 */
+	void enterSpecialAssignment(TitanParser.SpecialAssignmentContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code SpecialAssignment}
+	 * labeled alternative in {@link TitanParser#assignment}.
+	 * @param ctx the parse tree
+	 */
+	void exitSpecialAssignment(TitanParser.SpecialAssignmentContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link TitanParser#primitives}.
 	 * @param ctx the parse tree
