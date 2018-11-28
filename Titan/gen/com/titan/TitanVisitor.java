@@ -46,19 +46,19 @@ public interface TitanVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitSimpleExpr(TitanParser.SimpleExprContext ctx);
 	/**
+	 * Visit a parse tree produced by the {@code BoolExpr}
+	 * labeled alternative in {@link TitanParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitBoolExpr(TitanParser.BoolExprContext ctx);
+	/**
 	 * Visit a parse tree produced by the {@code ParenExpr}
 	 * labeled alternative in {@link TitanParser#expr}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
 	T visitParenExpr(TitanParser.ParenExprContext ctx);
-	/**
-	 * Visit a parse tree produced by the {@code ComparisonExpr}
-	 * labeled alternative in {@link TitanParser#expr}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitComparisonExpr(TitanParser.ComparisonExprContext ctx);
 	/**
 	 * Visit a parse tree produced by the {@code MulDivOp}
 	 * labeled alternative in {@link TitanParser#simpleExpression}.
@@ -121,6 +121,48 @@ public interface TitanVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitComparison(TitanParser.ComparisonContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code BoolLiteral}
+	 * labeled alternative in {@link TitanParser#boolExprs}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitBoolLiteral(TitanParser.BoolLiteralContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code ComparisonExpr}
+	 * labeled alternative in {@link TitanParser#boolExprs}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitComparisonExpr(TitanParser.ComparisonExprContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code BoolIdentifier}
+	 * labeled alternative in {@link TitanParser#boolExprs}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitBoolIdentifier(TitanParser.BoolIdentifierContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code BoolParen}
+	 * labeled alternative in {@link TitanParser#boolExprs}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitBoolParen(TitanParser.BoolParenContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code BoolOr}
+	 * labeled alternative in {@link TitanParser#boolExprs}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitBoolOr(TitanParser.BoolOrContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code BoolAnd}
+	 * labeled alternative in {@link TitanParser#boolExprs}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitBoolAnd(TitanParser.BoolAndContext ctx);
 	/**
 	 * Visit a parse tree produced by the {@code IfElseBrackets}
 	 * labeled alternative in {@link TitanParser#conditional}.

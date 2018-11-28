@@ -137,6 +137,8 @@ public class TitanVisitorPass1 extends TitanBaseVisitor<Integer>
         switch(prim.getText()) {
             case "int": return Predefined.integerType;
             case "float": return Predefined.realType;
+            case "bool": return Predefined.booleanType;
+            case "string": return Predefined.stringType;
             default: return Predefined.integerType;
         }
     }
@@ -240,4 +242,9 @@ public class TitanVisitorPass1 extends TitanBaseVisitor<Integer>
         return value;
     }
 
+    @Override
+    public Integer visitBoolIdentifier(TitanParser.BoolIdentifierContext ctx) {
+        ctx.type = Predefined.booleanType;
+        return visitChildren(ctx);
+    }
 }

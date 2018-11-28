@@ -64,6 +64,18 @@ public interface TitanListener extends ParseTreeListener {
 	 */
 	void exitSimpleExpr(TitanParser.SimpleExprContext ctx);
 	/**
+	 * Enter a parse tree produced by the {@code BoolExpr}
+	 * labeled alternative in {@link TitanParser#expr}.
+	 * @param ctx the parse tree
+	 */
+	void enterBoolExpr(TitanParser.BoolExprContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code BoolExpr}
+	 * labeled alternative in {@link TitanParser#expr}.
+	 * @param ctx the parse tree
+	 */
+	void exitBoolExpr(TitanParser.BoolExprContext ctx);
+	/**
 	 * Enter a parse tree produced by the {@code ParenExpr}
 	 * labeled alternative in {@link TitanParser#expr}.
 	 * @param ctx the parse tree
@@ -75,18 +87,6 @@ public interface TitanListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitParenExpr(TitanParser.ParenExprContext ctx);
-	/**
-	 * Enter a parse tree produced by the {@code ComparisonExpr}
-	 * labeled alternative in {@link TitanParser#expr}.
-	 * @param ctx the parse tree
-	 */
-	void enterComparisonExpr(TitanParser.ComparisonExprContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code ComparisonExpr}
-	 * labeled alternative in {@link TitanParser#expr}.
-	 * @param ctx the parse tree
-	 */
-	void exitComparisonExpr(TitanParser.ComparisonExprContext ctx);
 	/**
 	 * Enter a parse tree produced by the {@code MulDivOp}
 	 * labeled alternative in {@link TitanParser#simpleExpression}.
@@ -193,6 +193,78 @@ public interface TitanListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitComparison(TitanParser.ComparisonContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code BoolLiteral}
+	 * labeled alternative in {@link TitanParser#boolExprs}.
+	 * @param ctx the parse tree
+	 */
+	void enterBoolLiteral(TitanParser.BoolLiteralContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code BoolLiteral}
+	 * labeled alternative in {@link TitanParser#boolExprs}.
+	 * @param ctx the parse tree
+	 */
+	void exitBoolLiteral(TitanParser.BoolLiteralContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code ComparisonExpr}
+	 * labeled alternative in {@link TitanParser#boolExprs}.
+	 * @param ctx the parse tree
+	 */
+	void enterComparisonExpr(TitanParser.ComparisonExprContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code ComparisonExpr}
+	 * labeled alternative in {@link TitanParser#boolExprs}.
+	 * @param ctx the parse tree
+	 */
+	void exitComparisonExpr(TitanParser.ComparisonExprContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code BoolIdentifier}
+	 * labeled alternative in {@link TitanParser#boolExprs}.
+	 * @param ctx the parse tree
+	 */
+	void enterBoolIdentifier(TitanParser.BoolIdentifierContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code BoolIdentifier}
+	 * labeled alternative in {@link TitanParser#boolExprs}.
+	 * @param ctx the parse tree
+	 */
+	void exitBoolIdentifier(TitanParser.BoolIdentifierContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code BoolParen}
+	 * labeled alternative in {@link TitanParser#boolExprs}.
+	 * @param ctx the parse tree
+	 */
+	void enterBoolParen(TitanParser.BoolParenContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code BoolParen}
+	 * labeled alternative in {@link TitanParser#boolExprs}.
+	 * @param ctx the parse tree
+	 */
+	void exitBoolParen(TitanParser.BoolParenContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code BoolOr}
+	 * labeled alternative in {@link TitanParser#boolExprs}.
+	 * @param ctx the parse tree
+	 */
+	void enterBoolOr(TitanParser.BoolOrContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code BoolOr}
+	 * labeled alternative in {@link TitanParser#boolExprs}.
+	 * @param ctx the parse tree
+	 */
+	void exitBoolOr(TitanParser.BoolOrContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code BoolAnd}
+	 * labeled alternative in {@link TitanParser#boolExprs}.
+	 * @param ctx the parse tree
+	 */
+	void enterBoolAnd(TitanParser.BoolAndContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code BoolAnd}
+	 * labeled alternative in {@link TitanParser#boolExprs}.
+	 * @param ctx the parse tree
+	 */
+	void exitBoolAnd(TitanParser.BoolAndContext ctx);
 	/**
 	 * Enter a parse tree produced by the {@code IfElseBrackets}
 	 * labeled alternative in {@link TitanParser#conditional}.

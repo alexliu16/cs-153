@@ -1,11 +1,18 @@
 program TestingArithmetic
 main {
     int a = 2
-    int b = 4
-    float f = 3.0
-    printf("a has value of %d\n",a)
-    printf("b has value of %d\n",b)
-    printf("a+b has value of %d\n", a+b)
-    printf("f is a float with value %f\n", f)
+
+    if a <= 2 {
+        printf("This should print")
+    }else {
+        printf("This should not print")
+    }
+
+    bool b = false
+
+    if b printf("This should not print")
+    else printf("This should print")
+    bool c = true
+    if b || c printf("This should print")
 
 }

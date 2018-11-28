@@ -26,63 +26,49 @@
 	putstatic        TestingArithmetic/_standardIn LPascalTextIn;
 	ldc	2
 istore 0
-	ldc	4
-istore 1
-	ldc	3.0
-fstore 2
-getstatic java/lang/System/out Ljava/io/PrintStream; 
-; count of printf is 2
-ldc "a has value of %d\n" ; load string constant
-ldc 1
-anewarray java/lang/Object
-dup
-ldc 0 ; load arrayIndex
 ;load local value from stack
 iload 0
-invokestatic java/lang/Integer.valueOf(I)Ljava/lang/Integer;
-aastore
+	ldc	2
+getstatic java/lang/System/out Ljava/io/PrintStream; 
+ldc "This should print"
+ldc 0
+anewarray java/lang/Object
+dup
 invokevirtual java/io/PrintStream.printf(Ljava/lang/String;[Ljava/lang/Object;)Ljava/io/PrintStream;
 pop
 getstatic java/lang/System/out Ljava/io/PrintStream; 
-; count of printf is 2
-ldc "b has value of %d\n" ; load string constant
-ldc 1
+ldc "This should not print"
+ldc 0
 anewarray java/lang/Object
 dup
-ldc 0 ; load arrayIndex
-;load local value from stack
-iload 1
-invokestatic java/lang/Integer.valueOf(I)Ljava/lang/Integer;
-aastore
 invokevirtual java/io/PrintStream.printf(Ljava/lang/String;[Ljava/lang/Object;)Ljava/io/PrintStream;
 pop
-getstatic java/lang/System/out Ljava/io/PrintStream; 
-; count of printf is 2
-ldc "a+b has value of %d\n" ; load string constant
-ldc 1
-anewarray java/lang/Object
-dup
-ldc 0 ; load arrayIndex
-;load local value from stack
+;load boolean from stack
 iload 0
-;load local value from stack
-iload 1
-	iadd
-invokestatic java/lang/Integer.valueOf(I)Ljava/lang/Integer;
-aastore
+getstatic java/lang/System/out Ljava/io/PrintStream; 
+ldc "This should not print"
+ldc 0
+anewarray java/lang/Object
+dup
 invokevirtual java/io/PrintStream.printf(Ljava/lang/String;[Ljava/lang/Object;)Ljava/io/PrintStream;
 pop
 getstatic java/lang/System/out Ljava/io/PrintStream; 
-; count of printf is 2
-ldc "f is a float with value %f\n" ; load string constant
-ldc 1
+ldc "This should print"
+ldc 0
 anewarray java/lang/Object
 dup
-ldc 0 ; load arrayIndex
-;load local value from stack
-fload 2
-invokestatic java/lang/Float.valueOf(F)Ljava/lang/Float;
-aastore
+invokevirtual java/io/PrintStream.printf(Ljava/lang/String;[Ljava/lang/Object;)Ljava/io/PrintStream;
+pop
+;load boolean from stack
+iload 0
+;load boolean from stack
+iload 1
+ior
+getstatic java/lang/System/out Ljava/io/PrintStream; 
+ldc "This should print"
+ldc 0
+anewarray java/lang/Object
+dup
 invokevirtual java/io/PrintStream.printf(Ljava/lang/String;[Ljava/lang/Object;)Ljava/io/PrintStream;
 pop
 
