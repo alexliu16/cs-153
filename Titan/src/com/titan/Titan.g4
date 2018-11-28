@@ -43,10 +43,8 @@ comparison :     simpleExpression COMPARISON_OP simpleExpression
            | '(' simpleExpression COMPARISON_OP simpleExpression ')'
            ;
 
-conditional : 'if' expr NEWLINE? '{' block '}'     #IfBrackets
-            | 'if' expr NEWLINE? stat              #IfNoBrackets
-            | 'else' NEWLINE? '{' block '}'        #ElseBrackets
-            | 'else' NEWLINE? stat                 #ElseNoBrackets
+conditional : 'if' expr NEWLINE? '{' block '}' (NEWLINE? 'else' NEWLINE? '{' block '}')?     #IfElseBrackets
+            | 'if' expr NEWLINE? stat (NEWLINE? 'else' NEWLINE? stat)?            #IfElseNoBrackets
             ;
 
 loop : 'for' ID 'from' simpleExpression 'to' simpleExpression NEWLINE? '{' block '}' ;

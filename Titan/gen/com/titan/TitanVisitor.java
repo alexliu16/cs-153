@@ -122,33 +122,19 @@ public interface TitanVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitComparison(TitanParser.ComparisonContext ctx);
 	/**
-	 * Visit a parse tree produced by the {@code IfBrackets}
+	 * Visit a parse tree produced by the {@code IfElseBrackets}
 	 * labeled alternative in {@link TitanParser#conditional}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitIfBrackets(TitanParser.IfBracketsContext ctx);
+	T visitIfElseBrackets(TitanParser.IfElseBracketsContext ctx);
 	/**
-	 * Visit a parse tree produced by the {@code IfNoBrackets}
+	 * Visit a parse tree produced by the {@code IfElseNoBrackets}
 	 * labeled alternative in {@link TitanParser#conditional}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitIfNoBrackets(TitanParser.IfNoBracketsContext ctx);
-	/**
-	 * Visit a parse tree produced by the {@code ElseBrackets}
-	 * labeled alternative in {@link TitanParser#conditional}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitElseBrackets(TitanParser.ElseBracketsContext ctx);
-	/**
-	 * Visit a parse tree produced by the {@code ElseNoBrackets}
-	 * labeled alternative in {@link TitanParser#conditional}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitElseNoBrackets(TitanParser.ElseNoBracketsContext ctx);
+	T visitIfElseNoBrackets(TitanParser.IfElseNoBracketsContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link TitanParser#loop}.
 	 * @param ctx the parse tree

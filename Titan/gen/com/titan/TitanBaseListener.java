@@ -212,49 +212,25 @@ public class TitanBaseListener implements TitanListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterIfBrackets(TitanParser.IfBracketsContext ctx) { }
+	@Override public void enterIfElseBrackets(TitanParser.IfElseBracketsContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitIfBrackets(TitanParser.IfBracketsContext ctx) { }
+	@Override public void exitIfElseBrackets(TitanParser.IfElseBracketsContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterIfNoBrackets(TitanParser.IfNoBracketsContext ctx) { }
+	@Override public void enterIfElseNoBrackets(TitanParser.IfElseNoBracketsContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitIfNoBrackets(TitanParser.IfNoBracketsContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterElseBrackets(TitanParser.ElseBracketsContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitElseBrackets(TitanParser.ElseBracketsContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterElseNoBrackets(TitanParser.ElseNoBracketsContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitElseNoBrackets(TitanParser.ElseNoBracketsContext ctx) { }
+	@Override public void exitIfElseNoBrackets(TitanParser.IfElseNoBracketsContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
