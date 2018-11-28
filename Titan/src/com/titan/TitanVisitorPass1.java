@@ -243,7 +243,7 @@ public class TitanVisitorPass1 extends TitanBaseVisitor<Integer>
     }
 
     @Override
-    public Integer visitBoolExpr(TitanParser.BoolExprContext ctx) {
+    public Integer visitBoolIdentifier(TitanParser.BoolIdentifierContext ctx) {
         ctx.type = Predefined.booleanType;
         return visitChildren(ctx);
     }
