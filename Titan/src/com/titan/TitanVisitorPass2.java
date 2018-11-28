@@ -95,18 +95,24 @@ public class TitanVisitorPass2 extends TitanBaseVisitor<Integer>
     public Integer visitAssignment(TitanParser.AssignmentContext ctx) {
         Integer value = visit(ctx.expr());
 
-        String typeIndicator = (ctx.expr().type == Predefined.integerType) ? "I"
-                : (ctx.expr().type == Predefined.realType)    ? "F"
+        TypeSpec type = ctx.expr().type;
+        String typeIndicator =
+                  (type == Predefined.integerType || type == Predefined.booleanType) ? "I"
+                : (type == Predefined.realType)    ? "F"
+                : (type == Predefined.stringType) ? "A"
                 : "?";
         SymTabEntry local = symTabStack.lookupLocal(ctx.ID().toString());
 
         if(local != null) {
             jFile.println(";load local value from stack");
-            jFile.println("iload " + local.getAttribute(SLOT));
+            jFile.println(typeIndicator.toLowerCase() + "load " + local.getAttribute(SLOT));
             jFile.println(";Save new value here");
         }
         else {
             // Emit a field put instruction.
+            if(ctx.expr().type == Predefined.stringType) {
+                typeIndicator = "Ljava/lang/String;";
+            }
             jFile.println("\tputstatic\t" + programName
                     + "/" + ctx.ID().toString()
                     + " " + typeIndicator);
@@ -121,8 +127,12 @@ public class TitanVisitorPass2 extends TitanBaseVisitor<Integer>
         if(localDeclarations) {
             SymTabEntry entry = symTabStack.lookupLocal(name);
             if(entry != null) {
-                char type = entry.getTypeSpec() == Predefined.integerType ? 'i'
-                        : entry.getTypeSpec() == Predefined.realType ? 'f' : '?';
+                TypeSpec typeSpec = entry.getTypeSpec();
+                char type = typeSpec == Predefined.integerType ? 'i'
+                        : typeSpec == Predefined.realType ? 'f'
+                        : typeSpec == Predefined.booleanType ? 'i'
+                        : typeSpec == Predefined.stringType ? 'a'
+                        : '?';
                 int slot_no = (int) entry.getAttribute(SLOT);
                 if (ctx.expr() != null) {
                     visit(ctx.expr()); // expr is on stack now
@@ -216,8 +226,9 @@ public class TitanVisitorPass2 extends TitanBaseVisitor<Integer>
         ctx.type = local.getTypeSpec();
         TypeSpec type = ctx.type;
 
-        String typeIndicator = (type == Predefined.integerType) ? "I"
+        String typeIndicator = (type == Predefined.integerType || type == Predefined.booleanType) ? "I"
                 : (type == Predefined.realType)    ? "F"
+                : (type == Predefined.stringType) ? "A"
                 :                                    "?";
         if(local != null) {
             jFile.println(";load local value from stack");
@@ -245,9 +256,9 @@ public class TitanVisitorPass2 extends TitanBaseVisitor<Integer>
         return 0;
     }
 
-    boolean printfFirstPass = false;
-    boolean printfSecondPass = false;
-    int printfArgCount = 0;
+    private boolean printfFirstPass = false;
+    private boolean printfSecondPass = false;
+    private int printfArgCount = 0;
     @Override
     public Integer visitPrintf(TitanParser.PrintfContext ctx) {
         jFile.println("getstatic java/lang/System/out Ljava/io/PrintStream; ");
@@ -256,8 +267,15 @@ public class TitanVisitorPass2 extends TitanBaseVisitor<Integer>
         printfArgCount = count-1;
         printfFirstPass = false;
         printfSecondPass = true;
-        visit(ctx.printfexprList());
+        if(count > 1)
+            visit(ctx.printfexprList());
+        else {
+            visit(ctx.printfexprList().expr());
+        }
         printfSecondPass = false;
+        if(count == 1) {
+            jFile.println("aconst_null");
+        }
         jFile.println("invokevirtual java/io/PrintStream.printf(Ljava/lang/String;[Ljava/lang/Object;)Ljava/io/PrintStream;");
         jFile.println("pop");
         return 0;
@@ -292,14 +310,13 @@ public class TitanVisitorPass2 extends TitanBaseVisitor<Integer>
             else if(ctx.expr().type == Predefined.stringType)
                 jFile.println("; do we need this? invokestatic java/lang/Float.valueOf(F)Ljava/lang/Float;");
             else if(ctx.expr().type == Predefined.booleanType)
-                jFile.println("invokestatic java/lang/Boolean.valueOf(F)Ljava/lang/Boolean;");
+                jFile.println("invokestatic java/lang/Boolean/valueOf(Z)Ljava/lang/Boolean;");
             else
                 jFile.println("Failure casting " + ctx.expr().getText() + " to object. Type is " + ctx.expr().type);
             jFile.println("aastore");
             if(value != printfArgCount)
                 jFile.println("dup");
         }
-        System.out.println(value);
         return value + 1;
     }
 
@@ -320,6 +337,103 @@ public class TitanVisitorPass2 extends TitanBaseVisitor<Integer>
         jFile.println("\tldc\t" + ctx.getText());
 
         return visitChildren(ctx);
+    }
+
+
+    @Override
+    public Integer visitIfElseBrackets(TitanParser.IfElseBracketsContext ctx) {
+        // visit expr and emit the code for the expr (comparisonExpr)
+        visit(ctx.boolExprs());
+
+        // emit labels by adding one for every new label created
+        jFile.println("\tifeq L00" + (this.labelIncrementer + 2));
+        visit(ctx.block(0));
+
+        // check to see if there is an else by seeing if the second block is null.
+        if (ctx.block(1) != null) { // else statement
+            jFile.println("\tgoto L00" + (this.labelIncrementer + 3));
+            jFile.println("L00" + (this.labelIncrementer + 2) + ":");
+            visit(ctx.block(1));
+            jFile.println("L00" + (this.labelIncrementer + 3) + ":");
+            this.labelIncrementer += 4; // increment for new labels
+        } else { // no else statement
+            jFile.println("L00" + (this.labelIncrementer + 2) + ":");
+            this.labelIncrementer += 3; // increment for new labels
+        }
+        return 0;
+    }
+
+    @Override
+    public Integer visitIfElseNoBrackets(TitanParser.IfElseNoBracketsContext ctx) {
+        // visit expr and emit the code for the expr (comparisonExpr)
+        visit(ctx.boolExprs());
+        jFile.println("\tifeq L00" + (this.labelIncrementer + 2));
+        visit(ctx.stat(0));
+        if (ctx.stat(1) != null) { // else statement
+            jFile.println("\tgoto L00" + (this.labelIncrementer + 3));
+            jFile.println("L00" + (this.labelIncrementer + 2) + ":");
+            visit(ctx.stat(1));
+            jFile.println("L00" + (this.labelIncrementer + 3) + ":");
+            this.labelIncrementer += 4; // increment for new labels
+        } else { // no else statement
+            jFile.println("L00" + (this.labelIncrementer + 2) + ":");
+            this.labelIncrementer += 3; // increment for new labels
+        }
+        return 0;
+
+    }
+
+
+    @Override
+    public Integer visitComparisonExpr(TitanParser.ComparisonExprContext ctx) {
+        String comparison = ctx.comparison().COMPARISON_OP().getText();
+        TypeSpec type1 = ctx.comparison().simpleExpression(0).type;
+        TypeSpec type2 = ctx.comparison().simpleExpression(1).type;
+        visit(ctx.comparison().simpleExpression((0)));
+        visit(ctx.comparison().simpleExpression(1));
+        boolean integerMode =    (type1 == Predefined.integerType)
+                && (type2 == Predefined.integerType);
+        boolean realMode    =    (type1 == Predefined.realType)
+                && (type2 == Predefined.realType);
+        String compareCode;
+        if (comparison.equals("<")) {
+            compareCode = integerMode ? "if_icmplt"
+                    : realMode ? "if_fcmplt"
+                    : "???";
+        } else if(comparison.equals(">")) {
+            compareCode = integerMode ? "if_icmpgt"
+                    : realMode ? "if_fcmpgt"
+                    : "???";
+        } else if(comparison.equals("<=")) {
+            compareCode = integerMode ? "if_icmple"
+                    : realMode ? "if_fcmple"
+                    : "???";
+        } else if(comparison.equals(">=")) {
+            compareCode = integerMode ? "if_icmpge"
+                    : realMode ? "if_fcmpge"
+                    : "???";
+        } else if(comparison.equals("==")) {
+            compareCode = integerMode ? "if_icmpeq"
+                    : realMode ? "if_fcmpeq"
+                    : "???";
+        } else if(comparison.equals("!=")) {
+            compareCode = integerMode ? "if_icmpne"
+                    : realMode ? "if_fcmpne"
+                    : "???";
+        } else {
+            compareCode = "???";
+        }
+        // auto increment labels for unique labels
+        String labelOne = "L00" + this.labelIncrementer;
+        String labelTwo = "L00" + (this.labelIncrementer + 1);
+        jFile.println(compareCode + "\t" + labelOne);
+        jFile.println("iconst_0");
+        jFile.println("goto \t" +  labelTwo);
+        jFile.println(labelOne + ":");
+        jFile.println("\ticonst_1");
+        jFile.println(labelTwo + ":");
+        this.labelIncrementer += 2; // increment for new labels
+        return 0;
     }
 
     @Override

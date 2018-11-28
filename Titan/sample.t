@@ -1,18 +1,12 @@
-program TestingArithmetic
+program TestingProg
 main {
-    int a = 2
-
-    if a <= 2 {
-        printf("This should print")
-    }else {
-        printf("This should not print")
-    }
-
+    int num = 2+2
     bool b = false
+    bool c = num > 2
 
-    if b printf("This should not print")
-    else printf("This should print")
-    bool c = true
-    if b || c printf("This should print")
+    if b || c && num < 10 printf("num is between 3 and 9\n")
+    printf("Num = %d\n", num)
 
+    string name = "Titan"
+    printf("The project name is %s\n", name)
 }
