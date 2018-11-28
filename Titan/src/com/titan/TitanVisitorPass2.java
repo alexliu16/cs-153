@@ -323,9 +323,6 @@ public class TitanVisitorPass2 extends TitanBaseVisitor<Integer>
     	visit(ctx.expr());
     	
     	// emit labels by adding one for every new label created
-    	jFile.println("L00" + this.labelIncrementer + ":");
-    	jFile.println("\ticonst_1");
-    	jFile.println("L00" + (this.labelIncrementer + 1) + ":");
     	jFile.println("\tifeq L00" + (this.labelIncrementer + 2));
     	visit(ctx.block(0));
     	
@@ -347,9 +344,6 @@ public class TitanVisitorPass2 extends TitanBaseVisitor<Integer>
     public Integer visitIfElseNoBrackets(TitanParser.IfElseNoBracketsContext ctx) {
     	// visit expr and emit the code for the expr (comparisonExpr)
     	visit(ctx.expr());
-    	jFile.println("L00" + this.labelIncrementer + ":");
-    	jFile.println("\ticonst_1");
-    	jFile.println("L00" + (this.labelIncrementer + 1) + ":");
     	jFile.println("\tifeq L00" + (this.labelIncrementer + 2));
         visit(ctx.stat(0));
         if (ctx.stat(1) != null) { // else statement
@@ -412,6 +406,9 @@ public class TitanVisitorPass2 extends TitanBaseVisitor<Integer>
     	jFile.println(compareCode + "\t" + labelOne);
     	jFile.println("iconst_0");
     	jFile.println("goto \t" +  labelTwo);
+    	jFile.println(labelOne + ":");
+    	jFile.println("\ticonst_1");
+    	jFile.println(labelTwo + ":");
         //return  value;
     	return 0;
     }
