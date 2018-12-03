@@ -17,8 +17,6 @@ public class TitanVisitorPass1 extends TitanBaseVisitor<Integer>
     private ArrayList<SymTabEntry> variableIdList;
     private PrintWriter jFile;
 
-    private int slot_no;
-
     private boolean localDeclarations = false;
 
 
@@ -102,13 +100,11 @@ public class TitanVisitorPass1 extends TitanBaseVisitor<Integer>
 
     @Override
     public Integer visitBlock(TitanParser.BlockContext ctx) {
-        slot_no = 0;
         return super.visitBlock(ctx);
     }
 
     @Override
     public Integer visitRegularFunction(TitanParser.RegularFunctionContext ctx) {
-        slot_no = 0;
         return super.visitRegularFunction(ctx);
     }
 
@@ -125,10 +121,9 @@ public class TitanVisitorPass1 extends TitanBaseVisitor<Integer>
         else {
             SymTabEntry loc = symTabStack.enterLocal(ctx.ID().getText());
             loc.setTypeSpec(getType(ctx.primitives()));
-            loc.setAttribute(SLOT, slot_no);//increment slot number here
-
-            slot_no++;//increment slot
-
+            loc.setAttribute(SLOT, symTabStack.getLocalSymTab().nextSlotNumber());
+            
+            //System.out.println("Adding " + ctx.ID().getText() + " to Stack");
         }
         return visitChildren(ctx);
     }
@@ -143,7 +138,6 @@ public class TitanVisitorPass1 extends TitanBaseVisitor<Integer>
         }
     }
 
-    @Override
     public Integer visitAddSubOp(TitanParser.AddSubOpContext ctx) {
         Integer value = visitChildren(ctx);
 
@@ -241,5 +235,22 @@ public class TitanVisitorPass1 extends TitanBaseVisitor<Integer>
     public Integer visitBoolExpr(TitanParser.BoolExprContext ctx) {
         ctx.type = Predefined.booleanType;
         return visitChildren(ctx);
+    }
+    
+    @Override
+    public Integer visitLoop(TitanParser.LoopContext ctx) {
+    	String name = ctx.ID().getText() + "loop";
+
+    	int slot_no = symTabStack.getLocalSymTab().nextSlotNumber();
+    	SymTabEntry entry = symTabStack.enterLocal(name);
+    	entry.setAttribute(ROUTINE_SYMTAB, symTabStack.push());
+        
+    	for (int i = 0; i < slot_no; i++) { symTabStack.getLocalSymTab().nextSlotNumber(); }
+    	
+    	Integer val = visitChildren(ctx);
+    	
+    	symTabStack.pop();
+
+    	return val;
     }
 }
