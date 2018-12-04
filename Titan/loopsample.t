@@ -12,4 +12,9 @@ main {
     	int w = 3
     	printf("For loop declarations work. w has value of %d\n",w)
     }
+    
+    for a from 0 to 1 {
+    	int b = 1
+    	printf("Second For loop declarations work. b has value of %d\n",b)
+    }
 }
