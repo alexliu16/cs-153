@@ -46,4 +46,10 @@ public interface SymTab
      * @return the maximum local variables array slot number.
      */
     public int maxSlotNumber();
+    
+    /**
+     * Set slot number of a symbol table.
+     * @param slot
+     */
+	public void setSlotNumber(int slot_no);
 }

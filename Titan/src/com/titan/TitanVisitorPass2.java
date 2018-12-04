@@ -9,6 +9,8 @@ import com.titan.intermediate.symtabimpl.*;
 import static com.titan.intermediate.symtabimpl.SymTabKeyImpl.DATA_VALUE;
 import static com.titan.intermediate.symtabimpl.SymTabKeyImpl.SLOT;
 
+import static com.titan.intermediate.symtabimpl.SymTabKeyImpl.*;
+
 public class TitanVisitorPass2 extends TitanBaseVisitor<Integer>
 {
     String programName;
@@ -101,7 +103,7 @@ public class TitanVisitorPass2 extends TitanBaseVisitor<Integer>
                         : (type == Predefined.realType)    ? "F"
                         : (type == Predefined.stringType) ? "A"
                         : "?";
-        SymTabEntry local = symTabStack.lookupLocal(ctx.ID().toString());
+        SymTabEntry local = symTabStack.lookup(ctx.ID().toString());
 
         if(local != null) {
             jFile.println(typeIndicator.toLowerCase() + "store " + local.getAttribute(SLOT));
@@ -139,7 +141,7 @@ public class TitanVisitorPass2 extends TitanBaseVisitor<Integer>
 
     @Override
     public Integer visitSpecialAssignment(TitanParser.SpecialAssignmentContext ctx) {
-        SymTabEntry local = symTabStack.lookupLocal(ctx.ID().toString());
+        SymTabEntry local = symTabStack.lookup(ctx.ID().toString());
 
         TypeSpec type = local.getTypeSpec();
         char typeIndicator = type == Predefined.integerType ? 'i'
@@ -177,7 +179,8 @@ public class TitanVisitorPass2 extends TitanBaseVisitor<Integer>
     @Override
     public Integer visitDeclaration(TitanParser.DeclarationContext ctx) {
         String name = ctx.ID().getText();
-        if(localDeclarations) {
+
+        if(localDeclarations) { 
             SymTabEntry entry = symTabStack.lookupLocal(name);
             if(entry != null) {
                 TypeSpec typeSpec = entry.getTypeSpec();
@@ -275,7 +278,7 @@ public class TitanVisitorPass2 extends TitanBaseVisitor<Integer>
         String variableName = ctx.ID().toString();
 
 
-        SymTabEntry local = symTabStack.lookupLocal(ctx.ID().toString());
+        SymTabEntry local = symTabStack.lookup(ctx.ID().toString());
         ctx.type = local.getTypeSpec();
         TypeSpec type = ctx.type;
 
@@ -300,6 +303,13 @@ public class TitanVisitorPass2 extends TitanBaseVisitor<Integer>
     public Integer visitSimpleExpr(TitanParser.SimpleExprContext ctx) {
         Integer value = visitChildren(ctx);
         ctx.type = ctx.simpleExpression().type;
+        return value;
+    }
+    
+    
+    public Integer visitSimpleExpr(TitanParser.SimpleExpressionContext ctx) {
+        Integer value = visitChildren(ctx);
+        ctx.type = ctx.type;
         return value;
     }
 
@@ -379,7 +389,6 @@ public class TitanVisitorPass2 extends TitanBaseVisitor<Integer>
     {
         // Emit a load constant instruction.
         jFile.println("\tldc\t" + ctx.getText());
-
         return visitChildren(ctx);
     }
 
@@ -433,7 +442,6 @@ public class TitanVisitorPass2 extends TitanBaseVisitor<Integer>
             this.labelIncrementer += 3; // increment for new labels
         }
         return 0;
-
     }
 
 
@@ -499,7 +507,7 @@ public class TitanVisitorPass2 extends TitanBaseVisitor<Integer>
     @Override
     public Integer visitBoolIdentifier(TitanParser.BoolIdentifierContext ctx) {
         String variableName = ctx.ID().toString();
-
+       
         SymTabEntry local = symTabStack.lookupLocal(ctx.ID().toString());
         ctx.type = local.getTypeSpec();
         TypeSpec type = ctx.type;
@@ -516,6 +524,60 @@ public class TitanVisitorPass2 extends TitanBaseVisitor<Integer>
         return 0;
     }
 
+    
+    public Integer visitLoopExpression(TitanParser.SimpleExpressionContext ctx) {
+    	Integer val = 1;
+    	return val;
+    }
+    
+    @Override
+    public Integer visitLoop(TitanParser.LoopContext ctx) {   
+    	//System.out.println("Stack before push: " + symTabStack.getLocalSymTab());
+    	
+    	String id = ctx.ID().getText();
+    	String name = "loop" + ctx.start.getLine();
+    	
+    	// push new symbol table for scoped variables
+    	SymTab scopedTab = (SymTab) symTabStack.lookup(name).getAttribute(ROUTINE_SYMTAB);
+    	symTabStack.push(scopedTab);
+	    
+    	int slot_no = symTabStack.getLocalSymTab().nextSlotNumber();
+    	
+    	SymTabEntry entry = symTabStack.enterLocal(id);
+        entry.setTypeSpec(Predefined.integerType);
+        entry.setAttribute(SLOT, slot_no);
+        
+    	visit(ctx.simpleExpression(0)); // store var
+    	jFile.println("\tistore_" + slot_no + "\t; " + id);  
+    	jFile.println("L00" + (this.labelIncrementer) + ":"); // emit label
+    	this.labelIncrementer++;
+    	
+    	visit(ctx.block());
+
+    	jFile.println("\tiload " + slot_no + " \t; load " + id);
+    	visit(ctx.simpleExpression(1));
+    	jFile.println("\tiinc " + slot_no + " 1\t; " + id + "++");
+    	jFile.println("\tif_icmpeq L00" + this.labelIncrementer);
+    	jFile.println("\ticonst_0 \t; false");
+    	jFile.println("\tgoto L00" + (this.labelIncrementer + 1));
+    	
+    	jFile.println("L00" + (this.labelIncrementer) + ":"); // emit label
+    	jFile.println("\ticonst_1 \t; true");
+    	
+        jFile.println("L00" + (this.labelIncrementer + 1) + ":"); // emit label
+        jFile.println("\tifne L00" + (this.labelIncrementer + 2));
+        jFile.println("\tgoto L00" + (this.labelIncrementer - 1));        
+        
+        jFile.println("L00" + (this.labelIncrementer + 2) + ":"); // emit label
+        this.labelIncrementer += 3;
+        
+    	//System.out.println("Stack right before pop: " + symTabStack.getLocalSymTab());
+		symTabStack.pop();
+		//System.out.println("Stack right after pop: " + symTabStack.getLocalSymTab());
+		
+        return 0;
+    }
+    
     @Override
     public Integer visitBoolAnd(TitanParser.BoolAndContext ctx) {
         visit(ctx.boolExprs(0));
