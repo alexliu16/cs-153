@@ -13,7 +13,7 @@ public class Main {
 
     public static void main(String[] args) throws IOException {
 
-        InputStream is = new FileInputStream("ifsample.t");
+        InputStream is = new FileInputStream("sample.t");
 
         ANTLRInputStream input = new ANTLRInputStream(is);
         TitanLexer lexer = new TitanLexer(input);
@@ -27,5 +27,7 @@ public class Main {
         PrintWriter jFile = pass1.getAssemblyFile();
         TitanVisitorPass2 pass2 = new TitanVisitorPass2(jFile, pass1);
         pass2.visit(tree);
-    }
+        
+        
+    } 
 }

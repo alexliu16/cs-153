@@ -103,7 +103,7 @@ public class TitanVisitorPass2 extends TitanBaseVisitor<Integer>
                         : (type == Predefined.realType)    ? "F"
                         : (type == Predefined.stringType) ? "A"
                         : "?";
-        SymTabEntry local = symTabStack.lookupLocal(ctx.ID().toString());
+        SymTabEntry local = symTabStack.lookup(ctx.ID().toString());
 
         if(local != null) {
             jFile.println(typeIndicator.toLowerCase() + "store " + local.getAttribute(SLOT));
@@ -141,7 +141,7 @@ public class TitanVisitorPass2 extends TitanBaseVisitor<Integer>
 
     @Override
     public Integer visitSpecialAssignment(TitanParser.SpecialAssignmentContext ctx) {
-        SymTabEntry local = symTabStack.lookupLocal(ctx.ID().toString());
+        SymTabEntry local = symTabStack.lookup(ctx.ID().toString());
 
         TypeSpec type = local.getTypeSpec();
         char typeIndicator = type == Predefined.integerType ? 'i'
