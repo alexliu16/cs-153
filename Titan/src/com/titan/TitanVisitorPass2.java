@@ -8,6 +8,8 @@ import com.titan.intermediate.symtabimpl.*;
 
 import static com.titan.intermediate.symtabimpl.SymTabKeyImpl.DATA_VALUE;
 import static com.titan.intermediate.symtabimpl.SymTabKeyImpl.SLOT;
+import static com.titan.intermediate.symtabimpl.SymTabKeyImpl.FUNCTION_HEADER;
+import static com.titan.intermediate.symtabimpl.SymTabKeyImpl.ROUTINE_SYMTAB;
 
 import static com.titan.intermediate.symtabimpl.SymTabKeyImpl.*;
 
@@ -24,6 +26,10 @@ public class TitanVisitorPass2 extends TitanBaseVisitor<Integer>
     private int labelIncrementer;
 
     private boolean localDeclarations = false;
+    private int numArgs = 0;
+    
+    private boolean functionCall = false;
+    
 
     public TitanVisitorPass2(PrintWriter jFile, TitanVisitorPass1 pass1)
     {
@@ -83,16 +89,7 @@ public class TitanVisitorPass2 extends TitanBaseVisitor<Integer>
         localDeclarations = false;
         return value;
     }
-
-    @Override
-    public Integer visitRegularFunction(TitanParser.RegularFunctionContext ctx) {
-        localDeclarations = true;
-        Integer value = visitChildren(ctx);
-        //add code for functions here
-        localDeclarations = false;
-        return value;
-    }
-
+ 
     @Override
     public Integer visitSimpleAssignment(TitanParser.SimpleAssignmentContext ctx) {
         Integer value = visit(ctx.expr());
@@ -123,7 +120,7 @@ public class TitanVisitorPass2 extends TitanBaseVisitor<Integer>
 
     @Override
     public Integer visitShorthandIncDecAssignment(TitanParser.ShorthandIncDecAssignmentContext ctx) {
-        SymTabEntry local = symTabStack.lookupLocal(ctx.ID().toString());
+        SymTabEntry local = symTabStack.lookup(ctx.ID().toString());
 
         char typeIndicator = local.getTypeSpec() == Predefined.integerType ? 'i'
                             : '?';
@@ -275,10 +272,16 @@ public class TitanVisitorPass2 extends TitanBaseVisitor<Integer>
 
     @Override
     public Integer visitIdentifier(TitanParser.IdentifierContext ctx) {
-        String variableName = ctx.ID().toString();
+    	String variableName = ctx.ID().toString();  
+    	SymTabEntry local = null;
+    	if(functionCall)
+    		local = symTabStack.lookupLocal(ctx.ID().toString());
+    	else
+    		local = symTabStack.lookup(ctx.ID().toString());
+        
+        //SymTabEntry local = symTabStack.lookupLocal(ctx.ID().toString());
 
 
-        SymTabEntry local = symTabStack.lookup(ctx.ID().toString());
         ctx.type = local.getTypeSpec();
         TypeSpec type = ctx.type;
 
@@ -597,5 +600,73 @@ public class TitanVisitorPass2 extends TitanBaseVisitor<Integer>
     @Override
     public Integer visitBoolParen(TitanParser.BoolParenContext ctx) {
         return visitChildren(ctx);
+    }
+    
+    //Functions
+    
+    //Function declaration
+    @Override
+    public Integer visitFunctionDeclaration(TitanParser.FunctionDeclarationContext ctx) {  
+    	//emit function header
+    	String funcHeader = (String) symTabStack.lookupLocal(ctx.ID().getText()).getAttribute(FUNCTION_HEADER);
+    	jFile.println("\n.method static " + ctx.ID().toString() + funcHeader);
+    	
+    	//push local symbol table for function and visit children
+    	functionCall = true;
+    	symTabStack.push((SymTab) symTabStack.lookupLocal(ctx.ID().getText()).getAttribute(ROUTINE_SYMTAB));
+    	Integer value = visitChildren(ctx);
+    	symTabStack.pop();
+    	functionCall = false;
+    	
+    	//emit function return type
+    	char returnType = funcHeader.charAt(funcHeader.length() - 1);
+    	
+    	if(returnType == 'F')
+    		jFile.println("\tfreturn\n");
+    	else if(returnType == 'V')
+    		jFile.println("\treturn\n");
+    	else
+    		jFile.println("\tireturn\n");
+    	
+    	numArgs = 0; //reset number of arguments
+    	
+    	jFile.println(".limit locals 32");
+        jFile.println(".limit stack 32");
+    	jFile.println(".end method");
+    	return value;
+    }
+    
+    //Function argument declaration
+    @Override
+    public Integer visitArgDecl(TitanParser.ArgDeclContext ctx) { 
+    	//load values on stack into registers for variables 
+    	for(int i = 1; i < ctx.children.size(); i+=2) {
+    		String argType = ctx.getChild(i-1).getText();
+    		int slot_no = (Integer) symTabStack.lookupLocal(ctx.getChild(i).getText()).getAttribute(SLOT);
+    		if(argType.equals("float")) {
+    			jFile.println("\tfload " + numArgs++); //load value from argument register
+    			jFile.println("\tfstore " + slot_no);  //store argument into register for variable
+    		}	
+    		else if(argType.equals("int") || argType.equals("bool")) {
+    			jFile.println("\tiload " + numArgs++); //load value from argument register
+    			jFile.println("\tistore " + slot_no); //store argument into register for variable
+    		}	
+    		//TODO: string
+    	}
+    	
+    	return visitChildren(ctx);
+    }
+    
+    //function call
+    @Override
+    public Integer visitRegularFunction(TitanParser.RegularFunctionContext ctx) {
+        localDeclarations = true;
+        Integer value = visitChildren(ctx);
+        
+        //emit function call
+        jFile.println("\tinvokestatic " + programId.getName() + "/" + ctx.ID() + symTabStack.lookupLocal(ctx.ID().getText()).getAttribute(FUNCTION_HEADER));
+        
+        localDeclarations = false;
+        return value;
     }
 }

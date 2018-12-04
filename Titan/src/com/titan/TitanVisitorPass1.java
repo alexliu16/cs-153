@@ -4,6 +4,7 @@ package com.titan;
 import java.io.FileWriter;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 import com.titan.intermediate.*;
 import com.titan.intermediate.symtabimpl.*;
@@ -100,11 +101,13 @@ public class TitanVisitorPass1 extends TitanBaseVisitor<Integer>
 
     @Override
     public Integer visitBlock(TitanParser.BlockContext ctx) {
+        //slot_no = 0;
         return super.visitBlock(ctx);
     }
 
     @Override
     public Integer visitRegularFunction(TitanParser.RegularFunctionContext ctx) {
+        //slot_no = 0;
         return super.visitRegularFunction(ctx);
     }
 
@@ -121,9 +124,24 @@ public class TitanVisitorPass1 extends TitanBaseVisitor<Integer>
         else {
             SymTabEntry loc = symTabStack.enterLocal(ctx.ID().getText());
             loc.setTypeSpec(getType(ctx.primitives()));
-            loc.setAttribute(SLOT, symTabStack.getLocalSymTab().nextSlotNumber());            
+            loc.setAttribute(SLOT, symTabStack.getLocalSymTab().nextSlotNumber());             
+            //loc.setAttribute(SLOT, slot_no);//increment slot number here
+            //slot_no++;//increment slot
         }
         return visitChildren(ctx);
+    }
+    
+    public TypeSpec getType(String type) {
+    	if(type.equals("int"))
+    		return Predefined.integerType;
+    	else if(type.equals("float"))
+    		return Predefined.realType;
+    	else if(type.equals("bool"))
+    		return Predefined.booleanType;
+    	else if(type.equals("string"))
+    		return Predefined.stringType;
+    	else
+    		return Predefined.undefinedType;
     }
 
     public TypeSpec getType(TitanParser.PrimitivesContext prim) {
@@ -250,5 +268,85 @@ public class TitanVisitorPass1 extends TitanBaseVisitor<Integer>
     	symTabStack.pop();
 
     	return val;
+    }
+    
+    //Functions
+    
+    //Function declaration
+    @Override
+    public Integer visitFunctionDeclaration(TitanParser.FunctionDeclarationContext ctx) { 
+    	//Create a symbol table for function
+    	SymTab symTable = SymTabFactory.createSymTab(symTabStack.getCurrentNestingLevel() + 1);
+    	int slot_no = symTabStack.getLocalSymTab().nextSlotNumber() - 1;
+    	symTabStack.push(symTable);
+    	symTabStack.getLocalSymTab().setSlotNumber(slot_no);
+    	
+    	visitChildren(ctx);
+    	symTable = symTabStack.pop();
+    	
+    	//create function arg signature
+    	//eg. function void test(int i) has a signature:(I)V
+    	TitanParser.ArgsContext args = ctx.args();
+    	StringBuilder sb = new StringBuilder();
+  
+    	while(args != null) {
+    		TypeSpec typeSpec = symTable.lookup(args.argDecl().children.get(1).getText()).getTypeSpec();
+    		if(typeSpec == Predefined.integerType)
+    			sb.append("I");
+    		else if(typeSpec == Predefined.realType)
+    			sb.append("F");
+    		else if(typeSpec == Predefined.booleanType)
+    			sb.append("Z");
+    		else if(typeSpec == Predefined.stringType)
+    			sb.append("S");
+    		args = args.args();
+    	}
+    	
+    	sb = sb.reverse();
+    	sb.insert(0, "(");
+    	sb.append(")");
+    	
+    	//function return type
+    	TypeSpec returnType = symTable.lookup("return").getTypeSpec();
+    	if(returnType == Predefined.undefinedType)
+    		sb.append("V");
+    	else if(returnType == Predefined.integerType)
+    		sb.append("I");
+    	else if(returnType == Predefined.realType)
+    		sb.append("F");
+    	else if(returnType == Predefined.booleanType)
+    		sb.append("Z");
+    	else if(returnType == Predefined.stringType)
+    		sb.append("S");
+    	
+    	//save symbol table and header
+    	SymTabEntry loc = symTabStack.enterLocal(ctx.ID().getText());
+    	loc.setAttribute(FUNCTION_HEADER, sb.toString().replaceAll("S", "Ljava/lang/String;"));
+    	loc.setAttribute(ROUTINE_SYMTAB, symTable);
+
+    	return 0;
+    }
+    
+    //Function argument declaration
+    @Override
+    public Integer visitArgDecl(TitanParser.ArgDeclContext ctx) { 
+    	for(int i = 1; i < ctx.children.size(); i+=2) {
+    		SymTabEntry loc = symTabStack.enterLocal(ctx.children.get(i).getText());
+    		String type = ctx.children.get(i-1).getText().toString();
+    		loc.setTypeSpec(getType(type));
+            loc.setAttribute(SLOT, symTabStack.getLocalSymTab().nextSlotNumber());   
+    	}
+    	//slot_no += ctx.children.size() / 2 + 1;
+    	
+    	return visitChildren(ctx);
+    }
+    
+    //Function return type
+    @Override
+    public Integer visitFuncReturnTypes(TitanParser.FuncReturnTypesContext ctx) { 
+    	//Save return type in symbol table
+    	SymTabEntry loc = symTabStack.enterLocal("return");
+    	loc.setTypeSpec(getType(ctx.getText()));
+    	return visitChildren(ctx); 
     }
 }
