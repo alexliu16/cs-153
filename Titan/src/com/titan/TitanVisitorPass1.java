@@ -121,9 +121,7 @@ public class TitanVisitorPass1 extends TitanBaseVisitor<Integer>
         else {
             SymTabEntry loc = symTabStack.enterLocal(ctx.ID().getText());
             loc.setTypeSpec(getType(ctx.primitives()));
-            loc.setAttribute(SLOT, symTabStack.getLocalSymTab().nextSlotNumber());
-            
-            //System.out.println("Adding " + ctx.ID().getText() + " to Stack");
+            loc.setAttribute(SLOT, symTabStack.getLocalSymTab().nextSlotNumber());            
         }
         return visitChildren(ctx);
     }
@@ -239,13 +237,13 @@ public class TitanVisitorPass1 extends TitanBaseVisitor<Integer>
     
     @Override
     public Integer visitLoop(TitanParser.LoopContext ctx) {
-    	String name = ctx.ID().getText() + "loop";
+    	String name = "loop" + ctx.start.getLine();
 
-    	int slot_no = symTabStack.getLocalSymTab().nextSlotNumber();
+    	int slot_no = symTabStack.getLocalSymTab().nextSlotNumber() - 1;
     	SymTabEntry entry = symTabStack.enterLocal(name);
     	entry.setAttribute(ROUTINE_SYMTAB, symTabStack.push());
         
-    	for (int i = 0; i < slot_no; i++) { symTabStack.getLocalSymTab().nextSlotNumber(); }
+    	symTabStack.getLocalSymTab().setSlotNumber(slot_no);
     	
     	Integer val = visitChildren(ctx);
     	
