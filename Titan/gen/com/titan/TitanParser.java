@@ -1,4 +1,4 @@
-// Generated from /Users/thomaspedersen/CS153/TeamProject/cs-153/Titan/src/com/titan/Titan.g4 by ANTLR 4.7
+// Generated from Titan.g4 by ANTLR 4.4
 package com.titan;
 
     import com.titan.intermediate.*;
@@ -15,20 +15,29 @@ import java.util.ArrayList;
 
 @SuppressWarnings({"all", "warnings", "unchecked", "unused", "cast"})
 public class TitanParser extends Parser {
-	static { RuntimeMetaData.checkVersion("4.7", RuntimeMetaData.VERSION); }
+	static { RuntimeMetaData.checkVersion("4.4", RuntimeMetaData.VERSION); }
 
 	protected static final DFA[] _decisionToDFA;
 	protected static final PredictionContextCache _sharedContextCache =
 		new PredictionContextCache();
 	public static final int
-		T__0=1, T__1=2, T__2=3, T__3=4, T__4=5, T__5=6, T__6=7, T__7=8, T__8=9, 
-		T__9=10, T__10=11, T__11=12, T__12=13, T__13=14, T__14=15, T__15=16, T__16=17, 
-		T__17=18, MUL=19, DIV=20, ADD=21, SUB=22, MOD=23, CONST=24, INT=25, BOOL=26, 
-		CHAR=27, FLOAT=28, STRING=29, BOOLVALUES=30, BOOLAND=31, BOOLOR=32, AssignmentOp=33, 
-		PLUS_EQ=34, MINUS_EQ=35, MUL_EQ=36, DIV_EQ=37, EXPNUM=38, SHORTHANDASSIGNOP=39, 
-		PLUSPLUS=40, MINUSMINUS=41, COMPARISON_OP=42, ID=43, WORD=44, FLOATINGNUMBER=45, 
-		DIGITS=46, NEWLINE=47, WHITESPACE=48, LINECOMMENT=49, BLOCKCOMMENT=50, 
-		STRINGLIT=51;
+		T__18=1, T__17=2, T__16=3, T__15=4, T__14=5, T__13=6, T__12=7, T__11=8, 
+		T__10=9, T__9=10, T__8=11, T__7=12, T__6=13, T__5=14, T__4=15, T__3=16, 
+		T__2=17, T__1=18, T__0=19, MUL=20, DIV=21, ADD=22, SUB=23, MOD=24, CONST=25, 
+		INT=26, BOOL=27, CHAR=28, FLOAT=29, STRING=30, BOOLVALUES=31, BOOLAND=32, 
+		BOOLOR=33, AssignmentOp=34, PLUS_EQ=35, MINUS_EQ=36, MUL_EQ=37, DIV_EQ=38, 
+		EXPNUM=39, SHORTHANDASSIGNOP=40, PLUSPLUS=41, MINUSMINUS=42, COMPARISON_OP=43, 
+		ID=44, WORD=45, FLOATINGNUMBER=46, DIGITS=47, NEWLINE=48, WHITESPACE=49, 
+		LINECOMMENT=50, BLOCKCOMMENT=51, STRINGLIT=52;
+	public static final String[] tokenNames = {
+		"<INVALID>", "'main'", "'printf('", "'return'", "'to'", "'void'", "'{'", 
+		"'='", "'}'", "'for'", "'if'", "'()'", "'program'", "'from'", "'&'", "'else'", 
+		"'function'", "'('", "')'", "','", "'*'", "'/'", "'+'", "'-'", "'%'", 
+		"'const'", "'int'", "'bool'", "'char'", "'float'", "'string'", "BOOLVALUES", 
+		"'&&'", "'||'", "AssignmentOp", "'+='", "'-='", "'*='", "'/='", "EXPNUM", 
+		"SHORTHANDASSIGNOP", "'++'", "'--'", "COMPARISON_OP", "ID", "WORD", "FLOATINGNUMBER", 
+		"DIGITS", "NEWLINE", "WHITESPACE", "LINECOMMENT", "BLOCKCOMMENT", "STRINGLIT"
+	};
 	public static final int
 		RULE_className = 0, RULE_prog = 1, RULE_block = 2, RULE_stat = 3, RULE_expr = 4, 
 		RULE_simpleExpression = 5, RULE_comparison = 6, RULE_boolExprs = 7, RULE_conditional = 8, 
@@ -43,57 +52,11 @@ public class TitanParser extends Parser {
 		"functionCall", "stringExpr", "printfexprList", "exprList", "number"
 	};
 
-	private static final String[] _LITERAL_NAMES = {
-		null, "'program'", "'main'", "'{'", "'}'", "'('", "')'", "'if'", "'else'", 
-		"'for'", "'from'", "'to'", "'function'", "','", "'&'", "'='", "'void'", 
-		"'return'", "'printf('", "'*'", "'/'", "'+'", "'-'", "'%'", "'const'", 
-		"'int'", "'bool'", "'char'", "'float'", "'string'", null, "'&&'", "'||'", 
-		null, "'+='", "'-='", "'*='", "'/='", null, null, "'++'", "'--'"
-	};
-	private static final String[] _SYMBOLIC_NAMES = {
-		null, null, null, null, null, null, null, null, null, null, null, null, 
-		null, null, null, null, null, null, null, "MUL", "DIV", "ADD", "SUB", 
-		"MOD", "CONST", "INT", "BOOL", "CHAR", "FLOAT", "STRING", "BOOLVALUES", 
-		"BOOLAND", "BOOLOR", "AssignmentOp", "PLUS_EQ", "MINUS_EQ", "MUL_EQ", 
-		"DIV_EQ", "EXPNUM", "SHORTHANDASSIGNOP", "PLUSPLUS", "MINUSMINUS", "COMPARISON_OP", 
-		"ID", "WORD", "FLOATINGNUMBER", "DIGITS", "NEWLINE", "WHITESPACE", "LINECOMMENT", 
-		"BLOCKCOMMENT", "STRINGLIT"
-	};
-	public static final Vocabulary VOCABULARY = new VocabularyImpl(_LITERAL_NAMES, _SYMBOLIC_NAMES);
-
-	/**
-	 * @deprecated Use {@link #VOCABULARY} instead.
-	 */
-	@Deprecated
-	public static final String[] tokenNames;
-	static {
-		tokenNames = new String[_SYMBOLIC_NAMES.length];
-		for (int i = 0; i < tokenNames.length; i++) {
-			tokenNames[i] = VOCABULARY.getLiteralName(i);
-			if (tokenNames[i] == null) {
-				tokenNames[i] = VOCABULARY.getSymbolicName(i);
-			}
-
-			if (tokenNames[i] == null) {
-				tokenNames[i] = "<INVALID>";
-			}
-		}
-	}
-
-	@Override
-	@Deprecated
-	public String[] getTokenNames() {
-		return tokenNames;
-	}
-
-	@Override
-
-	public Vocabulary getVocabulary() {
-		return VOCABULARY;
-	}
-
 	@Override
 	public String getGrammarFileName() { return "Titan.g4"; }
+
+	@Override
+	public String[] getTokenNames() { return tokenNames; }
 
 	@Override
 	public String[] getRuleNames() { return ruleNames; }
@@ -110,12 +73,12 @@ public class TitanParser extends Parser {
 	}
 	public static class ClassNameContext extends ParserRuleContext {
 		public TerminalNode ID() { return getToken(TitanParser.ID, 0); }
-		public ProgContext prog() {
-			return getRuleContext(ProgContext.class,0);
-		}
 		public List<TerminalNode> NEWLINE() { return getTokens(TitanParser.NEWLINE); }
 		public TerminalNode NEWLINE(int i) {
 			return getToken(TitanParser.NEWLINE, i);
+		}
+		public ProgContext prog() {
+			return getRuleContext(ProgContext.class,0);
 		}
 		public ClassNameContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
@@ -143,26 +106,22 @@ public class TitanParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(46);
-			match(T__0);
-			setState(47);
-			match(ID);
+			setState(46); match(T__7);
+			setState(47); match(ID);
 			setState(51);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
 			while (_la==NEWLINE) {
 				{
 				{
-				setState(48);
-				match(NEWLINE);
+				setState(48); match(NEWLINE);
 				}
 				}
 				setState(53);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 			}
-			setState(54);
-			prog();
+			setState(54); prog();
 			}
 		}
 		catch (RecognitionException re) {
@@ -177,18 +136,18 @@ public class TitanParser extends Parser {
 	}
 
 	public static class ProgContext extends ParserRuleContext {
-		public BlockContext block() {
-			return getRuleContext(BlockContext.class,0);
-		}
-		public List<TerminalNode> NEWLINE() { return getTokens(TitanParser.NEWLINE); }
-		public TerminalNode NEWLINE(int i) {
-			return getToken(TitanParser.NEWLINE, i);
-		}
 		public List<FunctionDeclarationContext> functionDeclaration() {
 			return getRuleContexts(FunctionDeclarationContext.class);
 		}
 		public FunctionDeclarationContext functionDeclaration(int i) {
 			return getRuleContext(FunctionDeclarationContext.class,i);
+		}
+		public List<TerminalNode> NEWLINE() { return getTokens(TitanParser.NEWLINE); }
+		public TerminalNode NEWLINE(int i) {
+			return getToken(TitanParser.NEWLINE, i);
+		}
+		public BlockContext block() {
+			return getRuleContext(BlockContext.class,0);
 		}
 		public ProgContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
@@ -216,22 +175,17 @@ public class TitanParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(56);
-			match(T__1);
-			setState(57);
-			match(T__2);
-			setState(58);
-			block();
-			setState(59);
-			match(T__3);
+			setState(56); match(T__18);
+			setState(57); match(T__13);
+			setState(58); block();
+			setState(59); match(T__11);
 			setState(63);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
 			while (_la==NEWLINE) {
 				{
 				{
-				setState(60);
-				match(NEWLINE);
+				setState(60); match(NEWLINE);
 				}
 				}
 				setState(65);
@@ -241,19 +195,17 @@ public class TitanParser extends Parser {
 			setState(75);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
-			while (_la==T__11) {
+			while (_la==T__3) {
 				{
 				{
-				setState(66);
-				functionDeclaration();
+				setState(66); functionDeclaration();
 				setState(70);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 				while (_la==NEWLINE) {
 					{
 					{
-					setState(67);
-					match(NEWLINE);
+					setState(67); match(NEWLINE);
 					}
 					}
 					setState(72);
@@ -280,11 +232,11 @@ public class TitanParser extends Parser {
 	}
 
 	public static class BlockContext extends ParserRuleContext {
-		public List<StatContext> stat() {
-			return getRuleContexts(StatContext.class);
-		}
 		public StatContext stat(int i) {
 			return getRuleContext(StatContext.class,i);
+		}
+		public List<StatContext> stat() {
+			return getRuleContexts(StatContext.class);
 		}
 		public BlockContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
@@ -318,14 +270,13 @@ public class TitanParser extends Parser {
 			do {
 				{
 				{
-				setState(78);
-				stat();
+				setState(78); stat();
 				}
 				}
 				setState(81); 
 				_errHandler.sync(this);
 				_la = _input.LA(1);
-			} while ( (((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__4) | (1L << T__6) | (1L << T__8) | (1L << T__16) | (1L << T__17) | (1L << CONST) | (1L << INT) | (1L << BOOL) | (1L << FLOAT) | (1L << STRING) | (1L << BOOLVALUES) | (1L << EXPNUM) | (1L << ID) | (1L << FLOATINGNUMBER) | (1L << DIGITS) | (1L << NEWLINE) | (1L << STRINGLIT))) != 0) );
+			} while ( (((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__17) | (1L << T__16) | (1L << T__10) | (1L << T__9) | (1L << T__2) | (1L << CONST) | (1L << INT) | (1L << BOOL) | (1L << FLOAT) | (1L << STRING) | (1L << BOOLVALUES) | (1L << EXPNUM) | (1L << ID) | (1L << FLOATINGNUMBER) | (1L << DIGITS) | (1L << NEWLINE) | (1L << STRINGLIT))) != 0) );
 			}
 		}
 		catch (RecognitionException re) {
@@ -343,21 +294,21 @@ public class TitanParser extends Parser {
 		public ExprContext expr() {
 			return getRuleContext(ExprContext.class,0);
 		}
-		public TerminalNode NEWLINE() { return getToken(TitanParser.NEWLINE, 0); }
 		public AssignmentContext assignment() {
 			return getRuleContext(AssignmentContext.class,0);
 		}
+		public LoopContext loop() {
+			return getRuleContext(LoopContext.class,0);
+		}
+		public TerminalNode NEWLINE() { return getToken(TitanParser.NEWLINE, 0); }
 		public DeclarationContext declaration() {
 			return getRuleContext(DeclarationContext.class,0);
-		}
-		public ConditionalContext conditional() {
-			return getRuleContext(ConditionalContext.class,0);
 		}
 		public RetStatContext retStat() {
 			return getRuleContext(RetStatContext.class,0);
 		}
-		public LoopContext loop() {
-			return getRuleContext(LoopContext.class,0);
+		public ConditionalContext conditional() {
+			return getRuleContext(ConditionalContext.class,0);
 		}
 		public StatContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
@@ -383,57 +334,48 @@ public class TitanParser extends Parser {
 		enterRule(_localctx, 6, RULE_stat);
 		try {
 			setState(92);
-			_errHandler.sync(this);
 			switch ( getInterpreter().adaptivePredict(_input,5,_ctx) ) {
 			case 1:
 				enterOuterAlt(_localctx, 1);
 				{
-				setState(83);
-				expr();
-				setState(84);
-				match(NEWLINE);
+				setState(83); expr();
+				setState(84); match(NEWLINE);
 				}
 				break;
 			case 2:
 				enterOuterAlt(_localctx, 2);
 				{
-				setState(86);
-				assignment();
+				setState(86); assignment();
 				}
 				break;
 			case 3:
 				enterOuterAlt(_localctx, 3);
 				{
-				setState(87);
-				declaration();
+				setState(87); declaration();
 				}
 				break;
 			case 4:
 				enterOuterAlt(_localctx, 4);
 				{
-				setState(88);
-				conditional();
+				setState(88); conditional();
 				}
 				break;
 			case 5:
 				enterOuterAlt(_localctx, 5);
 				{
-				setState(89);
-				retStat();
+				setState(89); retStat();
 				}
 				break;
 			case 6:
 				enterOuterAlt(_localctx, 6);
 				{
-				setState(90);
-				loop();
+				setState(90); loop();
 				}
 				break;
 			case 7:
 				enterOuterAlt(_localctx, 7);
 				{
-				setState(91);
-				match(NEWLINE);
+				setState(91); match(NEWLINE);
 				}
 				break;
 			}
@@ -450,7 +392,7 @@ public class TitanParser extends Parser {
 	}
 
 	public static class ExprContext extends ParserRuleContext {
-		public TypeSpec type = null;
+		public TypeSpec type;
 		public ExprContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
@@ -525,34 +467,28 @@ public class TitanParser extends Parser {
 		enterRule(_localctx, 8, RULE_expr);
 		try {
 			setState(100);
-			_errHandler.sync(this);
 			switch ( getInterpreter().adaptivePredict(_input,6,_ctx) ) {
 			case 1:
 				_localctx = new SimpleExprContext(_localctx);
 				enterOuterAlt(_localctx, 1);
 				{
-				setState(94);
-				simpleExpression(0);
+				setState(94); simpleExpression(0);
 				}
 				break;
 			case 2:
 				_localctx = new BoolExprContext(_localctx);
 				enterOuterAlt(_localctx, 2);
 				{
-				setState(95);
-				boolExprs(0);
+				setState(95); boolExprs(0);
 				}
 				break;
 			case 3:
 				_localctx = new ParenExprContext(_localctx);
 				enterOuterAlt(_localctx, 3);
 				{
-				setState(96);
-				match(T__4);
-				setState(97);
-				expr();
-				setState(98);
-				match(T__5);
+				setState(96); match(T__2);
+				setState(97); expr();
+				setState(98); match(T__1);
 				}
 				break;
 			}
@@ -569,7 +505,7 @@ public class TitanParser extends Parser {
 	}
 
 	public static class SimpleExpressionContext extends ParserRuleContext {
-		public TypeSpec type = null;
+		public TypeSpec type;
 		public SimpleExpressionContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
@@ -583,14 +519,14 @@ public class TitanParser extends Parser {
 	}
 	public static class MulDivOpContext extends SimpleExpressionContext {
 		public Token op;
-		public List<SimpleExpressionContext> simpleExpression() {
-			return getRuleContexts(SimpleExpressionContext.class);
-		}
 		public SimpleExpressionContext simpleExpression(int i) {
 			return getRuleContext(SimpleExpressionContext.class,i);
 		}
-		public TerminalNode MUL() { return getToken(TitanParser.MUL, 0); }
+		public List<SimpleExpressionContext> simpleExpression() {
+			return getRuleContexts(SimpleExpressionContext.class);
+		}
 		public TerminalNode DIV() { return getToken(TitanParser.DIV, 0); }
+		public TerminalNode MUL() { return getToken(TitanParser.MUL, 0); }
 		public MulDivOpContext(SimpleExpressionContext ctx) { copyFrom(ctx); }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
@@ -626,11 +562,11 @@ public class TitanParser extends Parser {
 		}
 	}
 	public static class ModOpContext extends SimpleExpressionContext {
-		public List<SimpleExpressionContext> simpleExpression() {
-			return getRuleContexts(SimpleExpressionContext.class);
-		}
 		public SimpleExpressionContext simpleExpression(int i) {
 			return getRuleContext(SimpleExpressionContext.class,i);
+		}
+		public List<SimpleExpressionContext> simpleExpression() {
+			return getRuleContexts(SimpleExpressionContext.class);
 		}
 		public TerminalNode MOD() { return getToken(TitanParser.MOD, 0); }
 		public ModOpContext(SimpleExpressionContext ctx) { copyFrom(ctx); }
@@ -686,14 +622,14 @@ public class TitanParser extends Parser {
 	}
 	public static class AddSubOpContext extends SimpleExpressionContext {
 		public Token op;
-		public List<SimpleExpressionContext> simpleExpression() {
-			return getRuleContexts(SimpleExpressionContext.class);
-		}
 		public SimpleExpressionContext simpleExpression(int i) {
 			return getRuleContext(SimpleExpressionContext.class,i);
 		}
-		public TerminalNode ADD() { return getToken(TitanParser.ADD, 0); }
+		public List<SimpleExpressionContext> simpleExpression() {
+			return getRuleContexts(SimpleExpressionContext.class);
+		}
 		public TerminalNode SUB() { return getToken(TitanParser.SUB, 0); }
+		public TerminalNode ADD() { return getToken(TitanParser.ADD, 0); }
 		public AddSubOpContext(SimpleExpressionContext ctx) { copyFrom(ctx); }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
@@ -765,7 +701,6 @@ public class TitanParser extends Parser {
 			enterOuterAlt(_localctx, 1);
 			{
 			setState(111);
-			_errHandler.sync(this);
 			switch ( getInterpreter().adaptivePredict(_input,7,_ctx) ) {
 			case 1:
 				{
@@ -773,8 +708,7 @@ public class TitanParser extends Parser {
 				_ctx = _localctx;
 				_prevctx = _localctx;
 
-				setState(103);
-				stringExpr();
+				setState(103); stringExpr();
 				}
 				break;
 			case 2:
@@ -782,12 +716,9 @@ public class TitanParser extends Parser {
 				_localctx = new SimpleExprParenContext(_localctx);
 				_ctx = _localctx;
 				_prevctx = _localctx;
-				setState(104);
-				match(T__4);
-				setState(105);
-				simpleExpression(0);
-				setState(106);
-				match(T__5);
+				setState(104); match(T__2);
+				setState(105); simpleExpression(0);
+				setState(106); match(T__1);
 				}
 				break;
 			case 3:
@@ -795,8 +726,7 @@ public class TitanParser extends Parser {
 				_localctx = new FuncCallContext(_localctx);
 				_ctx = _localctx;
 				_prevctx = _localctx;
-				setState(108);
-				functionCall();
+				setState(108); functionCall();
 				}
 				break;
 			case 4:
@@ -804,8 +734,7 @@ public class TitanParser extends Parser {
 				_localctx = new LiteralContext(_localctx);
 				_ctx = _localctx;
 				_prevctx = _localctx;
-				setState(109);
-				number();
+				setState(109); number();
 				}
 				break;
 			case 5:
@@ -813,8 +742,7 @@ public class TitanParser extends Parser {
 				_localctx = new IdentifierContext(_localctx);
 				_ctx = _localctx;
 				_prevctx = _localctx;
-				setState(110);
-				match(ID);
+				setState(110); match(ID);
 				}
 				break;
 			}
@@ -828,7 +756,6 @@ public class TitanParser extends Parser {
 					_prevctx = _localctx;
 					{
 					setState(122);
-					_errHandler.sync(this);
 					switch ( getInterpreter().adaptivePredict(_input,8,_ctx) ) {
 					case 1:
 						{
@@ -842,13 +769,8 @@ public class TitanParser extends Parser {
 						if ( !(_la==MUL || _la==DIV) ) {
 							((MulDivOpContext)_localctx).op = (Token)_errHandler.recoverInline(this);
 						}
-						else {
-							if ( _input.LA(1)==Token.EOF ) matchedEOF = true;
-							_errHandler.reportMatch(this);
-							consume();
-						}
-						setState(115);
-						simpleExpression(9);
+						consume();
+						setState(115); simpleExpression(9);
 						}
 						break;
 					case 2:
@@ -863,13 +785,8 @@ public class TitanParser extends Parser {
 						if ( !(_la==ADD || _la==SUB) ) {
 							((AddSubOpContext)_localctx).op = (Token)_errHandler.recoverInline(this);
 						}
-						else {
-							if ( _input.LA(1)==Token.EOF ) matchedEOF = true;
-							_errHandler.reportMatch(this);
-							consume();
-						}
-						setState(118);
-						simpleExpression(8);
+						consume();
+						setState(118); simpleExpression(8);
 						}
 						break;
 					case 3:
@@ -878,10 +795,8 @@ public class TitanParser extends Parser {
 						pushNewRecursionContext(_localctx, _startState, RULE_simpleExpression);
 						setState(119);
 						if (!(precpred(_ctx, 6))) throw new FailedPredicateException(this, "precpred(_ctx, 6)");
-						setState(120);
-						match(MOD);
-						setState(121);
-						simpleExpression(7);
+						setState(120); match(MOD);
+						setState(121); simpleExpression(7);
 						}
 						break;
 					}
@@ -905,11 +820,11 @@ public class TitanParser extends Parser {
 	}
 
 	public static class ComparisonContext extends ParserRuleContext {
-		public List<SimpleExpressionContext> simpleExpression() {
-			return getRuleContexts(SimpleExpressionContext.class);
-		}
 		public SimpleExpressionContext simpleExpression(int i) {
 			return getRuleContext(SimpleExpressionContext.class,i);
+		}
+		public List<SimpleExpressionContext> simpleExpression() {
+			return getRuleContexts(SimpleExpressionContext.class);
 		}
 		public TerminalNode COMPARISON_OP() { return getToken(TitanParser.COMPARISON_OP, 0); }
 		public ComparisonContext(ParserRuleContext parent, int invokingState) {
@@ -936,32 +851,23 @@ public class TitanParser extends Parser {
 		enterRule(_localctx, 12, RULE_comparison);
 		try {
 			setState(137);
-			_errHandler.sync(this);
 			switch ( getInterpreter().adaptivePredict(_input,10,_ctx) ) {
 			case 1:
 				enterOuterAlt(_localctx, 1);
 				{
-				setState(127);
-				simpleExpression(0);
-				setState(128);
-				match(COMPARISON_OP);
-				setState(129);
-				simpleExpression(0);
+				setState(127); simpleExpression(0);
+				setState(128); match(COMPARISON_OP);
+				setState(129); simpleExpression(0);
 				}
 				break;
 			case 2:
 				enterOuterAlt(_localctx, 2);
 				{
-				setState(131);
-				match(T__4);
-				setState(132);
-				simpleExpression(0);
-				setState(133);
-				match(COMPARISON_OP);
-				setState(134);
-				simpleExpression(0);
-				setState(135);
-				match(T__5);
+				setState(131); match(T__2);
+				setState(132); simpleExpression(0);
+				setState(133); match(COMPARISON_OP);
+				setState(134); simpleExpression(0);
+				setState(135); match(T__1);
 				}
 				break;
 			}
@@ -978,7 +884,7 @@ public class TitanParser extends Parser {
 	}
 
 	public static class BoolExprsContext extends ParserRuleContext {
-		public TypeSpec type = null;
+		public TypeSpec type;
 		public BoolExprsContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
@@ -1091,10 +997,10 @@ public class TitanParser extends Parser {
 		public List<BoolExprsContext> boolExprs() {
 			return getRuleContexts(BoolExprsContext.class);
 		}
+		public TerminalNode BOOLAND() { return getToken(TitanParser.BOOLAND, 0); }
 		public BoolExprsContext boolExprs(int i) {
 			return getRuleContext(BoolExprsContext.class,i);
 		}
-		public TerminalNode BOOLAND() { return getToken(TitanParser.BOOLAND, 0); }
 		public BoolAndContext(BoolExprsContext ctx) { copyFrom(ctx); }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
@@ -1127,7 +1033,6 @@ public class TitanParser extends Parser {
 			enterOuterAlt(_localctx, 1);
 			{
 			setState(147);
-			_errHandler.sync(this);
 			switch ( getInterpreter().adaptivePredict(_input,11,_ctx) ) {
 			case 1:
 				{
@@ -1135,12 +1040,9 @@ public class TitanParser extends Parser {
 				_ctx = _localctx;
 				_prevctx = _localctx;
 
-				setState(140);
-				match(T__4);
-				setState(141);
-				boolExprs(0);
-				setState(142);
-				match(T__5);
+				setState(140); match(T__2);
+				setState(141); boolExprs(0);
+				setState(142); match(T__1);
 				}
 				break;
 			case 2:
@@ -1148,8 +1050,7 @@ public class TitanParser extends Parser {
 				_localctx = new BoolLiteralContext(_localctx);
 				_ctx = _localctx;
 				_prevctx = _localctx;
-				setState(144);
-				match(BOOLVALUES);
+				setState(144); match(BOOLVALUES);
 				}
 				break;
 			case 3:
@@ -1157,8 +1058,7 @@ public class TitanParser extends Parser {
 				_localctx = new BoolIdentifierContext(_localctx);
 				_ctx = _localctx;
 				_prevctx = _localctx;
-				setState(145);
-				match(ID);
+				setState(145); match(ID);
 				}
 				break;
 			case 4:
@@ -1166,8 +1066,7 @@ public class TitanParser extends Parser {
 				_localctx = new ComparisonExprContext(_localctx);
 				_ctx = _localctx;
 				_prevctx = _localctx;
-				setState(146);
-				comparison();
+				setState(146); comparison();
 				}
 				break;
 			}
@@ -1181,7 +1080,6 @@ public class TitanParser extends Parser {
 					_prevctx = _localctx;
 					{
 					setState(155);
-					_errHandler.sync(this);
 					switch ( getInterpreter().adaptivePredict(_input,12,_ctx) ) {
 					case 1:
 						{
@@ -1189,10 +1087,8 @@ public class TitanParser extends Parser {
 						pushNewRecursionContext(_localctx, _startState, RULE_boolExprs);
 						setState(149);
 						if (!(precpred(_ctx, 5))) throw new FailedPredicateException(this, "precpred(_ctx, 5)");
-						setState(150);
-						((BoolAndContext)_localctx).op = match(BOOLAND);
-						setState(151);
-						boolExprs(6);
+						setState(150); ((BoolAndContext)_localctx).op = match(BOOLAND);
+						setState(151); boolExprs(6);
 						}
 						break;
 					case 2:
@@ -1201,10 +1097,8 @@ public class TitanParser extends Parser {
 						pushNewRecursionContext(_localctx, _startState, RULE_boolExprs);
 						setState(152);
 						if (!(precpred(_ctx, 4))) throw new FailedPredicateException(this, "precpred(_ctx, 4)");
-						setState(153);
-						((BoolOrContext)_localctx).op = match(BOOLOR);
-						setState(154);
-						boolExprs(5);
+						setState(153); ((BoolOrContext)_localctx).op = match(BOOLOR);
+						setState(154); boolExprs(5);
 						}
 						break;
 					}
@@ -1242,15 +1136,15 @@ public class TitanParser extends Parser {
 		public BoolExprsContext boolExprs() {
 			return getRuleContext(BoolExprsContext.class,0);
 		}
-		public List<StatContext> stat() {
-			return getRuleContexts(StatContext.class);
+		public List<TerminalNode> NEWLINE() { return getTokens(TitanParser.NEWLINE); }
+		public TerminalNode NEWLINE(int i) {
+			return getToken(TitanParser.NEWLINE, i);
 		}
 		public StatContext stat(int i) {
 			return getRuleContext(StatContext.class,i);
 		}
-		public List<TerminalNode> NEWLINE() { return getTokens(TitanParser.NEWLINE); }
-		public TerminalNode NEWLINE(int i) {
-			return getToken(TitanParser.NEWLINE, i);
+		public List<StatContext> stat() {
+			return getRuleContexts(StatContext.class);
 		}
 		public IfElseNoBracketsContext(ConditionalContext ctx) { copyFrom(ctx); }
 		@Override
@@ -1271,15 +1165,15 @@ public class TitanParser extends Parser {
 		public BoolExprsContext boolExprs() {
 			return getRuleContext(BoolExprsContext.class,0);
 		}
-		public List<BlockContext> block() {
-			return getRuleContexts(BlockContext.class);
-		}
 		public BlockContext block(int i) {
 			return getRuleContext(BlockContext.class,i);
 		}
 		public List<TerminalNode> NEWLINE() { return getTokens(TitanParser.NEWLINE); }
 		public TerminalNode NEWLINE(int i) {
 			return getToken(TitanParser.NEWLINE, i);
+		}
+		public List<BlockContext> block() {
+			return getRuleContexts(BlockContext.class);
 		}
 		public IfElseBracketsContext(ConditionalContext ctx) { copyFrom(ctx); }
 		@Override
@@ -1303,65 +1197,48 @@ public class TitanParser extends Parser {
 		int _la;
 		try {
 			setState(197);
-			_errHandler.sync(this);
 			switch ( getInterpreter().adaptivePredict(_input,22,_ctx) ) {
 			case 1:
 				_localctx = new IfElseBracketsContext(_localctx);
 				enterOuterAlt(_localctx, 1);
 				{
-				setState(160);
-				match(T__6);
-				setState(161);
-				boolExprs(0);
+				setState(160); match(T__9);
+				setState(161); boolExprs(0);
 				setState(163);
-				_errHandler.sync(this);
 				_la = _input.LA(1);
 				if (_la==NEWLINE) {
 					{
-					setState(162);
-					match(NEWLINE);
+					setState(162); match(NEWLINE);
 					}
 				}
 
-				setState(165);
-				match(T__2);
-				setState(166);
-				block();
-				setState(167);
-				match(T__3);
+				setState(165); match(T__13);
+				setState(166); block();
+				setState(167); match(T__11);
 				setState(179);
-				_errHandler.sync(this);
 				switch ( getInterpreter().adaptivePredict(_input,17,_ctx) ) {
 				case 1:
 					{
 					setState(169);
-					_errHandler.sync(this);
 					_la = _input.LA(1);
 					if (_la==NEWLINE) {
 						{
-						setState(168);
-						match(NEWLINE);
+						setState(168); match(NEWLINE);
 						}
 					}
 
-					setState(171);
-					match(T__7);
+					setState(171); match(T__4);
 					setState(173);
-					_errHandler.sync(this);
 					_la = _input.LA(1);
 					if (_la==NEWLINE) {
 						{
-						setState(172);
-						match(NEWLINE);
+						setState(172); match(NEWLINE);
 						}
 					}
 
-					setState(175);
-					match(T__2);
-					setState(176);
-					block();
-					setState(177);
-					match(T__3);
+					setState(175); match(T__13);
+					setState(176); block();
+					setState(177); match(T__11);
 					}
 					break;
 				}
@@ -1371,51 +1248,39 @@ public class TitanParser extends Parser {
 				_localctx = new IfElseNoBracketsContext(_localctx);
 				enterOuterAlt(_localctx, 2);
 				{
-				setState(181);
-				match(T__6);
-				setState(182);
-				boolExprs(0);
+				setState(181); match(T__9);
+				setState(182); boolExprs(0);
 				setState(184);
-				_errHandler.sync(this);
 				switch ( getInterpreter().adaptivePredict(_input,18,_ctx) ) {
 				case 1:
 					{
-					setState(183);
-					match(NEWLINE);
+					setState(183); match(NEWLINE);
 					}
 					break;
 				}
-				setState(186);
-				stat();
+				setState(186); stat();
 				setState(195);
-				_errHandler.sync(this);
 				switch ( getInterpreter().adaptivePredict(_input,21,_ctx) ) {
 				case 1:
 					{
 					setState(188);
-					_errHandler.sync(this);
 					_la = _input.LA(1);
 					if (_la==NEWLINE) {
 						{
-						setState(187);
-						match(NEWLINE);
+						setState(187); match(NEWLINE);
 						}
 					}
 
-					setState(190);
-					match(T__7);
+					setState(190); match(T__4);
 					setState(192);
-					_errHandler.sync(this);
 					switch ( getInterpreter().adaptivePredict(_input,20,_ctx) ) {
 					case 1:
 						{
-						setState(191);
-						match(NEWLINE);
+						setState(191); match(NEWLINE);
 						}
 						break;
 					}
-					setState(194);
-					stat();
+					setState(194); stat();
 					}
 					break;
 				}
@@ -1436,16 +1301,16 @@ public class TitanParser extends Parser {
 
 	public static class LoopContext extends ParserRuleContext {
 		public TerminalNode ID() { return getToken(TitanParser.ID, 0); }
-		public List<SimpleExpressionContext> simpleExpression() {
-			return getRuleContexts(SimpleExpressionContext.class);
-		}
 		public SimpleExpressionContext simpleExpression(int i) {
 			return getRuleContext(SimpleExpressionContext.class,i);
 		}
+		public List<SimpleExpressionContext> simpleExpression() {
+			return getRuleContexts(SimpleExpressionContext.class);
+		}
+		public TerminalNode NEWLINE() { return getToken(TitanParser.NEWLINE, 0); }
 		public BlockContext block() {
 			return getRuleContext(BlockContext.class,0);
 		}
-		public TerminalNode NEWLINE() { return getToken(TitanParser.NEWLINE, 0); }
 		public LoopContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
@@ -1472,34 +1337,23 @@ public class TitanParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(199);
-			match(T__8);
-			setState(200);
-			match(ID);
-			setState(201);
-			match(T__9);
-			setState(202);
-			simpleExpression(0);
-			setState(203);
-			match(T__10);
-			setState(204);
-			simpleExpression(0);
+			setState(199); match(T__10);
+			setState(200); match(ID);
+			setState(201); match(T__6);
+			setState(202); simpleExpression(0);
+			setState(203); match(T__15);
+			setState(204); simpleExpression(0);
 			setState(206);
-			_errHandler.sync(this);
 			_la = _input.LA(1);
 			if (_la==NEWLINE) {
 				{
-				setState(205);
-				match(NEWLINE);
+				setState(205); match(NEWLINE);
 				}
 			}
 
-			setState(208);
-			match(T__2);
-			setState(209);
-			block();
-			setState(210);
-			match(T__3);
+			setState(208); match(T__13);
+			setState(209); block();
+			setState(210); match(T__11);
 			}
 		}
 		catch (RecognitionException re) {
@@ -1514,32 +1368,64 @@ public class TitanParser extends Parser {
 	}
 
 	public static class FunctionDeclarationContext extends ParserRuleContext {
-		public FuncReturnTypesContext funcReturnTypes() {
-			return getRuleContext(FuncReturnTypesContext.class,0);
-		}
-		public TerminalNode ID() { return getToken(TitanParser.ID, 0); }
-		public ArgsContext args() {
-			return getRuleContext(ArgsContext.class,0);
-		}
-		public BlockContext block() {
-			return getRuleContext(BlockContext.class,0);
-		}
-		public TerminalNode NEWLINE() { return getToken(TitanParser.NEWLINE, 0); }
 		public FunctionDeclarationContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_functionDeclaration; }
+	 
+		public FunctionDeclarationContext() { }
+		public void copyFrom(FunctionDeclarationContext ctx) {
+			super.copyFrom(ctx);
+		}
+	}
+	public static class FunctionWithoutArgsDeclContext extends FunctionDeclarationContext {
+		public TerminalNode ID() { return getToken(TitanParser.ID, 0); }
+		public FuncReturnTypesContext funcReturnTypes() {
+			return getRuleContext(FuncReturnTypesContext.class,0);
+		}
+		public TerminalNode NEWLINE() { return getToken(TitanParser.NEWLINE, 0); }
+		public BlockContext block() {
+			return getRuleContext(BlockContext.class,0);
+		}
+		public FunctionWithoutArgsDeclContext(FunctionDeclarationContext ctx) { copyFrom(ctx); }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof TitanListener ) ((TitanListener)listener).enterFunctionDeclaration(this);
+			if ( listener instanceof TitanListener ) ((TitanListener)listener).enterFunctionWithoutArgsDecl(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof TitanListener ) ((TitanListener)listener).exitFunctionDeclaration(this);
+			if ( listener instanceof TitanListener ) ((TitanListener)listener).exitFunctionWithoutArgsDecl(this);
 		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof TitanVisitor ) return ((TitanVisitor<? extends T>)visitor).visitFunctionDeclaration(this);
+			if ( visitor instanceof TitanVisitor ) return ((TitanVisitor<? extends T>)visitor).visitFunctionWithoutArgsDecl(this);
+			else return visitor.visitChildren(this);
+		}
+	}
+	public static class FunctionWithArgsDeclContext extends FunctionDeclarationContext {
+		public TerminalNode ID() { return getToken(TitanParser.ID, 0); }
+		public FuncReturnTypesContext funcReturnTypes() {
+			return getRuleContext(FuncReturnTypesContext.class,0);
+		}
+		public TerminalNode NEWLINE() { return getToken(TitanParser.NEWLINE, 0); }
+		public BlockContext block() {
+			return getRuleContext(BlockContext.class,0);
+		}
+		public ArgsContext args() {
+			return getRuleContext(ArgsContext.class,0);
+		}
+		public FunctionWithArgsDeclContext(FunctionDeclarationContext ctx) { copyFrom(ctx); }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof TitanListener ) ((TitanListener)listener).enterFunctionWithArgsDecl(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof TitanListener ) ((TitanListener)listener).exitFunctionWithArgsDecl(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof TitanVisitor ) return ((TitanVisitor<? extends T>)visitor).visitFunctionWithArgsDecl(this);
 			else return visitor.visitChildren(this);
 		}
 	}
@@ -1549,36 +1435,52 @@ public class TitanParser extends Parser {
 		enterRule(_localctx, 20, RULE_functionDeclaration);
 		int _la;
 		try {
-			enterOuterAlt(_localctx, 1);
-			{
-			setState(212);
-			match(T__11);
-			setState(213);
-			funcReturnTypes();
-			setState(214);
-			match(ID);
-			setState(215);
-			match(T__4);
-			setState(216);
-			args(0);
-			setState(217);
-			match(T__5);
-			setState(219);
-			_errHandler.sync(this);
-			_la = _input.LA(1);
-			if (_la==NEWLINE) {
+			setState(236);
+			switch ( getInterpreter().adaptivePredict(_input,26,_ctx) ) {
+			case 1:
+				_localctx = new FunctionWithArgsDeclContext(_localctx);
+				enterOuterAlt(_localctx, 1);
 				{
-				setState(218);
-				match(NEWLINE);
+				setState(212); match(T__3);
+				setState(213); funcReturnTypes();
+				setState(214); match(ID);
+				setState(215); match(T__2);
+				setState(216); args(0);
+				setState(217); match(T__1);
+				setState(219);
+				_la = _input.LA(1);
+				if (_la==NEWLINE) {
+					{
+					setState(218); match(NEWLINE);
+					}
 				}
-			}
 
-			setState(221);
-			match(T__2);
-			setState(222);
-			block();
-			setState(223);
-			match(T__3);
+				setState(221); match(T__13);
+				setState(222); block();
+				setState(223); match(T__11);
+				}
+				break;
+			case 2:
+				_localctx = new FunctionWithoutArgsDeclContext(_localctx);
+				enterOuterAlt(_localctx, 2);
+				{
+				setState(225); match(T__3);
+				setState(226); funcReturnTypes();
+				setState(227); match(ID);
+				setState(228); match(T__8);
+				setState(230);
+				_la = _input.LA(1);
+				if (_la==NEWLINE) {
+					{
+					setState(229); match(NEWLINE);
+					}
+				}
+
+				setState(232); match(T__13);
+				setState(233); block();
+				setState(234); match(T__11);
+				}
+				break;
 			}
 		}
 		catch (RecognitionException re) {
@@ -1634,13 +1536,12 @@ public class TitanParser extends Parser {
 			enterOuterAlt(_localctx, 1);
 			{
 			{
-			setState(226);
-			argDecl();
+			setState(239); argDecl();
 			}
 			_ctx.stop = _input.LT(-1);
-			setState(233);
+			setState(246);
 			_errHandler.sync(this);
-			_alt = getInterpreter().adaptivePredict(_input,25,_ctx);
+			_alt = getInterpreter().adaptivePredict(_input,27,_ctx);
 			while ( _alt!=2 && _alt!=org.antlr.v4.runtime.atn.ATN.INVALID_ALT_NUMBER ) {
 				if ( _alt==1 ) {
 					if ( _parseListeners!=null ) triggerExitRuleEvent();
@@ -1649,18 +1550,16 @@ public class TitanParser extends Parser {
 					{
 					_localctx = new ArgsContext(_parentctx, _parentState);
 					pushNewRecursionContext(_localctx, _startState, RULE_args);
-					setState(228);
+					setState(241);
 					if (!(precpred(_ctx, 1))) throw new FailedPredicateException(this, "precpred(_ctx, 1)");
-					setState(229);
-					match(T__12);
-					setState(230);
-					argDecl();
+					setState(242); match(T__0);
+					setState(243); argDecl();
 					}
 					} 
 				}
-				setState(235);
+				setState(248);
 				_errHandler.sync(this);
-				_alt = getInterpreter().adaptivePredict(_input,25,_ctx);
+				_alt = getInterpreter().adaptivePredict(_input,27,_ctx);
 			}
 			}
 		}
@@ -1677,10 +1576,10 @@ public class TitanParser extends Parser {
 
 	public static class ArgDeclContext extends ParserRuleContext {
 		public Token ref;
+		public TerminalNode ID() { return getToken(TitanParser.ID, 0); }
 		public PrimitivesContext primitives() {
 			return getRuleContext(PrimitivesContext.class,0);
 		}
-		public TerminalNode ID() { return getToken(TitanParser.ID, 0); }
 		public ArgDeclContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
@@ -1707,20 +1606,16 @@ public class TitanParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(236);
-			primitives();
-			setState(238);
-			_errHandler.sync(this);
+			setState(249); primitives();
+			setState(251);
 			_la = _input.LA(1);
-			if (_la==T__13) {
+			if (_la==T__5) {
 				{
-				setState(237);
-				((ArgDeclContext)_localctx).ref = match(T__13);
+				setState(250); ((ArgDeclContext)_localctx).ref = match(T__5);
 				}
 			}
 
-			setState(240);
-			match(ID);
+			setState(253); match(ID);
 			}
 		}
 		catch (RecognitionException re) {
@@ -1735,14 +1630,14 @@ public class TitanParser extends Parser {
 	}
 
 	public static class DeclarationContext extends ParserRuleContext {
-		public PrimitivesContext primitives() {
-			return getRuleContext(PrimitivesContext.class,0);
-		}
-		public TerminalNode ID() { return getToken(TitanParser.ID, 0); }
-		public TerminalNode NEWLINE() { return getToken(TitanParser.NEWLINE, 0); }
 		public TerminalNode CONST() { return getToken(TitanParser.CONST, 0); }
+		public TerminalNode ID() { return getToken(TitanParser.ID, 0); }
 		public ExprContext expr() {
 			return getRuleContext(ExprContext.class,0);
+		}
+		public TerminalNode NEWLINE() { return getToken(TitanParser.NEWLINE, 0); }
+		public PrimitivesContext primitives() {
+			return getRuleContext(PrimitivesContext.class,0);
 		}
 		public DeclarationContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
@@ -1770,34 +1665,26 @@ public class TitanParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(243);
-			_errHandler.sync(this);
+			setState(256);
 			_la = _input.LA(1);
 			if (_la==CONST) {
 				{
-				setState(242);
-				match(CONST);
+				setState(255); match(CONST);
 				}
 			}
 
-			setState(245);
-			primitives();
-			setState(246);
-			match(ID);
-			setState(249);
-			_errHandler.sync(this);
+			setState(258); primitives();
+			setState(259); match(ID);
+			setState(262);
 			_la = _input.LA(1);
-			if (_la==T__14) {
+			if (_la==T__12) {
 				{
-				setState(247);
-				match(T__14);
-				setState(248);
-				expr();
+				setState(260); match(T__12);
+				setState(261); expr();
 				}
 			}
 
-			setState(251);
-			match(NEWLINE);
+			setState(264); match(NEWLINE);
 			}
 		}
 		catch (RecognitionException re) {
@@ -1824,8 +1711,8 @@ public class TitanParser extends Parser {
 	}
 	public static class ShorthandIncDecAssignmentContext extends AssignmentContext {
 		public TerminalNode ID() { return getToken(TitanParser.ID, 0); }
-		public TerminalNode SHORTHANDASSIGNOP() { return getToken(TitanParser.SHORTHANDASSIGNOP, 0); }
 		public TerminalNode NEWLINE() { return getToken(TitanParser.NEWLINE, 0); }
+		public TerminalNode SHORTHANDASSIGNOP() { return getToken(TitanParser.SHORTHANDASSIGNOP, 0); }
 		public ShorthandIncDecAssignmentContext(AssignmentContext ctx) { copyFrom(ctx); }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
@@ -1843,10 +1730,10 @@ public class TitanParser extends Parser {
 	}
 	public static class SpecialAssignmentContext extends AssignmentContext {
 		public TerminalNode ID() { return getToken(TitanParser.ID, 0); }
-		public TerminalNode AssignmentOp() { return getToken(TitanParser.AssignmentOp, 0); }
 		public ExprContext expr() {
 			return getRuleContext(ExprContext.class,0);
 		}
+		public TerminalNode AssignmentOp() { return getToken(TitanParser.AssignmentOp, 0); }
 		public TerminalNode NEWLINE() { return getToken(TitanParser.NEWLINE, 0); }
 		public SpecialAssignmentContext(AssignmentContext ctx) { copyFrom(ctx); }
 		@Override
@@ -1889,47 +1776,35 @@ public class TitanParser extends Parser {
 		AssignmentContext _localctx = new AssignmentContext(_ctx, getState());
 		enterRule(_localctx, 28, RULE_assignment);
 		try {
-			setState(266);
-			_errHandler.sync(this);
-			switch ( getInterpreter().adaptivePredict(_input,29,_ctx) ) {
+			setState(279);
+			switch ( getInterpreter().adaptivePredict(_input,31,_ctx) ) {
 			case 1:
 				_localctx = new SimpleAssignmentContext(_localctx);
 				enterOuterAlt(_localctx, 1);
 				{
-				setState(253);
-				match(ID);
-				setState(254);
-				match(T__14);
-				setState(255);
-				expr();
-				setState(256);
-				match(NEWLINE);
+				setState(266); match(ID);
+				setState(267); match(T__12);
+				setState(268); expr();
+				setState(269); match(NEWLINE);
 				}
 				break;
 			case 2:
 				_localctx = new ShorthandIncDecAssignmentContext(_localctx);
 				enterOuterAlt(_localctx, 2);
 				{
-				setState(258);
-				match(ID);
-				setState(259);
-				match(SHORTHANDASSIGNOP);
-				setState(260);
-				match(NEWLINE);
+				setState(271); match(ID);
+				setState(272); match(SHORTHANDASSIGNOP);
+				setState(273); match(NEWLINE);
 				}
 				break;
 			case 3:
 				_localctx = new SpecialAssignmentContext(_localctx);
 				enterOuterAlt(_localctx, 3);
 				{
-				setState(261);
-				match(ID);
-				setState(262);
-				match(AssignmentOp);
-				setState(263);
-				expr();
-				setState(264);
-				match(NEWLINE);
+				setState(274); match(ID);
+				setState(275); match(AssignmentOp);
+				setState(276); expr();
+				setState(277); match(NEWLINE);
 				}
 				break;
 			}
@@ -1946,9 +1821,9 @@ public class TitanParser extends Parser {
 	}
 
 	public static class PrimitivesContext extends ParserRuleContext {
-		public TerminalNode INT() { return getToken(TitanParser.INT, 0); }
 		public TerminalNode BOOL() { return getToken(TitanParser.BOOL, 0); }
 		public TerminalNode STRING() { return getToken(TitanParser.STRING, 0); }
+		public TerminalNode INT() { return getToken(TitanParser.INT, 0); }
 		public TerminalNode FLOAT() { return getToken(TitanParser.FLOAT, 0); }
 		public PrimitivesContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
@@ -1976,16 +1851,12 @@ public class TitanParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(268);
+			setState(281);
 			_la = _input.LA(1);
 			if ( !((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << INT) | (1L << BOOL) | (1L << FLOAT) | (1L << STRING))) != 0)) ) {
 			_errHandler.recoverInline(this);
 			}
-			else {
-				if ( _input.LA(1)==Token.EOF ) matchedEOF = true;
-				_errHandler.reportMatch(this);
-				consume();
-			}
+			consume();
 			}
 		}
 		catch (RecognitionException re) {
@@ -2026,8 +1897,7 @@ public class TitanParser extends Parser {
 		FuncReturnTypesContext _localctx = new FuncReturnTypesContext(_ctx, getState());
 		enterRule(_localctx, 32, RULE_funcReturnTypes);
 		try {
-			setState(272);
-			_errHandler.sync(this);
+			setState(285);
 			switch (_input.LA(1)) {
 			case INT:
 			case BOOL:
@@ -2035,15 +1905,13 @@ public class TitanParser extends Parser {
 			case STRING:
 				enterOuterAlt(_localctx, 1);
 				{
-				setState(270);
-				primitives();
+				setState(283); primitives();
 				}
 				break;
-			case T__15:
+			case T__14:
 				enterOuterAlt(_localctx, 2);
 				{
-				setState(271);
-				match(T__15);
+				setState(284); match(T__14);
 				}
 				break;
 			default:
@@ -2091,12 +1959,9 @@ public class TitanParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(274);
-			match(T__16);
-			setState(275);
-			expr();
-			setState(276);
-			match(NEWLINE);
+			setState(287); match(T__16);
+			setState(288); expr();
+			setState(289); match(NEWLINE);
 			}
 		}
 		catch (RecognitionException re) {
@@ -2111,7 +1976,7 @@ public class TitanParser extends Parser {
 	}
 
 	public static class FunctionCallContext extends ParserRuleContext {
-		public TypeSpec type = null;
+		public TypeSpec type;
 		public FunctionCallContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
@@ -2142,23 +2007,40 @@ public class TitanParser extends Parser {
 			else return visitor.visitChildren(this);
 		}
 	}
-	public static class RegularFunctionContext extends FunctionCallContext {
-		public TerminalNode ID() { return getToken(TitanParser.ID, 0); }
+	public static class RegularFunctionWithArgsContext extends FunctionCallContext {
 		public ExprListContext exprList() {
 			return getRuleContext(ExprListContext.class,0);
 		}
-		public RegularFunctionContext(FunctionCallContext ctx) { copyFrom(ctx); }
+		public TerminalNode ID() { return getToken(TitanParser.ID, 0); }
+		public RegularFunctionWithArgsContext(FunctionCallContext ctx) { copyFrom(ctx); }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof TitanListener ) ((TitanListener)listener).enterRegularFunction(this);
+			if ( listener instanceof TitanListener ) ((TitanListener)listener).enterRegularFunctionWithArgs(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof TitanListener ) ((TitanListener)listener).exitRegularFunction(this);
+			if ( listener instanceof TitanListener ) ((TitanListener)listener).exitRegularFunctionWithArgs(this);
 		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof TitanVisitor ) return ((TitanVisitor<? extends T>)visitor).visitRegularFunction(this);
+			if ( visitor instanceof TitanVisitor ) return ((TitanVisitor<? extends T>)visitor).visitRegularFunctionWithArgs(this);
+			else return visitor.visitChildren(this);
+		}
+	}
+	public static class RegularFunctionWithoutArgsContext extends FunctionCallContext {
+		public TerminalNode ID() { return getToken(TitanParser.ID, 0); }
+		public RegularFunctionWithoutArgsContext(FunctionCallContext ctx) { copyFrom(ctx); }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof TitanListener ) ((TitanListener)listener).enterRegularFunctionWithoutArgs(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof TitanListener ) ((TitanListener)listener).exitRegularFunctionWithoutArgs(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof TitanVisitor ) return ((TitanVisitor<? extends T>)visitor).visitRegularFunctionWithoutArgs(this);
 			else return visitor.visitChildren(this);
 		}
 	}
@@ -2167,37 +2049,35 @@ public class TitanParser extends Parser {
 		FunctionCallContext _localctx = new FunctionCallContext(_ctx, getState());
 		enterRule(_localctx, 36, RULE_functionCall);
 		try {
-			setState(287);
-			_errHandler.sync(this);
-			switch (_input.LA(1)) {
-			case T__17:
+			setState(302);
+			switch ( getInterpreter().adaptivePredict(_input,33,_ctx) ) {
+			case 1:
 				_localctx = new PrintfContext(_localctx);
 				enterOuterAlt(_localctx, 1);
 				{
-				setState(278);
-				match(T__17);
-				setState(279);
-				printfexprList(0);
-				setState(280);
-				match(T__5);
+				setState(291); match(T__17);
+				setState(292); printfexprList(0);
+				setState(293); match(T__1);
 				}
 				break;
-			case ID:
-				_localctx = new RegularFunctionContext(_localctx);
+			case 2:
+				_localctx = new RegularFunctionWithArgsContext(_localctx);
 				enterOuterAlt(_localctx, 2);
 				{
-				setState(282);
-				match(ID);
-				setState(283);
-				match(T__4);
-				setState(284);
-				exprList(0);
-				setState(285);
-				match(T__5);
+				setState(295); match(ID);
+				setState(296); match(T__2);
+				setState(297); exprList(0);
+				setState(298); match(T__1);
 				}
 				break;
-			default:
-				throw new NoViableAltException(this);
+			case 3:
+				_localctx = new RegularFunctionWithoutArgsContext(_localctx);
+				enterOuterAlt(_localctx, 3);
+				{
+				setState(300); match(ID);
+				setState(301); match(T__8);
+				}
+				break;
 			}
 		}
 		catch (RecognitionException re) {
@@ -2238,8 +2118,7 @@ public class TitanParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(289);
-			match(STRINGLIT);
+			setState(304); match(STRINGLIT);
 			}
 		}
 		catch (RecognitionException re) {
@@ -2295,13 +2174,12 @@ public class TitanParser extends Parser {
 			enterOuterAlt(_localctx, 1);
 			{
 			{
-			setState(292);
-			expr();
+			setState(307); expr();
 			}
 			_ctx.stop = _input.LT(-1);
-			setState(299);
+			setState(314);
 			_errHandler.sync(this);
-			_alt = getInterpreter().adaptivePredict(_input,32,_ctx);
+			_alt = getInterpreter().adaptivePredict(_input,34,_ctx);
 			while ( _alt!=2 && _alt!=org.antlr.v4.runtime.atn.ATN.INVALID_ALT_NUMBER ) {
 				if ( _alt==1 ) {
 					if ( _parseListeners!=null ) triggerExitRuleEvent();
@@ -2310,18 +2188,16 @@ public class TitanParser extends Parser {
 					{
 					_localctx = new PrintfexprListContext(_parentctx, _parentState);
 					pushNewRecursionContext(_localctx, _startState, RULE_printfexprList);
-					setState(294);
+					setState(309);
 					if (!(precpred(_ctx, 1))) throw new FailedPredicateException(this, "precpred(_ctx, 1)");
-					setState(295);
-					match(T__12);
-					setState(296);
-					expr();
+					setState(310); match(T__0);
+					setState(311); expr();
 					}
 					} 
 				}
-				setState(301);
+				setState(316);
 				_errHandler.sync(this);
-				_alt = getInterpreter().adaptivePredict(_input,32,_ctx);
+				_alt = getInterpreter().adaptivePredict(_input,34,_ctx);
 			}
 			}
 		}
@@ -2337,11 +2213,11 @@ public class TitanParser extends Parser {
 	}
 
 	public static class ExprListContext extends ParserRuleContext {
-		public ExprContext expr() {
-			return getRuleContext(ExprContext.class,0);
-		}
 		public ExprListContext exprList() {
 			return getRuleContext(ExprListContext.class,0);
+		}
+		public ExprContext expr() {
+			return getRuleContext(ExprContext.class,0);
 		}
 		public ExprListContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
@@ -2378,13 +2254,12 @@ public class TitanParser extends Parser {
 			enterOuterAlt(_localctx, 1);
 			{
 			{
-			setState(303);
-			expr();
+			setState(318); expr();
 			}
 			_ctx.stop = _input.LT(-1);
-			setState(310);
+			setState(325);
 			_errHandler.sync(this);
-			_alt = getInterpreter().adaptivePredict(_input,33,_ctx);
+			_alt = getInterpreter().adaptivePredict(_input,35,_ctx);
 			while ( _alt!=2 && _alt!=org.antlr.v4.runtime.atn.ATN.INVALID_ALT_NUMBER ) {
 				if ( _alt==1 ) {
 					if ( _parseListeners!=null ) triggerExitRuleEvent();
@@ -2393,18 +2268,16 @@ public class TitanParser extends Parser {
 					{
 					_localctx = new ExprListContext(_parentctx, _parentState);
 					pushNewRecursionContext(_localctx, _startState, RULE_exprList);
-					setState(305);
+					setState(320);
 					if (!(precpred(_ctx, 1))) throw new FailedPredicateException(this, "precpred(_ctx, 1)");
-					setState(306);
-					match(T__12);
-					setState(307);
-					expr();
+					setState(321); match(T__0);
+					setState(322); expr();
 					}
 					} 
 				}
-				setState(312);
+				setState(327);
 				_errHandler.sync(this);
-				_alt = getInterpreter().adaptivePredict(_input,33,_ctx);
+				_alt = getInterpreter().adaptivePredict(_input,35,_ctx);
 			}
 			}
 		}
@@ -2420,7 +2293,7 @@ public class TitanParser extends Parser {
 	}
 
 	public static class NumberContext extends ParserRuleContext {
-		public TypeSpec type = null;
+		public TypeSpec type;
 		public NumberContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
@@ -2488,31 +2361,27 @@ public class TitanParser extends Parser {
 		NumberContext _localctx = new NumberContext(_ctx, getState());
 		enterRule(_localctx, 44, RULE_number);
 		try {
-			setState(316);
-			_errHandler.sync(this);
+			setState(331);
 			switch (_input.LA(1)) {
 			case DIGITS:
 				_localctx = new IntegerContext(_localctx);
 				enterOuterAlt(_localctx, 1);
 				{
-				setState(313);
-				match(DIGITS);
+				setState(328); match(DIGITS);
 				}
 				break;
 			case FLOATINGNUMBER:
 				_localctx = new FloatContext(_localctx);
 				enterOuterAlt(_localctx, 2);
 				{
-				setState(314);
-				match(FLOATINGNUMBER);
+				setState(329); match(FLOATINGNUMBER);
 				}
 				break;
 			case EXPNUM:
 				_localctx = new ExponentialContext(_localctx);
 				enterOuterAlt(_localctx, 3);
 				{
-				setState(315);
-				match(EXPNUM);
+				setState(330); match(EXPNUM);
 				}
 				break;
 			default:
@@ -2532,63 +2401,50 @@ public class TitanParser extends Parser {
 
 	public boolean sempred(RuleContext _localctx, int ruleIndex, int predIndex) {
 		switch (ruleIndex) {
-		case 5:
-			return simpleExpression_sempred((SimpleExpressionContext)_localctx, predIndex);
-		case 7:
-			return boolExprs_sempred((BoolExprsContext)_localctx, predIndex);
-		case 11:
-			return args_sempred((ArgsContext)_localctx, predIndex);
-		case 20:
-			return printfexprList_sempred((PrintfexprListContext)_localctx, predIndex);
-		case 21:
-			return exprList_sempred((ExprListContext)_localctx, predIndex);
-		}
-		return true;
-	}
-	private boolean simpleExpression_sempred(SimpleExpressionContext _localctx, int predIndex) {
-		switch (predIndex) {
-		case 0:
-			return precpred(_ctx, 8);
-		case 1:
-			return precpred(_ctx, 7);
-		case 2:
-			return precpred(_ctx, 6);
-		}
-		return true;
-	}
-	private boolean boolExprs_sempred(BoolExprsContext _localctx, int predIndex) {
-		switch (predIndex) {
-		case 3:
-			return precpred(_ctx, 5);
-		case 4:
-			return precpred(_ctx, 4);
+		case 5: return simpleExpression_sempred((SimpleExpressionContext)_localctx, predIndex);
+		case 7: return boolExprs_sempred((BoolExprsContext)_localctx, predIndex);
+		case 11: return args_sempred((ArgsContext)_localctx, predIndex);
+		case 20: return printfexprList_sempred((PrintfexprListContext)_localctx, predIndex);
+		case 21: return exprList_sempred((ExprListContext)_localctx, predIndex);
 		}
 		return true;
 	}
 	private boolean args_sempred(ArgsContext _localctx, int predIndex) {
 		switch (predIndex) {
-		case 5:
-			return precpred(_ctx, 1);
+		case 5: return precpred(_ctx, 1);
 		}
 		return true;
 	}
 	private boolean printfexprList_sempred(PrintfexprListContext _localctx, int predIndex) {
 		switch (predIndex) {
-		case 6:
-			return precpred(_ctx, 1);
+		case 6: return precpred(_ctx, 1);
 		}
 		return true;
 	}
 	private boolean exprList_sempred(ExprListContext _localctx, int predIndex) {
 		switch (predIndex) {
-		case 7:
-			return precpred(_ctx, 1);
+		case 7: return precpred(_ctx, 1);
+		}
+		return true;
+	}
+	private boolean simpleExpression_sempred(SimpleExpressionContext _localctx, int predIndex) {
+		switch (predIndex) {
+		case 0: return precpred(_ctx, 8);
+		case 1: return precpred(_ctx, 7);
+		case 2: return precpred(_ctx, 6);
+		}
+		return true;
+	}
+	private boolean boolExprs_sempred(BoolExprsContext _localctx, int predIndex) {
+		switch (predIndex) {
+		case 3: return precpred(_ctx, 5);
+		case 4: return precpred(_ctx, 4);
 		}
 		return true;
 	}
 
 	public static final String _serializedATN =
-		"\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3\65\u0141\4\2\t\2"+
+		"\3\u0430\ud6d1\u8206\uad2d\u4417\uaef1\u8d80\uaadd\3\66\u0150\4\2\t\2"+
 		"\4\3\t\3\4\4\t\4\4\5\t\5\4\6\t\6\4\7\t\7\4\b\t\b\4\t\t\t\4\n\t\n\4\13"+
 		"\t\13\4\f\t\f\4\r\t\r\4\16\t\16\4\17\t\17\4\20\t\20\4\21\t\21\4\22\t\22"+
 		"\4\23\t\23\4\24\t\24\4\25\t\25\4\26\t\26\4\27\t\27\4\30\t\30\3\2\3\2\3"+
@@ -2604,100 +2460,107 @@ public class TitanParser extends Parser {
 		"\n\u00bb\n\n\3\n\3\n\5\n\u00bf\n\n\3\n\3\n\5\n\u00c3\n\n\3\n\5\n\u00c6"+
 		"\n\n\5\n\u00c8\n\n\3\13\3\13\3\13\3\13\3\13\3\13\3\13\5\13\u00d1\n\13"+
 		"\3\13\3\13\3\13\3\13\3\f\3\f\3\f\3\f\3\f\3\f\3\f\5\f\u00de\n\f\3\f\3\f"+
-		"\3\f\3\f\3\r\3\r\3\r\3\r\3\r\3\r\7\r\u00ea\n\r\f\r\16\r\u00ed\13\r\3\16"+
-		"\3\16\5\16\u00f1\n\16\3\16\3\16\3\17\5\17\u00f6\n\17\3\17\3\17\3\17\3"+
-		"\17\5\17\u00fc\n\17\3\17\3\17\3\20\3\20\3\20\3\20\3\20\3\20\3\20\3\20"+
-		"\3\20\3\20\3\20\3\20\3\20\5\20\u010d\n\20\3\21\3\21\3\22\3\22\5\22\u0113"+
-		"\n\22\3\23\3\23\3\23\3\23\3\24\3\24\3\24\3\24\3\24\3\24\3\24\3\24\3\24"+
-		"\5\24\u0122\n\24\3\25\3\25\3\26\3\26\3\26\3\26\3\26\3\26\7\26\u012c\n"+
-		"\26\f\26\16\26\u012f\13\26\3\27\3\27\3\27\3\27\3\27\3\27\7\27\u0137\n"+
-		"\27\f\27\16\27\u013a\13\27\3\30\3\30\3\30\5\30\u013f\n\30\3\30\2\7\f\20"+
-		"\30*,\31\2\4\6\b\n\f\16\20\22\24\26\30\32\34\36 \"$&(*,.\2\5\3\2\25\26"+
-		"\3\2\27\30\4\2\33\34\36\37\2\u015a\2\60\3\2\2\2\4:\3\2\2\2\6Q\3\2\2\2"+
-		"\b^\3\2\2\2\nf\3\2\2\2\fq\3\2\2\2\16\u008b\3\2\2\2\20\u0095\3\2\2\2\22"+
-		"\u00c7\3\2\2\2\24\u00c9\3\2\2\2\26\u00d6\3\2\2\2\30\u00e3\3\2\2\2\32\u00ee"+
-		"\3\2\2\2\34\u00f5\3\2\2\2\36\u010c\3\2\2\2 \u010e\3\2\2\2\"\u0112\3\2"+
-		"\2\2$\u0114\3\2\2\2&\u0121\3\2\2\2(\u0123\3\2\2\2*\u0125\3\2\2\2,\u0130"+
-		"\3\2\2\2.\u013e\3\2\2\2\60\61\7\3\2\2\61\65\7-\2\2\62\64\7\61\2\2\63\62"+
-		"\3\2\2\2\64\67\3\2\2\2\65\63\3\2\2\2\65\66\3\2\2\2\668\3\2\2\2\67\65\3"+
-		"\2\2\289\5\4\3\29\3\3\2\2\2:;\7\4\2\2;<\7\5\2\2<=\5\6\4\2=A\7\6\2\2>@"+
-		"\7\61\2\2?>\3\2\2\2@C\3\2\2\2A?\3\2\2\2AB\3\2\2\2BM\3\2\2\2CA\3\2\2\2"+
-		"DH\5\26\f\2EG\7\61\2\2FE\3\2\2\2GJ\3\2\2\2HF\3\2\2\2HI\3\2\2\2IL\3\2\2"+
-		"\2JH\3\2\2\2KD\3\2\2\2LO\3\2\2\2MK\3\2\2\2MN\3\2\2\2N\5\3\2\2\2OM\3\2"+
-		"\2\2PR\5\b\5\2QP\3\2\2\2RS\3\2\2\2SQ\3\2\2\2ST\3\2\2\2T\7\3\2\2\2UV\5"+
-		"\n\6\2VW\7\61\2\2W_\3\2\2\2X_\5\36\20\2Y_\5\34\17\2Z_\5\22\n\2[_\5$\23"+
-		"\2\\_\5\24\13\2]_\7\61\2\2^U\3\2\2\2^X\3\2\2\2^Y\3\2\2\2^Z\3\2\2\2^[\3"+
-		"\2\2\2^\\\3\2\2\2^]\3\2\2\2_\t\3\2\2\2`g\5\f\7\2ag\5\20\t\2bc\7\7\2\2"+
-		"cd\5\n\6\2de\7\b\2\2eg\3\2\2\2f`\3\2\2\2fa\3\2\2\2fb\3\2\2\2g\13\3\2\2"+
-		"\2hi\b\7\1\2ir\5(\25\2jk\7\7\2\2kl\5\f\7\2lm\7\b\2\2mr\3\2\2\2nr\5&\24"+
-		"\2or\5.\30\2pr\7-\2\2qh\3\2\2\2qj\3\2\2\2qn\3\2\2\2qo\3\2\2\2qp\3\2\2"+
-		"\2r~\3\2\2\2st\f\n\2\2tu\t\2\2\2u}\5\f\7\13vw\f\t\2\2wx\t\3\2\2x}\5\f"+
-		"\7\nyz\f\b\2\2z{\7\31\2\2{}\5\f\7\t|s\3\2\2\2|v\3\2\2\2|y\3\2\2\2}\u0080"+
-		"\3\2\2\2~|\3\2\2\2~\177\3\2\2\2\177\r\3\2\2\2\u0080~\3\2\2\2\u0081\u0082"+
-		"\5\f\7\2\u0082\u0083\7,\2\2\u0083\u0084\5\f\7\2\u0084\u008c\3\2\2\2\u0085"+
-		"\u0086\7\7\2\2\u0086\u0087\5\f\7\2\u0087\u0088\7,\2\2\u0088\u0089\5\f"+
-		"\7\2\u0089\u008a\7\b\2\2\u008a\u008c\3\2\2\2\u008b\u0081\3\2\2\2\u008b"+
-		"\u0085\3\2\2\2\u008c\17\3\2\2\2\u008d\u008e\b\t\1\2\u008e\u008f\7\7\2"+
-		"\2\u008f\u0090\5\20\t\2\u0090\u0091\7\b\2\2\u0091\u0096\3\2\2\2\u0092"+
-		"\u0096\7 \2\2\u0093\u0096\7-\2\2\u0094\u0096\5\16\b\2\u0095\u008d\3\2"+
-		"\2\2\u0095\u0092\3\2\2\2\u0095\u0093\3\2\2\2\u0095\u0094\3\2\2\2\u0096"+
-		"\u009f\3\2\2\2\u0097\u0098\f\7\2\2\u0098\u0099\7!\2\2\u0099\u009e\5\20"+
-		"\t\b\u009a\u009b\f\6\2\2\u009b\u009c\7\"\2\2\u009c\u009e\5\20\t\7\u009d"+
-		"\u0097\3\2\2\2\u009d\u009a\3\2\2\2\u009e\u00a1\3\2\2\2\u009f\u009d\3\2"+
-		"\2\2\u009f\u00a0\3\2\2\2\u00a0\21\3\2\2\2\u00a1\u009f\3\2\2\2\u00a2\u00a3"+
-		"\7\t\2\2\u00a3\u00a5\5\20\t\2\u00a4\u00a6\7\61\2\2\u00a5\u00a4\3\2\2\2"+
-		"\u00a5\u00a6\3\2\2\2\u00a6\u00a7\3\2\2\2\u00a7\u00a8\7\5\2\2\u00a8\u00a9"+
-		"\5\6\4\2\u00a9\u00b5\7\6\2\2\u00aa\u00ac\7\61\2\2\u00ab\u00aa\3\2\2\2"+
-		"\u00ab\u00ac\3\2\2\2\u00ac\u00ad\3\2\2\2\u00ad\u00af\7\n\2\2\u00ae\u00b0"+
-		"\7\61\2\2\u00af\u00ae\3\2\2\2\u00af\u00b0\3\2\2\2\u00b0\u00b1\3\2\2\2"+
-		"\u00b1\u00b2\7\5\2\2\u00b2\u00b3\5\6\4\2\u00b3\u00b4\7\6\2\2\u00b4\u00b6"+
-		"\3\2\2\2\u00b5\u00ab\3\2\2\2\u00b5\u00b6\3\2\2\2\u00b6\u00c8\3\2\2\2\u00b7"+
-		"\u00b8\7\t\2\2\u00b8\u00ba\5\20\t\2\u00b9\u00bb\7\61\2\2\u00ba\u00b9\3"+
-		"\2\2\2\u00ba\u00bb\3\2\2\2\u00bb\u00bc\3\2\2\2\u00bc\u00c5\5\b\5\2\u00bd"+
-		"\u00bf\7\61\2\2\u00be\u00bd\3\2\2\2\u00be\u00bf\3\2\2\2\u00bf\u00c0\3"+
-		"\2\2\2\u00c0\u00c2\7\n\2\2\u00c1\u00c3\7\61\2\2\u00c2\u00c1\3\2\2\2\u00c2"+
-		"\u00c3\3\2\2\2\u00c3\u00c4\3\2\2\2\u00c4\u00c6\5\b\5\2\u00c5\u00be\3\2"+
-		"\2\2\u00c5\u00c6\3\2\2\2\u00c6\u00c8\3\2\2\2\u00c7\u00a2\3\2\2\2\u00c7"+
-		"\u00b7\3\2\2\2\u00c8\23\3\2\2\2\u00c9\u00ca\7\13\2\2\u00ca\u00cb\7-\2"+
-		"\2\u00cb\u00cc\7\f\2\2\u00cc\u00cd\5\f\7\2\u00cd\u00ce\7\r\2\2\u00ce\u00d0"+
-		"\5\f\7\2\u00cf\u00d1\7\61\2\2\u00d0\u00cf\3\2\2\2\u00d0\u00d1\3\2\2\2"+
-		"\u00d1\u00d2\3\2\2\2\u00d2\u00d3\7\5\2\2\u00d3\u00d4\5\6\4\2\u00d4\u00d5"+
-		"\7\6\2\2\u00d5\25\3\2\2\2\u00d6\u00d7\7\16\2\2\u00d7\u00d8\5\"\22\2\u00d8"+
-		"\u00d9\7-\2\2\u00d9\u00da\7\7\2\2\u00da\u00db\5\30\r\2\u00db\u00dd\7\b"+
-		"\2\2\u00dc\u00de\7\61\2\2\u00dd\u00dc\3\2\2\2\u00dd\u00de\3\2\2\2\u00de"+
-		"\u00df\3\2\2\2\u00df\u00e0\7\5\2\2\u00e0\u00e1\5\6\4\2\u00e1\u00e2\7\6"+
-		"\2\2\u00e2\27\3\2\2\2\u00e3\u00e4\b\r\1\2\u00e4\u00e5\5\32\16\2\u00e5"+
-		"\u00eb\3\2\2\2\u00e6\u00e7\f\3\2\2\u00e7\u00e8\7\17\2\2\u00e8\u00ea\5"+
-		"\32\16\2\u00e9\u00e6\3\2\2\2\u00ea\u00ed\3\2\2\2\u00eb\u00e9\3\2\2\2\u00eb"+
-		"\u00ec\3\2\2\2\u00ec\31\3\2\2\2\u00ed\u00eb\3\2\2\2\u00ee\u00f0\5 \21"+
-		"\2\u00ef\u00f1\7\20\2\2\u00f0\u00ef\3\2\2\2\u00f0\u00f1\3\2\2\2\u00f1"+
-		"\u00f2\3\2\2\2\u00f2\u00f3\7-\2\2\u00f3\33\3\2\2\2\u00f4\u00f6\7\32\2"+
-		"\2\u00f5\u00f4\3\2\2\2\u00f5\u00f6\3\2\2\2\u00f6\u00f7\3\2\2\2\u00f7\u00f8"+
-		"\5 \21\2\u00f8\u00fb\7-\2\2\u00f9\u00fa\7\21\2\2\u00fa\u00fc\5\n\6\2\u00fb"+
-		"\u00f9\3\2\2\2\u00fb\u00fc\3\2\2\2\u00fc\u00fd\3\2\2\2\u00fd\u00fe\7\61"+
-		"\2\2\u00fe\35\3\2\2\2\u00ff\u0100\7-\2\2\u0100\u0101\7\21\2\2\u0101\u0102"+
-		"\5\n\6\2\u0102\u0103\7\61\2\2\u0103\u010d\3\2\2\2\u0104\u0105\7-\2\2\u0105"+
-		"\u0106\7)\2\2\u0106\u010d\7\61\2\2\u0107\u0108\7-\2\2\u0108\u0109\7#\2"+
-		"\2\u0109\u010a\5\n\6\2\u010a\u010b\7\61\2\2\u010b\u010d\3\2\2\2\u010c"+
-		"\u00ff\3\2\2\2\u010c\u0104\3\2\2\2\u010c\u0107\3\2\2\2\u010d\37\3\2\2"+
-		"\2\u010e\u010f\t\4\2\2\u010f!\3\2\2\2\u0110\u0113\5 \21\2\u0111\u0113"+
-		"\7\22\2\2\u0112\u0110\3\2\2\2\u0112\u0111\3\2\2\2\u0113#\3\2\2\2\u0114"+
-		"\u0115\7\23\2\2\u0115\u0116\5\n\6\2\u0116\u0117\7\61\2\2\u0117%\3\2\2"+
-		"\2\u0118\u0119\7\24\2\2\u0119\u011a\5*\26\2\u011a\u011b\7\b\2\2\u011b"+
-		"\u0122\3\2\2\2\u011c\u011d\7-\2\2\u011d\u011e\7\7\2\2\u011e\u011f\5,\27"+
-		"\2\u011f\u0120\7\b\2\2\u0120\u0122\3\2\2\2\u0121\u0118\3\2\2\2\u0121\u011c"+
-		"\3\2\2\2\u0122\'\3\2\2\2\u0123\u0124\7\65\2\2\u0124)\3\2\2\2\u0125\u0126"+
-		"\b\26\1\2\u0126\u0127\5\n\6\2\u0127\u012d\3\2\2\2\u0128\u0129\f\3\2\2"+
-		"\u0129\u012a\7\17\2\2\u012a\u012c\5\n\6\2\u012b\u0128\3\2\2\2\u012c\u012f"+
-		"\3\2\2\2\u012d\u012b\3\2\2\2\u012d\u012e\3\2\2\2\u012e+\3\2\2\2\u012f"+
-		"\u012d\3\2\2\2\u0130\u0131\b\27\1\2\u0131\u0132\5\n\6\2\u0132\u0138\3"+
-		"\2\2\2\u0133\u0134\f\3\2\2\u0134\u0135\7\17\2\2\u0135\u0137\5\n\6\2\u0136"+
-		"\u0133\3\2\2\2\u0137\u013a\3\2\2\2\u0138\u0136\3\2\2\2\u0138\u0139\3\2"+
-		"\2\2\u0139-\3\2\2\2\u013a\u0138\3\2\2\2\u013b\u013f\7\60\2\2\u013c\u013f"+
-		"\7/\2\2\u013d\u013f\7(\2\2\u013e\u013b\3\2\2\2\u013e\u013c\3\2\2\2\u013e"+
-		"\u013d\3\2\2\2\u013f/\3\2\2\2%\65AHMS^fq|~\u008b\u0095\u009d\u009f\u00a5"+
-		"\u00ab\u00af\u00b5\u00ba\u00be\u00c2\u00c5\u00c7\u00d0\u00dd\u00eb\u00f0"+
-		"\u00f5\u00fb\u010c\u0112\u0121\u012d\u0138\u013e";
+		"\3\f\3\f\3\f\3\f\3\f\3\f\3\f\5\f\u00e9\n\f\3\f\3\f\3\f\3\f\5\f\u00ef\n"+
+		"\f\3\r\3\r\3\r\3\r\3\r\3\r\7\r\u00f7\n\r\f\r\16\r\u00fa\13\r\3\16\3\16"+
+		"\5\16\u00fe\n\16\3\16\3\16\3\17\5\17\u0103\n\17\3\17\3\17\3\17\3\17\5"+
+		"\17\u0109\n\17\3\17\3\17\3\20\3\20\3\20\3\20\3\20\3\20\3\20\3\20\3\20"+
+		"\3\20\3\20\3\20\3\20\5\20\u011a\n\20\3\21\3\21\3\22\3\22\5\22\u0120\n"+
+		"\22\3\23\3\23\3\23\3\23\3\24\3\24\3\24\3\24\3\24\3\24\3\24\3\24\3\24\3"+
+		"\24\3\24\5\24\u0131\n\24\3\25\3\25\3\26\3\26\3\26\3\26\3\26\3\26\7\26"+
+		"\u013b\n\26\f\26\16\26\u013e\13\26\3\27\3\27\3\27\3\27\3\27\3\27\7\27"+
+		"\u0146\n\27\f\27\16\27\u0149\13\27\3\30\3\30\3\30\5\30\u014e\n\30\3\30"+
+		"\2\7\f\20\30*,\31\2\4\6\b\n\f\16\20\22\24\26\30\32\34\36 \"$&(*,.\2\5"+
+		"\3\2\26\27\3\2\30\31\4\2\34\35\37 \u016c\2\60\3\2\2\2\4:\3\2\2\2\6Q\3"+
+		"\2\2\2\b^\3\2\2\2\nf\3\2\2\2\fq\3\2\2\2\16\u008b\3\2\2\2\20\u0095\3\2"+
+		"\2\2\22\u00c7\3\2\2\2\24\u00c9\3\2\2\2\26\u00ee\3\2\2\2\30\u00f0\3\2\2"+
+		"\2\32\u00fb\3\2\2\2\34\u0102\3\2\2\2\36\u0119\3\2\2\2 \u011b\3\2\2\2\""+
+		"\u011f\3\2\2\2$\u0121\3\2\2\2&\u0130\3\2\2\2(\u0132\3\2\2\2*\u0134\3\2"+
+		"\2\2,\u013f\3\2\2\2.\u014d\3\2\2\2\60\61\7\16\2\2\61\65\7.\2\2\62\64\7"+
+		"\62\2\2\63\62\3\2\2\2\64\67\3\2\2\2\65\63\3\2\2\2\65\66\3\2\2\2\668\3"+
+		"\2\2\2\67\65\3\2\2\289\5\4\3\29\3\3\2\2\2:;\7\3\2\2;<\7\b\2\2<=\5\6\4"+
+		"\2=A\7\n\2\2>@\7\62\2\2?>\3\2\2\2@C\3\2\2\2A?\3\2\2\2AB\3\2\2\2BM\3\2"+
+		"\2\2CA\3\2\2\2DH\5\26\f\2EG\7\62\2\2FE\3\2\2\2GJ\3\2\2\2HF\3\2\2\2HI\3"+
+		"\2\2\2IL\3\2\2\2JH\3\2\2\2KD\3\2\2\2LO\3\2\2\2MK\3\2\2\2MN\3\2\2\2N\5"+
+		"\3\2\2\2OM\3\2\2\2PR\5\b\5\2QP\3\2\2\2RS\3\2\2\2SQ\3\2\2\2ST\3\2\2\2T"+
+		"\7\3\2\2\2UV\5\n\6\2VW\7\62\2\2W_\3\2\2\2X_\5\36\20\2Y_\5\34\17\2Z_\5"+
+		"\22\n\2[_\5$\23\2\\_\5\24\13\2]_\7\62\2\2^U\3\2\2\2^X\3\2\2\2^Y\3\2\2"+
+		"\2^Z\3\2\2\2^[\3\2\2\2^\\\3\2\2\2^]\3\2\2\2_\t\3\2\2\2`g\5\f\7\2ag\5\20"+
+		"\t\2bc\7\23\2\2cd\5\n\6\2de\7\24\2\2eg\3\2\2\2f`\3\2\2\2fa\3\2\2\2fb\3"+
+		"\2\2\2g\13\3\2\2\2hi\b\7\1\2ir\5(\25\2jk\7\23\2\2kl\5\f\7\2lm\7\24\2\2"+
+		"mr\3\2\2\2nr\5&\24\2or\5.\30\2pr\7.\2\2qh\3\2\2\2qj\3\2\2\2qn\3\2\2\2"+
+		"qo\3\2\2\2qp\3\2\2\2r~\3\2\2\2st\f\n\2\2tu\t\2\2\2u}\5\f\7\13vw\f\t\2"+
+		"\2wx\t\3\2\2x}\5\f\7\nyz\f\b\2\2z{\7\32\2\2{}\5\f\7\t|s\3\2\2\2|v\3\2"+
+		"\2\2|y\3\2\2\2}\u0080\3\2\2\2~|\3\2\2\2~\177\3\2\2\2\177\r\3\2\2\2\u0080"+
+		"~\3\2\2\2\u0081\u0082\5\f\7\2\u0082\u0083\7-\2\2\u0083\u0084\5\f\7\2\u0084"+
+		"\u008c\3\2\2\2\u0085\u0086\7\23\2\2\u0086\u0087\5\f\7\2\u0087\u0088\7"+
+		"-\2\2\u0088\u0089\5\f\7\2\u0089\u008a\7\24\2\2\u008a\u008c\3\2\2\2\u008b"+
+		"\u0081\3\2\2\2\u008b\u0085\3\2\2\2\u008c\17\3\2\2\2\u008d\u008e\b\t\1"+
+		"\2\u008e\u008f\7\23\2\2\u008f\u0090\5\20\t\2\u0090\u0091\7\24\2\2\u0091"+
+		"\u0096\3\2\2\2\u0092\u0096\7!\2\2\u0093\u0096\7.\2\2\u0094\u0096\5\16"+
+		"\b\2\u0095\u008d\3\2\2\2\u0095\u0092\3\2\2\2\u0095\u0093\3\2\2\2\u0095"+
+		"\u0094\3\2\2\2\u0096\u009f\3\2\2\2\u0097\u0098\f\7\2\2\u0098\u0099\7\""+
+		"\2\2\u0099\u009e\5\20\t\b\u009a\u009b\f\6\2\2\u009b\u009c\7#\2\2\u009c"+
+		"\u009e\5\20\t\7\u009d\u0097\3\2\2\2\u009d\u009a\3\2\2\2\u009e\u00a1\3"+
+		"\2\2\2\u009f\u009d\3\2\2\2\u009f\u00a0\3\2\2\2\u00a0\21\3\2\2\2\u00a1"+
+		"\u009f\3\2\2\2\u00a2\u00a3\7\f\2\2\u00a3\u00a5\5\20\t\2\u00a4\u00a6\7"+
+		"\62\2\2\u00a5\u00a4\3\2\2\2\u00a5\u00a6\3\2\2\2\u00a6\u00a7\3\2\2\2\u00a7"+
+		"\u00a8\7\b\2\2\u00a8\u00a9\5\6\4\2\u00a9\u00b5\7\n\2\2\u00aa\u00ac\7\62"+
+		"\2\2\u00ab\u00aa\3\2\2\2\u00ab\u00ac\3\2\2\2\u00ac\u00ad\3\2\2\2\u00ad"+
+		"\u00af\7\21\2\2\u00ae\u00b0\7\62\2\2\u00af\u00ae\3\2\2\2\u00af\u00b0\3"+
+		"\2\2\2\u00b0\u00b1\3\2\2\2\u00b1\u00b2\7\b\2\2\u00b2\u00b3\5\6\4\2\u00b3"+
+		"\u00b4\7\n\2\2\u00b4\u00b6\3\2\2\2\u00b5\u00ab\3\2\2\2\u00b5\u00b6\3\2"+
+		"\2\2\u00b6\u00c8\3\2\2\2\u00b7\u00b8\7\f\2\2\u00b8\u00ba\5\20\t\2\u00b9"+
+		"\u00bb\7\62\2\2\u00ba\u00b9\3\2\2\2\u00ba\u00bb\3\2\2\2\u00bb\u00bc\3"+
+		"\2\2\2\u00bc\u00c5\5\b\5\2\u00bd\u00bf\7\62\2\2\u00be\u00bd\3\2\2\2\u00be"+
+		"\u00bf\3\2\2\2\u00bf\u00c0\3\2\2\2\u00c0\u00c2\7\21\2\2\u00c1\u00c3\7"+
+		"\62\2\2\u00c2\u00c1\3\2\2\2\u00c2\u00c3\3\2\2\2\u00c3\u00c4\3\2\2\2\u00c4"+
+		"\u00c6\5\b\5\2\u00c5\u00be\3\2\2\2\u00c5\u00c6\3\2\2\2\u00c6\u00c8\3\2"+
+		"\2\2\u00c7\u00a2\3\2\2\2\u00c7\u00b7\3\2\2\2\u00c8\23\3\2\2\2\u00c9\u00ca"+
+		"\7\13\2\2\u00ca\u00cb\7.\2\2\u00cb\u00cc\7\17\2\2\u00cc\u00cd\5\f\7\2"+
+		"\u00cd\u00ce\7\6\2\2\u00ce\u00d0\5\f\7\2\u00cf\u00d1\7\62\2\2\u00d0\u00cf"+
+		"\3\2\2\2\u00d0\u00d1\3\2\2\2\u00d1\u00d2\3\2\2\2\u00d2\u00d3\7\b\2\2\u00d3"+
+		"\u00d4\5\6\4\2\u00d4\u00d5\7\n\2\2\u00d5\25\3\2\2\2\u00d6\u00d7\7\22\2"+
+		"\2\u00d7\u00d8\5\"\22\2\u00d8\u00d9\7.\2\2\u00d9\u00da\7\23\2\2\u00da"+
+		"\u00db\5\30\r\2\u00db\u00dd\7\24\2\2\u00dc\u00de\7\62\2\2\u00dd\u00dc"+
+		"\3\2\2\2\u00dd\u00de\3\2\2\2\u00de\u00df\3\2\2\2\u00df\u00e0\7\b\2\2\u00e0"+
+		"\u00e1\5\6\4\2\u00e1\u00e2\7\n\2\2\u00e2\u00ef\3\2\2\2\u00e3\u00e4\7\22"+
+		"\2\2\u00e4\u00e5\5\"\22\2\u00e5\u00e6\7.\2\2\u00e6\u00e8\7\r\2\2\u00e7"+
+		"\u00e9\7\62\2\2\u00e8\u00e7\3\2\2\2\u00e8\u00e9\3\2\2\2\u00e9\u00ea\3"+
+		"\2\2\2\u00ea\u00eb\7\b\2\2\u00eb\u00ec\5\6\4\2\u00ec\u00ed\7\n\2\2\u00ed"+
+		"\u00ef\3\2\2\2\u00ee\u00d6\3\2\2\2\u00ee\u00e3\3\2\2\2\u00ef\27\3\2\2"+
+		"\2\u00f0\u00f1\b\r\1\2\u00f1\u00f2\5\32\16\2\u00f2\u00f8\3\2\2\2\u00f3"+
+		"\u00f4\f\3\2\2\u00f4\u00f5\7\25\2\2\u00f5\u00f7\5\32\16\2\u00f6\u00f3"+
+		"\3\2\2\2\u00f7\u00fa\3\2\2\2\u00f8\u00f6\3\2\2\2\u00f8\u00f9\3\2\2\2\u00f9"+
+		"\31\3\2\2\2\u00fa\u00f8\3\2\2\2\u00fb\u00fd\5 \21\2\u00fc\u00fe\7\20\2"+
+		"\2\u00fd\u00fc\3\2\2\2\u00fd\u00fe\3\2\2\2\u00fe\u00ff\3\2\2\2\u00ff\u0100"+
+		"\7.\2\2\u0100\33\3\2\2\2\u0101\u0103\7\33\2\2\u0102\u0101\3\2\2\2\u0102"+
+		"\u0103\3\2\2\2\u0103\u0104\3\2\2\2\u0104\u0105\5 \21\2\u0105\u0108\7."+
+		"\2\2\u0106\u0107\7\t\2\2\u0107\u0109\5\n\6\2\u0108\u0106\3\2\2\2\u0108"+
+		"\u0109\3\2\2\2\u0109\u010a\3\2\2\2\u010a\u010b\7\62\2\2\u010b\35\3\2\2"+
+		"\2\u010c\u010d\7.\2\2\u010d\u010e\7\t\2\2\u010e\u010f\5\n\6\2\u010f\u0110"+
+		"\7\62\2\2\u0110\u011a\3\2\2\2\u0111\u0112\7.\2\2\u0112\u0113\7*\2\2\u0113"+
+		"\u011a\7\62\2\2\u0114\u0115\7.\2\2\u0115\u0116\7$\2\2\u0116\u0117\5\n"+
+		"\6\2\u0117\u0118\7\62\2\2\u0118\u011a\3\2\2\2\u0119\u010c\3\2\2\2\u0119"+
+		"\u0111\3\2\2\2\u0119\u0114\3\2\2\2\u011a\37\3\2\2\2\u011b\u011c\t\4\2"+
+		"\2\u011c!\3\2\2\2\u011d\u0120\5 \21\2\u011e\u0120\7\7\2\2\u011f\u011d"+
+		"\3\2\2\2\u011f\u011e\3\2\2\2\u0120#\3\2\2\2\u0121\u0122\7\5\2\2\u0122"+
+		"\u0123\5\n\6\2\u0123\u0124\7\62\2\2\u0124%\3\2\2\2\u0125\u0126\7\4\2\2"+
+		"\u0126\u0127\5*\26\2\u0127\u0128\7\24\2\2\u0128\u0131\3\2\2\2\u0129\u012a"+
+		"\7.\2\2\u012a\u012b\7\23\2\2\u012b\u012c\5,\27\2\u012c\u012d\7\24\2\2"+
+		"\u012d\u0131\3\2\2\2\u012e\u012f\7.\2\2\u012f\u0131\7\r\2\2\u0130\u0125"+
+		"\3\2\2\2\u0130\u0129\3\2\2\2\u0130\u012e\3\2\2\2\u0131\'\3\2\2\2\u0132"+
+		"\u0133\7\66\2\2\u0133)\3\2\2\2\u0134\u0135\b\26\1\2\u0135\u0136\5\n\6"+
+		"\2\u0136\u013c\3\2\2\2\u0137\u0138\f\3\2\2\u0138\u0139\7\25\2\2\u0139"+
+		"\u013b\5\n\6\2\u013a\u0137\3\2\2\2\u013b\u013e\3\2\2\2\u013c\u013a\3\2"+
+		"\2\2\u013c\u013d\3\2\2\2\u013d+\3\2\2\2\u013e\u013c\3\2\2\2\u013f\u0140"+
+		"\b\27\1\2\u0140\u0141\5\n\6\2\u0141\u0147\3\2\2\2\u0142\u0143\f\3\2\2"+
+		"\u0143\u0144\7\25\2\2\u0144\u0146\5\n\6\2\u0145\u0142\3\2\2\2\u0146\u0149"+
+		"\3\2\2\2\u0147\u0145\3\2\2\2\u0147\u0148\3\2\2\2\u0148-\3\2\2\2\u0149"+
+		"\u0147\3\2\2\2\u014a\u014e\7\61\2\2\u014b\u014e\7\60\2\2\u014c\u014e\7"+
+		")\2\2\u014d\u014a\3\2\2\2\u014d\u014b\3\2\2\2\u014d\u014c\3\2\2\2\u014e"+
+		"/\3\2\2\2\'\65AHMS^fq|~\u008b\u0095\u009d\u009f\u00a5\u00ab\u00af\u00b5"+
+		"\u00ba\u00be\u00c2\u00c5\u00c7\u00d0\u00dd\u00e8\u00ee\u00f8\u00fd\u0102"+
+		"\u0108\u0119\u011f\u0130\u013c\u0147\u014d";
 	public static final ATN _ATN =
 		new ATNDeserializer().deserialize(_serializedATN.toCharArray());
 	static {
