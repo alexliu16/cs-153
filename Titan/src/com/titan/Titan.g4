@@ -58,7 +58,9 @@ conditional : 'if' boolExprs NEWLINE? '{' block '}' (NEWLINE? 'else' NEWLINE? '{
 
 loop : 'for' ID 'from' simpleExpression 'to' simpleExpression NEWLINE? '{' block '}' ;
 
-functionDeclaration : 'function' funcReturnTypes ID '(' args ')' NEWLINE? '{' block '}' ;
+functionDeclaration : 'function' funcReturnTypes ID '(' args ')' NEWLINE? '{' block '}' #FunctionWithArgsDecl
+					| 'function' funcReturnTypes ID '()' NEWLINE? '{' block '}' #FunctionWithoutArgsDecl
+					;
 
 args : argDecl
      | args ',' argDecl;
@@ -79,7 +81,8 @@ retStat: 'return' expr NEWLINE;
 
 functionCall locals [ TypeSpec type = null ]
              : 'printf(' printfexprList ')'      #Printf
-             | ID '('exprList ')'                #RegularFunction
+             | ID '('exprList ')'                #RegularFunctionWithArgs
+             | ID '()'							 #RegularFunctionWithoutArgs
              ;
 
 stringExpr : STRINGLIT;

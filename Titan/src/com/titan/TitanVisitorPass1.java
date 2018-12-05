@@ -100,18 +100,6 @@ public class TitanVisitorPass1 extends TitanBaseVisitor<Integer>
     }
 
     @Override
-    public Integer visitBlock(TitanParser.BlockContext ctx) {
-        //slot_no = 0;
-        return super.visitBlock(ctx);
-    }
-
-    @Override
-    public Integer visitRegularFunction(TitanParser.RegularFunctionContext ctx) {
-        //slot_no = 0;
-        return super.visitRegularFunction(ctx);
-    }
-
-    @Override
     public Integer visitDeclaration(TitanParser.DeclarationContext ctx) {
         if(!localDeclarations) {
             jFile.println("; global " + ctx.getText() + "\n");
@@ -274,7 +262,7 @@ public class TitanVisitorPass1 extends TitanBaseVisitor<Integer>
     
     //Function declaration
     @Override
-    public Integer visitFunctionDeclaration(TitanParser.FunctionDeclarationContext ctx) { 
+    public Integer visitFunctionWithArgsDecl(TitanParser.FunctionWithArgsDeclContext ctx) { 
     	//Create a symbol table for function
     	SymTab symTable = SymTabFactory.createSymTab(symTabStack.getCurrentNestingLevel() + 1);
     	int slot_no = symTabStack.getLocalSymTab().nextSlotNumber() - 1;
@@ -336,7 +324,6 @@ public class TitanVisitorPass1 extends TitanBaseVisitor<Integer>
     		loc.setTypeSpec(getType(type));
             loc.setAttribute(SLOT, symTabStack.getLocalSymTab().nextSlotNumber());   
     	}
-    	//slot_no += ctx.children.size() / 2 + 1;
     	
     	return visitChildren(ctx);
     }
@@ -348,5 +335,39 @@ public class TitanVisitorPass1 extends TitanBaseVisitor<Integer>
     	SymTabEntry loc = symTabStack.enterLocal("return");
     	loc.setTypeSpec(getType(ctx.getText()));
     	return visitChildren(ctx); 
+    }
+    
+    @Override
+    public Integer visitFunctionWithoutArgsDecl(TitanParser.FunctionWithoutArgsDeclContext ctx) { 
+    	//Create a symbol table for function
+    	SymTab symTable = SymTabFactory.createSymTab(symTabStack.getCurrentNestingLevel() + 1);
+    	int slot_no = symTabStack.getLocalSymTab().nextSlotNumber() - 1;
+    	symTabStack.push(symTable);
+    	symTabStack.getLocalSymTab().setSlotNumber(slot_no);
+    	
+    	visitChildren(ctx);
+    	symTable = symTabStack.pop();
+    	
+    	//create function arg signature
+    	//function return type
+    	String sb = "()";
+    	TypeSpec returnType = symTable.lookup("return").getTypeSpec();
+    	if(returnType == Predefined.undefinedType)
+    		sb += ("V");
+    	else if(returnType == Predefined.integerType)
+    		sb += ("I");
+    	else if(returnType == Predefined.realType)
+    		sb += ("F");
+    	else if(returnType == Predefined.booleanType)
+    		sb += ("Z");
+    	else if(returnType == Predefined.stringType)
+    		sb += ("Ljava/lang/String;");
+    	
+    	//save symbol table and header
+    	SymTabEntry loc = symTabStack.enterLocal(ctx.ID().getText());
+    	loc.setAttribute(FUNCTION_HEADER, sb.toString());
+    	loc.setAttribute(ROUTINE_SYMTAB, symTable);
+
+    	return 0;
     }
 }

@@ -280,7 +280,7 @@ public class TitanVisitorPass2 extends TitanBaseVisitor<Integer>
     		local = symTabStack.lookup(ctx.ID().toString());
         
         //SymTabEntry local = symTabStack.lookupLocal(ctx.ID().toString());
-
+    	System.out.println("Identifier " + ctx.ID().getText() );
 
         ctx.type = local.getTypeSpec();
         TypeSpec type = ctx.type;
@@ -606,7 +606,7 @@ public class TitanVisitorPass2 extends TitanBaseVisitor<Integer>
     
     //Function declaration
     @Override
-    public Integer visitFunctionDeclaration(TitanParser.FunctionDeclarationContext ctx) {  
+    public Integer visitFunctionWithArgsDecl(TitanParser.FunctionWithArgsDeclContext ctx) {  
     	//emit function header
     	String funcHeader = (String) symTabStack.lookupLocal(ctx.ID().getText()).getAttribute(FUNCTION_HEADER);
     	jFile.println("\n.method static " + ctx.ID().toString() + funcHeader);
@@ -625,6 +625,8 @@ public class TitanVisitorPass2 extends TitanBaseVisitor<Integer>
     		jFile.println("\tfreturn\n");
     	else if(returnType == 'V')
     		jFile.println("\treturn\n");
+    	else if(returnType == ';')
+    		jFile.println("\tareturn\n");
     	else
     		jFile.println("\tireturn\n");
     	
@@ -651,7 +653,10 @@ public class TitanVisitorPass2 extends TitanBaseVisitor<Integer>
     			jFile.println("\tiload " + numArgs++); //load value from argument register
     			jFile.println("\tistore " + slot_no); //store argument into register for variable
     		}	
-    		//TODO: string
+    		else if(argType.equals("string")) {
+    			jFile.println("\taload " + numArgs++); //load value from argument register
+    			jFile.println("\tastore " + slot_no); //store argument into register for variable
+    		}
     	}
     	
     	return visitChildren(ctx);
@@ -659,14 +664,56 @@ public class TitanVisitorPass2 extends TitanBaseVisitor<Integer>
     
     //function call
     @Override
-    public Integer visitRegularFunction(TitanParser.RegularFunctionContext ctx) {
-        localDeclarations = true;
+    public Integer visitRegularFunctionWithArgs(TitanParser.RegularFunctionWithArgsContext ctx) {
         Integer value = visitChildren(ctx);
         
         //emit function call
         jFile.println("\tinvokestatic " + programId.getName() + "/" + ctx.ID() + symTabStack.lookupLocal(ctx.ID().getText()).getAttribute(FUNCTION_HEADER));
         
-        localDeclarations = false;
+        return value;
+    }
+    
+    @Override
+    public Integer visitFunctionWithoutArgsDecl(TitanParser.FunctionWithoutArgsDeclContext ctx) {  
+    	//emit function header
+    	String funcHeader = (String) symTabStack.lookupLocal(ctx.ID().getText()).getAttribute(FUNCTION_HEADER);
+    	jFile.println("\n.method static " + ctx.ID().toString() + funcHeader);
+    	
+    	//push local symbol table for function and visit children
+    	functionCall = true;
+    	symTabStack.push((SymTab) symTabStack.lookupLocal(ctx.ID().getText()).getAttribute(ROUTINE_SYMTAB));
+    	Integer value = visitChildren(ctx);
+    	symTabStack.pop();
+    	functionCall = false;
+    	
+    	//emit function return type
+    	char returnType = funcHeader.charAt(funcHeader.length() - 1);
+    	
+    	if(returnType == 'F')
+    		jFile.println("\tfreturn\n");
+    	else if(returnType == 'V')
+    		jFile.println("\treturn\n");
+    	else if(returnType == ';')
+    		jFile.println("\tareturn\n");
+    	else
+    		jFile.println("\tireturn\n");
+    	
+    	numArgs = 0; //reset number of arguments
+    	
+    	jFile.println(".limit locals 32");
+        jFile.println(".limit stack 32");
+    	jFile.println(".end method");
+    	return value;
+    }
+    
+    //function call
+    @Override
+    public Integer visitRegularFunctionWithoutArgs(TitanParser.RegularFunctionWithoutArgsContext ctx) {
+        Integer value = visitChildren(ctx);
+        
+        //emit function call
+        jFile.println("\tinvokestatic " + programId.getName() + "/" + ctx.ID() + symTabStack.lookup(ctx.ID().getText()).getAttribute(FUNCTION_HEADER));
+        
         return value;
     }
 }

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER">
+		<attributes>
+			<attribute name="module" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="src" path="gen"/>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="lib" path="/Users/alexliu/Documents/College/Fall 2018/CS 153/antlr/antlr-4.7.1-complete.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>
