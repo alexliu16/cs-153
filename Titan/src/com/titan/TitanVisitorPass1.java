@@ -154,10 +154,12 @@ public class TitanVisitorPass1 extends TitanBaseVisitor<Integer>
                 && (type2 == Predefined.integerType);
         boolean realMode    =    (type1 == Predefined.realType || type1 == Predefined.integerType)
                 && (type2 == Predefined.realType || type2 == Predefined.integerType);
+        boolean stringMode = type1 == Predefined.stringType && type2 == Predefined.stringType;
 
         TypeSpec type = integerMode ? Predefined.integerType
                 : realMode    ? Predefined.realType
-                :               null;
+                : stringMode ? Predefined.stringType
+                : null;
         ctx.type = type;
 
         return value;
@@ -168,6 +170,20 @@ public class TitanVisitorPass1 extends TitanBaseVisitor<Integer>
         Integer value = visitChildren(ctx);
         ctx.type = ctx.simpleExpression().type;
         return value;
+    }
+
+    @Override
+    public Integer visitStrLit(TitanParser.StrLitContext ctx) {
+        Integer value = visitChildren(ctx);
+        ctx.type = Predefined.stringType;
+        return value;
+    }
+
+    @Override
+    public Integer visitString(TitanParser.StringContext ctx) {
+        visitChildren(ctx);
+        ctx.type = ctx.stringExpr().type;
+        return 0;
     }
 
     @Override
