@@ -29,7 +29,7 @@ expr locals [ TypeSpec type = null ]
      ;
 
 simpleExpression locals [ TypeSpec type = null ]
-           : simpleExpression op=(MUL|DIV) simpleExpression  #MulDivOp
+           : simpleExpression op=(MUL|DIV) simpleExpression        #MulDivOp
            | simpleExpression op=(ADD|SUB) simpleExpression        #AddSubOp
            | simpleExpression MOD simpleExpression                 #ModOp
            | stringExpr                                            #String
@@ -85,7 +85,9 @@ functionCall locals [ TypeSpec type = null ]
              | ID '()'							 #RegularFunctionWithoutArgs
              ;
 
-stringExpr : STRINGLIT;
+stringExpr locals [ TypeSpec type = null ]
+           : STRINGLIT                 #StrLit
+           ;
 
 printfexprList : expr
                | printfexprList ',' expr ;

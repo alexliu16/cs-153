@@ -1,4 +1,4 @@
-// Generated from Titan.g4 by ANTLR 4.4
+// Generated from /Users/thomaspedersen/CS153/TeamProject/cs-153/Titan/src/com/titan/Titan.g4 by ANTLR 4.7
 package com.titan;
 
     import com.titan.intermediate.*;
@@ -6,7 +6,6 @@ package com.titan;
 
 
 import org.antlr.v4.runtime.ParserRuleContext;
-import org.antlr.v4.runtime.misc.NotNull;
 import org.antlr.v4.runtime.tree.ErrorNode;
 import org.antlr.v4.runtime.tree.TerminalNode;
 
@@ -21,564 +20,564 @@ public class TitanBaseListener implements TitanListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterBoolExpr(@NotNull TitanParser.BoolExprContext ctx) { }
+	@Override public void enterClassName(TitanParser.ClassNameContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitBoolExpr(@NotNull TitanParser.BoolExprContext ctx) { }
+	@Override public void exitClassName(TitanParser.ClassNameContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterPrintf(@NotNull TitanParser.PrintfContext ctx) { }
+	@Override public void enterProg(TitanParser.ProgContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitPrintf(@NotNull TitanParser.PrintfContext ctx) { }
+	@Override public void exitProg(TitanParser.ProgContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterIfElseNoBrackets(@NotNull TitanParser.IfElseNoBracketsContext ctx) { }
+	@Override public void enterBlock(TitanParser.BlockContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitIfElseNoBrackets(@NotNull TitanParser.IfElseNoBracketsContext ctx) { }
+	@Override public void exitBlock(TitanParser.BlockContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterComparisonExpr(@NotNull TitanParser.ComparisonExprContext ctx) { }
+	@Override public void enterStat(TitanParser.StatContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitComparisonExpr(@NotNull TitanParser.ComparisonExprContext ctx) { }
+	@Override public void exitStat(TitanParser.StatContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterSpecialAssignment(@NotNull TitanParser.SpecialAssignmentContext ctx) { }
+	@Override public void enterSimpleExpr(TitanParser.SimpleExprContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitSpecialAssignment(@NotNull TitanParser.SpecialAssignmentContext ctx) { }
+	@Override public void exitSimpleExpr(TitanParser.SimpleExprContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterFuncReturnTypes(@NotNull TitanParser.FuncReturnTypesContext ctx) { }
+	@Override public void enterBoolExpr(TitanParser.BoolExprContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitFuncReturnTypes(@NotNull TitanParser.FuncReturnTypesContext ctx) { }
+	@Override public void exitBoolExpr(TitanParser.BoolExprContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterAddSubOp(@NotNull TitanParser.AddSubOpContext ctx) { }
+	@Override public void enterParenExpr(TitanParser.ParenExprContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitAddSubOp(@NotNull TitanParser.AddSubOpContext ctx) { }
+	@Override public void exitParenExpr(TitanParser.ParenExprContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterBoolIdentifier(@NotNull TitanParser.BoolIdentifierContext ctx) { }
+	@Override public void enterMulDivOp(TitanParser.MulDivOpContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitBoolIdentifier(@NotNull TitanParser.BoolIdentifierContext ctx) { }
+	@Override public void exitMulDivOp(TitanParser.MulDivOpContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterClassName(@NotNull TitanParser.ClassNameContext ctx) { }
+	@Override public void enterFuncCall(TitanParser.FuncCallContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitClassName(@NotNull TitanParser.ClassNameContext ctx) { }
+	@Override public void exitFuncCall(TitanParser.FuncCallContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterExponential(@NotNull TitanParser.ExponentialContext ctx) { }
+	@Override public void enterModOp(TitanParser.ModOpContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitExponential(@NotNull TitanParser.ExponentialContext ctx) { }
+	@Override public void exitModOp(TitanParser.ModOpContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterString(@NotNull TitanParser.StringContext ctx) { }
+	@Override public void enterIdentifier(TitanParser.IdentifierContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitString(@NotNull TitanParser.StringContext ctx) { }
+	@Override public void exitIdentifier(TitanParser.IdentifierContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterSimpleExprParen(@NotNull TitanParser.SimpleExprParenContext ctx) { }
+	@Override public void enterLiteral(TitanParser.LiteralContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitSimpleExprParen(@NotNull TitanParser.SimpleExprParenContext ctx) { }
+	@Override public void exitLiteral(TitanParser.LiteralContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterSimpleAssignment(@NotNull TitanParser.SimpleAssignmentContext ctx) { }
+	@Override public void enterAddSubOp(TitanParser.AddSubOpContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitSimpleAssignment(@NotNull TitanParser.SimpleAssignmentContext ctx) { }
+	@Override public void exitAddSubOp(TitanParser.AddSubOpContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterIfElseBrackets(@NotNull TitanParser.IfElseBracketsContext ctx) { }
+	@Override public void enterString(TitanParser.StringContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitIfElseBrackets(@NotNull TitanParser.IfElseBracketsContext ctx) { }
+	@Override public void exitString(TitanParser.StringContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterSimpleExpr(@NotNull TitanParser.SimpleExprContext ctx) { }
+	@Override public void enterSimpleExprParen(TitanParser.SimpleExprParenContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitSimpleExpr(@NotNull TitanParser.SimpleExprContext ctx) { }
+	@Override public void exitSimpleExprParen(TitanParser.SimpleExprParenContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterStringExpr(@NotNull TitanParser.StringExprContext ctx) { }
+	@Override public void enterComparison(TitanParser.ComparisonContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitStringExpr(@NotNull TitanParser.StringExprContext ctx) { }
+	@Override public void exitComparison(TitanParser.ComparisonContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterModOp(@NotNull TitanParser.ModOpContext ctx) { }
+	@Override public void enterBoolLiteral(TitanParser.BoolLiteralContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitModOp(@NotNull TitanParser.ModOpContext ctx) { }
+	@Override public void exitBoolLiteral(TitanParser.BoolLiteralContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterPrimitives(@NotNull TitanParser.PrimitivesContext ctx) { }
+	@Override public void enterComparisonExpr(TitanParser.ComparisonExprContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitPrimitives(@NotNull TitanParser.PrimitivesContext ctx) { }
+	@Override public void exitComparisonExpr(TitanParser.ComparisonExprContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterIdentifier(@NotNull TitanParser.IdentifierContext ctx) { }
+	@Override public void enterBoolIdentifier(TitanParser.BoolIdentifierContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitIdentifier(@NotNull TitanParser.IdentifierContext ctx) { }
+	@Override public void exitBoolIdentifier(TitanParser.BoolIdentifierContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterBoolLiteral(@NotNull TitanParser.BoolLiteralContext ctx) { }
+	@Override public void enterBoolParen(TitanParser.BoolParenContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitBoolLiteral(@NotNull TitanParser.BoolLiteralContext ctx) { }
+	@Override public void exitBoolParen(TitanParser.BoolParenContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterLoop(@NotNull TitanParser.LoopContext ctx) { }
+	@Override public void enterBoolOr(TitanParser.BoolOrContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitLoop(@NotNull TitanParser.LoopContext ctx) { }
+	@Override public void exitBoolOr(TitanParser.BoolOrContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterPrintfexprList(@NotNull TitanParser.PrintfexprListContext ctx) { }
+	@Override public void enterBoolAnd(TitanParser.BoolAndContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitPrintfexprList(@NotNull TitanParser.PrintfexprListContext ctx) { }
+	@Override public void exitBoolAnd(TitanParser.BoolAndContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterLiteral(@NotNull TitanParser.LiteralContext ctx) { }
+	@Override public void enterIfElseBrackets(TitanParser.IfElseBracketsContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitLiteral(@NotNull TitanParser.LiteralContext ctx) { }
+	@Override public void exitIfElseBrackets(TitanParser.IfElseBracketsContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterBlock(@NotNull TitanParser.BlockContext ctx) { }
+	@Override public void enterIfElseNoBrackets(TitanParser.IfElseNoBracketsContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitBlock(@NotNull TitanParser.BlockContext ctx) { }
+	@Override public void exitIfElseNoBrackets(TitanParser.IfElseNoBracketsContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterRegularFunctionWithoutArgs(@NotNull TitanParser.RegularFunctionWithoutArgsContext ctx) { }
+	@Override public void enterLoop(TitanParser.LoopContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitRegularFunctionWithoutArgs(@NotNull TitanParser.RegularFunctionWithoutArgsContext ctx) { }
+	@Override public void exitLoop(TitanParser.LoopContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterBoolParen(@NotNull TitanParser.BoolParenContext ctx) { }
+	@Override public void enterFunctionWithArgsDecl(TitanParser.FunctionWithArgsDeclContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitBoolParen(@NotNull TitanParser.BoolParenContext ctx) { }
+	@Override public void exitFunctionWithArgsDecl(TitanParser.FunctionWithArgsDeclContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterFunctionWithArgsDecl(@NotNull TitanParser.FunctionWithArgsDeclContext ctx) { }
+	@Override public void enterFunctionWithoutArgsDecl(TitanParser.FunctionWithoutArgsDeclContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitFunctionWithArgsDecl(@NotNull TitanParser.FunctionWithArgsDeclContext ctx) { }
+	@Override public void exitFunctionWithoutArgsDecl(TitanParser.FunctionWithoutArgsDeclContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterMulDivOp(@NotNull TitanParser.MulDivOpContext ctx) { }
+	@Override public void enterArgs(TitanParser.ArgsContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitMulDivOp(@NotNull TitanParser.MulDivOpContext ctx) { }
+	@Override public void exitArgs(TitanParser.ArgsContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterFunctionWithoutArgsDecl(@NotNull TitanParser.FunctionWithoutArgsDeclContext ctx) { }
+	@Override public void enterArgDecl(TitanParser.ArgDeclContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitFunctionWithoutArgsDecl(@NotNull TitanParser.FunctionWithoutArgsDeclContext ctx) { }
+	@Override public void exitArgDecl(TitanParser.ArgDeclContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterStat(@NotNull TitanParser.StatContext ctx) { }
+	@Override public void enterDeclaration(TitanParser.DeclarationContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitStat(@NotNull TitanParser.StatContext ctx) { }
+	@Override public void exitDeclaration(TitanParser.DeclarationContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterComparison(@NotNull TitanParser.ComparisonContext ctx) { }
+	@Override public void enterSimpleAssignment(TitanParser.SimpleAssignmentContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitComparison(@NotNull TitanParser.ComparisonContext ctx) { }
+	@Override public void exitSimpleAssignment(TitanParser.SimpleAssignmentContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterShorthandIncDecAssignment(@NotNull TitanParser.ShorthandIncDecAssignmentContext ctx) { }
+	@Override public void enterShorthandIncDecAssignment(TitanParser.ShorthandIncDecAssignmentContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitShorthandIncDecAssignment(@NotNull TitanParser.ShorthandIncDecAssignmentContext ctx) { }
+	@Override public void exitShorthandIncDecAssignment(TitanParser.ShorthandIncDecAssignmentContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterDeclaration(@NotNull TitanParser.DeclarationContext ctx) { }
+	@Override public void enterSpecialAssignment(TitanParser.SpecialAssignmentContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitDeclaration(@NotNull TitanParser.DeclarationContext ctx) { }
+	@Override public void exitSpecialAssignment(TitanParser.SpecialAssignmentContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterProg(@NotNull TitanParser.ProgContext ctx) { }
+	@Override public void enterPrimitives(TitanParser.PrimitivesContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitProg(@NotNull TitanParser.ProgContext ctx) { }
+	@Override public void exitPrimitives(TitanParser.PrimitivesContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterArgs(@NotNull TitanParser.ArgsContext ctx) { }
+	@Override public void enterFuncReturnTypes(TitanParser.FuncReturnTypesContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitArgs(@NotNull TitanParser.ArgsContext ctx) { }
+	@Override public void exitFuncReturnTypes(TitanParser.FuncReturnTypesContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterArgDecl(@NotNull TitanParser.ArgDeclContext ctx) { }
+	@Override public void enterRetStat(TitanParser.RetStatContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitArgDecl(@NotNull TitanParser.ArgDeclContext ctx) { }
+	@Override public void exitRetStat(TitanParser.RetStatContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterInteger(@NotNull TitanParser.IntegerContext ctx) { }
+	@Override public void enterPrintf(TitanParser.PrintfContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitInteger(@NotNull TitanParser.IntegerContext ctx) { }
+	@Override public void exitPrintf(TitanParser.PrintfContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterFuncCall(@NotNull TitanParser.FuncCallContext ctx) { }
+	@Override public void enterRegularFunctionWithArgs(TitanParser.RegularFunctionWithArgsContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitFuncCall(@NotNull TitanParser.FuncCallContext ctx) { }
+	@Override public void exitRegularFunctionWithArgs(TitanParser.RegularFunctionWithArgsContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterFloat(@NotNull TitanParser.FloatContext ctx) { }
+	@Override public void enterRegularFunctionWithoutArgs(TitanParser.RegularFunctionWithoutArgsContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitFloat(@NotNull TitanParser.FloatContext ctx) { }
+	@Override public void exitRegularFunctionWithoutArgs(TitanParser.RegularFunctionWithoutArgsContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterRegularFunctionWithArgs(@NotNull TitanParser.RegularFunctionWithArgsContext ctx) { }
+	@Override public void enterStrLit(TitanParser.StrLitContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitRegularFunctionWithArgs(@NotNull TitanParser.RegularFunctionWithArgsContext ctx) { }
+	@Override public void exitStrLit(TitanParser.StrLitContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterExprList(@NotNull TitanParser.ExprListContext ctx) { }
+	@Override public void enterPrintfexprList(TitanParser.PrintfexprListContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitExprList(@NotNull TitanParser.ExprListContext ctx) { }
+	@Override public void exitPrintfexprList(TitanParser.PrintfexprListContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterParenExpr(@NotNull TitanParser.ParenExprContext ctx) { }
+	@Override public void enterExprList(TitanParser.ExprListContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitParenExpr(@NotNull TitanParser.ParenExprContext ctx) { }
+	@Override public void exitExprList(TitanParser.ExprListContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterRetStat(@NotNull TitanParser.RetStatContext ctx) { }
+	@Override public void enterInteger(TitanParser.IntegerContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitRetStat(@NotNull TitanParser.RetStatContext ctx) { }
+	@Override public void exitInteger(TitanParser.IntegerContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterBoolOr(@NotNull TitanParser.BoolOrContext ctx) { }
+	@Override public void enterFloat(TitanParser.FloatContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitBoolOr(@NotNull TitanParser.BoolOrContext ctx) { }
+	@Override public void exitFloat(TitanParser.FloatContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterBoolAnd(@NotNull TitanParser.BoolAndContext ctx) { }
+	@Override public void enterExponential(TitanParser.ExponentialContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitBoolAnd(@NotNull TitanParser.BoolAndContext ctx) { }
+	@Override public void exitExponential(TitanParser.ExponentialContext ctx) { }
 
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterEveryRule(@NotNull ParserRuleContext ctx) { }
+	@Override public void enterEveryRule(ParserRuleContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitEveryRule(@NotNull ParserRuleContext ctx) { }
+	@Override public void exitEveryRule(ParserRuleContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void visitTerminal(@NotNull TerminalNode node) { }
+	@Override public void visitTerminal(TerminalNode node) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void visitErrorNode(@NotNull ErrorNode node) { }
+	@Override public void visitErrorNode(ErrorNode node) { }
 }

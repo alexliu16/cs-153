@@ -200,8 +200,6 @@ public class TitanVisitorPass2 extends TitanBaseVisitor<Integer>
         return 0;
     }
 
-
-
     @Override
     public Integer visitAddSubOp(TitanParser.AddSubOpContext ctx)
     {
@@ -214,6 +212,7 @@ public class TitanVisitorPass2 extends TitanBaseVisitor<Integer>
                 && (type2 == Predefined.integerType);
         boolean realMode    =    (type1 == Predefined.realType)
                 && (type2 == Predefined.realType);
+        boolean stringMode = type1 == Predefined.stringType && type2 == Predefined.stringType;
 
         String op = ctx.op.getText();
         String opcode;
@@ -229,9 +228,19 @@ public class TitanVisitorPass2 extends TitanBaseVisitor<Integer>
                     :               "????sub";
         }
 
-        // Emit an add or subtract instruction.
-        jFile.println("\t" + opcode);
-
+        if(stringMode) {
+            jFile.println("new java/lang/StringBuilder");
+            jFile.println("dup");
+            jFile.println("invokespecial java/lang/StringBuilder/<init>()V");
+            visit(ctx.simpleExpression(0));
+            jFile.println("invokevirtual java/lang/StringBuilder/append(Ljava/lang/String;)Ljava/lang/StringBuilder;");
+            visit(ctx.simpleExpression(1));
+            jFile.println("invokevirtual java/lang/StringBuilder/append(Ljava/lang/String;)Ljava/lang/StringBuilder;");
+            jFile.println("invokevirtual java/lang/StringBuilder/toString()Ljava/lang/String;");
+        }
+        else {         // Emit an add or subtract instruction for numbers
+            jFile.println("\t" + opcode);
+        }
         return value;
     }
 
@@ -308,16 +317,9 @@ public class TitanVisitorPass2 extends TitanBaseVisitor<Integer>
         ctx.type = ctx.simpleExpression().type;
         return value;
     }
-    
-    
-    public Integer visitSimpleExpr(TitanParser.SimpleExpressionContext ctx) {
-        Integer value = visitChildren(ctx);
-        ctx.type = ctx.type;
-        return value;
-    }
 
     @Override
-    public Integer visitStringExpr(TitanParser.StringExprContext ctx) {
+    public Integer visitStrLit(TitanParser.StrLitContext ctx) {
         jFile.println("ldc " + ctx.getText());
         return 0;
     }
@@ -459,6 +461,13 @@ public class TitanVisitorPass2 extends TitanBaseVisitor<Integer>
                 && (type2 == Predefined.integerType);
         boolean realMode    =    (type1 == Predefined.realType)
                 && (type2 == Predefined.realType);
+        boolean stringMode = type1 == Predefined.stringType && type2 == Predefined.stringType;
+
+        if(stringMode) {
+            jFile.println("invokevirtual java/lang/String/compareTo(Ljava/lang/String;)I");
+            jFile.println("iconst_0");
+            integerMode = true;
+        }
         String compareCode;
         if (comparison.equals("<")) {
             compareCode = integerMode ? "if_icmplt"
