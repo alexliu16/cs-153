@@ -3,6 +3,8 @@ package com.titan;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 
+import org.antlr.v4.runtime.misc.NotNull;
+
 import com.titan.intermediate.*;
 import com.titan.intermediate.symtabimpl.*;
 
@@ -24,7 +26,7 @@ public class TitanVisitorPass2 extends TitanBaseVisitor<Integer>
     
     // used to give unique labels (L000, L0001, L0002 ...)
     private int labelIncrementer;
-
+ 
     private boolean localDeclarations = false;
     private int numArgs = 0;
     
@@ -172,9 +174,56 @@ public class TitanVisitorPass2 extends TitanBaseVisitor<Integer>
         }
         return 0;
     }
+    
+    @Override 
+    public Integer visitTernaryOpAssignment(TitanParser.TernaryOpAssignmentContext ctx) {
+    	visit(ctx.boolExprs());
+    	
+    	// emit label for for first assignment expression
+    	jFile.println("\n\n\tifeq L00" + (this.labelIncrementer + 1)); //jump to second assignment expr
+        visit(ctx.expr(0));
+        jFile.println("\t goto L00" + (this.labelIncrementer + 2));
+        
+        //emit label for second assignment expression
+        jFile.println("L00" + (this.labelIncrementer + 1) + ":");
+        visit(ctx.expr(1));
+        jFile.println("L00" + (this.labelIncrementer + 2) + ":");
+        
+        labelIncrementer += 3;
+    	
+        //store value
+    	TypeSpec type1 = ctx.expr(0).type;
+    	TypeSpec type2 = ctx.expr(1).type;
+    	
+    	if(type1 != type2)
+    		jFile.println("MISMATCHED INPUT TYPES");
+    	
+    	String typeIndicator =
+                (type1 == Predefined.integerType || type1 == Predefined.booleanType) ? "I"
+                        : (type1 == Predefined.realType)    ? "F"
+                        : (type1 == Predefined.stringType) ? "A"
+                        : "?";
+    		
+    	
+        SymTabEntry local = symTabStack.lookup(ctx.ID().toString());
+        if(local != null) {
+            jFile.println(typeIndicator.toLowerCase() + "store " + local.getAttribute(SLOT));
+        }
+        else {
+            // Emit a field put instruction.
+            if(ctx.expr(0).type == Predefined.stringType) {
+                typeIndicator = "Ljava/lang/String;";
+            }
+            jFile.println("\tputstatic\t" + programName
+                    + "/" + ctx.ID().toString()
+                    + " " + typeIndicator);
+        }
+        
+    	return 0; 
+    }
 
     @Override
-    public Integer visitDeclaration(TitanParser.DeclarationContext ctx) {
+    public Integer visitNormalDeclaration(TitanParser.NormalDeclarationContext ctx) {
         String name = ctx.ID().getText();
 
         if(localDeclarations) { 
@@ -200,7 +249,53 @@ public class TitanVisitorPass2 extends TitanBaseVisitor<Integer>
         return 0;
     }
 
+    @Override
+    public Integer visitTernaryDeclaration(TitanParser.TernaryDeclarationContext ctx) {
+        String name = ctx.ID().getText();
 
+        if(localDeclarations) { 
+            SymTabEntry entry = symTabStack.lookupLocal(name);
+            if(entry != null) {
+                TypeSpec typeSpec = entry.getTypeSpec();
+                char type = typeSpec == Predefined.integerType ? 'i'
+                        : typeSpec == Predefined.realType ? 'f'
+                        : typeSpec == Predefined.booleanType ? 'i'
+                        : typeSpec == Predefined.stringType ? 'a'
+                        : '?';
+                int slot_no = (int) entry.getAttribute(SLOT);
+                if (ctx.expr() != null) {
+                    //visit(ctx.expr()); // expr is on stack now
+                    
+                    visit(ctx.boolExprs());
+                	
+                	// emit label for for first assignment expression
+                	jFile.println("\n\n\tifeq L00" + (this.labelIncrementer + 1)); //jump to second assignment expr
+                    visit(ctx.expr(0));
+                    jFile.println("\t goto L00" + (this.labelIncrementer + 2));
+                    
+                    //emit label for second assignment expression
+                    jFile.println("L00" + (this.labelIncrementer + 1) + ":");
+                    visit(ctx.expr(1));
+                    jFile.println("L00" + (this.labelIncrementer + 2) + ":");
+                    
+                    labelIncrementer += 3;
+                	
+                    //store value
+                	TypeSpec type1 = ctx.expr(0).type;
+                	TypeSpec type2 = ctx.expr(1).type;
+                	
+                	if(type1 != type2)
+                		jFile.println("MISMATCHED INPUT TYPES");
+                    jFile.println(type + "store " + slot_no);
+                }
+            }
+            else {
+                jFile.println("Unknown declaration " + name);
+            }
+        }
+
+        return 0;
+    }
 
     @Override
     public Integer visitAddSubOp(TitanParser.AddSubOpContext ctx)
@@ -280,7 +375,6 @@ public class TitanVisitorPass2 extends TitanBaseVisitor<Integer>
     		local = symTabStack.lookup(ctx.ID().toString());
         
         //SymTabEntry local = symTabStack.lookupLocal(ctx.ID().toString());
-    	System.out.println("Identifier " + ctx.ID().getText() );
 
         ctx.type = local.getTypeSpec();
         TypeSpec type = ctx.type;
@@ -294,7 +388,6 @@ public class TitanVisitorPass2 extends TitanBaseVisitor<Integer>
             jFile.println(typeIndicator.toLowerCase() + "load " + local.getAttribute(SLOT));
         }
         else {
-
             // Emit a field get instruction.
             jFile.println("\tgetstatic\t" + programName +
                     "/" + variableName + " " + typeIndicator);
@@ -353,6 +446,7 @@ public class TitanVisitorPass2 extends TitanBaseVisitor<Integer>
         if(ctx.printfexprList() != null) {
             value = visit(ctx.printfexprList());
         }
+   
         if(printfSecondPass) {
             if(value == 0) {
                 visit(ctx.expr()); // loads the string onto stack
@@ -368,6 +462,21 @@ public class TitanVisitorPass2 extends TitanBaseVisitor<Integer>
         if(!printfFirstPass && ((value != 0 || !printfSecondPass)))
             visit(ctx.expr());
         if(printfSecondPass  && value != 0) {
+        	if(ctx.expr().type == null && ctx.expr().getText().indexOf('(') > -1) {
+        		//check if function call
+        		SymTabEntry funcEntry = symTabStack.lookupLocal(ctx.expr().getText().substring(0, ctx.expr().getText().indexOf('(')));
+        		if(funcEntry != null) {
+        			String funcHeader = (String)funcEntry.getAttribute(FUNCTION_HEADER);
+        			char retType = funcHeader.charAt(funcHeader.length() - 1);
+        			
+        			if(retType == ';') ctx.expr().type = Predefined.stringType;
+        			else if(retType == 'Z') ctx.expr().type = Predefined.booleanType;
+        			else if(retType == 'I') ctx.expr().type = Predefined.integerType;
+        			else if(retType == 'F') ctx.expr().type = Predefined.realType;
+        			
+        		}
+        	}
+           
             // figure out if it's an integer or real
             if(ctx.expr().type == Predefined.integerType)
                 jFile.println("invokestatic java/lang/Integer.valueOf(I)Ljava/lang/Integer;");
@@ -618,17 +727,11 @@ public class TitanVisitorPass2 extends TitanBaseVisitor<Integer>
     	symTabStack.pop();
     	functionCall = false;
     	
-    	//emit function return type
+    	//emit function return type if return void
     	char returnType = funcHeader.charAt(funcHeader.length() - 1);
     	
-    	if(returnType == 'F')
-    		jFile.println("\tfreturn\n");
-    	else if(returnType == 'V')
+    	if(returnType == 'V')
     		jFile.println("\treturn\n");
-    	else if(returnType == ';')
-    		jFile.println("\tareturn\n");
-    	else
-    		jFile.println("\tireturn\n");
     	
     	numArgs = 0; //reset number of arguments
     	
@@ -686,17 +789,11 @@ public class TitanVisitorPass2 extends TitanBaseVisitor<Integer>
     	symTabStack.pop();
     	functionCall = false;
     	
-    	//emit function return type
+    	//emit return if return type void
     	char returnType = funcHeader.charAt(funcHeader.length() - 1);
     	
-    	if(returnType == 'F')
-    		jFile.println("\tfreturn\n");
-    	else if(returnType == 'V')
+    	if(returnType == 'V')
     		jFile.println("\treturn\n");
-    	else if(returnType == ';')
-    		jFile.println("\tareturn\n");
-    	else
-    		jFile.println("\tireturn\n");
     	
     	numArgs = 0; //reset number of arguments
     	
@@ -714,6 +811,21 @@ public class TitanVisitorPass2 extends TitanBaseVisitor<Integer>
         //emit function call
         jFile.println("\tinvokestatic " + programId.getName() + "/" + ctx.ID() + symTabStack.lookup(ctx.ID().getText()).getAttribute(FUNCTION_HEADER));
         
+        
         return value;
+    }
+    
+    @Override
+    public Integer visitRetStat(TitanParser.RetStatContext ctx) {
+    	Integer val = visitChildren(ctx);
+    	char retType = (char) symTabStack.lookupLocal("return").getAttribute(DATA_VALUE);
+    	if(retType == 'F')
+    		jFile.println("\tfreturn\n");
+    	else if(retType == ';')
+    		jFile.println("\tareturn\n");
+    	else
+    		jFile.println("\tireturn\n");
+    	
+    	return val; 
     }
 }

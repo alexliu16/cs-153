@@ -56,7 +56,7 @@ public class TitanVisitorPass1 extends TitanBaseVisitor<Integer>
         programId.setDefinition(DefinitionImpl.PROGRAM);
         programId.setAttribute(ROUTINE_SYMTAB, symTabStack.push());
         symTabStack.setProgramId(programId);
-
+        
         // Create the assembly output file.
         try {
             jFile = new PrintWriter(new FileWriter(programName + ".j"));
@@ -100,7 +100,7 @@ public class TitanVisitorPass1 extends TitanBaseVisitor<Integer>
     }
 
     @Override
-    public Integer visitDeclaration(TitanParser.DeclarationContext ctx) {
+    public Integer visitNormalDeclaration(TitanParser.NormalDeclarationContext ctx) {
         if(!localDeclarations) {
             jFile.println("; global " + ctx.getText() + "\n");
             //jFile.println(".field private static " +
@@ -113,8 +113,24 @@ public class TitanVisitorPass1 extends TitanBaseVisitor<Integer>
             SymTabEntry loc = symTabStack.enterLocal(ctx.ID().getText());
             loc.setTypeSpec(getType(ctx.primitives()));
             loc.setAttribute(SLOT, symTabStack.getLocalSymTab().nextSlotNumber());             
-            //loc.setAttribute(SLOT, slot_no);//increment slot number here
-            //slot_no++;//increment slot
+        }
+        return visitChildren(ctx);
+    }
+    
+    @Override
+    public Integer visitTernaryDeclaration(TitanParser.TernaryDeclarationContext ctx) {
+        if(!localDeclarations) {
+            jFile.println("; global " + ctx.getText() + "\n");
+            //jFile.println(".field private static " +
+            //                    id.getName() + " " + typeIndicator);
+            //add to sym table
+            symTabStack.enterLocal(ctx.ID().getText());
+            //set type
+        }
+        else {
+            SymTabEntry loc = symTabStack.enterLocal(ctx.ID().getText());
+            loc.setTypeSpec(getType(ctx.primitives()));
+            loc.setAttribute(SLOT, symTabStack.getLocalSymTab().nextSlotNumber());             
         }
         return visitChildren(ctx);
     }
@@ -307,6 +323,14 @@ public class TitanVisitorPass1 extends TitanBaseVisitor<Integer>
     	else if(returnType == Predefined.stringType)
     		sb.append("S");
     	
+    	//save return type
+    	SymTabEntry ret = symTable.enter("return");
+    	
+    	if(returnType == Predefined.stringType)
+    		ret.setAttribute(DATA_VALUE, ';');
+    	else
+    		ret.setAttribute(DATA_VALUE, sb.charAt(sb.length() - 1));
+    	
     	//save symbol table and header
     	SymTabEntry loc = symTabStack.enterLocal(ctx.ID().getText());
     	loc.setAttribute(FUNCTION_HEADER, sb.toString().replaceAll("S", "Ljava/lang/String;"));
@@ -363,6 +387,14 @@ public class TitanVisitorPass1 extends TitanBaseVisitor<Integer>
     	else if(returnType == Predefined.stringType)
     		sb += ("Ljava/lang/String;");
     	
+    	//Save return type in symbol table
+    	SymTabEntry ret = symTable.enter("return");
+    	
+    	if(returnType == Predefined.stringType)
+    		ret.setAttribute(DATA_VALUE, ';');
+    	else
+    		ret.setAttribute(DATA_VALUE, sb.charAt(sb.length() - 1));
+    	
     	//save symbol table and header
     	SymTabEntry loc = symTabStack.enterLocal(ctx.ID().getText());
     	loc.setAttribute(FUNCTION_HEADER, sb.toString());
@@ -370,4 +402,5 @@ public class TitanVisitorPass1 extends TitanBaseVisitor<Integer>
 
     	return 0;
     }
+    
 }

@@ -44,6 +44,13 @@ public interface TitanVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitComparisonExpr(@NotNull TitanParser.ComparisonExprContext ctx);
 	/**
+	 * Visit a parse tree produced by the {@code TernaryDeclaration}
+	 * labeled alternative in {@link TitanParser#declaration}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitTernaryDeclaration(@NotNull TitanParser.TernaryDeclarationContext ctx);
+	/**
 	 * Visit a parse tree produced by the {@code SpecialAssignment}
 	 * labeled alternative in {@link TitanParser#assignment}.
 	 * @param ctx the parse tree
@@ -112,6 +119,13 @@ public interface TitanVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitIfElseBrackets(@NotNull TitanParser.IfElseBracketsContext ctx);
 	/**
+	 * Visit a parse tree produced by the {@code NormalDeclaration}
+	 * labeled alternative in {@link TitanParser#declaration}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitNormalDeclaration(@NotNull TitanParser.NormalDeclarationContext ctx);
+	/**
 	 * Visit a parse tree produced by the {@code SimpleExpr}
 	 * labeled alternative in {@link TitanParser#expr}.
 	 * @param ctx the parse tree
@@ -131,6 +145,13 @@ public interface TitanVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitModOp(@NotNull TitanParser.ModOpContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code TernaryOpAssignment}
+	 * labeled alternative in {@link TitanParser#assignment}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitTernaryOpAssignment(@NotNull TitanParser.TernaryOpAssignmentContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link TitanParser#primitives}.
 	 * @param ctx the parse tree
@@ -230,12 +251,6 @@ public interface TitanVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitShorthandIncDecAssignment(@NotNull TitanParser.ShorthandIncDecAssignmentContext ctx);
-	/**
-	 * Visit a parse tree produced by {@link TitanParser#declaration}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitDeclaration(@NotNull TitanParser.DeclarationContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link TitanParser#prog}.
 	 * @param ctx the parse tree

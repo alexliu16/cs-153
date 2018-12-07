@@ -69,6 +69,18 @@ public class TitanBaseListener implements TitanListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterTernaryDeclaration(@NotNull TitanParser.TernaryDeclarationContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitTernaryDeclaration(@NotNull TitanParser.TernaryDeclarationContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterSpecialAssignment(@NotNull TitanParser.SpecialAssignmentContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -189,6 +201,18 @@ public class TitanBaseListener implements TitanListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterNormalDeclaration(@NotNull TitanParser.NormalDeclarationContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitNormalDeclaration(@NotNull TitanParser.NormalDeclarationContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterSimpleExpr(@NotNull TitanParser.SimpleExprContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -220,6 +244,18 @@ public class TitanBaseListener implements TitanListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitModOp(@NotNull TitanParser.ModOpContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterTernaryOpAssignment(@NotNull TitanParser.TernaryOpAssignmentContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitTernaryOpAssignment(@NotNull TitanParser.TernaryOpAssignmentContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -400,18 +436,6 @@ public class TitanBaseListener implements TitanListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitShorthandIncDecAssignment(@NotNull TitanParser.ShorthandIncDecAssignmentContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterDeclaration(@NotNull TitanParser.DeclarationContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitDeclaration(@NotNull TitanParser.DeclarationContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
