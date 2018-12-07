@@ -368,13 +368,25 @@ public class TitanBaseListener implements TitanListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterDeclaration(TitanParser.DeclarationContext ctx) { }
+	@Override public void enterNormalDeclaration(TitanParser.NormalDeclarationContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitDeclaration(TitanParser.DeclarationContext ctx) { }
+	@Override public void exitNormalDeclaration(TitanParser.NormalDeclarationContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterTernaryDeclaration(TitanParser.TernaryDeclarationContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitTernaryDeclaration(TitanParser.TernaryDeclarationContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -387,6 +399,18 @@ public class TitanBaseListener implements TitanListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitSimpleAssignment(TitanParser.SimpleAssignmentContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterTernaryOpAssignment(TitanParser.TernaryOpAssignmentContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitTernaryOpAssignment(TitanParser.TernaryOpAssignmentContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
