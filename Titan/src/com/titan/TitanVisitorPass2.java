@@ -26,7 +26,7 @@ public class TitanVisitorPass2 extends TitanBaseVisitor<Integer>
     
     // used to give unique labels (L000, L0001, L0002 ...)
     private int labelIncrementer;
-
+ 
     private boolean localDeclarations = false;
     private int numArgs = 0;
     
