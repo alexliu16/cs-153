@@ -344,15 +344,29 @@ public interface TitanListener extends ParseTreeListener {
 	 */
 	void exitArgDecl(TitanParser.ArgDeclContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link TitanParser#declaration}.
+	 * Enter a parse tree produced by the {@code NormalDeclaration}
+	 * labeled alternative in {@link TitanParser#declaration}.
 	 * @param ctx the parse tree
 	 */
-	void enterDeclaration(TitanParser.DeclarationContext ctx);
+	void enterNormalDeclaration(TitanParser.NormalDeclarationContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link TitanParser#declaration}.
+	 * Exit a parse tree produced by the {@code NormalDeclaration}
+	 * labeled alternative in {@link TitanParser#declaration}.
 	 * @param ctx the parse tree
 	 */
-	void exitDeclaration(TitanParser.DeclarationContext ctx);
+	void exitNormalDeclaration(TitanParser.NormalDeclarationContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code TernaryDeclaration}
+	 * labeled alternative in {@link TitanParser#declaration}.
+	 * @param ctx the parse tree
+	 */
+	void enterTernaryDeclaration(TitanParser.TernaryDeclarationContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code TernaryDeclaration}
+	 * labeled alternative in {@link TitanParser#declaration}.
+	 * @param ctx the parse tree
+	 */
+	void exitTernaryDeclaration(TitanParser.TernaryDeclarationContext ctx);
 	/**
 	 * Enter a parse tree produced by the {@code SimpleAssignment}
 	 * labeled alternative in {@link TitanParser#assignment}.
@@ -365,6 +379,18 @@ public interface TitanListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitSimpleAssignment(TitanParser.SimpleAssignmentContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code TernaryOpAssignment}
+	 * labeled alternative in {@link TitanParser#assignment}.
+	 * @param ctx the parse tree
+	 */
+	void enterTernaryOpAssignment(TitanParser.TernaryOpAssignmentContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code TernaryOpAssignment}
+	 * labeled alternative in {@link TitanParser#assignment}.
+	 * @param ctx the parse tree
+	 */
+	void exitTernaryOpAssignment(TitanParser.TernaryOpAssignmentContext ctx);
 	/**
 	 * Enter a parse tree produced by the {@code ShorthandIncDecAssignment}
 	 * labeled alternative in {@link TitanParser#assignment}.

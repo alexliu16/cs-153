@@ -210,11 +210,19 @@ public interface TitanVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitArgDecl(TitanParser.ArgDeclContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link TitanParser#declaration}.
+	 * Visit a parse tree produced by the {@code NormalDeclaration}
+	 * labeled alternative in {@link TitanParser#declaration}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitDeclaration(TitanParser.DeclarationContext ctx);
+	T visitNormalDeclaration(TitanParser.NormalDeclarationContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code TernaryDeclaration}
+	 * labeled alternative in {@link TitanParser#declaration}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitTernaryDeclaration(TitanParser.TernaryDeclarationContext ctx);
 	/**
 	 * Visit a parse tree produced by the {@code SimpleAssignment}
 	 * labeled alternative in {@link TitanParser#assignment}.
@@ -222,6 +230,13 @@ public interface TitanVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitSimpleAssignment(TitanParser.SimpleAssignmentContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code TernaryOpAssignment}
+	 * labeled alternative in {@link TitanParser#assignment}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitTernaryOpAssignment(TitanParser.TernaryOpAssignmentContext ctx);
 	/**
 	 * Visit a parse tree produced by the {@code ShorthandIncDecAssignment}
 	 * labeled alternative in {@link TitanParser#assignment}.

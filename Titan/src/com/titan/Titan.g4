@@ -67,9 +67,11 @@ args : argDecl
 
 argDecl : primitives ref='&'? ID ;
 
-declaration : CONST? primitives ID ('=' expr)? NEWLINE;
+declaration : CONST? primitives ID ('=' expr)? NEWLINE  #NormalDeclaration
+			| CONST? primitives ID '=' boolExprs ? '?' expr ':' expr NEWLINE #TernaryDeclaration;
 
 assignment : ID '=' expr NEWLINE           #SimpleAssignment
+		   | ID '=' boolExprs '?' expr ':' expr NEWLINE #TernaryOpAssignment
            | ID SHORTHANDASSIGNOP NEWLINE   #ShorthandIncDecAssignment
            | ID AssignmentOp expr NEWLINE  #SpecialAssignment
            ;
