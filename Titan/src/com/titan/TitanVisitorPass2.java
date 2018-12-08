@@ -53,6 +53,8 @@ public class TitanVisitorPass2 extends TitanBaseVisitor<Integer>
     @Override
     public Integer visitProg(TitanParser.ProgContext ctx) {
 
+        ctx.functionDeclaration().forEach(f->visit(f));
+
         // Emit the main program header.
         jFile.println();
         jFile.println(".method public static main([Ljava/lang/String;)V");
@@ -75,11 +77,10 @@ public class TitanVisitorPass2 extends TitanBaseVisitor<Integer>
         jFile.println();
         jFile.println("\treturn");
         jFile.println();
-        jFile.println(".limit locals 16");
-        jFile.println(".limit stack 16");
+        jFile.println(".limit locals 32");
+        jFile.println(".limit stack 32");
         jFile.println(".end method");
 
-        ctx.functionDeclaration().forEach(f->visit(f));
 
         return value;
     }
@@ -785,11 +786,11 @@ public class TitanVisitorPass2 extends TitanBaseVisitor<Integer>
     
     //function call
     @Override
-    public Integer visitRegularFunctionWithArgs(TitanParser.RegularFunctionWithArgsContext ctx) {
+    public Integer visitRegularFunctionCallWithArgs(TitanParser.RegularFunctionCallWithArgsContext ctx) {
         Integer value = visitChildren(ctx);
-        
+
         //emit function call
-        jFile.println("\tinvokestatic " + programId.getName() + "/" + ctx.ID() + symTabStack.lookupLocal(ctx.ID().getText()).getAttribute(FUNCTION_HEADER));
+        jFile.println("\tinvokestatic " + programId.getName() + "/" + ctx.ID() + symTabStack.lookup(ctx.ID().getText()).getAttribute(FUNCTION_HEADER));
         
         return value;
     }
@@ -823,7 +824,7 @@ public class TitanVisitorPass2 extends TitanBaseVisitor<Integer>
     
     //function call
     @Override
-    public Integer visitRegularFunctionWithoutArgs(TitanParser.RegularFunctionWithoutArgsContext ctx) {
+    public Integer visitRegularFunctionCallWithoutArgs(TitanParser.RegularFunctionCallWithoutArgsContext ctx) {
         Integer value = visitChildren(ctx);
         
         //emit function call

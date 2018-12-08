@@ -136,16 +136,28 @@ public class TitanVisitorPass1 extends TitanBaseVisitor<Integer>
     }
     
     public TypeSpec getType(String type) {
-    	if(type.equals("int"))
+    	if(type.equals("int") || type.equals("I"))
     		return Predefined.integerType;
-    	else if(type.equals("float"))
+    	else if(type.equals("float") || type.equals("F"))
     		return Predefined.realType;
-    	else if(type.equals("bool"))
+    	else if(type.equals("bool") || type.equals("Z"))
     		return Predefined.booleanType;
-    	else if(type.equals("string"))
+    	else if(type.equals("string") || type.equals("S"))
     		return Predefined.stringType;
     	else
     		return Predefined.undefinedType;
+    }
+
+    public String getType(TypeSpec type) {
+        if(type == Predefined.integerType)
+            return "integer";
+        else if(type == Predefined.realType)
+            return "float";
+        else if(type == Predefined.booleanType)
+            return "boolean";
+        else if(type == Predefined.stringType)
+            return "string";
+        return "undefined";
     }
 
     public TypeSpec getType(TitanParser.PrimitivesContext prim) {
@@ -164,8 +176,6 @@ public class TitanVisitorPass1 extends TitanBaseVisitor<Integer>
         TypeSpec type1 = ctx.simpleExpression(0).type;
         TypeSpec type2 = ctx.simpleExpression(1).type;
 
-        System.out.println("type1: " + type1);
-        System.out.println("type2: " + type2);
         boolean integerMode =    (type1 == Predefined.integerType)
                 && (type2 == Predefined.integerType);
         boolean realMode    =    (type1 == Predefined.realType || type1 == Predefined.integerType)
@@ -291,7 +301,27 @@ public class TitanVisitorPass1 extends TitanBaseVisitor<Integer>
     }
     
     //Functions
-    
+
+
+    @Override
+    public Integer visitRegularFunctionCallWithArgs(TitanParser.RegularFunctionCallWithArgsContext ctx) {
+        SymTabEntry symtabEntry = symTabStack.lookup(ctx.ID().getText());
+        SymTab symtab = symTabStack.getLocalSymTab();
+        if(symtabEntry != null) {
+            symtab = (SymTab)symtabEntry.getAttribute(ROUTINE_SYMTAB);
+        }
+        TypeSpec returnType = symtab.lookup("return").getTypeSpec();
+        ctx.type = returnType;
+        return 0;
+    }
+
+    @Override
+    public Integer visitFuncCall(TitanParser.FuncCallContext ctx) {
+        visitChildren(ctx);
+        ctx.type = ctx.functionCall().type;
+        return 0;
+    }
+
     //Function declaration
     @Override
     public Integer visitFunctionWithArgsDecl(TitanParser.FunctionWithArgsDeclContext ctx) { 
@@ -301,7 +331,9 @@ public class TitanVisitorPass1 extends TitanBaseVisitor<Integer>
     	symTabStack.push(symTable);
     	symTabStack.getLocalSymTab().setSlotNumber(slot_no);
     	
-    	visitChildren(ctx);
+    	visit(ctx.funcReturnTypes());
+        visit(ctx.args());
+        visit(ctx.block());
     	symTable = symTabStack.pop();
     	
     	//create function arg signature
@@ -340,7 +372,7 @@ public class TitanVisitorPass1 extends TitanBaseVisitor<Integer>
     		sb.append("S");
     	
     	//save return type
-    	SymTabEntry ret = symTable.enter("return");
+    	SymTabEntry ret = symTable.lookup("return");
     	
     	if(returnType == Predefined.stringType)
     		ret.setAttribute(DATA_VALUE, ';');
@@ -374,7 +406,7 @@ public class TitanVisitorPass1 extends TitanBaseVisitor<Integer>
     	//Save return type in symbol table
     	SymTabEntry loc = symTabStack.enterLocal("return");
     	loc.setTypeSpec(getType(ctx.getText()));
-    	return visitChildren(ctx); 
+    	return visitChildren(ctx);
     }
     
     @Override

@@ -181,15 +181,15 @@ public class TitanParser extends Parser {
 		public BlockContext block() {
 			return getRuleContext(BlockContext.class,0);
 		}
-		public List<TerminalNode> NEWLINE() { return getTokens(TitanParser.NEWLINE); }
-		public TerminalNode NEWLINE(int i) {
-			return getToken(TitanParser.NEWLINE, i);
-		}
 		public List<FunctionDeclarationContext> functionDeclaration() {
 			return getRuleContexts(FunctionDeclarationContext.class);
 		}
 		public FunctionDeclarationContext functionDeclaration(int i) {
 			return getRuleContext(FunctionDeclarationContext.class,i);
+		}
+		public List<TerminalNode> NEWLINE() { return getTokens(TitanParser.NEWLINE); }
+		public TerminalNode NEWLINE(int i) {
+			return getToken(TitanParser.NEWLINE, i);
 		}
 		public ProgContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
@@ -217,50 +217,50 @@ public class TitanParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(56);
-			match(T__1);
-			setState(57);
-			match(T__2);
-			setState(58);
-			block();
-			setState(59);
-			match(T__3);
-			setState(63);
-			_errHandler.sync(this);
-			_la = _input.LA(1);
-			while (_la==NEWLINE) {
-				{
-				{
-				setState(60);
-				match(NEWLINE);
-				}
-				}
-				setState(65);
-				_errHandler.sync(this);
-				_la = _input.LA(1);
-			}
-			setState(75);
+			setState(65);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
 			while (_la==T__11) {
 				{
 				{
-				setState(66);
+				setState(56);
 				functionDeclaration();
-				setState(70);
+				setState(60);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 				while (_la==NEWLINE) {
 					{
 					{
-					setState(67);
+					setState(57);
 					match(NEWLINE);
 					}
 					}
-					setState(72);
+					setState(62);
 					_errHandler.sync(this);
 					_la = _input.LA(1);
 				}
+				}
+				}
+				setState(67);
+				_errHandler.sync(this);
+				_la = _input.LA(1);
+			}
+			setState(68);
+			match(T__1);
+			setState(69);
+			match(T__2);
+			setState(70);
+			block();
+			setState(71);
+			match(T__3);
+			setState(75);
+			_errHandler.sync(this);
+			_la = _input.LA(1);
+			while (_la==NEWLINE) {
+				{
+				{
+				setState(72);
+				match(NEWLINE);
 				}
 				}
 				setState(77);
@@ -2349,40 +2349,40 @@ public class TitanParser extends Parser {
 			else return visitor.visitChildren(this);
 		}
 	}
-	public static class RegularFunctionWithArgsContext extends FunctionCallContext {
+	public static class RegularFunctionCallWithoutArgsContext extends FunctionCallContext {
+		public TerminalNode ID() { return getToken(TitanParser.ID, 0); }
+		public RegularFunctionCallWithoutArgsContext(FunctionCallContext ctx) { copyFrom(ctx); }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof TitanListener ) ((TitanListener)listener).enterRegularFunctionCallWithoutArgs(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof TitanListener ) ((TitanListener)listener).exitRegularFunctionCallWithoutArgs(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof TitanVisitor ) return ((TitanVisitor<? extends T>)visitor).visitRegularFunctionCallWithoutArgs(this);
+			else return visitor.visitChildren(this);
+		}
+	}
+	public static class RegularFunctionCallWithArgsContext extends FunctionCallContext {
 		public TerminalNode ID() { return getToken(TitanParser.ID, 0); }
 		public ExprListContext exprList() {
 			return getRuleContext(ExprListContext.class,0);
 		}
-		public RegularFunctionWithArgsContext(FunctionCallContext ctx) { copyFrom(ctx); }
+		public RegularFunctionCallWithArgsContext(FunctionCallContext ctx) { copyFrom(ctx); }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof TitanListener ) ((TitanListener)listener).enterRegularFunctionWithArgs(this);
+			if ( listener instanceof TitanListener ) ((TitanListener)listener).enterRegularFunctionCallWithArgs(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof TitanListener ) ((TitanListener)listener).exitRegularFunctionWithArgs(this);
+			if ( listener instanceof TitanListener ) ((TitanListener)listener).exitRegularFunctionCallWithArgs(this);
 		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof TitanVisitor ) return ((TitanVisitor<? extends T>)visitor).visitRegularFunctionWithArgs(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class RegularFunctionWithoutArgsContext extends FunctionCallContext {
-		public TerminalNode ID() { return getToken(TitanParser.ID, 0); }
-		public RegularFunctionWithoutArgsContext(FunctionCallContext ctx) { copyFrom(ctx); }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof TitanListener ) ((TitanListener)listener).enterRegularFunctionWithoutArgs(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof TitanListener ) ((TitanListener)listener).exitRegularFunctionWithoutArgs(this);
-		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof TitanVisitor ) return ((TitanVisitor<? extends T>)visitor).visitRegularFunctionWithoutArgs(this);
+			if ( visitor instanceof TitanVisitor ) return ((TitanVisitor<? extends T>)visitor).visitRegularFunctionCallWithArgs(this);
 			else return visitor.visitChildren(this);
 		}
 	}
@@ -2407,7 +2407,7 @@ public class TitanParser extends Parser {
 				}
 				break;
 			case 2:
-				_localctx = new RegularFunctionWithArgsContext(_localctx);
+				_localctx = new RegularFunctionCallWithArgsContext(_localctx);
 				enterOuterAlt(_localctx, 2);
 				{
 				setState(321);
@@ -2421,7 +2421,7 @@ public class TitanParser extends Parser {
 				}
 				break;
 			case 3:
-				_localctx = new RegularFunctionWithoutArgsContext(_localctx);
+				_localctx = new RegularFunctionCallWithoutArgsContext(_localctx);
 				enterOuterAlt(_localctx, 3);
 				{
 				setState(326);
@@ -2835,14 +2835,14 @@ public class TitanParser extends Parser {
 		"\3\t\3\4\4\t\4\4\5\t\5\4\6\t\6\4\7\t\7\4\b\t\b\4\t\t\t\4\n\t\n\4\13\t"+
 		"\13\4\f\t\f\4\r\t\r\4\16\t\16\4\17\t\17\4\20\t\20\4\21\t\21\4\22\t\22"+
 		"\4\23\t\23\4\24\t\24\4\25\t\25\4\26\t\26\4\27\t\27\4\30\t\30\3\2\3\2\3"+
-		"\2\7\2\64\n\2\f\2\16\2\67\13\2\3\2\3\2\3\3\3\3\3\3\3\3\3\3\7\3@\n\3\f"+
-		"\3\16\3C\13\3\3\3\3\3\7\3G\n\3\f\3\16\3J\13\3\7\3L\n\3\f\3\16\3O\13\3"+
-		"\3\4\6\4R\n\4\r\4\16\4S\3\5\3\5\3\5\3\5\3\5\3\5\3\5\3\5\3\5\5\5_\n\5\3"+
-		"\6\3\6\3\6\3\6\3\6\3\6\5\6g\n\6\3\7\3\7\3\7\3\7\3\7\3\7\3\7\3\7\3\7\5"+
-		"\7r\n\7\3\7\3\7\3\7\3\7\3\7\3\7\3\7\3\7\3\7\7\7}\n\7\f\7\16\7\u0080\13"+
-		"\7\3\b\3\b\3\b\3\b\3\b\3\b\3\b\3\b\3\b\3\b\5\b\u008c\n\b\3\t\3\t\3\t\3"+
-		"\t\3\t\3\t\3\t\3\t\5\t\u0096\n\t\3\t\3\t\3\t\3\t\3\t\3\t\7\t\u009e\n\t"+
-		"\f\t\16\t\u00a1\13\t\3\n\3\n\3\n\5\n\u00a6\n\n\3\n\3\n\3\n\3\n\5\n\u00ac"+
+		"\2\7\2\64\n\2\f\2\16\2\67\13\2\3\2\3\2\3\3\3\3\7\3=\n\3\f\3\16\3@\13\3"+
+		"\7\3B\n\3\f\3\16\3E\13\3\3\3\3\3\3\3\3\3\3\3\7\3L\n\3\f\3\16\3O\13\3\3"+
+		"\4\6\4R\n\4\r\4\16\4S\3\5\3\5\3\5\3\5\3\5\3\5\3\5\3\5\3\5\5\5_\n\5\3\6"+
+		"\3\6\3\6\3\6\3\6\3\6\5\6g\n\6\3\7\3\7\3\7\3\7\3\7\3\7\3\7\3\7\3\7\5\7"+
+		"r\n\7\3\7\3\7\3\7\3\7\3\7\3\7\3\7\3\7\3\7\7\7}\n\7\f\7\16\7\u0080\13\7"+
+		"\3\b\3\b\3\b\3\b\3\b\3\b\3\b\3\b\3\b\3\b\5\b\u008c\n\b\3\t\3\t\3\t\3\t"+
+		"\3\t\3\t\3\t\3\t\5\t\u0096\n\t\3\t\3\t\3\t\3\t\3\t\3\t\7\t\u009e\n\t\f"+
+		"\t\16\t\u00a1\13\t\3\n\3\n\3\n\5\n\u00a6\n\n\3\n\3\n\3\n\3\n\5\n\u00ac"+
 		"\n\n\3\n\3\n\5\n\u00b0\n\n\3\n\3\n\3\n\3\n\5\n\u00b6\n\n\3\n\3\n\3\n\5"+
 		"\n\u00bb\n\n\3\n\3\n\5\n\u00bf\n\n\3\n\3\n\5\n\u00c3\n\n\3\n\5\n\u00c6"+
 		"\n\n\5\n\u00c8\n\n\3\13\3\13\3\13\3\13\3\13\3\13\3\13\5\13\u00d1\n\13"+
@@ -2859,27 +2859,27 @@ public class TitanParser extends Parser {
 		"\7\26\u0155\n\26\f\26\16\26\u0158\13\26\3\27\3\27\3\27\3\27\3\27\3\27"+
 		"\7\27\u0160\n\27\f\27\16\27\u0163\13\27\3\30\3\30\3\30\5\30\u0168\n\30"+
 		"\3\30\2\7\f\20\30*,\31\2\4\6\b\n\f\16\20\22\24\26\30\32\34\36 \"$&(*,"+
-		".\2\5\3\2\30\31\3\2\32\33\4\2\36\37!\"\2\u018a\2\60\3\2\2\2\4:\3\2\2\2"+
+		".\2\5\3\2\30\31\3\2\32\33\4\2\36\37!\"\2\u018a\2\60\3\2\2\2\4C\3\2\2\2"+
 		"\6Q\3\2\2\2\b^\3\2\2\2\nf\3\2\2\2\fq\3\2\2\2\16\u008b\3\2\2\2\20\u0095"+
 		"\3\2\2\2\22\u00c7\3\2\2\2\24\u00c9\3\2\2\2\26\u00ee\3\2\2\2\30\u00f0\3"+
 		"\2\2\2\32\u00fb\3\2\2\2\34\u011b\3\2\2\2\36\u0133\3\2\2\2 \u0135\3\2\2"+
 		"\2\"\u0139\3\2\2\2$\u013b\3\2\2\2&\u014a\3\2\2\2(\u014c\3\2\2\2*\u014e"+
 		"\3\2\2\2,\u0159\3\2\2\2.\u0167\3\2\2\2\60\61\7\3\2\2\61\65\7\60\2\2\62"+
 		"\64\7\64\2\2\63\62\3\2\2\2\64\67\3\2\2\2\65\63\3\2\2\2\65\66\3\2\2\2\66"+
-		"8\3\2\2\2\67\65\3\2\2\289\5\4\3\29\3\3\2\2\2:;\7\4\2\2;<\7\5\2\2<=\5\6"+
-		"\4\2=A\7\6\2\2>@\7\64\2\2?>\3\2\2\2@C\3\2\2\2A?\3\2\2\2AB\3\2\2\2BM\3"+
-		"\2\2\2CA\3\2\2\2DH\5\26\f\2EG\7\64\2\2FE\3\2\2\2GJ\3\2\2\2HF\3\2\2\2H"+
-		"I\3\2\2\2IL\3\2\2\2JH\3\2\2\2KD\3\2\2\2LO\3\2\2\2MK\3\2\2\2MN\3\2\2\2"+
-		"N\5\3\2\2\2OM\3\2\2\2PR\5\b\5\2QP\3\2\2\2RS\3\2\2\2SQ\3\2\2\2ST\3\2\2"+
-		"\2T\7\3\2\2\2UV\5\n\6\2VW\7\64\2\2W_\3\2\2\2X_\5\36\20\2Y_\5\34\17\2Z"+
-		"_\5\22\n\2[_\5$\23\2\\_\5\24\13\2]_\7\64\2\2^U\3\2\2\2^X\3\2\2\2^Y\3\2"+
-		"\2\2^Z\3\2\2\2^[\3\2\2\2^\\\3\2\2\2^]\3\2\2\2_\t\3\2\2\2`g\5\f\7\2ag\5"+
-		"\20\t\2bc\7\7\2\2cd\5\n\6\2de\7\b\2\2eg\3\2\2\2f`\3\2\2\2fa\3\2\2\2fb"+
-		"\3\2\2\2g\13\3\2\2\2hi\b\7\1\2ir\5(\25\2jk\7\7\2\2kl\5\f\7\2lm\7\b\2\2"+
-		"mr\3\2\2\2nr\5&\24\2or\5.\30\2pr\7\60\2\2qh\3\2\2\2qj\3\2\2\2qn\3\2\2"+
-		"\2qo\3\2\2\2qp\3\2\2\2r~\3\2\2\2st\f\n\2\2tu\t\2\2\2u}\5\f\7\13vw\f\t"+
-		"\2\2wx\t\3\2\2x}\5\f\7\nyz\f\b\2\2z{\7\34\2\2{}\5\f\7\t|s\3\2\2\2|v\3"+
-		"\2\2\2|y\3\2\2\2}\u0080\3\2\2\2~|\3\2\2\2~\177\3\2\2\2\177\r\3\2\2\2\u0080"+
+		"8\3\2\2\2\67\65\3\2\2\289\5\4\3\29\3\3\2\2\2:>\5\26\f\2;=\7\64\2\2<;\3"+
+		"\2\2\2=@\3\2\2\2><\3\2\2\2>?\3\2\2\2?B\3\2\2\2@>\3\2\2\2A:\3\2\2\2BE\3"+
+		"\2\2\2CA\3\2\2\2CD\3\2\2\2DF\3\2\2\2EC\3\2\2\2FG\7\4\2\2GH\7\5\2\2HI\5"+
+		"\6\4\2IM\7\6\2\2JL\7\64\2\2KJ\3\2\2\2LO\3\2\2\2MK\3\2\2\2MN\3\2\2\2N\5"+
+		"\3\2\2\2OM\3\2\2\2PR\5\b\5\2QP\3\2\2\2RS\3\2\2\2SQ\3\2\2\2ST\3\2\2\2T"+
+		"\7\3\2\2\2UV\5\n\6\2VW\7\64\2\2W_\3\2\2\2X_\5\36\20\2Y_\5\34\17\2Z_\5"+
+		"\22\n\2[_\5$\23\2\\_\5\24\13\2]_\7\64\2\2^U\3\2\2\2^X\3\2\2\2^Y\3\2\2"+
+		"\2^Z\3\2\2\2^[\3\2\2\2^\\\3\2\2\2^]\3\2\2\2_\t\3\2\2\2`g\5\f\7\2ag\5\20"+
+		"\t\2bc\7\7\2\2cd\5\n\6\2de\7\b\2\2eg\3\2\2\2f`\3\2\2\2fa\3\2\2\2fb\3\2"+
+		"\2\2g\13\3\2\2\2hi\b\7\1\2ir\5(\25\2jk\7\7\2\2kl\5\f\7\2lm\7\b\2\2mr\3"+
+		"\2\2\2nr\5&\24\2or\5.\30\2pr\7\60\2\2qh\3\2\2\2qj\3\2\2\2qn\3\2\2\2qo"+
+		"\3\2\2\2qp\3\2\2\2r~\3\2\2\2st\f\n\2\2tu\t\2\2\2u}\5\f\7\13vw\f\t\2\2"+
+		"wx\t\3\2\2x}\5\f\7\nyz\f\b\2\2z{\7\34\2\2{}\5\f\7\t|s\3\2\2\2|v\3\2\2"+
+		"\2|y\3\2\2\2}\u0080\3\2\2\2~|\3\2\2\2~\177\3\2\2\2\177\r\3\2\2\2\u0080"+
 		"~\3\2\2\2\u0081\u0082\5\f\7\2\u0082\u0083\7/\2\2\u0083\u0084\5\f\7\2\u0084"+
 		"\u008c\3\2\2\2\u0085\u0086\7\7\2\2\u0086\u0087\5\f\7\2\u0087\u0088\7/"+
 		"\2\2\u0088\u0089\5\f\7\2\u0089\u008a\7\b\2\2\u008a\u008c\3\2\2\2\u008b"+
@@ -2955,7 +2955,7 @@ public class TitanParser extends Parser {
 		"\5\n\6\2\u015f\u015c\3\2\2\2\u0160\u0163\3\2\2\2\u0161\u015f\3\2\2\2\u0161"+
 		"\u0162\3\2\2\2\u0162-\3\2\2\2\u0163\u0161\3\2\2\2\u0164\u0168\7\63\2\2"+
 		"\u0165\u0168\7\62\2\2\u0166\u0168\7+\2\2\u0167\u0164\3\2\2\2\u0167\u0165"+
-		"\3\2\2\2\u0167\u0166\3\2\2\2\u0168/\3\2\2\2*\65AHMS^fq|~\u008b\u0095\u009d"+
+		"\3\2\2\2\u0167\u0166\3\2\2\2\u0168/\3\2\2\2*\65>CMS^fq|~\u008b\u0095\u009d"+
 		"\u009f\u00a5\u00ab\u00af\u00b5\u00ba\u00be\u00c2\u00c5\u00c7\u00d0\u00dd"+
 		"\u00e8\u00ee\u00f8\u00fd\u0102\u0108\u010d\u0113\u011b\u0133\u0139\u014a"+
 		"\u0156\u0161\u0167";

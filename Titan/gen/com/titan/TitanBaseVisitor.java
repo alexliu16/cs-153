@@ -294,14 +294,14 @@ public class TitanBaseVisitor<T> extends AbstractParseTreeVisitor<T> implements 
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitRegularFunctionWithArgs(TitanParser.RegularFunctionWithArgsContext ctx) { return visitChildren(ctx); }
+	@Override public T visitRegularFunctionCallWithArgs(TitanParser.RegularFunctionCallWithArgsContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitRegularFunctionWithoutArgs(TitanParser.RegularFunctionWithoutArgsContext ctx) { return visitChildren(ctx); }
+	@Override public T visitRegularFunctionCallWithoutArgs(TitanParser.RegularFunctionCallWithoutArgsContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *

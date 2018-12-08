@@ -9,7 +9,7 @@ grammar Titan;
 }
 
 className : 'program' ID NEWLINE*  prog ;
-prog : 'main' '{' block '}' NEWLINE* (functionDeclaration NEWLINE*)*;
+prog : (functionDeclaration NEWLINE*)* 'main' '{' block '}' NEWLINE*;
 
 block : stat+ ;
 
@@ -77,14 +77,15 @@ assignment : ID '=' expr NEWLINE           #SimpleAssignment
            ;
 
 primitives : (INT|BOOL|STRING|FLOAT) ;
+
 funcReturnTypes : primitives | 'void' ;
 
 retStat: 'return' expr NEWLINE;
 
 functionCall locals [ TypeSpec type = null ]
              : 'printf(' printfexprList ')'      #Printf
-             | ID '('exprList ')'                #RegularFunctionWithArgs
-             | ID '()'							 #RegularFunctionWithoutArgs
+             | ID '('exprList ')'                #RegularFunctionCallWithArgs
+             | ID '()'							 #RegularFunctionCallWithoutArgs
              ;
 
 stringExpr locals [ TypeSpec type = null ]
