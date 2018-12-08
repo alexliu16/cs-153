@@ -46,19 +46,19 @@ public interface TitanVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitSimpleExpr(TitanParser.SimpleExprContext ctx);
 	/**
+	 * Visit a parse tree produced by the {@code BoolExpr}
+	 * labeled alternative in {@link TitanParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitBoolExpr(TitanParser.BoolExprContext ctx);
+	/**
 	 * Visit a parse tree produced by the {@code ParenExpr}
 	 * labeled alternative in {@link TitanParser#expr}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
 	T visitParenExpr(TitanParser.ParenExprContext ctx);
-	/**
-	 * Visit a parse tree produced by the {@code ComparisonExpr}
-	 * labeled alternative in {@link TitanParser#expr}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitComparisonExpr(TitanParser.ComparisonExprContext ctx);
 	/**
 	 * Visit a parse tree produced by the {@code MulDivOp}
 	 * labeled alternative in {@link TitanParser#simpleExpression}.
@@ -122,6 +122,48 @@ public interface TitanVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitComparison(TitanParser.ComparisonContext ctx);
 	/**
+	 * Visit a parse tree produced by the {@code BoolLiteral}
+	 * labeled alternative in {@link TitanParser#boolExprs}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitBoolLiteral(TitanParser.BoolLiteralContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code ComparisonExpr}
+	 * labeled alternative in {@link TitanParser#boolExprs}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitComparisonExpr(TitanParser.ComparisonExprContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code BoolIdentifier}
+	 * labeled alternative in {@link TitanParser#boolExprs}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitBoolIdentifier(TitanParser.BoolIdentifierContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code BoolParen}
+	 * labeled alternative in {@link TitanParser#boolExprs}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitBoolParen(TitanParser.BoolParenContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code BoolOr}
+	 * labeled alternative in {@link TitanParser#boolExprs}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitBoolOr(TitanParser.BoolOrContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code BoolAnd}
+	 * labeled alternative in {@link TitanParser#boolExprs}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitBoolAnd(TitanParser.BoolAndContext ctx);
+	/**
 	 * Visit a parse tree produced by the {@code IfElseBrackets}
 	 * labeled alternative in {@link TitanParser#conditional}.
 	 * @param ctx the parse tree
@@ -142,11 +184,19 @@ public interface TitanVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitLoop(TitanParser.LoopContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link TitanParser#functionDeclaration}.
+	 * Visit a parse tree produced by the {@code FunctionWithArgsDecl}
+	 * labeled alternative in {@link TitanParser#functionDeclaration}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitFunctionDeclaration(TitanParser.FunctionDeclarationContext ctx);
+	T visitFunctionWithArgsDecl(TitanParser.FunctionWithArgsDeclContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code FunctionWithoutArgsDecl}
+	 * labeled alternative in {@link TitanParser#functionDeclaration}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitFunctionWithoutArgsDecl(TitanParser.FunctionWithoutArgsDeclContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link TitanParser#args}.
 	 * @param ctx the parse tree
@@ -160,23 +210,47 @@ public interface TitanVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitArgDecl(TitanParser.ArgDeclContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link TitanParser#declaration}.
+	 * Visit a parse tree produced by the {@code NormalDeclaration}
+	 * labeled alternative in {@link TitanParser#declaration}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitDeclaration(TitanParser.DeclarationContext ctx);
+	T visitNormalDeclaration(TitanParser.NormalDeclarationContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link TitanParser#assignment}.
+	 * Visit a parse tree produced by the {@code TernaryDeclaration}
+	 * labeled alternative in {@link TitanParser#declaration}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitAssignment(TitanParser.AssignmentContext ctx);
+	T visitTernaryDeclaration(TitanParser.TernaryDeclarationContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link TitanParser#shorthandAssignment}.
+	 * Visit a parse tree produced by the {@code SimpleAssignment}
+	 * labeled alternative in {@link TitanParser#assignment}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitShorthandAssignment(TitanParser.ShorthandAssignmentContext ctx);
+	T visitSimpleAssignment(TitanParser.SimpleAssignmentContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code TernaryOpAssignment}
+	 * labeled alternative in {@link TitanParser#assignment}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitTernaryOpAssignment(TitanParser.TernaryOpAssignmentContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code ShorthandIncDecAssignment}
+	 * labeled alternative in {@link TitanParser#assignment}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitShorthandIncDecAssignment(TitanParser.ShorthandIncDecAssignmentContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code SpecialAssignment}
+	 * labeled alternative in {@link TitanParser#assignment}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitSpecialAssignment(TitanParser.SpecialAssignmentContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link TitanParser#primitives}.
 	 * @param ctx the parse tree
@@ -203,18 +277,26 @@ public interface TitanVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitPrintf(TitanParser.PrintfContext ctx);
 	/**
-	 * Visit a parse tree produced by the {@code RegularFunction}
+	 * Visit a parse tree produced by the {@code RegularFunctionWithArgs}
 	 * labeled alternative in {@link TitanParser#functionCall}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitRegularFunction(TitanParser.RegularFunctionContext ctx);
+	T visitRegularFunctionWithArgs(TitanParser.RegularFunctionWithArgsContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link TitanParser#stringExpr}.
+	 * Visit a parse tree produced by the {@code RegularFunctionWithoutArgs}
+	 * labeled alternative in {@link TitanParser#functionCall}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitStringExpr(TitanParser.StringExprContext ctx);
+	T visitRegularFunctionWithoutArgs(TitanParser.RegularFunctionWithoutArgsContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code StrLit}
+	 * labeled alternative in {@link TitanParser#stringExpr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitStrLit(TitanParser.StrLitContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link TitanParser#printfexprList}.
 	 * @param ctx the parse tree

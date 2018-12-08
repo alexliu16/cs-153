@@ -91,7 +91,16 @@ public class SymTabImpl
         maxSlotNumber = ++slotNumber;
         return slotNumber;
     }
-
+    
+    /**
+     * Set slot number of a symbol table.
+     * @param slot
+     */
+    public void setSlotNumber(int slot)
+    {
+    	slotNumber = slot; 
+    }
+    
     /**
      * @return the maximum local variables array slot number.
      */

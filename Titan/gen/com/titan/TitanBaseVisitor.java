@@ -56,14 +56,14 @@ public class TitanBaseVisitor<T> extends AbstractParseTreeVisitor<T> implements 
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitParenExpr(TitanParser.ParenExprContext ctx) { return visitChildren(ctx); }
+	@Override public T visitBoolExpr(TitanParser.BoolExprContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitComparisonExpr(TitanParser.ComparisonExprContext ctx) { return visitChildren(ctx); }
+	@Override public T visitParenExpr(TitanParser.ParenExprContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -133,6 +133,48 @@ public class TitanBaseVisitor<T> extends AbstractParseTreeVisitor<T> implements 
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
+	@Override public T visitBoolLiteral(TitanParser.BoolLiteralContext ctx) { return visitChildren(ctx); }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.</p>
+	 */
+	@Override public T visitComparisonExpr(TitanParser.ComparisonExprContext ctx) { return visitChildren(ctx); }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.</p>
+	 */
+	@Override public T visitBoolIdentifier(TitanParser.BoolIdentifierContext ctx) { return visitChildren(ctx); }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.</p>
+	 */
+	@Override public T visitBoolParen(TitanParser.BoolParenContext ctx) { return visitChildren(ctx); }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.</p>
+	 */
+	@Override public T visitBoolOr(TitanParser.BoolOrContext ctx) { return visitChildren(ctx); }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.</p>
+	 */
+	@Override public T visitBoolAnd(TitanParser.BoolAndContext ctx) { return visitChildren(ctx); }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.</p>
+	 */
 	@Override public T visitIfElseBrackets(TitanParser.IfElseBracketsContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
@@ -154,7 +196,14 @@ public class TitanBaseVisitor<T> extends AbstractParseTreeVisitor<T> implements 
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitFunctionDeclaration(TitanParser.FunctionDeclarationContext ctx) { return visitChildren(ctx); }
+	@Override public T visitFunctionWithArgsDecl(TitanParser.FunctionWithArgsDeclContext ctx) { return visitChildren(ctx); }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.</p>
+	 */
+	@Override public T visitFunctionWithoutArgsDecl(TitanParser.FunctionWithoutArgsDeclContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -175,21 +224,42 @@ public class TitanBaseVisitor<T> extends AbstractParseTreeVisitor<T> implements 
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitDeclaration(TitanParser.DeclarationContext ctx) { return visitChildren(ctx); }
+	@Override public T visitNormalDeclaration(TitanParser.NormalDeclarationContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitAssignment(TitanParser.AssignmentContext ctx) { return visitChildren(ctx); }
+	@Override public T visitTernaryDeclaration(TitanParser.TernaryDeclarationContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitShorthandAssignment(TitanParser.ShorthandAssignmentContext ctx) { return visitChildren(ctx); }
+	@Override public T visitSimpleAssignment(TitanParser.SimpleAssignmentContext ctx) { return visitChildren(ctx); }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.</p>
+	 */
+	@Override public T visitTernaryOpAssignment(TitanParser.TernaryOpAssignmentContext ctx) { return visitChildren(ctx); }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.</p>
+	 */
+	@Override public T visitShorthandIncDecAssignment(TitanParser.ShorthandIncDecAssignmentContext ctx) { return visitChildren(ctx); }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.</p>
+	 */
+	@Override public T visitSpecialAssignment(TitanParser.SpecialAssignmentContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -224,14 +294,21 @@ public class TitanBaseVisitor<T> extends AbstractParseTreeVisitor<T> implements 
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitRegularFunction(TitanParser.RegularFunctionContext ctx) { return visitChildren(ctx); }
+	@Override public T visitRegularFunctionWithArgs(TitanParser.RegularFunctionWithArgsContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitStringExpr(TitanParser.StringExprContext ctx) { return visitChildren(ctx); }
+	@Override public T visitRegularFunctionWithoutArgs(TitanParser.RegularFunctionWithoutArgsContext ctx) { return visitChildren(ctx); }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.</p>
+	 */
+	@Override public T visitStrLit(TitanParser.StrLitContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *

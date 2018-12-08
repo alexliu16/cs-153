@@ -24,12 +24,12 @@ stat  : expr NEWLINE
 
 expr locals [ TypeSpec type = null ]
      : simpleExpression             #SimpleExpr
+     | boolExprs                    #BoolExpr
      | '(' expr ')'                 #ParenExpr
-     | comparison                   #ComparisonExpr
      ;
 
 simpleExpression locals [ TypeSpec type = null ]
-           : simpleExpression op=(MUL|DIV) simpleExpression  #MulDivOp
+           : simpleExpression op=(MUL|DIV) simpleExpression        #MulDivOp
            | simpleExpression op=(ADD|SUB) simpleExpression        #AddSubOp
            | simpleExpression MOD simpleExpression                 #ModOp
            | stringExpr                                            #String
@@ -43,41 +43,53 @@ comparison :     simpleExpression COMPARISON_OP simpleExpression
            | '(' simpleExpression COMPARISON_OP simpleExpression ')'
            ;
 
-conditional : 'if' expr NEWLINE? '{' block '}' (NEWLINE? 'else' NEWLINE? '{' block '}')?     #IfElseBrackets
-            | 'if' expr NEWLINE? stat (NEWLINE? 'else' NEWLINE? stat)?            #IfElseNoBrackets
+boolExprs locals [ TypeSpec type = null ]
+          : '(' boolExprs ')'              #BoolParen
+          | boolExprs op=BOOLAND boolExprs #BoolAnd
+          | boolExprs op=BOOLOR boolExprs  #BoolOr
+          | BOOLVALUES                     #BoolLiteral
+          | ID                             #BoolIdentifier
+          | comparison                     #ComparisonExpr
+          ;
+
+conditional : 'if' boolExprs NEWLINE? '{' block '}' (NEWLINE? 'else' NEWLINE? '{' block '}')?     #IfElseBrackets
+            | 'if' boolExprs NEWLINE? stat (NEWLINE? 'else' NEWLINE? stat)?                       #IfElseNoBrackets
             ;
 
 loop : 'for' ID 'from' simpleExpression 'to' simpleExpression NEWLINE? '{' block '}' ;
 
-functionDeclaration : 'function' funcReturnTypes ID '(' args ')' NEWLINE? '{' block '}' ;
+functionDeclaration : 'function' funcReturnTypes ID '(' args ')' NEWLINE? '{' block '}' #FunctionWithArgsDecl
+					| 'function' funcReturnTypes ID '()' NEWLINE? '{' block '}' #FunctionWithoutArgsDecl
+					;
 
 args : argDecl
      | args ',' argDecl;
 
 argDecl : primitives ref='&'? ID ;
 
-declaration : CONST? primitives ID ('=' expr)? NEWLINE;
+declaration : CONST? primitives ID ('=' expr)? NEWLINE  #NormalDeclaration
+			| CONST? primitives ID '=' boolExprs ? '?' expr ':' expr NEWLINE #TernaryDeclaration;
 
-assignment : ID '=' expr NEWLINE
-           | shorthandAssignment NEWLINE
-           | ID AssignmentOp expr NEWLINE
+assignment : ID '=' expr NEWLINE           #SimpleAssignment
+		   | ID '=' boolExprs '?' expr ':' expr NEWLINE #TernaryOpAssignment
+           | ID SHORTHANDASSIGNOP NEWLINE   #ShorthandIncDecAssignment
+           | ID AssignmentOp expr NEWLINE  #SpecialAssignment
            ;
 
-shorthandAssignment : ID SHORTHANDASSIGNOP ;
-
-
-primitives : (INT|BOOL|CHAR|FLOAT) ;
-
+primitives : (INT|BOOL|STRING|FLOAT) ;
 funcReturnTypes : primitives | 'void' ;
 
 retStat: 'return' expr NEWLINE;
 
 functionCall locals [ TypeSpec type = null ]
              : 'printf(' printfexprList ')'      #Printf
-             | ID '('exprList ')'                #RegularFunction
+             | ID '('exprList ')'                #RegularFunctionWithArgs
+             | ID '()'							 #RegularFunctionWithoutArgs
              ;
 
-stringExpr : STRINGLIT;
+stringExpr locals [ TypeSpec type = null ]
+           : STRINGLIT                 #StrLit
+           ;
 
 printfexprList : expr
                | printfexprList ',' expr ;
@@ -107,12 +119,17 @@ INT : 'int' ;
 BOOL : 'bool' ;
 CHAR : 'char' ;
 FLOAT : 'float' ;
+STRING: 'string' ;
+BOOLVALUES: 'true'|'false' ;
+BOOLAND: '&&' ;
+BOOLOR: '||' ;
 AssignmentOp : PLUS_EQ|MINUS_EQ|MUL_EQ|DIV_EQ ;
 
 PLUS_EQ : '+=' ;
 MINUS_EQ : '-=' ;
 MUL_EQ : '*=' ;
 DIV_EQ : '/=' ;
+MOD_EQ : '%=' ;
 
 EXPNUM : (FLOATINGNUMBER|DIGITS) [Ee] DIGITS ;
 SHORTHANDASSIGNOP : PLUSPLUS|MINUSMINUS;
