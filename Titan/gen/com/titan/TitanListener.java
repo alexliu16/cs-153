@@ -458,29 +458,29 @@ public interface TitanListener extends ParseTreeListener {
 	 */
 	void exitPrintf(TitanParser.PrintfContext ctx);
 	/**
-	 * Enter a parse tree produced by the {@code RegularFunctionWithArgs}
+	 * Enter a parse tree produced by the {@code RegularFunctionCallWithArgs}
 	 * labeled alternative in {@link TitanParser#functionCall}.
 	 * @param ctx the parse tree
 	 */
-	void enterRegularFunctionWithArgs(TitanParser.RegularFunctionWithArgsContext ctx);
+	void enterRegularFunctionCallWithArgs(TitanParser.RegularFunctionCallWithArgsContext ctx);
 	/**
-	 * Exit a parse tree produced by the {@code RegularFunctionWithArgs}
+	 * Exit a parse tree produced by the {@code RegularFunctionCallWithArgs}
 	 * labeled alternative in {@link TitanParser#functionCall}.
 	 * @param ctx the parse tree
 	 */
-	void exitRegularFunctionWithArgs(TitanParser.RegularFunctionWithArgsContext ctx);
+	void exitRegularFunctionCallWithArgs(TitanParser.RegularFunctionCallWithArgsContext ctx);
 	/**
-	 * Enter a parse tree produced by the {@code RegularFunctionWithoutArgs}
+	 * Enter a parse tree produced by the {@code RegularFunctionCallWithoutArgs}
 	 * labeled alternative in {@link TitanParser#functionCall}.
 	 * @param ctx the parse tree
 	 */
-	void enterRegularFunctionWithoutArgs(TitanParser.RegularFunctionWithoutArgsContext ctx);
+	void enterRegularFunctionCallWithoutArgs(TitanParser.RegularFunctionCallWithoutArgsContext ctx);
 	/**
-	 * Exit a parse tree produced by the {@code RegularFunctionWithoutArgs}
+	 * Exit a parse tree produced by the {@code RegularFunctionCallWithoutArgs}
 	 * labeled alternative in {@link TitanParser#functionCall}.
 	 * @param ctx the parse tree
 	 */
-	void exitRegularFunctionWithoutArgs(TitanParser.RegularFunctionWithoutArgsContext ctx);
+	void exitRegularFunctionCallWithoutArgs(TitanParser.RegularFunctionCallWithoutArgsContext ctx);
 	/**
 	 * Enter a parse tree produced by the {@code StrLit}
 	 * labeled alternative in {@link TitanParser#stringExpr}.

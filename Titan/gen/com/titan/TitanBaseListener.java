@@ -488,25 +488,25 @@ public class TitanBaseListener implements TitanListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterRegularFunctionWithArgs(TitanParser.RegularFunctionWithArgsContext ctx) { }
+	@Override public void enterRegularFunctionCallWithArgs(TitanParser.RegularFunctionCallWithArgsContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitRegularFunctionWithArgs(TitanParser.RegularFunctionWithArgsContext ctx) { }
+	@Override public void exitRegularFunctionCallWithArgs(TitanParser.RegularFunctionCallWithArgsContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterRegularFunctionWithoutArgs(TitanParser.RegularFunctionWithoutArgsContext ctx) { }
+	@Override public void enterRegularFunctionCallWithoutArgs(TitanParser.RegularFunctionCallWithoutArgsContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitRegularFunctionWithoutArgs(TitanParser.RegularFunctionWithoutArgsContext ctx) { }
+	@Override public void exitRegularFunctionCallWithoutArgs(TitanParser.RegularFunctionCallWithoutArgsContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *

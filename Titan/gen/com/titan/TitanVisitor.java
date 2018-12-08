@@ -277,19 +277,19 @@ public interface TitanVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitPrintf(TitanParser.PrintfContext ctx);
 	/**
-	 * Visit a parse tree produced by the {@code RegularFunctionWithArgs}
+	 * Visit a parse tree produced by the {@code RegularFunctionCallWithArgs}
 	 * labeled alternative in {@link TitanParser#functionCall}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitRegularFunctionWithArgs(TitanParser.RegularFunctionWithArgsContext ctx);
+	T visitRegularFunctionCallWithArgs(TitanParser.RegularFunctionCallWithArgsContext ctx);
 	/**
-	 * Visit a parse tree produced by the {@code RegularFunctionWithoutArgs}
+	 * Visit a parse tree produced by the {@code RegularFunctionCallWithoutArgs}
 	 * labeled alternative in {@link TitanParser#functionCall}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitRegularFunctionWithoutArgs(TitanParser.RegularFunctionWithoutArgsContext ctx);
+	T visitRegularFunctionCallWithoutArgs(TitanParser.RegularFunctionCallWithoutArgsContext ctx);
 	/**
 	 * Visit a parse tree produced by the {@code StrLit}
 	 * labeled alternative in {@link TitanParser#stringExpr}.
