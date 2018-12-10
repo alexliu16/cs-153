@@ -165,6 +165,9 @@ public class TitanVisitorPass2 extends TitanBaseVisitor<Integer>
                 case "/=":
                     jFile.println(typeIndicator + "div");
                     break;
+                case "%=":
+                	jFile.println(typeIndicator + "rem");
+                	break;
             }
             jFile.println(typeIndicator + "store " + local.getAttribute(SLOT));
 
@@ -376,14 +379,38 @@ public class TitanVisitorPass2 extends TitanBaseVisitor<Integer>
 
         return value;
     }
+    
+    @Override
+    public Integer visitModOp(TitanParser.ModOpContext ctx)
+    {
+    	Integer value = visitChildren(ctx);
+
+        TypeSpec type1 = ctx.simpleExpression(0).type;
+        TypeSpec type2 = ctx.simpleExpression(1).type;
+
+        boolean integerMode =    (type1 == Predefined.integerType)
+                && (type2 == Predefined.integerType);
+        boolean realMode    =    (type1 == Predefined.realType)
+                && (type2 == Predefined.realType);
+
+
+        String opcode;
+
+        opcode = integerMode ? "irem" : realMode ? "frem" : "????";
+
+        // Emit a multiply or divide instruction.
+        jFile.println("\t" + opcode);
+
+        return value;
+    }
 
 
     @Override
     public Integer visitIdentifier(TitanParser.IdentifierContext ctx) {
-    	String variableName = ctx.ID().toString();  
+    	String variableName = ctx.ID().toString();
     	SymTabEntry local = null;
     	if(functionCall)
-    		local = symTabStack.lookupLocal(ctx.ID().toString());
+    		local = symTabStack.lookup(ctx.ID().toString());
     	else
     		local = symTabStack.lookup(ctx.ID().toString());
         
@@ -574,6 +601,7 @@ public class TitanVisitorPass2 extends TitanBaseVisitor<Integer>
         String comparison = ctx.comparison().COMPARISON_OP().getText();
         TypeSpec type1 = ctx.comparison().simpleExpression(0).type;
         TypeSpec type2 = ctx.comparison().simpleExpression(1).type;
+        
         visit(ctx.comparison().simpleExpression((0)));
         visit(ctx.comparison().simpleExpression(1));
         boolean integerMode =    (type1 == Predefined.integerType)
@@ -639,7 +667,7 @@ public class TitanVisitorPass2 extends TitanBaseVisitor<Integer>
     public Integer visitBoolIdentifier(TitanParser.BoolIdentifierContext ctx) {
         String variableName = ctx.ID().toString();
        
-        SymTabEntry local = symTabStack.lookupLocal(ctx.ID().toString());
+        SymTabEntry local = symTabStack.lookup(ctx.ID().toString());
         ctx.type = local.getTypeSpec();
         TypeSpec type = ctx.type;
 
@@ -664,43 +692,41 @@ public class TitanVisitorPass2 extends TitanBaseVisitor<Integer>
     @Override
     public Integer visitLoop(TitanParser.LoopContext ctx) {   
     	//System.out.println("Stack before push: " + symTabStack.getLocalSymTab());
-    	
+    	int currentIncrementer = this.labelIncrementer;
+    	this.labelIncrementer += 4;
     	String id = ctx.ID().getText();
     	String name = "loop" + ctx.start.getLine();
     	
     	// push new symbol table for scoped variables
     	SymTab scopedTab = (SymTab) symTabStack.lookup(name).getAttribute(ROUTINE_SYMTAB);
     	symTabStack.push(scopedTab);
-	    
-    	int slot_no = symTabStack.getLocalSymTab().nextSlotNumber();
     	
-    	SymTabEntry entry = symTabStack.enterLocal(id);
+       	int slot_no = symTabStack.getLocalSymTab().nextSlotNumber();
+       	SymTabEntry entry = symTabStack.lookupLocal(ctx.ID().getText());
         entry.setTypeSpec(Predefined.integerType);
         entry.setAttribute(SLOT, slot_no);
-        
+       	
     	visit(ctx.simpleExpression(0)); // store var
-    	jFile.println("\tistore_" + slot_no + "\t; " + id);  
-    	jFile.println("L00" + (this.labelIncrementer) + ":"); // emit label
-    	this.labelIncrementer++;
+    	jFile.println("\tistore " + slot_no + "\t; " + id);  
+    	jFile.println("L00" + (currentIncrementer) + ":"); // emit label
     	
     	visit(ctx.block());
 
     	jFile.println("\tiload " + slot_no + " \t; load " + id);
     	visit(ctx.simpleExpression(1));
     	jFile.println("\tiinc " + slot_no + " 1\t; " + id + "++");
-    	jFile.println("\tif_icmpeq L00" + this.labelIncrementer);
+    	jFile.println("\tif_icmpeq L00" + (currentIncrementer + 1));
     	jFile.println("\ticonst_0 \t; false");
-    	jFile.println("\tgoto L00" + (this.labelIncrementer + 1));
+    	jFile.println("\tgoto L00" + (currentIncrementer + 2));
     	
-    	jFile.println("L00" + (this.labelIncrementer) + ":"); // emit label
+    	jFile.println("L00" + (currentIncrementer + 1) + ":"); // emit label
     	jFile.println("\ticonst_1 \t; true");
     	
-        jFile.println("L00" + (this.labelIncrementer + 1) + ":"); // emit label
-        jFile.println("\tifne L00" + (this.labelIncrementer + 2));
-        jFile.println("\tgoto L00" + (this.labelIncrementer - 1));        
+        jFile.println("L00" + (currentIncrementer + 2) + ":"); // emit label
+        jFile.println("\tifne L00" + (currentIncrementer + 3));
+        jFile.println("\tgoto L00" + (currentIncrementer));        
         
-        jFile.println("L00" + (this.labelIncrementer + 2) + ":"); // emit label
-        this.labelIncrementer += 3;
+        jFile.println("L00" + (currentIncrementer + 3) + ":"); // emit label
         
     	//System.out.println("Stack right before pop: " + symTabStack.getLocalSymTab());
 		symTabStack.pop();

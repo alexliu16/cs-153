@@ -1,5 +1,5 @@
-// Generated from /Users/thomaspedersen/CS153/TeamProject/cs-153/Titan/src/com/titan/Titan.g4 by ANTLR 4.7
 package com.titan;
+// Generated from C:/Users/Andy/Desktop/SJSU/FALL 2018 THE LAST/CS153/cs-153/Titan/src/com/titan\Titan.g4 by ANTLR 4.7
 
     import com.titan.intermediate.*;
     import com.titan.intermediate.symtabimpl.*;

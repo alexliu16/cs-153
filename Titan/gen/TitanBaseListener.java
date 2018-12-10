@@ -1,7 +1,8 @@
-package com.titan;
 // Generated from C:/Users/Andy/Desktop/SJSU/FALL 2018 THE LAST/CS153/cs-153/Titan/src/com/titan\Titan.g4 by ANTLR 4.7
 
-    import com.titan.TitanParser.AddSubOpContext;
+    import com.titan.TitanListener;
+import com.titan.TitanParser;
+import com.titan.TitanParser.AddSubOpContext;
 import com.titan.TitanParser.ArgDeclContext;
 import com.titan.TitanParser.ArgsContext;
 import com.titan.TitanParser.BlockContext;
