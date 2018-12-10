@@ -1,56 +1,8 @@
-// Generated from C:/Users/Andy/Desktop/SJSU/FALL 2018 THE LAST/CS153/cs-153/Titan/src/com/titan\Titan.g4 by ANTLR 4.7
+// Generated from Titan.g4 by ANTLR 4.7.1
 
-    import com.titan.TitanListener;
-import com.titan.TitanParser;
-import com.titan.TitanParser.AddSubOpContext;
-import com.titan.TitanParser.ArgDeclContext;
-import com.titan.TitanParser.ArgsContext;
-import com.titan.TitanParser.BlockContext;
-import com.titan.TitanParser.BoolAndContext;
-import com.titan.TitanParser.BoolExprContext;
-import com.titan.TitanParser.BoolIdentifierContext;
-import com.titan.TitanParser.BoolLiteralContext;
-import com.titan.TitanParser.BoolOrContext;
-import com.titan.TitanParser.BoolParenContext;
-import com.titan.TitanParser.ClassNameContext;
-import com.titan.TitanParser.ComparisonContext;
-import com.titan.TitanParser.ComparisonExprContext;
-import com.titan.TitanParser.ExponentialContext;
-import com.titan.TitanParser.ExprListContext;
-import com.titan.TitanParser.FloatContext;
-import com.titan.TitanParser.FuncCallContext;
-import com.titan.TitanParser.FuncReturnTypesContext;
-import com.titan.TitanParser.FunctionWithArgsDeclContext;
-import com.titan.TitanParser.FunctionWithoutArgsDeclContext;
-import com.titan.TitanParser.IdentifierContext;
-import com.titan.TitanParser.IfElseBracketsContext;
-import com.titan.TitanParser.IfElseNoBracketsContext;
-import com.titan.TitanParser.IntegerContext;
-import com.titan.TitanParser.LiteralContext;
-import com.titan.TitanParser.LoopContext;
-import com.titan.TitanParser.ModOpContext;
-import com.titan.TitanParser.MulDivOpContext;
-import com.titan.TitanParser.NormalDeclarationContext;
-import com.titan.TitanParser.ParenExprContext;
-import com.titan.TitanParser.PrimitivesContext;
-import com.titan.TitanParser.PrintfContext;
-import com.titan.TitanParser.PrintfexprListContext;
-import com.titan.TitanParser.ProgContext;
-import com.titan.TitanParser.RegularFunctionCallWithArgsContext;
-import com.titan.TitanParser.RegularFunctionCallWithoutArgsContext;
-import com.titan.TitanParser.RetStatContext;
-import com.titan.TitanParser.ShorthandIncDecAssignmentContext;
-import com.titan.TitanParser.SimpleAssignmentContext;
-import com.titan.TitanParser.SimpleExprContext;
-import com.titan.TitanParser.SimpleExprParenContext;
-import com.titan.TitanParser.SpecialAssignmentContext;
-import com.titan.TitanParser.StatContext;
-import com.titan.TitanParser.StrLitContext;
-import com.titan.TitanParser.StringContext;
-import com.titan.TitanParser.TernaryDeclarationContext;
-import com.titan.TitanParser.TernaryOpAssignmentContext;
-import com.titan.intermediate.*;
+    import com.titan.intermediate.*;
     import com.titan.intermediate.symtabimpl.*;
+
 
 import org.antlr.v4.runtime.ParserRuleContext;
 import org.antlr.v4.runtime.tree.ErrorNode;
@@ -355,13 +307,25 @@ public class TitanBaseListener implements TitanListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterLoop(TitanParser.LoopContext ctx) { }
+	@Override public void enterForLoop(TitanParser.ForLoopContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitLoop(TitanParser.LoopContext ctx) { }
+	@Override public void exitForLoop(TitanParser.ForLoopContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterWhileLoop(TitanParser.WhileLoopContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitWhileLoop(TitanParser.WhileLoopContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *

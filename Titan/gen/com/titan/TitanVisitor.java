@@ -1,5 +1,5 @@
+// Generated from Titan.g4 by ANTLR 4.7.1
 package com.titan;
-// Generated from C:/Users/Andy/Desktop/SJSU/FALL 2018 THE LAST/CS153/cs-153/Titan/src/com/titan\Titan.g4 by ANTLR 4.7
 
     import com.titan.intermediate.*;
     import com.titan.intermediate.symtabimpl.*;
@@ -178,11 +178,19 @@ public interface TitanVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitIfElseNoBrackets(TitanParser.IfElseNoBracketsContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link TitanParser#loop}.
+	 * Visit a parse tree produced by the {@code ForLoop}
+	 * labeled alternative in {@link TitanParser#loop}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitLoop(TitanParser.LoopContext ctx);
+	T visitForLoop(TitanParser.ForLoopContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code WhileLoop}
+	 * labeled alternative in {@link TitanParser#loop}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitWhileLoop(TitanParser.WhileLoopContext ctx);
 	/**
 	 * Visit a parse tree produced by the {@code FunctionWithArgsDecl}
 	 * labeled alternative in {@link TitanParser#functionDeclaration}.
