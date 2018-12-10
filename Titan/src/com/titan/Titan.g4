@@ -56,8 +56,10 @@ conditional : 'if' boolExprs NEWLINE? '{' block '}' (NEWLINE? 'else' NEWLINE? '{
             | 'if' boolExprs NEWLINE? stat (NEWLINE? 'else' NEWLINE? stat)?                       #IfElseNoBrackets
             ;
 
-loop : 'for' ID 'from' simpleExpression 'to' simpleExpression NEWLINE? '{' block '}' ;
-
+loop : 'for' ID 'from' simpleExpression 'to' simpleExpression NEWLINE? '{' block '}' #ForLoop
+     | 'while' boolExprs NEWLINE? '{' block '}' #WhileLoop
+     ;
+     
 functionDeclaration : 'function' funcReturnTypes ID '(' args ')' NEWLINE? '{' block '}' #FunctionWithArgsDecl
 					| 'function' funcReturnTypes ID '()' NEWLINE? '{' block '}' #FunctionWithoutArgsDecl
 					;

@@ -304,9 +304,27 @@ public class TitanVisitorPass1 extends TitanBaseVisitor<Integer>
         return visitChildren(ctx);
     }
     
+    @Override 
+    public Integer visitWhileLoop(TitanParser.WhileLoopContext ctx) {
+    	String name = "whileloop" + ctx.start.getLine();
+    	
+    	visit(ctx.boolExprs()); // visit, otherwise jFile prints ???
+    	
+    	int slot_no = symTabStack.getLocalSymTab().nextSlotNumber() - 1;
+    	SymTabEntry entry = symTabStack.enterLocal(name);
+    	entry.setAttribute(ROUTINE_SYMTAB, symTabStack.push());
+    	symTabStack.getLocalSymTab().setSlotNumber(slot_no);
+    	
+    	Integer val = visit(ctx.block());
+    	
+    	symTabStack.pop();
+    	  
+    	return val;
+    }
+    
     @Override
-    public Integer visitLoop(TitanParser.LoopContext ctx) {
-    	String name = "loop" + ctx.start.getLine();
+    public Integer visitForLoop(TitanParser.ForLoopContext ctx) {
+    	String name = "forloop" + ctx.start.getLine();
 
     	int slot_no = symTabStack.getLocalSymTab().nextSlotNumber() - 1;
     	SymTabEntry entry = symTabStack.enterLocal(name);

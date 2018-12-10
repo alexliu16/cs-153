@@ -684,18 +684,39 @@ public class TitanVisitorPass2 extends TitanBaseVisitor<Integer>
     }
 
     
-    public Integer visitLoopExpression(TitanParser.SimpleExpressionContext ctx) {
-    	Integer val = 1;
-    	return val;
+    @Override
+    public Integer visitWhileLoop(TitanParser.WhileLoopContext ctx) {
+    	//System.out.println("VisitLoop: " + ctx.boolExprs().getText());
+    	String name = "whileloop" + ctx.start.getLine();
+           
+    	jFile.println("L00" + (this.labelIncrementer) + ":\t ; while loop"); // emit label
+    	this.labelIncrementer++;
+    	
+    	visit(ctx.boolExprs());
+    	jFile.println("\tifeq L00" + (this.labelIncrementer));
+    	
+        // push new symbol table for scoped variables
+    	SymTab scopedTab = (SymTab) symTabStack.lookup(name).getAttribute(ROUTINE_SYMTAB);
+    	symTabStack.push(scopedTab);
+    	
+    	visit(ctx.block()); 
+        jFile.println("\tgoto L00" + (this.labelIncrementer - 3));        
+       
+        jFile.println("L00" + (this.labelIncrementer) + ":"); // emit label
+        this.labelIncrementer++;
+        
+		symTabStack.pop();
+		 
+        return 0;
     }
     
     @Override
-    public Integer visitLoop(TitanParser.LoopContext ctx) {   
+    public Integer visitForLoop(TitanParser.ForLoopContext ctx) {   
     	//System.out.println("Stack before push: " + symTabStack.getLocalSymTab());
     	int currentIncrementer = this.labelIncrementer;
     	this.labelIncrementer += 4;
     	String id = ctx.ID().getText();
-    	String name = "loop" + ctx.start.getLine();
+    	String name = "forloop" + ctx.start.getLine();
     	
     	// push new symbol table for scoped variables
     	SymTab scopedTab = (SymTab) symTabStack.lookup(name).getAttribute(ROUTINE_SYMTAB);
