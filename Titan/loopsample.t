@@ -6,15 +6,12 @@ main {
     	printf("This is a for loop. a has value of %d\n",a)
     	printf("Test outside declarations. i has a value of %d\n",i)
     	
-    	int q = 12
-    	printf("For loop declarations work. q has value of %d\n",q)
-    	
-    	int w = 3
-    	printf("For loop declarations work. w has value of %d\n",w)
     }
     
-    for a from 0 to 1 {
-    	int b = 1
-    	printf("Second For loop declarations work. b has value of %d\n",b)
+    while (i > 0) {
+    	int w = 4
+    	printf("Inside var declaration. While loop. \tw has value of %d\n",w)
+        printf("While loop. \ti has value of %d\n",i)
+    	i -= 1
     }
 }
