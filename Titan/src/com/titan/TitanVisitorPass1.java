@@ -233,6 +233,27 @@ public class TitanVisitorPass1 extends TitanBaseVisitor<Integer>
 
         return value;
     }
+    
+    @Override
+    public Integer visitModOp(TitanParser.ModOpContext ctx)
+    {
+    	Integer value = visitChildren(ctx);
+    	
+        TypeSpec type1 = ctx.simpleExpression(0).type;
+        TypeSpec type2 = ctx.simpleExpression(1).type;
+    	
+        boolean integerMode =    (type1 == Predefined.integerType)
+                && (type2 == Predefined.integerType);
+        boolean realMode    =    (type1 == Predefined.realType || type1 == Predefined.integerType)
+                && (type2 == Predefined.realType || type2 == Predefined.integerType);
+        
+        TypeSpec type = integerMode ? Predefined.integerType
+                : realMode    ? Predefined.realType
+                :               null;
+        ctx.type = type;
+
+        return value;
+    }
 
     @Override
     public Integer visitLiteral(TitanParser.LiteralContext ctx) {
@@ -244,11 +265,11 @@ public class TitanVisitorPass1 extends TitanBaseVisitor<Integer>
     @Override
     public Integer visitIdentifier(TitanParser.IdentifierContext ctx) {
         String variableName = ctx.ID().toString();
-        SymTabEntry variableId = symTabStack.lookupLocal(variableName);
-
+        SymTabEntry variableId = symTabStack.lookup(variableName);
         if(variableId != null) {
             ctx.type = variableId.getTypeSpec();
         }
+        
         return visitChildren(ctx);
     }
 
@@ -290,13 +311,15 @@ public class TitanVisitorPass1 extends TitanBaseVisitor<Integer>
     	int slot_no = symTabStack.getLocalSymTab().nextSlotNumber() - 1;
     	SymTabEntry entry = symTabStack.enterLocal(name);
     	entry.setAttribute(ROUTINE_SYMTAB, symTabStack.push());
-        
     	symTabStack.getLocalSymTab().setSlotNumber(slot_no);
+    	int slot_no2 = symTabStack.getLocalSymTab().nextSlotNumber();
     	
+    	SymTabEntry entry2 = symTabStack.enterLocal(ctx.ID().getText());
+        entry2.setTypeSpec(Predefined.integerType);
+        entry2.setAttribute(SLOT, slot_no2);
     	Integer val = visitChildren(ctx);
     	
     	symTabStack.pop();
-
     	return val;
     }
     

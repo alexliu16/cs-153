@@ -124,12 +124,13 @@ STRING: 'string' ;
 BOOLVALUES: 'true'|'false' ;
 BOOLAND: '&&' ;
 BOOLOR: '||' ;
-AssignmentOp : PLUS_EQ|MINUS_EQ|MUL_EQ|DIV_EQ ;
+AssignmentOp : PLUS_EQ|MINUS_EQ|MUL_EQ|DIV_EQ|MOD_EQ ;
 
 PLUS_EQ : '+=' ;
 MINUS_EQ : '-=' ;
 MUL_EQ : '*=' ;
 DIV_EQ : '/=' ;
+MOD_EQ : '%=' ;
 
 EXPNUM : (FLOATINGNUMBER|DIGITS) [Ee] DIGITS ;
 SHORTHANDASSIGNOP : PLUSPLUS|MINUSMINUS;
