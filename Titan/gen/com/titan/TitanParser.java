@@ -1,4 +1,4 @@
-// Generated from /Users/thomaspedersen/CS153/TeamProject/cs-153/Titan/src/com/titan/Titan.g4 by ANTLR 4.7
+// Generated from Titan.g4 by ANTLR 4.7.1
 package com.titan;
 
     import com.titan.intermediate.*;
@@ -15,7 +15,7 @@ import java.util.ArrayList;
 
 @SuppressWarnings({"all", "warnings", "unchecked", "unused", "cast"})
 public class TitanParser extends Parser {
-	static { RuntimeMetaData.checkVersion("4.7", RuntimeMetaData.VERSION); }
+	static { RuntimeMetaData.checkVersion("4.7.1", RuntimeMetaData.VERSION); }
 
 	protected static final DFA[] _decisionToDFA;
 	protected static final PredictionContextCache _sharedContextCache =
@@ -23,12 +23,21 @@ public class TitanParser extends Parser {
 	public static final int
 		T__0=1, T__1=2, T__2=3, T__3=4, T__4=5, T__5=6, T__6=7, T__7=8, T__8=9, 
 		T__9=10, T__10=11, T__11=12, T__12=13, T__13=14, T__14=15, T__15=16, T__16=17, 
+<<<<<<< Updated upstream
 		T__17=18, MUL=19, DIV=20, ADD=21, SUB=22, MOD=23, CONST=24, INT=25, BOOL=26, 
 		CHAR=27, FLOAT=28, STRING=29, BOOLVALUES=30, BOOLAND=31, BOOLOR=32, AssignmentOp=33, 
 		PLUS_EQ=34, MINUS_EQ=35, MUL_EQ=36, DIV_EQ=37, EXPNUM=38, SHORTHANDASSIGNOP=39, 
 		PLUSPLUS=40, MINUSMINUS=41, COMPARISON_OP=42, ID=43, WORD=44, FLOATINGNUMBER=45, 
 		DIGITS=46, NEWLINE=47, WHITESPACE=48, LINECOMMENT=49, BLOCKCOMMENT=50, 
 		STRINGLIT=51;
+=======
+		T__17=18, T__18=19, T__19=20, T__20=21, T__21=22, MUL=23, DIV=24, ADD=25, 
+		SUB=26, MOD=27, CONST=28, INT=29, BOOL=30, CHAR=31, FLOAT=32, STRING=33, 
+		BOOLVALUES=34, BOOLAND=35, BOOLOR=36, AssignmentOp=37, PLUS_EQ=38, MINUS_EQ=39, 
+		MUL_EQ=40, DIV_EQ=41, EXPNUM=42, SHORTHANDASSIGNOP=43, PLUSPLUS=44, MINUSMINUS=45, 
+		COMPARISON_OP=46, ID=47, WORD=48, FLOATINGNUMBER=49, DIGITS=50, NEWLINE=51, 
+		WHITESPACE=52, LINECOMMENT=53, BLOCKCOMMENT=54, STRINGLIT=55;
+>>>>>>> Stashed changes
 	public static final int
 		RULE_className = 0, RULE_prog = 1, RULE_block = 2, RULE_stat = 3, RULE_expr = 4, 
 		RULE_simpleExpression = 5, RULE_comparison = 6, RULE_boolExprs = 7, RULE_conditional = 8, 
@@ -45,6 +54,7 @@ public class TitanParser extends Parser {
 
 	private static final String[] _LITERAL_NAMES = {
 		null, "'program'", "'main'", "'{'", "'}'", "'('", "')'", "'if'", "'else'", 
+<<<<<<< Updated upstream
 		"'for'", "'from'", "'to'", "'function'", "','", "'&'", "'='", "'void'", 
 		"'return'", "'printf('", "'*'", "'/'", "'+'", "'-'", "'%'", "'const'", 
 		"'int'", "'bool'", "'char'", "'float'", "'string'", null, "'&&'", "'||'", 
@@ -58,6 +68,22 @@ public class TitanParser extends Parser {
 		"DIV_EQ", "EXPNUM", "SHORTHANDASSIGNOP", "PLUSPLUS", "MINUSMINUS", "COMPARISON_OP", 
 		"ID", "WORD", "FLOATINGNUMBER", "DIGITS", "NEWLINE", "WHITESPACE", "LINECOMMENT", 
 		"BLOCKCOMMENT", "STRINGLIT"
+=======
+		"'for'", "'from'", "'to'", "'while'", "'function'", "'()'", "','", "'&'", 
+		"'='", "'?'", "':'", "'void'", "'return'", "'printf('", "'*'", "'/'", 
+		"'+'", "'-'", "'%'", "'const'", "'int'", "'bool'", "'char'", "'float'", 
+		"'string'", null, "'&&'", "'||'", null, "'+='", "'-='", "'*='", "'/='", 
+		null, null, "'++'", "'--'"
+	};
+	private static final String[] _SYMBOLIC_NAMES = {
+		null, null, null, null, null, null, null, null, null, null, null, null, 
+		null, null, null, null, null, null, null, null, null, null, null, "MUL", 
+		"DIV", "ADD", "SUB", "MOD", "CONST", "INT", "BOOL", "CHAR", "FLOAT", "STRING", 
+		"BOOLVALUES", "BOOLAND", "BOOLOR", "AssignmentOp", "PLUS_EQ", "MINUS_EQ", 
+		"MUL_EQ", "DIV_EQ", "EXPNUM", "SHORTHANDASSIGNOP", "PLUSPLUS", "MINUSMINUS", 
+		"COMPARISON_OP", "ID", "WORD", "FLOATINGNUMBER", "DIGITS", "NEWLINE", 
+		"WHITESPACE", "LINECOMMENT", "BLOCKCOMMENT", "STRINGLIT"
+>>>>>>> Stashed changes
 	};
 	public static final Vocabulary VOCABULARY = new VocabularyImpl(_LITERAL_NAMES, _SYMBOLIC_NAMES);
 
@@ -241,7 +267,7 @@ public class TitanParser extends Parser {
 			setState(75);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
-			while (_la==T__11) {
+			while (_la==T__12) {
 				{
 				{
 				setState(66);
@@ -325,7 +351,11 @@ public class TitanParser extends Parser {
 				setState(81); 
 				_errHandler.sync(this);
 				_la = _input.LA(1);
+<<<<<<< Updated upstream
 			} while ( (((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__4) | (1L << T__6) | (1L << T__8) | (1L << T__16) | (1L << T__17) | (1L << CONST) | (1L << INT) | (1L << BOOL) | (1L << FLOAT) | (1L << STRING) | (1L << BOOLVALUES) | (1L << EXPNUM) | (1L << ID) | (1L << FLOATINGNUMBER) | (1L << DIGITS) | (1L << NEWLINE) | (1L << STRINGLIT))) != 0) );
+=======
+			} while ( (((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__4) | (1L << T__6) | (1L << T__8) | (1L << T__11) | (1L << T__20) | (1L << T__21) | (1L << CONST) | (1L << INT) | (1L << BOOL) | (1L << FLOAT) | (1L << STRING) | (1L << BOOLVALUES) | (1L << EXPNUM) | (1L << ID) | (1L << FLOATINGNUMBER) | (1L << DIGITS) | (1L << NEWLINE) | (1L << STRINGLIT))) != 0) );
+>>>>>>> Stashed changes
 			}
 		}
 		catch (RecognitionException re) {
@@ -1435,6 +1465,17 @@ public class TitanParser extends Parser {
 	}
 
 	public static class LoopContext extends ParserRuleContext {
+		public LoopContext(ParserRuleContext parent, int invokingState) {
+			super(parent, invokingState);
+		}
+		@Override public int getRuleIndex() { return RULE_loop; }
+	 
+		public LoopContext() { }
+		public void copyFrom(LoopContext ctx) {
+			super.copyFrom(ctx);
+		}
+	}
+	public static class ForLoopContext extends LoopContext {
 		public TerminalNode ID() { return getToken(TitanParser.ID, 0); }
 		public List<SimpleExpressionContext> simpleExpression() {
 			return getRuleContexts(SimpleExpressionContext.class);
@@ -1446,21 +1487,41 @@ public class TitanParser extends Parser {
 			return getRuleContext(BlockContext.class,0);
 		}
 		public TerminalNode NEWLINE() { return getToken(TitanParser.NEWLINE, 0); }
-		public LoopContext(ParserRuleContext parent, int invokingState) {
-			super(parent, invokingState);
-		}
-		@Override public int getRuleIndex() { return RULE_loop; }
+		public ForLoopContext(LoopContext ctx) { copyFrom(ctx); }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof TitanListener ) ((TitanListener)listener).enterLoop(this);
+			if ( listener instanceof TitanListener ) ((TitanListener)listener).enterForLoop(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof TitanListener ) ((TitanListener)listener).exitLoop(this);
+			if ( listener instanceof TitanListener ) ((TitanListener)listener).exitForLoop(this);
 		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof TitanVisitor ) return ((TitanVisitor<? extends T>)visitor).visitLoop(this);
+			if ( visitor instanceof TitanVisitor ) return ((TitanVisitor<? extends T>)visitor).visitForLoop(this);
+			else return visitor.visitChildren(this);
+		}
+	}
+	public static class WhileLoopContext extends LoopContext {
+		public BoolExprsContext boolExprs() {
+			return getRuleContext(BoolExprsContext.class,0);
+		}
+		public BlockContext block() {
+			return getRuleContext(BlockContext.class,0);
+		}
+		public TerminalNode NEWLINE() { return getToken(TitanParser.NEWLINE, 0); }
+		public WhileLoopContext(LoopContext ctx) { copyFrom(ctx); }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof TitanListener ) ((TitanListener)listener).enterWhileLoop(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof TitanListener ) ((TitanListener)listener).exitWhileLoop(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof TitanVisitor ) return ((TitanVisitor<? extends T>)visitor).visitWhileLoop(this);
 			else return visitor.visitChildren(this);
 		}
 	}
@@ -1470,36 +1531,71 @@ public class TitanParser extends Parser {
 		enterRule(_localctx, 18, RULE_loop);
 		int _la;
 		try {
-			enterOuterAlt(_localctx, 1);
-			{
-			setState(199);
-			match(T__8);
-			setState(200);
-			match(ID);
-			setState(201);
-			match(T__9);
-			setState(202);
-			simpleExpression(0);
-			setState(203);
-			match(T__10);
-			setState(204);
-			simpleExpression(0);
-			setState(206);
+			setState(221);
 			_errHandler.sync(this);
-			_la = _input.LA(1);
-			if (_la==NEWLINE) {
+			switch (_input.LA(1)) {
+			case T__8:
+				_localctx = new ForLoopContext(_localctx);
+				enterOuterAlt(_localctx, 1);
 				{
-				setState(205);
-				match(NEWLINE);
+				setState(199);
+				match(T__8);
+				setState(200);
+				match(ID);
+				setState(201);
+				match(T__9);
+				setState(202);
+				simpleExpression(0);
+				setState(203);
+				match(T__10);
+				setState(204);
+				simpleExpression(0);
+				setState(206);
+				_errHandler.sync(this);
+				_la = _input.LA(1);
+				if (_la==NEWLINE) {
+					{
+					setState(205);
+					match(NEWLINE);
+					}
 				}
-			}
 
-			setState(208);
-			match(T__2);
-			setState(209);
-			block();
-			setState(210);
-			match(T__3);
+				setState(208);
+				match(T__2);
+				setState(209);
+				block();
+				setState(210);
+				match(T__3);
+				}
+				break;
+			case T__11:
+				_localctx = new WhileLoopContext(_localctx);
+				enterOuterAlt(_localctx, 2);
+				{
+				setState(212);
+				match(T__11);
+				setState(213);
+				boolExprs(0);
+				setState(215);
+				_errHandler.sync(this);
+				_la = _input.LA(1);
+				if (_la==NEWLINE) {
+					{
+					setState(214);
+					match(NEWLINE);
+					}
+				}
+
+				setState(217);
+				match(T__2);
+				setState(218);
+				block();
+				setState(219);
+				match(T__3);
+				}
+				break;
+			default:
+				throw new NoViableAltException(this);
 			}
 		}
 		catch (RecognitionException re) {
@@ -1549,6 +1645,7 @@ public class TitanParser extends Parser {
 		enterRule(_localctx, 20, RULE_functionDeclaration);
 		int _la;
 		try {
+<<<<<<< Updated upstream
 			enterOuterAlt(_localctx, 1);
 			{
 			setState(212);
@@ -1570,15 +1667,85 @@ public class TitanParser extends Parser {
 				{
 				setState(218);
 				match(NEWLINE);
+=======
+			setState(247);
+			_errHandler.sync(this);
+			switch ( getInterpreter().adaptivePredict(_input,28,_ctx) ) {
+			case 1:
+				_localctx = new FunctionWithArgsDeclContext(_localctx);
+				enterOuterAlt(_localctx, 1);
+				{
+				setState(223);
+				match(T__12);
+				setState(224);
+				funcReturnTypes();
+				setState(225);
+				match(ID);
+				setState(226);
+				match(T__4);
+				setState(227);
+				args(0);
+				setState(228);
+				match(T__5);
+				setState(230);
+				_errHandler.sync(this);
+				_la = _input.LA(1);
+				if (_la==NEWLINE) {
+					{
+					setState(229);
+					match(NEWLINE);
+					}
+				}
+
+				setState(232);
+				match(T__2);
+				setState(233);
+				block();
+				setState(234);
+				match(T__3);
+				}
+				break;
+			case 2:
+				_localctx = new FunctionWithoutArgsDeclContext(_localctx);
+				enterOuterAlt(_localctx, 2);
+				{
+				setState(236);
+				match(T__12);
+				setState(237);
+				funcReturnTypes();
+				setState(238);
+				match(ID);
+				setState(239);
+				match(T__13);
+				setState(241);
+				_errHandler.sync(this);
+				_la = _input.LA(1);
+				if (_la==NEWLINE) {
+					{
+					setState(240);
+					match(NEWLINE);
+					}
+>>>>>>> Stashed changes
 				}
 			}
 
+<<<<<<< Updated upstream
 			setState(221);
 			match(T__2);
 			setState(222);
 			block();
 			setState(223);
 			match(T__3);
+=======
+				setState(243);
+				match(T__2);
+				setState(244);
+				block();
+				setState(245);
+				match(T__3);
+				}
+				break;
+>>>>>>> Stashed changes
 			}
 		}
 		catch (RecognitionException re) {
@@ -1634,6 +1801,7 @@ public class TitanParser extends Parser {
 			enterOuterAlt(_localctx, 1);
 			{
 			{
+<<<<<<< Updated upstream
 			setState(226);
 			argDecl();
 			}
@@ -1641,6 +1809,15 @@ public class TitanParser extends Parser {
 			setState(233);
 			_errHandler.sync(this);
 			_alt = getInterpreter().adaptivePredict(_input,25,_ctx);
+=======
+			setState(250);
+			argDecl();
+			}
+			_ctx.stop = _input.LT(-1);
+			setState(257);
+			_errHandler.sync(this);
+			_alt = getInterpreter().adaptivePredict(_input,29,_ctx);
+>>>>>>> Stashed changes
 			while ( _alt!=2 && _alt!=org.antlr.v4.runtime.atn.ATN.INVALID_ALT_NUMBER ) {
 				if ( _alt==1 ) {
 					if ( _parseListeners!=null ) triggerExitRuleEvent();
@@ -1649,18 +1826,32 @@ public class TitanParser extends Parser {
 					{
 					_localctx = new ArgsContext(_parentctx, _parentState);
 					pushNewRecursionContext(_localctx, _startState, RULE_args);
+<<<<<<< Updated upstream
 					setState(228);
 					if (!(precpred(_ctx, 1))) throw new FailedPredicateException(this, "precpred(_ctx, 1)");
 					setState(229);
 					match(T__12);
 					setState(230);
+=======
+					setState(252);
+					if (!(precpred(_ctx, 1))) throw new FailedPredicateException(this, "precpred(_ctx, 1)");
+					setState(253);
+					match(T__14);
+					setState(254);
+>>>>>>> Stashed changes
 					argDecl();
 					}
 					} 
 				}
+<<<<<<< Updated upstream
 				setState(235);
 				_errHandler.sync(this);
 				_alt = getInterpreter().adaptivePredict(_input,25,_ctx);
+=======
+				setState(259);
+				_errHandler.sync(this);
+				_alt = getInterpreter().adaptivePredict(_input,29,_ctx);
+>>>>>>> Stashed changes
 			}
 			}
 		}
@@ -1707,6 +1898,7 @@ public class TitanParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
+<<<<<<< Updated upstream
 			setState(236);
 			primitives();
 			setState(238);
@@ -1720,6 +1912,21 @@ public class TitanParser extends Parser {
 			}
 
 			setState(240);
+=======
+			setState(260);
+			primitives();
+			setState(262);
+			_errHandler.sync(this);
+			_la = _input.LA(1);
+			if (_la==T__15) {
+				{
+				setState(261);
+				((ArgDeclContext)_localctx).ref = match(T__15);
+				}
+			}
+
+			setState(264);
+>>>>>>> Stashed changes
 			match(ID);
 			}
 		}
@@ -1768,6 +1975,7 @@ public class TitanParser extends Parser {
 		enterRule(_localctx, 26, RULE_declaration);
 		int _la;
 		try {
+<<<<<<< Updated upstream
 			enterOuterAlt(_localctx, 1);
 			{
 			setState(243);
@@ -1777,9 +1985,43 @@ public class TitanParser extends Parser {
 				{
 				setState(242);
 				match(CONST);
+=======
+			setState(292);
+			_errHandler.sync(this);
+			switch ( getInterpreter().adaptivePredict(_input,35,_ctx) ) {
+			case 1:
+				_localctx = new NormalDeclarationContext(_localctx);
+				enterOuterAlt(_localctx, 1);
+				{
+				setState(267);
+				_errHandler.sync(this);
+				_la = _input.LA(1);
+				if (_la==CONST) {
+					{
+					setState(266);
+					match(CONST);
+					}
+				}
+
+				setState(269);
+				primitives();
+				setState(270);
+				match(ID);
+				setState(273);
+				_errHandler.sync(this);
+				_la = _input.LA(1);
+				if (_la==T__16) {
+					{
+					setState(271);
+					match(T__16);
+					setState(272);
+					expr();
+					}
+>>>>>>> Stashed changes
 				}
 			}
 
+<<<<<<< Updated upstream
 			setState(245);
 			primitives();
 			setState(246);
@@ -1793,6 +2035,52 @@ public class TitanParser extends Parser {
 				match(T__14);
 				setState(248);
 				expr();
+=======
+				setState(275);
+				match(NEWLINE);
+				}
+				break;
+			case 2:
+				_localctx = new TernaryDeclarationContext(_localctx);
+				enterOuterAlt(_localctx, 2);
+				{
+				setState(278);
+				_errHandler.sync(this);
+				_la = _input.LA(1);
+				if (_la==CONST) {
+					{
+					setState(277);
+					match(CONST);
+					}
+				}
+
+				setState(280);
+				primitives();
+				setState(281);
+				match(ID);
+				setState(282);
+				match(T__16);
+				setState(284);
+				_errHandler.sync(this);
+				_la = _input.LA(1);
+				if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__4) | (1L << T__21) | (1L << BOOLVALUES) | (1L << EXPNUM) | (1L << ID) | (1L << FLOATINGNUMBER) | (1L << DIGITS) | (1L << STRINGLIT))) != 0)) {
+					{
+					setState(283);
+					boolExprs(0);
+					}
+				}
+
+				setState(286);
+				match(T__17);
+				setState(287);
+				expr();
+				setState(288);
+				match(T__18);
+				setState(289);
+				expr();
+				setState(290);
+				match(NEWLINE);
+>>>>>>> Stashed changes
 				}
 			}
 
@@ -1889,13 +2177,20 @@ public class TitanParser extends Parser {
 		AssignmentContext _localctx = new AssignmentContext(_ctx, getState());
 		enterRule(_localctx, 28, RULE_assignment);
 		try {
+<<<<<<< Updated upstream
 			setState(266);
 			_errHandler.sync(this);
 			switch ( getInterpreter().adaptivePredict(_input,29,_ctx) ) {
+=======
+			setState(316);
+			_errHandler.sync(this);
+			switch ( getInterpreter().adaptivePredict(_input,36,_ctx) ) {
+>>>>>>> Stashed changes
 			case 1:
 				_localctx = new SimpleAssignmentContext(_localctx);
 				enterOuterAlt(_localctx, 1);
 				{
+<<<<<<< Updated upstream
 				setState(253);
 				match(ID);
 				setState(254);
@@ -1903,18 +2198,60 @@ public class TitanParser extends Parser {
 				setState(255);
 				expr();
 				setState(256);
+=======
+				setState(294);
+				match(ID);
+				setState(295);
+				match(T__16);
+				setState(296);
+				expr();
+				setState(297);
+>>>>>>> Stashed changes
 				match(NEWLINE);
 				}
 				break;
 			case 2:
+<<<<<<< Updated upstream
+=======
+				_localctx = new TernaryOpAssignmentContext(_localctx);
+				enterOuterAlt(_localctx, 2);
+				{
+				setState(299);
+				match(ID);
+				setState(300);
+				match(T__16);
+				setState(301);
+				boolExprs(0);
+				setState(302);
+				match(T__17);
+				setState(303);
+				expr();
+				setState(304);
+				match(T__18);
+				setState(305);
+				expr();
+				setState(306);
+				match(NEWLINE);
+				}
+				break;
+			case 3:
+>>>>>>> Stashed changes
 				_localctx = new ShorthandIncDecAssignmentContext(_localctx);
 				enterOuterAlt(_localctx, 2);
 				{
+<<<<<<< Updated upstream
 				setState(258);
 				match(ID);
 				setState(259);
 				match(SHORTHANDASSIGNOP);
 				setState(260);
+=======
+				setState(308);
+				match(ID);
+				setState(309);
+				match(SHORTHANDASSIGNOP);
+				setState(310);
+>>>>>>> Stashed changes
 				match(NEWLINE);
 				}
 				break;
@@ -1922,6 +2259,7 @@ public class TitanParser extends Parser {
 				_localctx = new SpecialAssignmentContext(_localctx);
 				enterOuterAlt(_localctx, 3);
 				{
+<<<<<<< Updated upstream
 				setState(261);
 				match(ID);
 				setState(262);
@@ -1929,6 +2267,15 @@ public class TitanParser extends Parser {
 				setState(263);
 				expr();
 				setState(264);
+=======
+				setState(311);
+				match(ID);
+				setState(312);
+				match(AssignmentOp);
+				setState(313);
+				expr();
+				setState(314);
+>>>>>>> Stashed changes
 				match(NEWLINE);
 				}
 				break;
@@ -1976,7 +2323,11 @@ public class TitanParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
+<<<<<<< Updated upstream
 			setState(268);
+=======
+			setState(318);
+>>>>>>> Stashed changes
 			_la = _input.LA(1);
 			if ( !((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << INT) | (1L << BOOL) | (1L << FLOAT) | (1L << STRING))) != 0)) ) {
 			_errHandler.recoverInline(this);
@@ -2026,7 +2377,11 @@ public class TitanParser extends Parser {
 		FuncReturnTypesContext _localctx = new FuncReturnTypesContext(_ctx, getState());
 		enterRule(_localctx, 32, RULE_funcReturnTypes);
 		try {
+<<<<<<< Updated upstream
 			setState(272);
+=======
+			setState(322);
+>>>>>>> Stashed changes
 			_errHandler.sync(this);
 			switch (_input.LA(1)) {
 			case INT:
@@ -2035,6 +2390,7 @@ public class TitanParser extends Parser {
 			case STRING:
 				enterOuterAlt(_localctx, 1);
 				{
+<<<<<<< Updated upstream
 				setState(270);
 				primitives();
 				}
@@ -2044,6 +2400,17 @@ public class TitanParser extends Parser {
 				{
 				setState(271);
 				match(T__15);
+=======
+				setState(320);
+				primitives();
+				}
+				break;
+			case T__19:
+				enterOuterAlt(_localctx, 2);
+				{
+				setState(321);
+				match(T__19);
+>>>>>>> Stashed changes
 				}
 				break;
 			default:
@@ -2091,11 +2458,19 @@ public class TitanParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
+<<<<<<< Updated upstream
 			setState(274);
 			match(T__16);
 			setState(275);
 			expr();
 			setState(276);
+=======
+			setState(324);
+			match(T__20);
+			setState(325);
+			expr();
+			setState(326);
+>>>>>>> Stashed changes
 			match(NEWLINE);
 			}
 		}
@@ -2167,6 +2542,7 @@ public class TitanParser extends Parser {
 		FunctionCallContext _localctx = new FunctionCallContext(_ctx, getState());
 		enterRule(_localctx, 36, RULE_functionCall);
 		try {
+<<<<<<< Updated upstream
 			setState(287);
 			_errHandler.sync(this);
 			switch (_input.LA(1)) {
@@ -2179,6 +2555,20 @@ public class TitanParser extends Parser {
 				setState(279);
 				printfexprList(0);
 				setState(280);
+=======
+			setState(339);
+			_errHandler.sync(this);
+			switch ( getInterpreter().adaptivePredict(_input,38,_ctx) ) {
+			case 1:
+				_localctx = new PrintfContext(_localctx);
+				enterOuterAlt(_localctx, 1);
+				{
+				setState(328);
+				match(T__21);
+				setState(329);
+				printfexprList(0);
+				setState(330);
+>>>>>>> Stashed changes
 				match(T__5);
 				}
 				break;
@@ -2186,6 +2576,7 @@ public class TitanParser extends Parser {
 				_localctx = new RegularFunctionContext(_localctx);
 				enterOuterAlt(_localctx, 2);
 				{
+<<<<<<< Updated upstream
 				setState(282);
 				match(ID);
 				setState(283);
@@ -2198,6 +2589,28 @@ public class TitanParser extends Parser {
 				break;
 			default:
 				throw new NoViableAltException(this);
+=======
+				setState(332);
+				match(ID);
+				setState(333);
+				match(T__4);
+				setState(334);
+				exprList(0);
+				setState(335);
+				match(T__5);
+				}
+				break;
+			case 3:
+				_localctx = new RegularFunctionWithoutArgsContext(_localctx);
+				enterOuterAlt(_localctx, 3);
+				{
+				setState(337);
+				match(ID);
+				setState(338);
+				match(T__13);
+				}
+				break;
+>>>>>>> Stashed changes
 			}
 		}
 		catch (RecognitionException re) {
@@ -2238,7 +2651,11 @@ public class TitanParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
+<<<<<<< Updated upstream
 			setState(289);
+=======
+			setState(341);
+>>>>>>> Stashed changes
 			match(STRINGLIT);
 			}
 		}
@@ -2295,6 +2712,7 @@ public class TitanParser extends Parser {
 			enterOuterAlt(_localctx, 1);
 			{
 			{
+<<<<<<< Updated upstream
 			setState(292);
 			expr();
 			}
@@ -2302,6 +2720,15 @@ public class TitanParser extends Parser {
 			setState(299);
 			_errHandler.sync(this);
 			_alt = getInterpreter().adaptivePredict(_input,32,_ctx);
+=======
+			setState(344);
+			expr();
+			}
+			_ctx.stop = _input.LT(-1);
+			setState(351);
+			_errHandler.sync(this);
+			_alt = getInterpreter().adaptivePredict(_input,39,_ctx);
+>>>>>>> Stashed changes
 			while ( _alt!=2 && _alt!=org.antlr.v4.runtime.atn.ATN.INVALID_ALT_NUMBER ) {
 				if ( _alt==1 ) {
 					if ( _parseListeners!=null ) triggerExitRuleEvent();
@@ -2310,18 +2737,32 @@ public class TitanParser extends Parser {
 					{
 					_localctx = new PrintfexprListContext(_parentctx, _parentState);
 					pushNewRecursionContext(_localctx, _startState, RULE_printfexprList);
+<<<<<<< Updated upstream
 					setState(294);
 					if (!(precpred(_ctx, 1))) throw new FailedPredicateException(this, "precpred(_ctx, 1)");
 					setState(295);
 					match(T__12);
 					setState(296);
+=======
+					setState(346);
+					if (!(precpred(_ctx, 1))) throw new FailedPredicateException(this, "precpred(_ctx, 1)");
+					setState(347);
+					match(T__14);
+					setState(348);
+>>>>>>> Stashed changes
 					expr();
 					}
 					} 
 				}
+<<<<<<< Updated upstream
 				setState(301);
 				_errHandler.sync(this);
 				_alt = getInterpreter().adaptivePredict(_input,32,_ctx);
+=======
+				setState(353);
+				_errHandler.sync(this);
+				_alt = getInterpreter().adaptivePredict(_input,39,_ctx);
+>>>>>>> Stashed changes
 			}
 			}
 		}
@@ -2378,6 +2819,7 @@ public class TitanParser extends Parser {
 			enterOuterAlt(_localctx, 1);
 			{
 			{
+<<<<<<< Updated upstream
 			setState(303);
 			expr();
 			}
@@ -2385,6 +2827,15 @@ public class TitanParser extends Parser {
 			setState(310);
 			_errHandler.sync(this);
 			_alt = getInterpreter().adaptivePredict(_input,33,_ctx);
+=======
+			setState(355);
+			expr();
+			}
+			_ctx.stop = _input.LT(-1);
+			setState(362);
+			_errHandler.sync(this);
+			_alt = getInterpreter().adaptivePredict(_input,40,_ctx);
+>>>>>>> Stashed changes
 			while ( _alt!=2 && _alt!=org.antlr.v4.runtime.atn.ATN.INVALID_ALT_NUMBER ) {
 				if ( _alt==1 ) {
 					if ( _parseListeners!=null ) triggerExitRuleEvent();
@@ -2393,18 +2844,32 @@ public class TitanParser extends Parser {
 					{
 					_localctx = new ExprListContext(_parentctx, _parentState);
 					pushNewRecursionContext(_localctx, _startState, RULE_exprList);
+<<<<<<< Updated upstream
 					setState(305);
 					if (!(precpred(_ctx, 1))) throw new FailedPredicateException(this, "precpred(_ctx, 1)");
 					setState(306);
 					match(T__12);
 					setState(307);
+=======
+					setState(357);
+					if (!(precpred(_ctx, 1))) throw new FailedPredicateException(this, "precpred(_ctx, 1)");
+					setState(358);
+					match(T__14);
+					setState(359);
+>>>>>>> Stashed changes
 					expr();
 					}
 					} 
 				}
+<<<<<<< Updated upstream
 				setState(312);
 				_errHandler.sync(this);
 				_alt = getInterpreter().adaptivePredict(_input,33,_ctx);
+=======
+				setState(364);
+				_errHandler.sync(this);
+				_alt = getInterpreter().adaptivePredict(_input,40,_ctx);
+>>>>>>> Stashed changes
 			}
 			}
 		}
@@ -2488,14 +2953,22 @@ public class TitanParser extends Parser {
 		NumberContext _localctx = new NumberContext(_ctx, getState());
 		enterRule(_localctx, 44, RULE_number);
 		try {
+<<<<<<< Updated upstream
 			setState(316);
+=======
+			setState(368);
+>>>>>>> Stashed changes
 			_errHandler.sync(this);
 			switch (_input.LA(1)) {
 			case DIGITS:
 				_localctx = new IntegerContext(_localctx);
 				enterOuterAlt(_localctx, 1);
 				{
+<<<<<<< Updated upstream
 				setState(313);
+=======
+				setState(365);
+>>>>>>> Stashed changes
 				match(DIGITS);
 				}
 				break;
@@ -2503,7 +2976,11 @@ public class TitanParser extends Parser {
 				_localctx = new FloatContext(_localctx);
 				enterOuterAlt(_localctx, 2);
 				{
+<<<<<<< Updated upstream
 				setState(314);
+=======
+				setState(366);
+>>>>>>> Stashed changes
 				match(FLOATINGNUMBER);
 				}
 				break;
@@ -2511,7 +2988,11 @@ public class TitanParser extends Parser {
 				_localctx = new ExponentialContext(_localctx);
 				enterOuterAlt(_localctx, 3);
 				{
+<<<<<<< Updated upstream
 				setState(315);
+=======
+				setState(367);
+>>>>>>> Stashed changes
 				match(EXPNUM);
 				}
 				break;
@@ -2588,9 +3069,15 @@ public class TitanParser extends Parser {
 	}
 
 	public static final String _serializedATN =
+<<<<<<< Updated upstream
 		"\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3\65\u0141\4\2\t\2"+
 		"\4\3\t\3\4\4\t\4\4\5\t\5\4\6\t\6\4\7\t\7\4\b\t\b\4\t\t\t\4\n\t\n\4\13"+
 		"\t\13\4\f\t\f\4\r\t\r\4\16\t\16\4\17\t\17\4\20\t\20\4\21\t\21\4\22\t\22"+
+=======
+		"\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\39\u0175\4\2\t\2\4"+
+		"\3\t\3\4\4\t\4\4\5\t\5\4\6\t\6\4\7\t\7\4\b\t\b\4\t\t\t\4\n\t\n\4\13\t"+
+		"\13\4\f\t\f\4\r\t\r\4\16\t\16\4\17\t\17\4\20\t\20\4\21\t\21\4\22\t\22"+
+>>>>>>> Stashed changes
 		"\4\23\t\23\4\24\t\24\4\25\t\25\4\26\t\26\4\27\t\27\4\30\t\30\3\2\3\2\3"+
 		"\2\7\2\64\n\2\f\2\16\2\67\13\2\3\2\3\2\3\3\3\3\3\3\3\3\3\3\7\3@\n\3\f"+
 		"\3\16\3C\13\3\3\3\3\3\7\3G\n\3\f\3\16\3J\13\3\7\3L\n\3\f\3\16\3O\13\3"+
@@ -2603,6 +3090,7 @@ public class TitanParser extends Parser {
 		"\n\n\3\n\3\n\5\n\u00b0\n\n\3\n\3\n\3\n\3\n\5\n\u00b6\n\n\3\n\3\n\3\n\5"+
 		"\n\u00bb\n\n\3\n\3\n\5\n\u00bf\n\n\3\n\3\n\5\n\u00c3\n\n\3\n\5\n\u00c6"+
 		"\n\n\5\n\u00c8\n\n\3\13\3\13\3\13\3\13\3\13\3\13\3\13\5\13\u00d1\n\13"+
+<<<<<<< Updated upstream
 		"\3\13\3\13\3\13\3\13\3\f\3\f\3\f\3\f\3\f\3\f\3\f\5\f\u00de\n\f\3\f\3\f"+
 		"\3\f\3\f\3\r\3\r\3\r\3\r\3\r\3\r\7\r\u00ea\n\r\f\r\16\r\u00ed\13\r\3\16"+
 		"\3\16\5\16\u00f1\n\16\3\16\3\16\3\17\5\17\u00f6\n\17\3\17\3\17\3\17\3"+
@@ -2698,6 +3186,126 @@ public class TitanParser extends Parser {
 		"\u013d\3\2\2\2\u013f/\3\2\2\2%\65AHMS^fq|~\u008b\u0095\u009d\u009f\u00a5"+
 		"\u00ab\u00af\u00b5\u00ba\u00be\u00c2\u00c5\u00c7\u00d0\u00dd\u00eb\u00f0"+
 		"\u00f5\u00fb\u010c\u0112\u0121\u012d\u0138\u013e";
+=======
+		"\3\13\3\13\3\13\3\13\3\13\3\13\3\13\5\13\u00da\n\13\3\13\3\13\3\13\3\13"+
+		"\5\13\u00e0\n\13\3\f\3\f\3\f\3\f\3\f\3\f\3\f\5\f\u00e9\n\f\3\f\3\f\3\f"+
+		"\3\f\3\f\3\f\3\f\3\f\3\f\5\f\u00f4\n\f\3\f\3\f\3\f\3\f\5\f\u00fa\n\f\3"+
+		"\r\3\r\3\r\3\r\3\r\3\r\7\r\u0102\n\r\f\r\16\r\u0105\13\r\3\16\3\16\5\16"+
+		"\u0109\n\16\3\16\3\16\3\17\5\17\u010e\n\17\3\17\3\17\3\17\3\17\5\17\u0114"+
+		"\n\17\3\17\3\17\3\17\5\17\u0119\n\17\3\17\3\17\3\17\3\17\5\17\u011f\n"+
+		"\17\3\17\3\17\3\17\3\17\3\17\3\17\5\17\u0127\n\17\3\20\3\20\3\20\3\20"+
+		"\3\20\3\20\3\20\3\20\3\20\3\20\3\20\3\20\3\20\3\20\3\20\3\20\3\20\3\20"+
+		"\3\20\3\20\3\20\3\20\5\20\u013f\n\20\3\21\3\21\3\22\3\22\5\22\u0145\n"+
+		"\22\3\23\3\23\3\23\3\23\3\24\3\24\3\24\3\24\3\24\3\24\3\24\3\24\3\24\3"+
+		"\24\3\24\5\24\u0156\n\24\3\25\3\25\3\26\3\26\3\26\3\26\3\26\3\26\7\26"+
+		"\u0160\n\26\f\26\16\26\u0163\13\26\3\27\3\27\3\27\3\27\3\27\3\27\7\27"+
+		"\u016b\n\27\f\27\16\27\u016e\13\27\3\30\3\30\3\30\5\30\u0173\n\30\3\30"+
+		"\2\7\f\20\30*,\31\2\4\6\b\n\f\16\20\22\24\26\30\32\34\36 \"$&(*,.\2\5"+
+		"\3\2\31\32\3\2\33\34\4\2\37 \"#\2\u0197\2\60\3\2\2\2\4:\3\2\2\2\6Q\3\2"+
+		"\2\2\b^\3\2\2\2\nf\3\2\2\2\fq\3\2\2\2\16\u008b\3\2\2\2\20\u0095\3\2\2"+
+		"\2\22\u00c7\3\2\2\2\24\u00df\3\2\2\2\26\u00f9\3\2\2\2\30\u00fb\3\2\2\2"+
+		"\32\u0106\3\2\2\2\34\u0126\3\2\2\2\36\u013e\3\2\2\2 \u0140\3\2\2\2\"\u0144"+
+		"\3\2\2\2$\u0146\3\2\2\2&\u0155\3\2\2\2(\u0157\3\2\2\2*\u0159\3\2\2\2,"+
+		"\u0164\3\2\2\2.\u0172\3\2\2\2\60\61\7\3\2\2\61\65\7\61\2\2\62\64\7\65"+
+		"\2\2\63\62\3\2\2\2\64\67\3\2\2\2\65\63\3\2\2\2\65\66\3\2\2\2\668\3\2\2"+
+		"\2\67\65\3\2\2\289\5\4\3\29\3\3\2\2\2:;\7\4\2\2;<\7\5\2\2<=\5\6\4\2=A"+
+		"\7\6\2\2>@\7\65\2\2?>\3\2\2\2@C\3\2\2\2A?\3\2\2\2AB\3\2\2\2BM\3\2\2\2"+
+		"CA\3\2\2\2DH\5\26\f\2EG\7\65\2\2FE\3\2\2\2GJ\3\2\2\2HF\3\2\2\2HI\3\2\2"+
+		"\2IL\3\2\2\2JH\3\2\2\2KD\3\2\2\2LO\3\2\2\2MK\3\2\2\2MN\3\2\2\2N\5\3\2"+
+		"\2\2OM\3\2\2\2PR\5\b\5\2QP\3\2\2\2RS\3\2\2\2SQ\3\2\2\2ST\3\2\2\2T\7\3"+
+		"\2\2\2UV\5\n\6\2VW\7\65\2\2W_\3\2\2\2X_\5\36\20\2Y_\5\34\17\2Z_\5\22\n"+
+		"\2[_\5$\23\2\\_\5\24\13\2]_\7\65\2\2^U\3\2\2\2^X\3\2\2\2^Y\3\2\2\2^Z\3"+
+		"\2\2\2^[\3\2\2\2^\\\3\2\2\2^]\3\2\2\2_\t\3\2\2\2`g\5\f\7\2ag\5\20\t\2"+
+		"bc\7\7\2\2cd\5\n\6\2de\7\b\2\2eg\3\2\2\2f`\3\2\2\2fa\3\2\2\2fb\3\2\2\2"+
+		"g\13\3\2\2\2hi\b\7\1\2ir\5(\25\2jk\7\7\2\2kl\5\f\7\2lm\7\b\2\2mr\3\2\2"+
+		"\2nr\5&\24\2or\5.\30\2pr\7\61\2\2qh\3\2\2\2qj\3\2\2\2qn\3\2\2\2qo\3\2"+
+		"\2\2qp\3\2\2\2r~\3\2\2\2st\f\n\2\2tu\t\2\2\2u}\5\f\7\13vw\f\t\2\2wx\t"+
+		"\3\2\2x}\5\f\7\nyz\f\b\2\2z{\7\35\2\2{}\5\f\7\t|s\3\2\2\2|v\3\2\2\2|y"+
+		"\3\2\2\2}\u0080\3\2\2\2~|\3\2\2\2~\177\3\2\2\2\177\r\3\2\2\2\u0080~\3"+
+		"\2\2\2\u0081\u0082\5\f\7\2\u0082\u0083\7\60\2\2\u0083\u0084\5\f\7\2\u0084"+
+		"\u008c\3\2\2\2\u0085\u0086\7\7\2\2\u0086\u0087\5\f\7\2\u0087\u0088\7\60"+
+		"\2\2\u0088\u0089\5\f\7\2\u0089\u008a\7\b\2\2\u008a\u008c\3\2\2\2\u008b"+
+		"\u0081\3\2\2\2\u008b\u0085\3\2\2\2\u008c\17\3\2\2\2\u008d\u008e\b\t\1"+
+		"\2\u008e\u008f\7\7\2\2\u008f\u0090\5\20\t\2\u0090\u0091\7\b\2\2\u0091"+
+		"\u0096\3\2\2\2\u0092\u0096\7$\2\2\u0093\u0096\7\61\2\2\u0094\u0096\5\16"+
+		"\b\2\u0095\u008d\3\2\2\2\u0095\u0092\3\2\2\2\u0095\u0093\3\2\2\2\u0095"+
+		"\u0094\3\2\2\2\u0096\u009f\3\2\2\2\u0097\u0098\f\7\2\2\u0098\u0099\7%"+
+		"\2\2\u0099\u009e\5\20\t\b\u009a\u009b\f\6\2\2\u009b\u009c\7&\2\2\u009c"+
+		"\u009e\5\20\t\7\u009d\u0097\3\2\2\2\u009d\u009a\3\2\2\2\u009e\u00a1\3"+
+		"\2\2\2\u009f\u009d\3\2\2\2\u009f\u00a0\3\2\2\2\u00a0\21\3\2\2\2\u00a1"+
+		"\u009f\3\2\2\2\u00a2\u00a3\7\t\2\2\u00a3\u00a5\5\20\t\2\u00a4\u00a6\7"+
+		"\65\2\2\u00a5\u00a4\3\2\2\2\u00a5\u00a6\3\2\2\2\u00a6\u00a7\3\2\2\2\u00a7"+
+		"\u00a8\7\5\2\2\u00a8\u00a9\5\6\4\2\u00a9\u00b5\7\6\2\2\u00aa\u00ac\7\65"+
+		"\2\2\u00ab\u00aa\3\2\2\2\u00ab\u00ac\3\2\2\2\u00ac\u00ad\3\2\2\2\u00ad"+
+		"\u00af\7\n\2\2\u00ae\u00b0\7\65\2\2\u00af\u00ae\3\2\2\2\u00af\u00b0\3"+
+		"\2\2\2\u00b0\u00b1\3\2\2\2\u00b1\u00b2\7\5\2\2\u00b2\u00b3\5\6\4\2\u00b3"+
+		"\u00b4\7\6\2\2\u00b4\u00b6\3\2\2\2\u00b5\u00ab\3\2\2\2\u00b5\u00b6\3\2"+
+		"\2\2\u00b6\u00c8\3\2\2\2\u00b7\u00b8\7\t\2\2\u00b8\u00ba\5\20\t\2\u00b9"+
+		"\u00bb\7\65\2\2\u00ba\u00b9\3\2\2\2\u00ba\u00bb\3\2\2\2\u00bb\u00bc\3"+
+		"\2\2\2\u00bc\u00c5\5\b\5\2\u00bd\u00bf\7\65\2\2\u00be\u00bd\3\2\2\2\u00be"+
+		"\u00bf\3\2\2\2\u00bf\u00c0\3\2\2\2\u00c0\u00c2\7\n\2\2\u00c1\u00c3\7\65"+
+		"\2\2\u00c2\u00c1\3\2\2\2\u00c2\u00c3\3\2\2\2\u00c3\u00c4\3\2\2\2\u00c4"+
+		"\u00c6\5\b\5\2\u00c5\u00be\3\2\2\2\u00c5\u00c6\3\2\2\2\u00c6\u00c8\3\2"+
+		"\2\2\u00c7\u00a2\3\2\2\2\u00c7\u00b7\3\2\2\2\u00c8\23\3\2\2\2\u00c9\u00ca"+
+		"\7\13\2\2\u00ca\u00cb\7\61\2\2\u00cb\u00cc\7\f\2\2\u00cc\u00cd\5\f\7\2"+
+		"\u00cd\u00ce\7\r\2\2\u00ce\u00d0\5\f\7\2\u00cf\u00d1\7\65\2\2\u00d0\u00cf"+
+		"\3\2\2\2\u00d0\u00d1\3\2\2\2\u00d1\u00d2\3\2\2\2\u00d2\u00d3\7\5\2\2\u00d3"+
+		"\u00d4\5\6\4\2\u00d4\u00d5\7\6\2\2\u00d5\u00e0\3\2\2\2\u00d6\u00d7\7\16"+
+		"\2\2\u00d7\u00d9\5\20\t\2\u00d8\u00da\7\65\2\2\u00d9\u00d8\3\2\2\2\u00d9"+
+		"\u00da\3\2\2\2\u00da\u00db\3\2\2\2\u00db\u00dc\7\5\2\2\u00dc\u00dd\5\6"+
+		"\4\2\u00dd\u00de\7\6\2\2\u00de\u00e0\3\2\2\2\u00df\u00c9\3\2\2\2\u00df"+
+		"\u00d6\3\2\2\2\u00e0\25\3\2\2\2\u00e1\u00e2\7\17\2\2\u00e2\u00e3\5\"\22"+
+		"\2\u00e3\u00e4\7\61\2\2\u00e4\u00e5\7\7\2\2\u00e5\u00e6\5\30\r\2\u00e6"+
+		"\u00e8\7\b\2\2\u00e7\u00e9\7\65\2\2\u00e8\u00e7\3\2\2\2\u00e8\u00e9\3"+
+		"\2\2\2\u00e9\u00ea\3\2\2\2\u00ea\u00eb\7\5\2\2\u00eb\u00ec\5\6\4\2\u00ec"+
+		"\u00ed\7\6\2\2\u00ed\u00fa\3\2\2\2\u00ee\u00ef\7\17\2\2\u00ef\u00f0\5"+
+		"\"\22\2\u00f0\u00f1\7\61\2\2\u00f1\u00f3\7\20\2\2\u00f2\u00f4\7\65\2\2"+
+		"\u00f3\u00f2\3\2\2\2\u00f3\u00f4\3\2\2\2\u00f4\u00f5\3\2\2\2\u00f5\u00f6"+
+		"\7\5\2\2\u00f6\u00f7\5\6\4\2\u00f7\u00f8\7\6\2\2\u00f8\u00fa\3\2\2\2\u00f9"+
+		"\u00e1\3\2\2\2\u00f9\u00ee\3\2\2\2\u00fa\27\3\2\2\2\u00fb\u00fc\b\r\1"+
+		"\2\u00fc\u00fd\5\32\16\2\u00fd\u0103\3\2\2\2\u00fe\u00ff\f\3\2\2\u00ff"+
+		"\u0100\7\21\2\2\u0100\u0102\5\32\16\2\u0101\u00fe\3\2\2\2\u0102\u0105"+
+		"\3\2\2\2\u0103\u0101\3\2\2\2\u0103\u0104\3\2\2\2\u0104\31\3\2\2\2\u0105"+
+		"\u0103\3\2\2\2\u0106\u0108\5 \21\2\u0107\u0109\7\22\2\2\u0108\u0107\3"+
+		"\2\2\2\u0108\u0109\3\2\2\2\u0109\u010a\3\2\2\2\u010a\u010b\7\61\2\2\u010b"+
+		"\33\3\2\2\2\u010c\u010e\7\36\2\2\u010d\u010c\3\2\2\2\u010d\u010e\3\2\2"+
+		"\2\u010e\u010f\3\2\2\2\u010f\u0110\5 \21\2\u0110\u0113\7\61\2\2\u0111"+
+		"\u0112\7\23\2\2\u0112\u0114\5\n\6\2\u0113\u0111\3\2\2\2\u0113\u0114\3"+
+		"\2\2\2\u0114\u0115\3\2\2\2\u0115\u0116\7\65\2\2\u0116\u0127\3\2\2\2\u0117"+
+		"\u0119\7\36\2\2\u0118\u0117\3\2\2\2\u0118\u0119\3\2\2\2\u0119\u011a\3"+
+		"\2\2\2\u011a\u011b\5 \21\2\u011b\u011c\7\61\2\2\u011c\u011e\7\23\2\2\u011d"+
+		"\u011f\5\20\t\2\u011e\u011d\3\2\2\2\u011e\u011f\3\2\2\2\u011f\u0120\3"+
+		"\2\2\2\u0120\u0121\7\24\2\2\u0121\u0122\5\n\6\2\u0122\u0123\7\25\2\2\u0123"+
+		"\u0124\5\n\6\2\u0124\u0125\7\65\2\2\u0125\u0127\3\2\2\2\u0126\u010d\3"+
+		"\2\2\2\u0126\u0118\3\2\2\2\u0127\35\3\2\2\2\u0128\u0129\7\61\2\2\u0129"+
+		"\u012a\7\23\2\2\u012a\u012b\5\n\6\2\u012b\u012c\7\65\2\2\u012c\u013f\3"+
+		"\2\2\2\u012d\u012e\7\61\2\2\u012e\u012f\7\23\2\2\u012f\u0130\5\20\t\2"+
+		"\u0130\u0131\7\24\2\2\u0131\u0132\5\n\6\2\u0132\u0133\7\25\2\2\u0133\u0134"+
+		"\5\n\6\2\u0134\u0135\7\65\2\2\u0135\u013f\3\2\2\2\u0136\u0137\7\61\2\2"+
+		"\u0137\u0138\7-\2\2\u0138\u013f\7\65\2\2\u0139\u013a\7\61\2\2\u013a\u013b"+
+		"\7\'\2\2\u013b\u013c\5\n\6\2\u013c\u013d\7\65\2\2\u013d\u013f\3\2\2\2"+
+		"\u013e\u0128\3\2\2\2\u013e\u012d\3\2\2\2\u013e\u0136\3\2\2\2\u013e\u0139"+
+		"\3\2\2\2\u013f\37\3\2\2\2\u0140\u0141\t\4\2\2\u0141!\3\2\2\2\u0142\u0145"+
+		"\5 \21\2\u0143\u0145\7\26\2\2\u0144\u0142\3\2\2\2\u0144\u0143\3\2\2\2"+
+		"\u0145#\3\2\2\2\u0146\u0147\7\27\2\2\u0147\u0148\5\n\6\2\u0148\u0149\7"+
+		"\65\2\2\u0149%\3\2\2\2\u014a\u014b\7\30\2\2\u014b\u014c\5*\26\2\u014c"+
+		"\u014d\7\b\2\2\u014d\u0156\3\2\2\2\u014e\u014f\7\61\2\2\u014f\u0150\7"+
+		"\7\2\2\u0150\u0151\5,\27\2\u0151\u0152\7\b\2\2\u0152\u0156\3\2\2\2\u0153"+
+		"\u0154\7\61\2\2\u0154\u0156\7\20\2\2\u0155\u014a\3\2\2\2\u0155\u014e\3"+
+		"\2\2\2\u0155\u0153\3\2\2\2\u0156\'\3\2\2\2\u0157\u0158\79\2\2\u0158)\3"+
+		"\2\2\2\u0159\u015a\b\26\1\2\u015a\u015b\5\n\6\2\u015b\u0161\3\2\2\2\u015c"+
+		"\u015d\f\3\2\2\u015d\u015e\7\21\2\2\u015e\u0160\5\n\6\2\u015f\u015c\3"+
+		"\2\2\2\u0160\u0163\3\2\2\2\u0161\u015f\3\2\2\2\u0161\u0162\3\2\2\2\u0162"+
+		"+\3\2\2\2\u0163\u0161\3\2\2\2\u0164\u0165\b\27\1\2\u0165\u0166\5\n\6\2"+
+		"\u0166\u016c\3\2\2\2\u0167\u0168\f\3\2\2\u0168\u0169\7\21\2\2\u0169\u016b"+
+		"\5\n\6\2\u016a\u0167\3\2\2\2\u016b\u016e\3\2\2\2\u016c\u016a\3\2\2\2\u016c"+
+		"\u016d\3\2\2\2\u016d-\3\2\2\2\u016e\u016c\3\2\2\2\u016f\u0173\7\64\2\2"+
+		"\u0170\u0173\7\63\2\2\u0171\u0173\7,\2\2\u0172\u016f\3\2\2\2\u0172\u0170"+
+		"\3\2\2\2\u0172\u0171\3\2\2\2\u0173/\3\2\2\2,\65AHMS^fq|~\u008b\u0095\u009d"+
+		"\u009f\u00a5\u00ab\u00af\u00b5\u00ba\u00be\u00c2\u00c5\u00c7\u00d0\u00d9"+
+		"\u00df\u00e8\u00f3\u00f9\u0103\u0108\u010d\u0113\u0118\u011e\u0126\u013e"+
+		"\u0144\u0155\u0161\u016c\u0172";
+>>>>>>> Stashed changes
 	public static final ATN _ATN =
 		new ATNDeserializer().deserialize(_serializedATN.toCharArray());
 	static {

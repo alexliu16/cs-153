@@ -13,7 +13,7 @@ public class Main {
 
     public static void main(String[] args) throws IOException {
 
-        InputStream is = new FileInputStream("sample.t");
+        InputStream is = new FileInputStream("loopsample.t");
 
         ANTLRInputStream input = new ANTLRInputStream(is);
         TitanLexer lexer = new TitanLexer(input);

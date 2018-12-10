@@ -1,4 +1,4 @@
-// Generated from /Users/thomaspedersen/CS153/TeamProject/cs-153/Titan/src/com/titan/Titan.g4 by ANTLR 4.7
+// Generated from Titan.g4 by ANTLR 4.7.1
 package com.titan;
 
     import com.titan.intermediate.*;
@@ -308,13 +308,25 @@ public class TitanBaseListener implements TitanListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterLoop(TitanParser.LoopContext ctx) { }
+	@Override public void enterForLoop(TitanParser.ForLoopContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitLoop(TitanParser.LoopContext ctx) { }
+	@Override public void exitForLoop(TitanParser.ForLoopContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterWhileLoop(TitanParser.WhileLoopContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitWhileLoop(TitanParser.WhileLoopContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *

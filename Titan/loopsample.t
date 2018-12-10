@@ -1,20 +1,21 @@
 program TestingLoops
 main {
-	int i = 5
+	int i = 1
 	
-	for a from 0 to i {
-    	printf("This is a for loop. a has value of %d\n",a)
-    	printf("Test outside declarations. i has a value of %d\n",i)
-    	
-    	int q = 12
-    	printf("For loop declarations work. q has value of %d\n",q)
-    	
-    	int w = 3
-    	printf("For loop declarations work. w has value of %d\n",w)
-    }
+	if i < 2 {
+		printf("IF")
+	} else {
+		printf("ELSE")
+	}
+	while (i < 5) {
+		int z = 3
+		printf("While loop. i has value of %d\n",i)
+		printf("Declare var z in while loop. z has value of %d\n",z)
+		i += 1
+	}
     
-    for a from 0 to 1 {
-    	int b = 1
-    	printf("Second For loop declarations work. b has value of %d\n",b)
+    for a from 0 to 2 {
+    	int z = 1
+    	printf("For loop declarations work. a has value of %d\n",a)
     }
 }

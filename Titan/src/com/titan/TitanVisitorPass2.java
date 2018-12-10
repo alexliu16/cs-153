@@ -212,7 +212,7 @@ public class TitanVisitorPass2 extends TitanBaseVisitor<Integer>
 
         TypeSpec type1 = ctx.simpleExpression(0).type;
         TypeSpec type2 = ctx.simpleExpression(1).type;
-
+        
         boolean integerMode =    (type1 == Predefined.integerType)
                 && (type2 == Predefined.integerType);
         boolean realMode    =    (type1 == Predefined.realType)
@@ -447,15 +447,28 @@ public class TitanVisitorPass2 extends TitanBaseVisitor<Integer>
 
     @Override
     public Integer visitComparisonExpr(TitanParser.ComparisonExprContext ctx) {
+    	//System.out.println("Comparison: " + ctx.getText());
         String comparison = ctx.comparison().COMPARISON_OP().getText();
         TypeSpec type1 = ctx.comparison().simpleExpression(0).type;
         TypeSpec type2 = ctx.comparison().simpleExpression(1).type;
+        
         visit(ctx.comparison().simpleExpression((0)));
         visit(ctx.comparison().simpleExpression(1));
         boolean integerMode =    (type1 == Predefined.integerType)
                 && (type2 == Predefined.integerType);
         boolean realMode    =    (type1 == Predefined.realType)
                 && (type2 == Predefined.realType);
+<<<<<<< Updated upstream
+=======
+        boolean stringMode = type1 == Predefined.stringType && type2 == Predefined.stringType;
+
+        if(stringMode) {
+            jFile.println("invokevirtual java/lang/String/compareTo(Ljava/lang/String;)I");
+            jFile.println("iconst_0");
+            integerMode = true;
+        }
+        
+>>>>>>> Stashed changes
         String compareCode;
         if (comparison.equals("<")) {
             compareCode = integerMode ? "if_icmplt"
@@ -494,6 +507,7 @@ public class TitanVisitorPass2 extends TitanBaseVisitor<Integer>
         jFile.println("\ticonst_1");
         jFile.println(labelTwo + ":");
         this.labelIncrementer += 2; // increment for new labels
+
         return 0;
     }
 
@@ -523,19 +537,37 @@ public class TitanVisitorPass2 extends TitanBaseVisitor<Integer>
         }
         return 0;
     }
-
     
-    public Integer visitLoopExpression(TitanParser.SimpleExpressionContext ctx) {
-    	Integer val = 1;
-    	return val;
+    @Override
+    public Integer visitWhileLoop(TitanParser.WhileLoopContext ctx) {
+    	//System.out.println("VisitLoop: " + ctx.boolExprs().getText());
+    	String name = "whileloop" + ctx.start.getLine();
+           
+    	jFile.println("L00" + (this.labelIncrementer) + ":\t ; while loop"); // emit label
+    	this.labelIncrementer++;
+    	
+    	visit(ctx.boolExprs());
+    	
+    	jFile.println("\tifeq L00" + (this.labelIncrementer));
+        // push new symbol table for scoped variables
+    	SymTab scopedTab = (SymTab) symTabStack.lookup(name).getAttribute(ROUTINE_SYMTAB);
+    	symTabStack.push(scopedTab);
+    	
+    	visit(ctx.block()); 
+        jFile.println("\tgoto L00" + (this.labelIncrementer - 3));        
+       
+        jFile.println("L00" + (this.labelIncrementer) + ":"); // emit label
+        this.labelIncrementer++;
+        
+		symTabStack.pop();
+		 
+        return 0;
     }
     
     @Override
-    public Integer visitLoop(TitanParser.LoopContext ctx) {   
-    	//System.out.println("Stack before push: " + symTabStack.getLocalSymTab());
-    	
+    public Integer visitForLoop(TitanParser.ForLoopContext ctx) {       	
     	String id = ctx.ID().getText();
-    	String name = "loop" + ctx.start.getLine();
+    	String name = "forloop" + ctx.start.getLine();
     	
     	// push new symbol table for scoped variables
     	SymTab scopedTab = (SymTab) symTabStack.lookup(name).getAttribute(ROUTINE_SYMTAB);

@@ -1,4 +1,4 @@
-// Generated from /Users/thomaspedersen/CS153/TeamProject/cs-153/Titan/src/com/titan/Titan.g4 by ANTLR 4.7
+// Generated from Titan.g4 by ANTLR 4.7.1
 package com.titan;
 
     import com.titan.intermediate.*;
@@ -290,15 +290,29 @@ public interface TitanListener extends ParseTreeListener {
 	 */
 	void exitIfElseNoBrackets(TitanParser.IfElseNoBracketsContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link TitanParser#loop}.
+	 * Enter a parse tree produced by the {@code ForLoop}
+	 * labeled alternative in {@link TitanParser#loop}.
 	 * @param ctx the parse tree
 	 */
-	void enterLoop(TitanParser.LoopContext ctx);
+	void enterForLoop(TitanParser.ForLoopContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link TitanParser#loop}.
+	 * Exit a parse tree produced by the {@code ForLoop}
+	 * labeled alternative in {@link TitanParser#loop}.
 	 * @param ctx the parse tree
 	 */
-	void exitLoop(TitanParser.LoopContext ctx);
+	void exitForLoop(TitanParser.ForLoopContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code WhileLoop}
+	 * labeled alternative in {@link TitanParser#loop}.
+	 * @param ctx the parse tree
+	 */
+	void enterWhileLoop(TitanParser.WhileLoopContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code WhileLoop}
+	 * labeled alternative in {@link TitanParser#loop}.
+	 * @param ctx the parse tree
+	 */
+	void exitWhileLoop(TitanParser.WhileLoopContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link TitanParser#functionDeclaration}.
 	 * @param ctx the parse tree

@@ -1,4 +1,4 @@
-// Generated from /Users/thomaspedersen/CS153/TeamProject/cs-153/Titan/src/com/titan/Titan.g4 by ANTLR 4.7
+// Generated from Titan.g4 by ANTLR 4.7.1
 package com.titan;
 
     import com.titan.intermediate.*;
@@ -189,7 +189,14 @@ public class TitanBaseVisitor<T> extends AbstractParseTreeVisitor<T> implements 
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitLoop(TitanParser.LoopContext ctx) { return visitChildren(ctx); }
+	@Override public T visitForLoop(TitanParser.ForLoopContext ctx) { return visitChildren(ctx); }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.</p>
+	 */
+	@Override public T visitWhileLoop(TitanParser.WhileLoopContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
